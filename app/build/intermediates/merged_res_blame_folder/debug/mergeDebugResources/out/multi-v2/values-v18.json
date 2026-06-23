@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.halalcheck.app-mergeDebugResources-77:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\kaiss\\.gradle\\caches\\9.3.0\\transforms\\7b761b9ed7e4e806a18cd25156cf6486\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.history.HistoryViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.history.HistoryViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.home.HomeViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.home.HomeViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.result.ResultViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.result.ResultViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.scanner.ScannerViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.scanner.ScannerViewModel

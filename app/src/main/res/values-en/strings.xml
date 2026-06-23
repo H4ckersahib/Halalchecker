@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HalalCheck</string>
+    <string name="app_description">Check if products are halal</string>
+
+    <!-- Home -->
+    <string name="home_title">HalalCheck</string>
+    <string name="home_greeting">Bismillah! 🤲</string>
+    <string name="home_subtitle">Scan a barcode to check if a product is halal.</string>
+    <string name="home_scan_button">Scan Barcode</string>
+    <string name="home_recent_scans">Recent Scans</string>
+    <string name="home_no_scans">No scans yet</string>
+    <string name="home_no_scans_hint">Tap the scan button to check your first product!</string>
+    <string name="home_today">Today</string>
+    <string name="home_total">Total</string>
+    <string name="home_ingredients_db">Ingredients in DB</string>
+
+    <!-- Scanner -->
+    <string name="scanner_title">Scanner</string>
+    <string name="scanner_hint">Point the camera at the barcode</string>
+    <string name="scanner_manual">Manual</string>
+    <string name="scanner_manual_title">Enter barcode manually</string>
+    <string name="scanner_manual_hint">e.g. 4005500068211</string>
+    <string name="scanner_search">Search product</string>
+    <string name="scanner_permission_title">Camera access required</string>
+    <string name="scanner_permission_text">Please allow camera access to scan barcodes.</string>
+    <string name="scanner_permission_button">Grant permission</string>
+
+    <!-- Result -->
+    <string name="result_title">Result</string>
+    <string name="result_loading">Analyzing product…</string>
+    <string name="result_not_found">Product not found</string>
+    <string name="result_confidence">Confidence: %d%%</string>
+    <string name="result_ingredients_title">Ingredient Analysis (%d ingredients)</string>
+    <string name="result_unknown_title">⚠️ Unknown Ingredients</string>
+    <string name="result_unknown_hint">These ingredients were not found in our database.</string>
+    <string name="result_original_ingredients">📋 Original Ingredients List</string>
+    <string name="result_disclaimer">⚠️ This analysis does not replace religious guidance. If in doubt, please consult a scholar.</string>
+    <string name="result_madhab_label">School of Thought (Madhab)</string>
+    <string name="result_madhab_change">Change</string>
+    <string name="result_retry">Try again</string>
+    <string name="result_share">Share</string>
+
+    <!-- Status -->
+    <string name="status_halal">Halal</string>
+    <string name="status_haram">Haram</string>
+    <string name="status_mashbooh">Doubtful</string>
+    <string name="status_unknown">Unknown</string>
+    <string name="status_halal_desc">All ingredients are permissible</string>
+    <string name="status_haram_desc">Contains prohibited ingredients</string>
+    <string name="status_mashbooh_desc">Contains doubtful ingredients</string>
+    <string name="status_unknown_desc">Status could not be determined</string>
+
+    <!-- History -->
+    <string name="history_title">History</string>
+    <string name="history_search">Search product…</string>
+    <string name="history_empty">No scans found</string>
+    <string name="history_clear">Clear history</string>
+    <string name="history_filter_all">All</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_madhab">School of Thought (Madhab)</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_dark_mode_desc">Eye-friendly design</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_about">About HalalCheck</string>
+    <string name="settings_about_text">HalalCheck is a non-profit open-source project that helps Muslims make informed decisions about their food.</string>
+    <string name="settings_version">Version %s</string>
+
+    <!-- General -->
+    <string name="back">Back</string>
+    <string name="just_now">Just now</string>
+    <string name="minutes_ago">%d min ago</string>
+    <string name="hours_ago">%d hrs ago</string>
+    <string name="yesterday">Yesterday</string>
+</resources>

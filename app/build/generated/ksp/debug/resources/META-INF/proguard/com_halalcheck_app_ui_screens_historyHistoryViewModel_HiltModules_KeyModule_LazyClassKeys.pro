@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.history.HistoryViewModel
+-keep,allowobfuscation,allowshrinking class com.halalcheck.app.ui.screens.history.HistoryViewModel
