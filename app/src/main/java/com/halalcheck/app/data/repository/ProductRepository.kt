@@ -5,89 +5,99 @@ import com.halalcheck.app.data.local.dao.ScanHistoryDao
 import com.halalcheck.app.data.local.entity.ProductEntity
 import com.halalcheck.app.data.local.entity.ScanHistoryEntity
 import com.halalcheck.app.data.remote.OpenFoodFactsApi
+import com.halalcheck.app.data.remote.OpenFoodFactsIngredient
+import com.halalcheck.app.data.remote.OpenFoodFactsProduct
 import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.domain.model.ScanHistoryItem
+import com.halalcheck.app.domain.model.SourceIngredient
+import com.squareup.moshi.JsonDataException
+import com.squareup.moshi.Moshi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import retrofit2.HttpException
+import java.io.IOException
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Repository implementing the three-tier product lookup:
- * 1. Local cache (Room)
+ * Product lookup:
+ * 1. Local cache (Room), if fresh
  * 2. Open Food Facts API
- * 3. (Future: Community / Supabase backend)
+ * 3. Stale cache when offline
+ * (Future: own backend and community, see spec.md)
  */
 @Singleton
 class ProductRepository @Inject constructor(
     private val productDao: ProductDao,
     private val scanHistoryDao: ScanHistoryDao,
-    private val openFoodFactsApi: OpenFoodFactsApi
+    private val openFoodFactsApi: OpenFoodFactsApi,
+    moshi: Moshi
 ) {
+    private val payloadAdapter = moshi.adapter(OpenFoodFactsProduct::class.java)
+
     /**
-     * Look up a product by barcode using the three-tier strategy.
+     * Look up a product by barcode. A product Open Food Facts does not know is a success with
+     * [DataSource.UNKNOWN]; only network problems without a cached copy are failures.
      */
     suspend fun lookupProduct(barcode: String): Result<Product> {
-        // Tier 1: Check local cache
+        val language = Locale.getDefault().language
         val cached = productDao.getProductByBarcode(barcode)
-        if (cached != null) {
-            return Result.success(cached.toDomain())
+        val cachedProduct = cached?.offPayload
+            ?.let { payload -> runCatching { payloadAdapter.fromJson(payload) }.getOrNull() }
+            ?.toDomain(barcode, language)
+        if (cachedProduct != null && System.currentTimeMillis() - cached.lastUpdated < CACHE_MAX_AGE_MS) {
+            return Result.success(cachedProduct)
         }
 
-        // Tier 2: Query Open Food Facts API
         return try {
             val response = openFoodFactsApi.getProduct(barcode)
-            if (response.status == 1 && response.product != null) {
-                val offProduct = response.product
-                val product = Product(
-                    barcode = barcode,
-                    name = offProduct.productName ?: "Unbekanntes Produkt",
-                    brand = offProduct.brands,
-                    imageUrl = offProduct.getBestImageUrl(),
-                    ingredientsText = offProduct.getBestIngredientsText(),
-                    labels = offProduct.labels,
-                    source = DataSource.OPEN_FOOD_FACTS
-                )
-
-                // Cache the product locally
-                cacheProduct(product)
-
-                Result.success(product)
+            val offProduct = response.product
+            if (response.status == 1 && offProduct != null) {
+                cacheProduct(barcode, offProduct, language)
+                Result.success(offProduct.toDomain(barcode, language))
             } else {
-                // Product not found anywhere
-                Result.success(
-                    Product(
-                        barcode = barcode,
-                        name = "Produkt nicht gefunden",
-                        source = DataSource.UNKNOWN
-                    )
-                )
+                Result.success(notFound(barcode))
             }
-        } catch (e: Exception) {
-            // Network error - return a basic product with the barcode
-            Result.failure(e)
+        } catch (e: HttpException) {
+            if (e.code() == HTTP_NOT_FOUND) Result.success(notFound(barcode)) else cachedOrFailure(cachedProduct, e)
+        } catch (e: IOException) {
+            cachedOrFailure(cachedProduct, e)
+        } catch (e: JsonDataException) {
+            cachedOrFailure(cachedProduct, e)
         }
     }
 
-    /**
-     * Cache a product in the local database.
-     */
-    suspend fun cacheProduct(product: Product) {
+    private fun cachedOrFailure(cached: Product?, error: Exception): Result<Product> =
+        cached?.let { Result.success(it) } ?: Result.failure(error)
+
+    private fun notFound(barcode: String) = Product(barcode = barcode, name = "", source = DataSource.UNKNOWN)
+
+    private suspend fun cacheProduct(barcode: String, offProduct: OpenFoodFactsProduct, language: String) {
         productDao.insertProduct(
             ProductEntity(
-                barcode = product.barcode,
-                name = product.name,
-                brand = product.brand,
-                imageUrl = product.imageUrl,
-                ingredientsText = product.ingredientsText,
-                halalStatus = product.halalStatus.name,
-                confidence = product.confidence,
-                source = product.source.name,
-                lastUpdated = System.currentTimeMillis()
+                barcode = barcode,
+                name = offProduct.getBestName(language),
+                brand = offProduct.brands,
+                imageUrl = offProduct.getBestImageUrl(),
+                ingredientsText = offProduct.getBestIngredientsText(language),
+                source = DataSource.OPEN_FOOD_FACTS.name,
+                lastUpdated = System.currentTimeMillis(),
+                offPayload = payloadAdapter.toJson(offProduct)
             )
         )
+    }
+
+    /**
+     * Store the analysis result of a cached product.
+     */
+    suspend fun saveAnalysis(product: Product) {
+        productDao.updateAnalysis(product.barcode, product.halalStatus.name, product.confidence)
     }
 
     /**
@@ -97,7 +107,7 @@ class ProductRepository @Inject constructor(
         scanHistoryDao.insertScan(
             ScanHistoryEntity(
                 barcode = product.barcode,
-                productName = product.name,
+                productName = product.name.ifBlank { product.barcode },
                 brand = product.brand,
                 imageUrl = product.imageUrl,
                 halalStatus = product.halalStatus.name,
@@ -143,10 +153,10 @@ class ProductRepository @Inject constructor(
     }
 
     /**
-     * Get scan count for today.
+     * Get scan count for today (local time).
      */
     suspend fun getTodayScanCount(): Int {
-        val startOfDay = getStartOfDayMillis()
+        val startOfDay = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
         return scanHistoryDao.getScanCountSince(startOfDay)
     }
 
@@ -171,24 +181,34 @@ class ProductRepository @Inject constructor(
         scanHistoryDao.deleteAllScans()
     }
 
-    private fun getStartOfDayMillis(): Long {
-        val now = System.currentTimeMillis()
-        return now - (now % (24 * 60 * 60 * 1000))
+    private companion object {
+        const val HTTP_NOT_FOUND = 404
+        val CACHE_MAX_AGE_MS = TimeUnit.DAYS.toMillis(7)
     }
 }
 
-// Extension functions for entity-to-domain conversion
+// Extension functions for remote/entity-to-domain conversion
 
-fun ProductEntity.toDomain(): Product {
+fun OpenFoodFactsProduct.toDomain(barcode: String, language: String): Product {
     return Product(
         barcode = barcode,
-        name = name,
-        brand = brand,
-        imageUrl = imageUrl,
-        ingredientsText = ingredientsText,
-        halalStatus = HalalStatus.fromString(halalStatus),
-        confidence = confidence,
-        source = try { DataSource.valueOf(source) } catch (e: Exception) { DataSource.UNKNOWN }
+        name = getBestName(language),
+        brand = brands?.takeIf { it.isNotBlank() },
+        imageUrl = getBestImageUrl(),
+        ingredientsText = getBestIngredientsText(language),
+        labelsTags = labelsTags.orEmpty(),
+        additivesTags = additivesTags.orEmpty(),
+        sourceIngredients = ingredients.orEmpty().mapNotNull { it.toDomain() },
+        source = DataSource.OPEN_FOOD_FACTS
+    )
+}
+
+private fun OpenFoodFactsIngredient.toDomain(): SourceIngredient? {
+    val text = text?.takeIf { it.isNotBlank() } ?: return null
+    return SourceIngredient(
+        id = id,
+        text = text,
+        children = ingredients.orEmpty().mapNotNull { it.toDomain() }
     )
 }
 

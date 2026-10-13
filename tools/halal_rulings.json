@@ -1,0 +1,2718 @@
+[
+  {
+    "id": "en:acidity-regulator",
+    "default_category": "HALAL",
+    "reason": "Chemical compounds, mineral or plant-derived",
+    "reason_de": "Chemische Verbindungen, mineralisch oder pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Säureregulator",
+      "en": "Acidity Regulator",
+      "tr": "Asitlik Düzenleyici",
+      "ar": "منظم حموضة"
+    }
+  },
+  {
+    "id": "en:alcohol",
+    "default_category": "HARAM",
+    "reason": "Intoxicant - prohibited as ingredient",
+    "reason_de": "Rauschmittel – als Zutat verboten",
+    "source": "quran_hadith",
+    "names": {
+      "de": "Alkohol",
+      "en": "Alcohol",
+      "tr": "Alkol",
+      "ar": "كحول"
+    }
+  },
+  {
+    "id": "en:animal",
+    "default_category": "MASHBOOH",
+    "reason": "Source animal and slaughter method unknown",
+    "reason_de": "Herkunftstier und Schlachtmethode unbekannt",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source"
+  },
+  {
+    "id": "en:animal-fat",
+    "default_category": "MASHBOOH",
+    "reason": "Source animal and slaughter method unknown",
+    "reason_de": "Herkunftstier und Schlachtmethode unbekannt",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Tierisches Fett",
+      "en": "Animal Fat",
+      "tr": "Hayvansal Yağ",
+      "ar": "دهن حيواني"
+    }
+  },
+  {
+    "id": "en:antioxidant",
+    "default_category": "HALAL",
+    "reason": "Most antioxidants are synthetic or plant-derived",
+    "reason_de": "Die meisten Antioxidationsmittel sind synthetisch oder pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Antioxidationsmittel",
+      "en": "Antioxidant",
+      "tr": "Antioksidan",
+      "ar": "مضاد أكسدة"
+    }
+  },
+  {
+    "id": "en:artificial-flavouring",
+    "default_category": "HALAL",
+    "reason": "Synthetically produced, no animal source",
+    "reason_de": "Synthetisch hergestellt, keine tierische Quelle",
+    "source": "consensus",
+    "names": {
+      "de": "Künstliche Aromen",
+      "en": "Artificial Flavors",
+      "tr": "Yapay Aromalar",
+      "ar": "نكهات اصطناعية"
+    }
+  },
+  {
+    "id": "en:bacon",
+    "default_category": "HARAM",
+    "reason": "Pork product",
+    "reason_de": "Schweinefleischprodukt",
+    "source": "quran",
+    "names": {
+      "de": "Speck",
+      "en": "Bacon",
+      "tr": "Domuz Pastırması",
+      "ar": "لحم مقدد"
+    }
+  },
+  {
+    "id": "en:baking-powder",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Backpulver",
+      "en": "Baking Powder",
+      "tr": "Kabartma Tozu",
+      "ar": "بيكنج باودر"
+    }
+  },
+  {
+    "id": "en:beef",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "MASHBOOH",
+    "maliki_ruling": "MASHBOOH",
+    "shafi_ruling": "MASHBOOH",
+    "hanbali_ruling": "MASHBOOH",
+    "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
+    "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Rindfleisch",
+      "en": "Beef",
+      "tr": "Sığır Eti",
+      "ar": "لحم بقر"
+    }
+  },
+  {
+    "id": "en:beef-fat",
+    "default_category": "MASHBOOH",
+    "reason": "Only halal if from halal-slaughtered animal",
+    "reason_de": "Nur halal wenn von halal-geschlachtetem Tier",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Rindertalg",
+      "en": "Beef Tallow",
+      "tr": "Sığır İç Yağı",
+      "ar": "شحم البقر"
+    }
+  },
+  {
+    "id": "en:beef-gelatin",
+    "default_category": "MASHBOOH",
+    "reason": "Only halal if from halal-slaughtered cattle",
+    "reason_de": "Nur halal wenn von halal-geschlachtetem Rind",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Rindergelatine",
+      "en": "Beef Gelatin",
+      "tr": "Sığır Jelatini",
+      "ar": "جيلاتين البقر"
+    }
+  },
+  {
+    "id": "en:beer",
+    "default_category": "HARAM",
+    "reason": "Alcoholic beverage",
+    "reason_de": "Alkoholisches Getränk",
+    "source": "quran_hadith",
+    "names": {
+      "de": "Bier",
+      "en": "Beer",
+      "tr": "Bira",
+      "ar": "بيرة"
+    }
+  },
+  {
+    "default_category": "HARAM",
+    "reason": "Flowing blood is prohibited (Quran 6:145)",
+    "reason_de": "Fließendes Blut ist verboten (Quran 6:145)",
+    "source": "quran",
+    "id": "en:blood-proteins"
+  },
+  {
+    "id": "en:brandy",
+    "default_category": "HARAM",
+    "reason": "Alcoholic spirit",
+    "reason_de": "Alkoholische Spirituose",
+    "source": "quran_hadith",
+    "names": {
+      "de": "Weinbrand",
+      "en": "Brandy",
+      "tr": "Brendi",
+      "ar": "براندي"
+    }
+  },
+  {
+    "id": "en:butter",
+    "default_category": "HALAL",
+    "reason": "Dairy product",
+    "reason_de": "Milchprodukt",
+    "source": "consensus",
+    "names": {
+      "de": "Butter",
+      "en": "Butter",
+      "tr": "Tereyağı",
+      "ar": "زبدة"
+    }
+  },
+  {
+    "id": "en:butterfat",
+    "default_category": "HALAL",
+    "reason": "Dairy product",
+    "reason_de": "Milchprodukt",
+    "source": "consensus",
+    "names": {
+      "de": "Butterfett",
+      "en": "Butterfat"
+    }
+  },
+  {
+    "id": "en:carbonic-acid",
+    "default_category": "HALAL",
+    "reason": "Carbon dioxide dissolved in water, of mineral origin",
+    "reason_de": "In Wasser gelöstes Kohlendioxid, mineralischen Ursprungs",
+    "source": "consensus"
+  },
+  {
+    "id": "en:casein",
+    "default_category": "MASHBOOH",
+    "reason": "Milk protein, but may be processed with animal-derived enzymes",
+    "reason_de": "Milchprotein, kann aber mit tierischen Enzymen verarbeitet werden",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Kasein",
+      "en": "Casein",
+      "tr": "Kazein",
+      "ar": "كازين"
+    }
+  },
+  {
+    "id": "en:cheese",
+    "default_category": "MASHBOOH",
+    "reason": "Halal depends on rennet source (animal vs microbial)",
+    "reason_de": "Halal-Status hängt von der Lab-Quelle ab (tierisch vs. mikrobiell)",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Käse",
+      "en": "Cheese",
+      "tr": "Peynir",
+      "ar": "جبن"
+    }
+  },
+  {
+    "id": "en:chicken",
+    "default_category": "MASHBOOH",
+    "reason": "Halal only if from halal-slaughtered animal",
+    "reason_de": "Halal nur wenn halal-geschlachtet",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Hähnchenfleisch",
+      "en": "Chicken",
+      "tr": "Tavuk Eti",
+      "ar": "لحم دجاج"
+    }
+  },
+  {
+    "default_category": "HARAM",
+    "reason": "Flowing blood is prohibited (Quran 6:145)",
+    "reason_de": "Fließendes Blut ist verboten (Quran 6:145)",
+    "source": "quran",
+    "id": "en:chicken-blood"
+  },
+  {
+    "id": "en:cocoa",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kakao",
+      "en": "Cocoa",
+      "tr": "Kakao",
+      "ar": "كاكاو"
+    }
+  },
+  {
+    "id": "en:cocoa-butter",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kakaobutter",
+      "en": "Cocoa Butter",
+      "tr": "Kakao Yağı",
+      "ar": "زبدة الكاكاو"
+    }
+  },
+  {
+    "id": "en:cocoa-paste",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kakaomasse",
+      "en": "Cocoa Mass"
+    }
+  },
+  {
+    "id": "en:cocoa-powder",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kakaopulver",
+      "en": "Cocoa Powder"
+    }
+  },
+  {
+    "id": "en:coconut-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kokosöl",
+      "en": "Coconut Oil",
+      "tr": "Hindistan Cevizi Yağı",
+      "ar": "زيت جوز الهند"
+    }
+  },
+  {
+    "id": "en:collagen",
+    "default_category": "MASHBOOH",
+    "reason": "Usually from bovine or porcine source",
+    "reason_de": "Meist aus Rinder- oder Schweinequelle",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Kollagen",
+      "en": "Collagen",
+      "tr": "Kolajen",
+      "ar": "كولاجين"
+    }
+  },
+  {
+    "id": "en:colour",
+    "default_category": "MASHBOOH",
+    "reason": "Generic coloring - most are halal but E120 (carmine) is haram",
+    "reason_de": "Generischer Farbstoff – die meisten sind halal, aber E120 (Karmin) ist haram",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Farbstoff",
+      "en": "Coloring",
+      "tr": "Renklendirici",
+      "ar": "ملون"
+    }
+  },
+  {
+    "id": "en:corn-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Maiskeimöl",
+      "en": "Corn Oil"
+    }
+  },
+  {
+    "id": "en:corn-starch",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Maisstärke",
+      "en": "Corn Starch",
+      "tr": "Mısır Nişastası",
+      "ar": "نشا الذرة"
+    }
+  },
+  {
+    "id": "en:crab",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Disputed among scholars",
+    "reason_de": "Unter Gelehrten umstritten",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Krabbe",
+      "en": "Crab",
+      "tr": "Yengeç",
+      "ar": "سلطعون"
+    }
+  },
+  {
+    "id": "en:cream",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Sahne",
+      "en": "Cream",
+      "tr": "Krema",
+      "ar": "كريمة"
+    }
+  },
+  {
+    "id": "en:dextrose",
+    "default_category": "HALAL",
+    "reason": "Simple sugar from corn",
+    "reason_de": "Einfachzucker aus Mais",
+    "source": "consensus",
+    "names": {
+      "de": "Dextrose",
+      "en": "Dextrose",
+      "tr": "Dekstroz",
+      "ar": "دكستروز"
+    }
+  },
+  {
+    "id": "en:e100",
+    "default_category": "HALAL",
+    "reason": "Plant-derived coloring from turmeric",
+    "reason_de": "Pflanzlicher Farbstoff aus Kurkuma",
+    "source": "consensus",
+    "names": {
+      "de": "Kurkumin",
+      "en": "Curcumin",
+      "tr": "Kurkumin",
+      "ar": "كركمين"
+    }
+  },
+  {
+    "id": "en:e101",
+    "default_category": "HALAL",
+    "reason": "Usually synthetically produced",
+    "reason_de": "Meist synthetisch hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Riboflavin (Vitamin B2)",
+      "en": "Riboflavin (Vitamin B2)",
+      "tr": "Riboflavin",
+      "ar": "ريبوفلافين"
+    }
+  },
+  {
+    "id": "en:e1104",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from animal (including pork) or microbial source",
+    "reason_de": "Kann aus tierischer (inkl. Schwein) oder mikrobieller Quelle stammen",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Lipase",
+      "en": "Lipase",
+      "tr": "Lipaz",
+      "ar": "ليباز"
+    }
+  },
+  {
+    "id": "en:e120",
+    "default_category": "HARAM",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "MASHBOOH",
+    "shafi_ruling": "HARAM",
+    "hanbali_ruling": "HARAM",
+    "reason": "Red dye extracted from crushed cochineal insects",
+    "reason_de": "Roter Farbstoff aus zerdrückten Cochenille-Läusen",
+    "source": "majority_opinion",
+    "alternatives": "Rote Beete Farbstoff, Paprikaextrakt (E160c)",
+    "names": {
+      "de": "Karmin (Cochenille)",
+      "en": "Carmine (Cochineal)",
+      "tr": "Karmin (Koşenil)",
+      "ar": "قرمزي (كوشينيل)"
+    }
+  },
+  {
+    "id": "en:e122",
+    "default_category": "HALAL",
+    "reason": "Synthetic dye",
+    "reason_de": "Synthetischer Farbstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Azorubin",
+      "en": "Azorubine",
+      "tr": "Azorubin",
+      "ar": "أزوروبين"
+    }
+  },
+  {
+    "id": "en:e133",
+    "default_category": "HALAL",
+    "reason": "Synthetic dye",
+    "reason_de": "Synthetischer Farbstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Brillantblau FCF",
+      "en": "Brilliant Blue FCF",
+      "tr": "Parlak Mavi FCF",
+      "ar": "أزرق لامع"
+    }
+  },
+  {
+    "id": "en:e140",
+    "default_category": "HALAL",
+    "reason": "Plant-derived green pigment",
+    "reason_de": "Pflanzlicher grüner Farbstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Chlorophyll",
+      "en": "Chlorophyll",
+      "tr": "Klorofil",
+      "ar": "كلوروفيل"
+    }
+  },
+  {
+    "id": "en:e1400",
+    "default_category": "HALAL",
+    "reason": "Starch derivative",
+    "reason_de": "Stärkederivat",
+    "source": "consensus",
+    "names": {
+      "de": "Dextrin",
+      "en": "Dextrin"
+    }
+  },
+  {
+    "id": "en:e1404",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Oxidierte Stärke",
+      "en": "Oxidized Starch"
+    }
+  },
+  {
+    "id": "en:e1442",
+    "default_category": "HALAL",
+    "reason": "Modified starch, plant-derived",
+    "reason_de": "Modifizierte Stärke, pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Hydroxypropylstärke",
+      "en": "Hydroxypropyl Distarch Phosphate"
+    }
+  },
+  {
+    "id": "en:e1450",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Stärkenatriumoctenylsuccinat",
+      "en": "Starch Sodium Octenyl Succinate"
+    }
+  },
+  {
+    "id": "en:e150a",
+    "default_category": "HALAL",
+    "reason": "Made from sugar",
+    "reason_de": "Aus Zucker hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Zuckercouleur",
+      "en": "Caramel Color",
+      "tr": "Karamel Renklendirici",
+      "ar": "لون الكراميل"
+    }
+  },
+  {
+    "id": "en:e1510",
+    "default_category": "HARAM",
+    "reason": "Alcohol - prohibited as ingredient",
+    "reason_de": "Alkohol – als Zutat verboten",
+    "source": "quran_hadith",
+    "names": {
+      "de": "Ethanol",
+      "en": "Ethanol",
+      "tr": "Etanol",
+      "ar": "إيثانول"
+    }
+  },
+  {
+    "id": "en:e160a",
+    "default_category": "HALAL",
+    "reason": "Plant-derived pigment",
+    "reason_de": "Pflanzlicher Farbstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Carotin",
+      "en": "Carotene",
+      "tr": "Karoten",
+      "ar": "كاروتين"
+    }
+  },
+  {
+    "id": "en:e160b",
+    "default_category": "HALAL",
+    "reason": "Plant-derived coloring",
+    "reason_de": "Pflanzlicher Farbstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Annatto",
+      "en": "Annatto",
+      "tr": "Annatto",
+      "ar": "أناتو"
+    }
+  },
+  {
+    "id": "en:e170",
+    "default_category": "HALAL",
+    "reason": "Mineral compound",
+    "reason_de": "Mineralische Verbindung",
+    "source": "consensus",
+    "names": {
+      "de": "Calciumcarbonat",
+      "en": "Calcium Carbonate",
+      "tr": "Kalsiyum Karbonat",
+      "ar": "كربونات الكالسيوم"
+    }
+  },
+  {
+    "id": "en:e170i",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Calciumcarbonat",
+      "en": "Calcium Carbonate"
+    }
+  },
+  {
+    "id": "en:e171",
+    "default_category": "HALAL",
+    "reason": "Mineral compound (E171)",
+    "reason_de": "Mineralische Verbindung (E171)",
+    "source": "consensus",
+    "names": {
+      "de": "Titandioxid",
+      "en": "Titanium Dioxide"
+    }
+  },
+  {
+    "id": "en:e200",
+    "default_category": "HALAL",
+    "reason": "Synthetically produced preservative",
+    "reason_de": "Synthetisch hergestelltes Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Sorbinsäure",
+      "en": "Sorbic Acid",
+      "tr": "Sorbik Asit",
+      "ar": "حمض السوربيك"
+    }
+  },
+  {
+    "id": "en:e202",
+    "default_category": "HALAL",
+    "reason": "Synthetic preservative",
+    "reason_de": "Synthetisches Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Kaliumsorbat",
+      "en": "Potassium Sorbate",
+      "tr": "Potasyum Sorbat",
+      "ar": "سوربات البوتاسيوم"
+    }
+  },
+  {
+    "id": "en:e210",
+    "default_category": "HALAL",
+    "reason": "Synthetic preservative",
+    "reason_de": "Synthetisches Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Benzoesäure",
+      "en": "Benzoic Acid",
+      "tr": "Benzoik Asit",
+      "ar": "حمض البنزويك"
+    }
+  },
+  {
+    "id": "en:e211",
+    "default_category": "HALAL",
+    "reason": "Synthetic preservative",
+    "reason_de": "Synthetisches Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Natriumbenzoat",
+      "en": "Sodium Benzoate",
+      "tr": "Sodyum Benzoat",
+      "ar": "بنزوات الصوديوم"
+    }
+  },
+  {
+    "id": "en:e220",
+    "default_category": "HALAL",
+    "reason": "Chemical preservative",
+    "reason_de": "Chemisches Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Schwefeldioxid",
+      "en": "Sulfur Dioxide",
+      "tr": "Kükürt Dioksit",
+      "ar": "ثاني أكسيد الكبريت"
+    }
+  },
+  {
+    "id": "en:e250",
+    "default_category": "HALAL",
+    "reason": "Synthetic preservative used in cured meats",
+    "reason_de": "Synthetisches Konservierungsmittel für Pökelfleisch",
+    "source": "consensus",
+    "names": {
+      "de": "Natriumnitrit",
+      "en": "Sodium Nitrite",
+      "tr": "Sodyum Nitrit",
+      "ar": "نتريت الصوديوم"
+    }
+  },
+  {
+    "id": "en:e260",
+    "default_category": "HALAL",
+    "reason": "Chemical compound",
+    "reason_de": "Chemische Verbindung",
+    "source": "consensus",
+    "names": {
+      "de": "Essigsäure",
+      "en": "Acetic Acid",
+      "tr": "Asetik Asit",
+      "ar": "حمض الخليك"
+    }
+  },
+  {
+    "id": "en:e270",
+    "default_category": "HALAL",
+    "reason": "Usually produced by bacterial fermentation",
+    "reason_de": "Meist durch bakterielle Fermentation hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Milchsäure",
+      "en": "Lactic Acid",
+      "tr": "Laktik Asit",
+      "ar": "حمض اللبنيك"
+    }
+  },
+  {
+    "id": "en:e296",
+    "default_category": "HALAL",
+    "reason": "Found naturally in fruits",
+    "reason_de": "Natürlich in Früchten vorkommend",
+    "source": "consensus",
+    "names": {
+      "de": "Apfelsäure",
+      "en": "Malic Acid",
+      "tr": "Malik Asit",
+      "ar": "حمض الماليك"
+    }
+  },
+  {
+    "id": "en:e300",
+    "default_category": "HALAL",
+    "reason": "Vitamin, synthetically produced",
+    "reason_de": "Vitamin, synthetisch hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Ascorbinsäure (Vitamin C)",
+      "en": "Ascorbic Acid (Vitamin C)",
+      "tr": "Askorbik Asit",
+      "ar": "حمض الأسكوربيك"
+    }
+  },
+  {
+    "id": "en:e306",
+    "default_category": "HALAL",
+    "reason": "Usually plant-derived",
+    "reason_de": "Meist pflanzlichen Ursprungs",
+    "source": "consensus",
+    "names": {
+      "de": "Tocopherol (Vitamin E)",
+      "en": "Tocopherol (Vitamin E)",
+      "tr": "Tokoferol",
+      "ar": "توكوفيرول"
+    }
+  },
+  {
+    "id": "en:e322",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from soy (halal), egg (halal), or animal fat (check source)",
+    "reason_de": "Kann aus Soja (halal), Ei (halal) oder tierischem Fett (Quelle prüfen) stammen",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Lecithin",
+      "en": "Lecithin",
+      "tr": "Lesitin",
+      "ar": "ليسيثين"
+    }
+  },
+  {
+    "id": "en:e330",
+    "default_category": "HALAL",
+    "reason": "Produced by fermentation or from citrus fruits",
+    "reason_de": "Durch Fermentation oder aus Zitrusfrüchten gewonnen",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Zitronensäure",
+        "en": "Citric Acid",
+        "tr": "Sitrik Asit",
+        "ar": "حمض الستريك"
+      }
+    ],
+    "names": {
+      "de": "Zitronensäure",
+      "en": "Citric Acid",
+      "tr": "Sitrik Asit",
+      "ar": "حمض الستريك"
+    }
+  },
+  {
+    "id": "en:e331",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Natriumcitrat",
+      "en": "Sodium Citrate",
+      "tr": "Sodyum Sitrat",
+      "ar": "سترات الصوديوم"
+    }
+  },
+  {
+    "id": "en:e332",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kaliumcitrat",
+      "en": "Potassium Citrate",
+      "tr": "Potasyum Sitrat",
+      "ar": "سترات البوتاسيوم"
+    }
+  },
+  {
+    "id": "en:e334",
+    "default_category": "HALAL",
+    "reason": "From grapes or synthetic",
+    "reason_de": "Aus Trauben oder synthetisch",
+    "source": "consensus",
+    "names": {
+      "de": "Weinsäure",
+      "en": "Tartaric Acid",
+      "tr": "Tartarik Asit",
+      "ar": "حمض الطرطريك"
+    }
+  },
+  {
+    "id": "en:e340",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kaliumphosphat",
+      "en": "Potassium Phosphate",
+      "tr": "Potasyum Fosfat",
+      "ar": "فوسفات البوتاسيوم"
+    }
+  },
+  {
+    "id": "en:e385",
+    "default_category": "HALAL",
+    "reason": "Synthetic preservative",
+    "reason_de": "Synthetisches Konservierungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Calciumdinatriumethylendiamintetraacetat",
+      "en": "Calcium Disodium EDTA",
+      "tr": "Kalsiyum Disodyum EDTA",
+      "ar": "إي دي تي إي"
+    }
+  },
+  {
+    "id": "en:e400",
+    "default_category": "HALAL",
+    "reason": "Derived from seaweed",
+    "reason_de": "Aus Seetang gewonnen",
+    "source": "consensus",
+    "names": {
+      "de": "Alginsäure",
+      "en": "Alginic Acid",
+      "tr": "Alginik Asit",
+      "ar": "حمض الألجينيك"
+    }
+  },
+  {
+    "id": "en:e406",
+    "default_category": "HALAL",
+    "reason": "Plant-based gelatin alternative from seaweed",
+    "reason_de": "Pflanzliche Gelatine-Alternative aus Seetang",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Agar",
+        "en": "Agar"
+      }
+    ],
+    "names": {
+      "de": "Agar-Agar",
+      "en": "Agar-Agar",
+      "tr": "Agar-Agar",
+      "ar": "أجار أجار"
+    }
+  },
+  {
+    "id": "en:e407",
+    "default_category": "HALAL",
+    "reason": "Derived from red seaweed",
+    "reason_de": "Aus Rotalgen gewonnen",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Carrageen",
+        "en": "Carrageenan",
+        "tr": "Karragenan",
+        "ar": "كاراجينان"
+      }
+    ],
+    "names": {
+      "de": "Carrageen",
+      "en": "Carrageenan",
+      "tr": "Karragenan",
+      "ar": "كاراجينان"
+    }
+  },
+  {
+    "id": "en:e410",
+    "default_category": "HALAL",
+    "reason": "Plant-derived thickener",
+    "reason_de": "Pflanzliches Verdickungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Johannisbrotkernmehl",
+      "en": "Locust Bean Gum",
+      "tr": "Keçiboynuzu Gamı",
+      "ar": "صمغ الخروب"
+    }
+  },
+  {
+    "id": "en:e412",
+    "default_category": "HALAL",
+    "reason": "Plant-derived thickener",
+    "reason_de": "Pflanzliches Verdickungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Guarkernmehl",
+      "en": "Guar Gum",
+      "tr": "Guar Gamı",
+      "ar": "صمغ الغوار"
+    }
+  },
+  {
+    "id": "en:e414",
+    "default_category": "HALAL",
+    "reason": "Plant-derived from acacia trees",
+    "reason_de": "Pflanzlich aus Akazienbäumen",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Akaziengummi",
+        "en": "Acacia Gum"
+      }
+    ],
+    "names": {
+      "de": "Gummi arabicum",
+      "en": "Gum Arabic",
+      "tr": "Arap Zamkı",
+      "ar": "صمغ عربي"
+    }
+  },
+  {
+    "id": "en:e415",
+    "default_category": "HALAL",
+    "reason": "Produced by bacterial fermentation",
+    "reason_de": "Durch bakterielle Fermentation hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Xanthan",
+      "en": "Xanthan Gum",
+      "tr": "Ksantan Gamı",
+      "ar": "صمغ الزانثان"
+    }
+  },
+  {
+    "id": "en:e420",
+    "default_category": "HALAL",
+    "reason": "Sugar alcohol from corn or fruits",
+    "reason_de": "Zuckeralkohol aus Mais oder Früchten",
+    "source": "consensus",
+    "names": {
+      "de": "Sorbit",
+      "en": "Sorbitol",
+      "tr": "Sorbitol",
+      "ar": "سوربيتول"
+    }
+  },
+  {
+    "id": "en:e422",
+    "default_category": "MASHBOOH",
+    "reason": "Can be derived from animal fat (pork/beef) or vegetable oil. Source must be verified.",
+    "reason_de": "Kann aus tierischem Fett (Schwein/Rind) oder Pflanzenöl gewonnen werden. Quelle muss überprüft werden.",
+    "source": "scholarly_opinion",
+    "alternatives": "Pflanzliches Glycerin",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Glycerin",
+      "en": "Glycerol",
+      "tr": "Gliserin",
+      "ar": "جليسرين"
+    }
+  },
+  {
+    "id": "en:e428",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from pork, beef (halal or not), or fish. Source must be verified.",
+    "reason_de": "Kann von Schwein, Rind (halal oder nicht) oder Fisch stammen. Quelle muss überprüft werden.",
+    "source": "scholarly_opinion",
+    "alternatives": "Agar-Agar (E406), Pektin (E440), Carrageen (E407)",
+    "doubt": "animal_source",
+    "extra_names": [
+      {
+        "de": "Gelatine",
+        "en": "Gelatin",
+        "tr": "Jelatin",
+        "ar": "جيلاتين"
+      }
+    ],
+    "names": {
+      "de": "Gelatine",
+      "en": "Gelatin",
+      "tr": "Jelatin",
+      "ar": "جيلاتين"
+    }
+  },
+  {
+    "id": "en:e440a",
+    "default_category": "HALAL",
+    "reason": "Plant-derived gelling agent from fruits",
+    "reason_de": "Pflanzliches Geliermittel aus Früchten",
+    "source": "consensus",
+    "names": {
+      "de": "Pektin",
+      "en": "Pectin",
+      "tr": "Pektin",
+      "ar": "بكتين"
+    }
+  },
+  {
+    "id": "en:e442",
+    "default_category": "HALAL",
+    "reason": "Synthetic emulsifier",
+    "reason_de": "Synthetischer Emulgator",
+    "source": "consensus",
+    "names": {
+      "de": "Ammoniumphosphatid",
+      "en": "Ammonium Phosphatide",
+      "tr": "Amonyum Fosfatid",
+      "ar": "فوسفاتيد الأمونيوم"
+    }
+  },
+  {
+    "id": "en:e450",
+    "default_category": "HALAL",
+    "reason": "Mineral-based",
+    "reason_de": "Mineralisch",
+    "source": "consensus",
+    "names": {
+      "de": "Diphosphate",
+      "en": "Diphosphates",
+      "tr": "Difosfatlar",
+      "ar": "فوسفات ثنائي"
+    }
+  },
+  {
+    "id": "en:e460",
+    "default_category": "HALAL",
+    "reason": "Plant fiber",
+    "reason_de": "Pflanzenfaser",
+    "source": "consensus",
+    "names": {
+      "de": "Cellulose",
+      "en": "Cellulose",
+      "tr": "Selüloz",
+      "ar": "سيليلوز"
+    }
+  },
+  {
+    "id": "en:e466",
+    "default_category": "HALAL",
+    "reason": "Modified plant cellulose",
+    "reason_de": "Modifizierte Pflanzencellulose",
+    "source": "consensus",
+    "names": {
+      "de": "Carboxymethylcellulose",
+      "en": "Carboxymethyl Cellulose",
+      "tr": "Karboksimetil Selüloz",
+      "ar": "كربوكسي ميثيل سيليلوز"
+    }
+  },
+  {
+    "id": "en:e470a",
+    "default_category": "MASHBOOH",
+    "reason": "Fatty acid source can be animal or plant. Must verify.",
+    "reason_de": "Fettsäurequelle kann tierisch oder pflanzlich sein. Muss überprüft werden.",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Natrium-, Kalium- und Calciumsalze von Speisefettsäuren",
+      "en": "Sodium, Potassium and Calcium Salts of Fatty Acids",
+      "tr": "Yağ Asidi Tuzları",
+      "ar": "أملاح الأحماض الدهنية"
+    }
+  },
+  {
+    "id": "en:e471",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from animal fat (including pork) or vegetable oil. Without halal certificate, source is unclear.",
+    "reason_de": "Kann aus tierischem Fett (inkl. Schwein) oder Pflanzenöl stammen. Ohne Halal-Zertifikat ist die Quelle unklar.",
+    "source": "scholarly_opinion",
+    "alternatives": "Sonnenblumenlecithin, Sojalecithin",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Mono- und Diglyceride von Speisefettsäuren",
+      "en": "Mono- and Diglycerides of Fatty Acids",
+      "tr": "Yağ Asidi Mono ve Digliseritleri",
+      "ar": "أحاديات وثنائيات الغليسيريد"
+    }
+  },
+  {
+    "id": "en:e472",
+    "default_category": "MASHBOOH",
+    "reason": "Same source concern as E471",
+    "reason_de": "Gleiche Herkunftsproblematik wie E471",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Ester von Mono- und Diglyceriden",
+      "en": "Esters of Mono- and Diglycerides",
+      "tr": "Mono ve Digliserit Esterleri",
+      "ar": "إسترات أحاديات وثنائيات الغليسيريد"
+    }
+  },
+  {
+    "id": "en:e473",
+    "default_category": "MASHBOOH",
+    "reason": "Fatty acid source may be animal",
+    "reason_de": "Fettsäurequelle kann tierisch sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Zuckerester von Speisefettsäuren",
+      "en": "Sucrose Esters of Fatty Acids",
+      "tr": "Yağ Asidi Sukroz Esterleri",
+      "ar": "إسترات السكروز"
+    }
+  },
+  {
+    "id": "en:e475",
+    "default_category": "MASHBOOH",
+    "reason": "Can be animal or plant derived",
+    "reason_de": "Kann tierischen oder pflanzlichen Ursprungs sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Polyglycerinester von Speisefettsäuren",
+      "en": "Polyglycerol Esters of Fatty Acids",
+      "tr": "Poligliserol Esterleri",
+      "ar": "إسترات متعدد الغليسيرول"
+    }
+  },
+  {
+    "id": "en:e476",
+    "default_category": "MASHBOOH",
+    "reason": "Usually from castor oil (halal) but glycerol component may be animal-derived",
+    "reason_de": "Meist aus Rizinusöl (halal), aber Glycerinkomponente kann tierisch sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Polyglycerin-Polyricinoleat (PGPR)",
+      "en": "Polyglycerol Polyricinoleate (PGPR)",
+      "tr": "PGPR",
+      "ar": "بوليغليسرول بوليريسينوليت"
+    }
+  },
+  {
+    "id": "en:e481",
+    "default_category": "MASHBOOH",
+    "reason": "Stearic acid can be from animal or plant source",
+    "reason_de": "Stearinsäure kann tierischen oder pflanzlichen Ursprungs sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Natriumstearoyllactylat",
+      "en": "Sodium Stearoyl Lactylate",
+      "tr": "Sodyum Stearoil Laktilat",
+      "ar": "ستيرويل لاكتيلات الصوديوم"
+    }
+  },
+  {
+    "id": "en:e490",
+    "default_category": "HALAL",
+    "reason": "Synthetic chemical compound",
+    "reason_de": "Synthetische chemische Verbindung",
+    "source": "consensus",
+    "names": {
+      "de": "Propylenglykol",
+      "en": "Propylene Glycol",
+      "tr": "Propilen Glikol",
+      "ar": "بروبيلين غليكول"
+    }
+  },
+  {
+    "id": "en:e491",
+    "default_category": "MASHBOOH",
+    "reason": "Stearic acid component may be animal-derived",
+    "reason_de": "Stearinsäurekomponente kann tierisch sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Sorbitanmonostearat",
+      "en": "Sorbitan Monostearate",
+      "tr": "Sorbitan Monostearat",
+      "ar": "سوربيتان أحادي الستيارات"
+    }
+  },
+  {
+    "id": "en:e500",
+    "default_category": "HALAL",
+    "reason": "Mineral compound",
+    "reason_de": "Mineralische Verbindung",
+    "source": "consensus",
+    "names": {
+      "de": "Natriumcarbonat (Natron)",
+      "en": "Sodium Carbonate",
+      "tr": "Sodyum Karbonat",
+      "ar": "كربونات الصوديوم"
+    }
+  },
+  {
+    "id": "en:e501",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kaliumcarbonat",
+      "en": "Potassium Carbonate"
+    }
+  },
+  {
+    "id": "en:e503",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Ammoniumcarbonat",
+      "en": "Ammonium Carbonate"
+    }
+  },
+  {
+    "id": "en:e509",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Calciumchlorid",
+      "en": "Calcium Chloride"
+    }
+  },
+  {
+    "id": "en:e516",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Calciumsulfat",
+      "en": "Calcium Sulfate"
+    }
+  },
+  {
+    "id": "en:e524",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Natriumhydroxid",
+      "en": "Sodium Hydroxide"
+    }
+  },
+  {
+    "id": "en:e542",
+    "default_category": "HARAM",
+    "reason": "Derived from animal bones, commonly from non-halal sources",
+    "reason_de": "Aus Tierknochen gewonnen, häufig aus nicht-halal Quellen",
+    "source": "majority_opinion",
+    "names": {
+      "de": "Knochenphosphat",
+      "en": "Edible Bone Phosphate",
+      "tr": "Kemik Fosfatı",
+      "ar": "فوسفات العظام"
+    }
+  },
+  {
+    "id": "en:e551",
+    "default_category": "HALAL",
+    "reason": "Mineral compound",
+    "reason_de": "Mineralische Verbindung",
+    "source": "consensus",
+    "names": {
+      "de": "Siliziumdioxid",
+      "en": "Silicon Dioxide"
+    }
+  },
+  {
+    "id": "en:e570",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from animal fat or plant oil",
+    "reason_de": "Kann aus tierischem Fett oder Pflanzenöl stammen",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Stearinsäure",
+      "en": "Stearic Acid",
+      "tr": "Stearik Asit",
+      "ar": "حمض الستياريك"
+    }
+  },
+  {
+    "id": "en:e621",
+    "default_category": "HALAL",
+    "reason": "Usually produced by bacterial fermentation",
+    "reason_de": "Meist durch bakterielle Fermentation hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Mononatriumglutamat (MSG)",
+      "en": "Monosodium Glutamate (MSG)",
+      "tr": "Monosodyum Glutamat",
+      "ar": "غلوتامات أحادي الصوديوم"
+    }
+  },
+  {
+    "id": "en:e627",
+    "default_category": "MASHBOOH",
+    "reason": "Can be derived from fish, yeast, or meat",
+    "reason_de": "Kann aus Fisch, Hefe oder Fleisch gewonnen werden",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Dinatriumguanylat",
+      "en": "Disodium Guanylate"
+    }
+  },
+  {
+    "id": "en:e631",
+    "default_category": "MASHBOOH",
+    "reason": "Can be derived from meat or fish",
+    "reason_de": "Kann aus Fleisch oder Fisch gewonnen werden",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Dinatriuminosinat",
+      "en": "Disodium Inosinate"
+    }
+  },
+  {
+    "id": "en:e635",
+    "default_category": "MASHBOOH",
+    "reason": "Blend of E627 and E631",
+    "reason_de": "Mischung aus E627 und E631",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Dinatrium-5'-ribonukleotid",
+      "en": "Disodium 5'-Ribonucleotides"
+    }
+  },
+  {
+    "id": "en:e901",
+    "default_category": "HALAL",
+    "reason": "Natural product from bees",
+    "reason_de": "Naturprodukt von Bienen",
+    "source": "consensus",
+    "names": {
+      "de": "Bienenwachs",
+      "en": "Beeswax",
+      "tr": "Balmumu",
+      "ar": "شمع النحل"
+    }
+  },
+  {
+    "id": "en:e903",
+    "default_category": "HALAL",
+    "reason": "Plant-derived wax",
+    "reason_de": "Pflanzliches Wachs",
+    "source": "consensus",
+    "names": {
+      "de": "Carnaubawachs",
+      "en": "Carnauba Wax",
+      "tr": "Karnauba Mumu",
+      "ar": "شمع الكرنوبا"
+    }
+  },
+  {
+    "id": "en:e904",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HALAL",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "MASHBOOH",
+    "hanbali_ruling": "MASHBOOH",
+    "reason": "Secretion of lac insect. Majority of scholars consider it halal after purification.",
+    "reason_de": "Sekret der Lackschildlaus. Mehrheit der Gelehrten hält es nach Reinigung für halal.",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Schellack",
+      "en": "Shellac",
+      "tr": "Şellak",
+      "ar": "شيلاك"
+    }
+  },
+  {
+    "id": "en:e920",
+    "default_category": "MASHBOOH",
+    "reason": "Can be derived from human hair, animal feathers, or synthetic. Source must be verified.",
+    "reason_de": "Kann aus Menschenhaar, Tierfedern oder synthetisch gewonnen werden. Quelle muss überprüft werden.",
+    "source": "scholarly_opinion",
+    "alternatives": "Synthetisches L-Cystein, pflanzliches L-Cystein",
+    "doubt": "animal_source",
+    "names": {
+      "de": "L-Cystein",
+      "en": "L-Cysteine",
+      "tr": "L-Sistein",
+      "ar": "إل-سيستين"
+    }
+  },
+  {
+    "id": "en:e951",
+    "default_category": "HALAL",
+    "reason": "Synthetic sweetener",
+    "reason_de": "Synthetischer Süßstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Aspartam",
+      "en": "Aspartame",
+      "tr": "Aspartam",
+      "ar": "أسبارتام"
+    }
+  },
+  {
+    "id": "en:e955",
+    "default_category": "HALAL",
+    "reason": "Synthetic sweetener derived from sugar",
+    "reason_de": "Synthetischer Süßstoff aus Zucker",
+    "source": "consensus",
+    "names": {
+      "de": "Sucralose",
+      "en": "Sucralose",
+      "tr": "Sukraloz",
+      "ar": "سكرالوز"
+    }
+  },
+  {
+    "id": "en:e960",
+    "default_category": "HALAL",
+    "reason": "Plant-derived sweetener",
+    "reason_de": "Pflanzlicher Süßstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Stevia",
+      "en": "Steviol Glycosides",
+      "tr": "Stevia",
+      "ar": "ستيفيا"
+    }
+  },
+  {
+    "id": "en:e965",
+    "default_category": "HALAL",
+    "reason": "Sugar alcohol",
+    "reason_de": "Zuckeralkohol",
+    "source": "consensus",
+    "names": {
+      "de": "Maltit",
+      "en": "Maltitol",
+      "tr": "Maltitol",
+      "ar": "مالتيتول"
+    }
+  },
+  {
+    "id": "en:egg",
+    "default_category": "HALAL",
+    "reason": "From halal animal",
+    "reason_de": "Von halal Tier",
+    "source": "consensus",
+    "names": {
+      "de": "Eier",
+      "en": "Eggs",
+      "tr": "Yumurta",
+      "ar": "بيض"
+    }
+  },
+  {
+    "id": "en:emulsifier",
+    "default_category": "MASHBOOH",
+    "reason": "Generic emulsifier - source depends on specific type. Check E-number.",
+    "reason_de": "Generischer Emulgator – Quelle hängt vom spezifischen Typ ab. E-Nummer prüfen.",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Emulgator",
+      "en": "Emulsifier",
+      "tr": "Emülgatör",
+      "ar": "مستحلب"
+    }
+  },
+  {
+    "id": "en:fish",
+    "default_category": "HALAL",
+    "reason": "Fish is halal without slaughter requirement",
+    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
+    "source": "consensus",
+    "names": {
+      "de": "Fisch",
+      "en": "Fish",
+      "tr": "Balık",
+      "ar": "سمك"
+    }
+  },
+  {
+    "id": "en:fish-gelatine",
+    "default_category": "HALAL",
+    "reason": "Gelatin from fish is halal without slaughter requirement",
+    "reason_de": "Gelatine aus Fisch ist halal ohne Schlachtungsanforderung",
+    "source": "consensus",
+    "names": {
+      "de": "Fischgelatine",
+      "en": "Fish Gelatin",
+      "tr": "Balık Jelatini",
+      "ar": "جيلاتين السمك"
+    }
+  },
+  {
+    "id": "en:flavouring",
+    "default_category": "MASHBOOH",
+    "reason": "Unspecified flavor - could be natural or artificial, animal or plant derived",
+    "reason_de": "Unspezifiziertes Aroma – kann natürlich oder künstlich, tierisch oder pflanzlich sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Aroma",
+      "en": "Flavor",
+      "tr": "Aroma",
+      "ar": "نكهة"
+    }
+  },
+  {
+    "id": "en:fructose",
+    "default_category": "HALAL",
+    "reason": "Fruit sugar",
+    "reason_de": "Fruchtzucker",
+    "source": "consensus",
+    "names": {
+      "de": "Fruktose",
+      "en": "Fructose",
+      "tr": "Früktoz",
+      "ar": "فركتوز"
+    }
+  },
+  {
+    "id": "en:garlic",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Knoblauch",
+      "en": "Garlic",
+      "tr": "Sarımsak",
+      "ar": "ثوم"
+    }
+  },
+  {
+    "id": "en:glucose",
+    "default_category": "HALAL",
+    "reason": "Simple sugar",
+    "reason_de": "Einfachzucker",
+    "source": "consensus",
+    "names": {
+      "de": "Glukose",
+      "en": "Glucose",
+      "tr": "Glikoz",
+      "ar": "جلوكوز"
+    }
+  },
+  {
+    "id": "en:glucose-syrup",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Glukosesirup",
+      "en": "Glucose Syrup",
+      "tr": "Glikoz Şurubu",
+      "ar": "شراب الجلوكوز"
+    }
+  },
+  {
+    "id": "en:ham",
+    "default_category": "HARAM",
+    "reason": "Pork product",
+    "reason_de": "Schweinefleischprodukt",
+    "source": "quran",
+    "names": {
+      "de": "Schinken",
+      "en": "Ham",
+      "tr": "Jambon",
+      "ar": "لحم خنزير مقدد"
+    }
+  },
+  {
+    "id": "en:herb",
+    "default_category": "HALAL",
+    "reason": "Plant-based",
+    "reason_de": "Pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Kräuter",
+      "en": "Herbs",
+      "tr": "Otlar",
+      "ar": "أعشاب"
+    }
+  },
+  {
+    "id": "en:high-fructose-corn-syrup",
+    "default_category": "HALAL",
+    "reason": "Corn-derived sweetener",
+    "reason_de": "Süßungsmittel aus Mais",
+    "source": "consensus",
+    "names": {
+      "de": "Maissirup mit hohem Fructosegehalt",
+      "en": "High Fructose Corn Syrup"
+    }
+  },
+  {
+    "id": "en:honey",
+    "default_category": "HALAL",
+    "reason": "Mentioned as blessed in Quran (16:69)",
+    "reason_de": "Im Quran als gesegnet erwähnt (16:69)",
+    "source": "quran",
+    "names": {
+      "de": "Honig",
+      "en": "Honey",
+      "tr": "Bal",
+      "ar": "عسل"
+    }
+  },
+  {
+    "id": "en:inulin",
+    "default_category": "HALAL",
+    "reason": "Plant fiber from chicory",
+    "reason_de": "Pflanzenfaser aus Chicoree",
+    "source": "consensus",
+    "names": {
+      "de": "Inulin",
+      "en": "Inulin",
+      "tr": "İnülin",
+      "ar": "إينولين"
+    }
+  },
+  {
+    "id": "en:iron",
+    "default_category": "HALAL",
+    "reason": "Mineral supplement",
+    "reason_de": "Mineralstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Eisen",
+      "en": "Iron"
+    }
+  },
+  {
+    "id": "en:lactose",
+    "default_category": "HALAL",
+    "reason": "Milk sugar",
+    "reason_de": "Milchzucker",
+    "source": "consensus",
+    "names": {
+      "de": "Laktose",
+      "en": "Lactose",
+      "tr": "Laktoz",
+      "ar": "لاكتوز"
+    }
+  },
+  {
+    "id": "en:lamb",
+    "default_category": "MASHBOOH",
+    "reason": "Halal only if from halal-slaughtered animal",
+    "reason_de": "Halal nur wenn halal-geschlachtet",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Lammfleisch",
+      "en": "Lamb",
+      "tr": "Kuzu Eti",
+      "ar": "لحم خروف"
+    }
+  },
+  {
+    "id": "en:lard",
+    "default_category": "HARAM",
+    "reason": "Pork-derived fat",
+    "reason_de": "Schweinefett",
+    "source": "quran",
+    "alternatives": "Pflanzliches Fett, Kokosöl, Butter",
+    "names": {
+      "de": "Schmalz",
+      "en": "Lard",
+      "tr": "Domuz İç Yağı",
+      "ar": "شحم الخنزير"
+    }
+  },
+  {
+    "id": "en:lobster",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Disputed - Hanafi school considers non-fish sea creatures impermissible",
+    "reason_de": "Umstritten – Hanafitische Schule betrachtet Nicht-Fisch-Meerestiere als nicht erlaubt",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Hummer",
+      "en": "Lobster",
+      "tr": "Istakoz",
+      "ar": "كركند"
+    }
+  },
+  {
+    "id": "en:malted-barley",
+    "default_category": "HALAL",
+    "reason": "Non-alcoholic malt extract",
+    "reason_de": "Nicht-alkoholischer Malzextrakt",
+    "source": "consensus",
+    "names": {
+      "de": "Gerstenmalz",
+      "en": "Barley Malt"
+    }
+  },
+  {
+    "id": "en:maltodextrin",
+    "default_category": "HALAL",
+    "reason": "Starch derivative",
+    "reason_de": "Stärkederivat",
+    "source": "consensus",
+    "names": {
+      "de": "Maltodextrin",
+      "en": "Maltodextrin",
+      "tr": "Maltodekstrin",
+      "ar": "مالتوديكسترين"
+    }
+  },
+  {
+    "id": "en:meat",
+    "default_category": "MASHBOOH",
+    "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
+    "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+    "source": "scholarly_opinion",
+    "doubt": "other"
+  },
+  {
+    "id": "en:microbial-rennet",
+    "default_category": "HALAL",
+    "reason": "Produced by microorganisms, no animal involvement",
+    "reason_de": "Von Mikroorganismen produziert, ohne tierische Beteiligung",
+    "source": "consensus",
+    "names": {
+      "de": "Mikrobielles Lab",
+      "en": "Microbial Rennet",
+      "tr": "Mikrobiyel Peynir Mayası",
+      "ar": "منفحة ميكروبية"
+    }
+  },
+  {
+    "id": "en:milk",
+    "default_category": "HALAL",
+    "reason": "From halal animal, no slaughter required",
+    "reason_de": "Von halal Tier, keine Schlachtung erforderlich",
+    "source": "consensus",
+    "names": {
+      "de": "Milch",
+      "en": "Milk",
+      "tr": "Süt",
+      "ar": "حليب"
+    }
+  },
+  {
+    "id": "en:milk-chocolate",
+    "default_category": "MASHBOOH",
+    "reason": "Check for E471, lecithin source, and alcohol in flavorings",
+    "reason_de": "E471, Lecithin-Quelle und Alkohol in Aromen prüfen",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Milchschokolade",
+      "en": "Milk Chocolate"
+    }
+  },
+  {
+    "id": "en:milk-proteins",
+    "default_category": "HALAL",
+    "reason": "Dairy-derived protein",
+    "reason_de": "Protein aus Milch",
+    "source": "consensus",
+    "names": {
+      "de": "Milcheiweiß",
+      "en": "Milk Protein"
+    }
+  },
+  {
+    "id": "en:modified-starch",
+    "default_category": "HALAL",
+    "reason": "Plant-derived thickener",
+    "reason_de": "Pflanzliches Verdickungsmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Modifizierte Stärke",
+      "en": "Modified Starch",
+      "tr": "Modifiye Nişasta",
+      "ar": "نشا معدل"
+    }
+  },
+  {
+    "id": "en:mussel",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Disputed among madhabs",
+    "reason_de": "Unter den Madhab umstritten",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Muscheln",
+      "en": "Mussels",
+      "tr": "Midye",
+      "ar": "بلح البحر"
+    }
+  },
+  {
+    "id": "en:natural-flavouring",
+    "default_category": "MASHBOOH",
+    "reason": "Can be derived from any natural source including animal. 'Natural' does not mean plant-based.",
+    "reason_de": "Kann aus jeder natürlichen Quelle gewonnen werden, einschließlich tierischer. 'Natürlich' bedeutet nicht pflanzlich.",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Natürliche Aromen",
+      "en": "Natural Flavors",
+      "tr": "Doğal Aromalar",
+      "ar": "نكهات طبيعية"
+    }
+  },
+  {
+    "id": "en:natural-vanilla",
+    "default_category": "MASHBOOH",
+    "reason": "May contain alcohol as carrier",
+    "reason_de": "Kann Alkohol als Trägerstoff enthalten",
+    "source": "scholarly_opinion",
+    "doubt": "alcohol",
+    "names": {
+      "de": "Natürliches Vanillearoma",
+      "en": "Natural Vanilla Flavor"
+    }
+  },
+  {
+    "id": "en:oat-fibre",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Haferfaser",
+      "en": "Oat Fiber"
+    }
+  },
+  {
+    "id": "en:olive-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Olivenöl",
+      "en": "Olive Oil",
+      "tr": "Zeytinyağı",
+      "ar": "زيت الزيتون"
+    }
+  },
+  {
+    "id": "en:onion",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Zwiebel",
+      "en": "Onion",
+      "tr": "Soğan",
+      "ar": "بصل"
+    }
+  },
+  {
+    "id": "en:palm-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Palmöl",
+      "en": "Palm Oil",
+      "tr": "Palm Yağı",
+      "ar": "زيت النخيل"
+    }
+  },
+  {
+    "id": "en:pepper",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Pfeffer",
+      "en": "Pepper",
+      "tr": "Biber",
+      "ar": "فلفل"
+    }
+  },
+  {
+    "default_category": "HARAM",
+    "reason": "Flowing blood is prohibited (Quran 6:145)",
+    "reason_de": "Fließendes Blut ist verboten (Quran 6:145)",
+    "source": "quran",
+    "id": "en:pigs-blood"
+  },
+  {
+    "id": "en:plant",
+    "default_category": "HALAL",
+    "reason": "Of plant origin",
+    "reason_de": "Pflanzlichen Ursprungs",
+    "source": "consensus"
+  },
+  {
+    "id": "en:pork",
+    "default_category": "HARAM",
+    "reason": "Explicitly prohibited in Quran (2:173, 5:3, 6:145, 16:115)",
+    "reason_de": "Im Quran ausdrücklich verboten (2:173, 5:3, 6:145, 16:115)",
+    "source": "quran",
+    "names": {
+      "de": "Schweinefleisch",
+      "en": "Pork",
+      "tr": "Domuz Eti",
+      "ar": "لحم خنزير"
+    }
+  },
+  {
+    "id": "en:pork-fat",
+    "default_category": "HARAM",
+    "reason": "Derived from prohibited animal",
+    "reason_de": "Vom verbotenen Tier gewonnen",
+    "source": "quran",
+    "names": {
+      "de": "Schweinefett",
+      "en": "Pork Fat",
+      "tr": "Domuz Yağı",
+      "ar": "دهن الخنزير"
+    }
+  },
+  {
+    "id": "en:pork-gelatin",
+    "default_category": "HARAM",
+    "reason": "Derived from pork bones/skin",
+    "reason_de": "Aus Schweineknochen/-haut gewonnen",
+    "source": "consensus",
+    "alternatives": "Agar-Agar, Pflanzliche Gelatine, Halal-Rindergelatine",
+    "names": {
+      "de": "Schweinegelatine",
+      "en": "Pork Gelatin",
+      "tr": "Domuz Jelatini",
+      "ar": "جيلاتين الخنزير"
+    }
+  },
+  {
+    "id": "en:potato-starch",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Kartoffelstärke",
+      "en": "Potato Starch",
+      "tr": "Patates Nişastası",
+      "ar": "نشا البطاطس"
+    }
+  },
+  {
+    "id": "en:poultry",
+    "default_category": "MASHBOOH",
+    "reason": "Halal only if from halal-slaughtered animal",
+    "reason_de": "Halal nur wenn halal-geschlachtet",
+    "source": "scholarly_opinion",
+    "doubt": "other"
+  },
+  {
+    "id": "en:preservative",
+    "default_category": "HALAL",
+    "reason": "Most preservatives are synthetic",
+    "reason_de": "Die meisten Konservierungsstoffe sind synthetisch",
+    "source": "consensus",
+    "names": {
+      "de": "Konservierungsstoff",
+      "en": "Preservative",
+      "tr": "Koruyucu",
+      "ar": "مادة حافظة"
+    }
+  },
+  {
+    "id": "en:raising-agent",
+    "default_category": "HALAL",
+    "reason": "Chemical leavening agents",
+    "reason_de": "Chemische Backtriebmittel",
+    "source": "consensus",
+    "names": {
+      "de": "Backtriebmittel",
+      "en": "Raising Agent"
+    }
+  },
+  {
+    "id": "en:rapeseed-lecithin",
+    "default_category": "HALAL",
+    "reason": "Plant-derived emulsifier from rapeseed",
+    "reason_de": "Pflanzlicher Emulgator aus Raps",
+    "source": "consensus",
+    "names": {
+      "de": "Rapslecithin",
+      "en": "Rapeseed Lecithin"
+    }
+  },
+  {
+    "id": "en:rapeseed-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Rapsöl",
+      "en": "Rapeseed Oil",
+      "tr": "Kanola Yağı",
+      "ar": "زيت الكانولا"
+    }
+  },
+  {
+    "id": "en:rennet",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "MASHBOOH",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "MASHBOOH",
+    "hanbali_ruling": "MASHBOOH",
+    "reason": "Animal-derived enzyme used in cheese. Can be from halal-slaughtered calf or pork. Microbial rennet is halal.",
+    "reason_de": "Tierisches Enzym zur Käseherstellung. Kann von halal-geschlachtetem Kalb oder Schwein stammen. Mikrobielles Lab ist halal.",
+    "source": "scholarly_opinion",
+    "alternatives": "Mikrobielles Lab, pflanzliches Lab",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Lab",
+      "en": "Rennet",
+      "tr": "Peynir Mayası",
+      "ar": "منفحة"
+    }
+  },
+  {
+    "id": "en:rice",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Reis",
+      "en": "Rice",
+      "tr": "Pirinç",
+      "ar": "أرز"
+    }
+  },
+  {
+    "id": "en:rice-flour",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Reismehl",
+      "en": "Rice Flour"
+    }
+  },
+  {
+    "id": "en:rum",
+    "default_category": "HARAM",
+    "reason": "Alcoholic spirit",
+    "reason_de": "Alkoholische Spirituose",
+    "source": "quran_hadith",
+    "names": {
+      "de": "Rum",
+      "en": "Rum",
+      "tr": "Rom",
+      "ar": "روم"
+    }
+  },
+  {
+    "id": "en:salt",
+    "default_category": "HALAL",
+    "reason": "Mineral",
+    "reason_de": "Mineral",
+    "source": "consensus",
+    "names": {
+      "de": "Salz",
+      "en": "Salt",
+      "tr": "Tuz",
+      "ar": "ملح"
+    }
+  },
+  {
+    "id": "en:sesame-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Sesamöl",
+      "en": "Sesame Oil"
+    }
+  },
+  {
+    "id": "en:shellfish",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Disputed - Hanafi school considers non-fish sea creatures impermissible",
+    "reason_de": "Umstritten – Hanafitische Schule betrachtet Nicht-Fisch-Meerestiere als nicht erlaubt",
+    "source": "scholarly_opinion",
+    "doubt": "other"
+  },
+  {
+    "id": "en:shrimp",
+    "default_category": "HALAL",
+    "hanafi_ruling": "MASHBOOH",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Permissible seafood",
+    "reason_de": "Erlaubte Meeresfrüchte",
+    "source": "majority_opinion",
+    "names": {
+      "de": "Garnelen",
+      "en": "Shrimp",
+      "tr": "Karides",
+      "ar": "جمبري"
+    }
+  },
+  {
+    "id": "en:skimmed-milk-powder",
+    "default_category": "HALAL",
+    "reason": "Dairy product",
+    "reason_de": "Milchprodukt",
+    "source": "consensus",
+    "names": {
+      "de": "Magermilchpulver",
+      "en": "Skimmed Milk Powder",
+      "tr": "Yağsız Süt Tozu",
+      "ar": "حليب بودرة منزوع الدسم"
+    }
+  },
+  {
+    "id": "en:soy-protein",
+    "default_category": "HALAL",
+    "reason": "Plant-based protein",
+    "reason_de": "Pflanzliches Protein",
+    "source": "consensus",
+    "names": {
+      "de": "Sojaprotein",
+      "en": "Soy Protein",
+      "tr": "Soya Proteini",
+      "ar": "بروتين الصويا"
+    }
+  },
+  {
+    "id": "en:soy-sauce",
+    "default_category": "MASHBOOH",
+    "reason": "May contain alcohol from fermentation",
+    "reason_de": "Kann Alkohol aus Fermentation enthalten",
+    "source": "scholarly_opinion",
+    "doubt": "alcohol",
+    "names": {
+      "de": "Sojasoße",
+      "en": "Soy Sauce",
+      "tr": "Soya Sosu",
+      "ar": "صلصة الصويا"
+    }
+  },
+  {
+    "id": "en:soya-flour",
+    "default_category": "HALAL",
+    "reason": "Plant-based",
+    "reason_de": "Pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Sojamehl",
+      "en": "Soy Flour",
+      "tr": "Soya Unu",
+      "ar": "طحين الصويا"
+    }
+  },
+  {
+    "id": "en:soya-lecithin",
+    "default_category": "HALAL",
+    "reason": "Plant-derived emulsifier from soybeans",
+    "reason_de": "Pflanzlicher Emulgator aus Sojabohnen",
+    "source": "consensus",
+    "names": {
+      "de": "Sojalecithin",
+      "en": "Soy Lecithin",
+      "tr": "Soya Lesitini",
+      "ar": "ليسيثين الصويا"
+    }
+  },
+  {
+    "id": "en:soya-oil",
+    "default_category": "HALAL",
+    "reason": "Plant-based oil",
+    "reason_de": "Pflanzliches Öl",
+    "source": "consensus",
+    "names": {
+      "de": "Sojaöl",
+      "en": "Soybean Oil",
+      "tr": "Soya Yağı",
+      "ar": "زيت الصويا"
+    }
+  },
+  {
+    "id": "en:spice",
+    "default_category": "HALAL",
+    "reason": "Plant-based seasonings",
+    "reason_de": "Pflanzliche Gewürze",
+    "source": "consensus",
+    "names": {
+      "de": "Gewürze",
+      "en": "Spices",
+      "tr": "Baharatlar",
+      "ar": "بهارات"
+    }
+  },
+  {
+    "id": "en:squid",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "HALAL",
+    "reason": "Disputed among madhabs",
+    "reason_de": "Unter den Madhab umstritten",
+    "source": "scholarly_opinion",
+    "doubt": "other",
+    "names": {
+      "de": "Tintenfisch",
+      "en": "Squid",
+      "tr": "Kalamar",
+      "ar": "حبار"
+    }
+  },
+  {
+    "id": "en:stabiliser",
+    "default_category": "MASHBOOH",
+    "reason": "Generic stabilizer - source depends on specific type",
+    "reason_de": "Generischer Stabilisator – Quelle hängt vom spezifischen Typ ab",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Stabilisator",
+      "en": "Stabilizer",
+      "tr": "Stabilizatör",
+      "ar": "مثبت"
+    }
+  },
+  {
+    "id": "en:starch",
+    "default_category": "HALAL",
+    "reason": "Plant-derived",
+    "reason_de": "Pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Stärke",
+      "en": "Starch",
+      "tr": "Nişasta",
+      "ar": "نشا"
+    }
+  },
+  {
+    "id": "en:sugar",
+    "default_category": "HALAL",
+    "reason": "Plant-derived sweetener",
+    "reason_de": "Pflanzlicher Süßstoff",
+    "source": "consensus",
+    "names": {
+      "de": "Zucker",
+      "en": "Sugar",
+      "tr": "Şeker",
+      "ar": "سكر"
+    }
+  },
+  {
+    "id": "en:sunflower-lecithin",
+    "default_category": "HALAL",
+    "reason": "Plant-derived emulsifier",
+    "reason_de": "Pflanzlicher Emulgator aus Sonnenblumen",
+    "source": "consensus",
+    "names": {
+      "de": "Sonnenblumenlecithin",
+      "en": "Sunflower Lecithin",
+      "tr": "Ayçiçek Lesitini",
+      "ar": "ليسيثين دوار الشمس"
+    }
+  },
+  {
+    "id": "en:sunflower-oil",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Sonnenblumenöl",
+      "en": "Sunflower Oil",
+      "tr": "Ayçiçek Yağı",
+      "ar": "زيت دوار الشمس"
+    }
+  },
+  {
+    "id": "en:tapioca",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Tapiokastärke",
+      "en": "Tapioca Starch"
+    }
+  },
+  {
+    "id": "en:thickener",
+    "default_category": "HALAL",
+    "reason": "Most thickeners are plant-derived (pectin, starch, guar gum, etc.)",
+    "reason_de": "Die meisten Verdickungsmittel sind pflanzlich (Pektin, Stärke, Guarkernmehl etc.)",
+    "source": "consensus",
+    "names": {
+      "de": "Verdickungsmittel",
+      "en": "Thickener",
+      "tr": "Kıvam arttırıcı",
+      "ar": "مكثف"
+    }
+  },
+  {
+    "id": "en:tomato",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Tomate",
+      "en": "Tomato",
+      "tr": "Domates",
+      "ar": "طماطم"
+    }
+  },
+  {
+    "id": "en:vanilla",
+    "default_category": "HALAL",
+    "reason": "Pure vanilla bean/powder is halal",
+    "reason_de": "Reine Vanilleschote/Pulver ist halal",
+    "source": "consensus",
+    "names": {
+      "de": "Vanille",
+      "en": "Vanilla",
+      "tr": "Vanilya",
+      "ar": "فانيليا"
+    }
+  },
+  {
+    "id": "en:vanilla-extract",
+    "default_category": "MASHBOOH",
+    "hanafi_ruling": "HARAM",
+    "hanbali_ruling": "HARAM",
+    "reason": "Often contains alcohol as carrier/solvent",
+    "reason_de": "Enthält oft Alkohol als Trägerstoff/Lösungsmittel",
+    "source": "scholarly_opinion",
+    "doubt": "alcohol",
+    "names": {
+      "de": "Vanilleextrakt",
+      "en": "Vanilla Extract",
+      "tr": "Vanilya Özütü",
+      "ar": "خلاصة الفانيليا"
+    }
+  },
+  {
+    "id": "en:vegetable-fat",
+    "default_category": "HALAL",
+    "reason": "From plant sources",
+    "reason_de": "Aus pflanzlichen Quellen",
+    "source": "consensus",
+    "names": {
+      "de": "Pflanzliches Fett",
+      "en": "Vegetable Fat",
+      "tr": "Bitkisel Yağ",
+      "ar": "دهن نباتي"
+    }
+  },
+  {
+    "id": "en:vegetable-oil",
+    "default_category": "HALAL",
+    "reason": "From plant sources",
+    "reason_de": "Aus pflanzlichen Quellen",
+    "source": "consensus",
+    "names": {
+      "de": "Pflanzliches Öl",
+      "en": "Vegetable Oil",
+      "tr": "Bitkisel Yağ",
+      "ar": "زيت نباتي"
+    }
+  },
+  {
+    "id": "en:vinegar",
+    "default_category": "HALAL",
+    "hanafi_ruling": "HALAL",
+    "maliki_ruling": "HALAL",
+    "shafi_ruling": "HALAL",
+    "hanbali_ruling": "MASHBOOH",
+    "reason": "Transformed substance - alcohol fully converted",
+    "reason_de": "Umgewandelter Stoff – Alkohol vollständig umgewandelt",
+    "source": "hadith",
+    "names": {
+      "de": "Essig",
+      "en": "Vinegar",
+      "tr": "Sirke",
+      "ar": "خل"
+    }
+  },
+  {
+    "id": "en:vitamin-a",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Vitamin A",
+      "en": "Vitamin A"
+    }
+  },
+  {
+    "id": "en:vitamin-b12",
+    "default_category": "HALAL",
+    "reason": "Usually produced by bacterial fermentation",
+    "reason_de": "Meist durch bakterielle Fermentation hergestellt",
+    "source": "consensus",
+    "names": {
+      "de": "Vitamin B12",
+      "en": "Vitamin B12"
+    }
+  },
+  {
+    "id": "en:vitamin-d",
+    "default_category": "MASHBOOH",
+    "reason": "Can be from lanolin (sheep wool, halal), fish oil (halal), or synthetic. D3 from animal source needs verification.",
+    "reason_de": "Kann aus Lanolin (Schafwolle, halal), Fischöl (halal) oder synthetisch gewonnen werden. D3 aus tierischer Quelle muss überprüft werden.",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Vitamin D",
+      "en": "Vitamin D"
+    }
+  },
+  {
+    "id": "en:water",
+    "default_category": "HALAL",
+    "reason": "Pure natural substance",
+    "reason_de": "Natürliche reine Substanz",
+    "source": "consensus",
+    "names": {
+      "de": "Wasser",
+      "en": "Water",
+      "tr": "Su",
+      "ar": "ماء"
+    }
+  },
+  {
+    "id": "en:wheat-flour",
+    "default_category": "HALAL",
+    "reason": "Plant-based cereal grain",
+    "reason_de": "Pflanzliches Getreide",
+    "source": "consensus",
+    "names": {
+      "de": "Weizenmehl",
+      "en": "Wheat Flour",
+      "tr": "Buğday Unu",
+      "ar": "طحين القمح"
+    }
+  },
+  {
+    "id": "en:wheat-gluten",
+    "default_category": "HALAL",
+    "reason": "Plant protein",
+    "reason_de": "Pflanzliches Protein",
+    "source": "consensus",
+    "names": {
+      "de": "Weizengluten",
+      "en": "Wheat Gluten",
+      "tr": "Buğday Gluteni",
+      "ar": "غلوتين القمح"
+    }
+  },
+  {
+    "id": "en:wheat-starch",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Weizenstärke",
+      "en": "Wheat Starch"
+    }
+  },
+  {
+    "id": "en:whey",
+    "default_category": "MASHBOOH",
+    "reason": "Byproduct of cheese-making. If cheese uses animal rennet, whey inherits that concern.",
+    "reason_de": "Nebenprodukt der Käseherstellung. Wenn der Käse tierisches Lab enthält, gilt diese Problematik auch für die Molke.",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Molke",
+      "en": "Whey",
+      "tr": "Peynir Altı Suyu",
+      "ar": "مصل اللبن"
+    }
+  },
+  {
+    "id": "en:whey-powder",
+    "default_category": "MASHBOOH",
+    "reason": "Same concern as whey regarding rennet source",
+    "reason_de": "Gleiche Problematik wie Molke bezüglich der Lab-Quelle",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "names": {
+      "de": "Molkenpulver",
+      "en": "Whey Powder",
+      "tr": "Peynir Altı Suyu Tozu",
+      "ar": "مسحوق مصل اللبن"
+    }
+  },
+  {
+    "id": "en:whole-milk-powder",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Vollmilchpulver",
+      "en": "Whole Milk Powder",
+      "tr": "Tam Yağlı Süt Tozu",
+      "ar": "حليب بودرة كامل الدسم"
+    }
+  },
+  {
+    "id": "en:wine",
+    "default_category": "HARAM",
+    "reason": "Alcoholic beverage - explicitly prohibited",
+    "reason_de": "Alkoholisches Getränk – ausdrücklich verboten",
+    "source": "quran",
+    "names": {
+      "de": "Wein",
+      "en": "Wine",
+      "tr": "Şarap",
+      "ar": "خمر"
+    }
+  },
+  {
+    "id": "en:yeast",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Hefe",
+      "en": "Yeast",
+      "tr": "Maya",
+      "ar": "خميرة"
+    }
+  },
+  {
+    "id": "en:yogurt",
+    "default_category": "HALAL",
+    "reason": "Dairy product",
+    "reason_de": "Milchprodukt",
+    "source": "consensus",
+    "names": {
+      "de": "Joghurt",
+      "en": "Yogurt",
+      "tr": "Yoğurt",
+      "ar": "لبن"
+    }
+  },
+  {
+    "id": "en:zinc",
+    "default_category": "HALAL",
+    "source": "consensus",
+    "names": {
+      "de": "Zink",
+      "en": "Zinc"
+    }
+  },
+  {
+    "id": "local:activated_carbon",
+    "default_category": "HALAL",
+    "reason": "Mineral/wood based",
+    "reason_de": "Mineralisch/holzbasiert",
+    "source": "consensus",
+    "names": {
+      "de": "Aktivkohle",
+      "en": "Activated Carbon"
+    }
+  },
+  {
+    "id": "local:blood",
+    "default_category": "HARAM",
+    "reason": "Flowing blood is prohibited (Quran 6:145)",
+    "reason_de": "Fließendes Blut ist verboten (Quran 6:145)",
+    "source": "quran",
+    "names": {
+      "de": "Blut",
+      "en": "Blood",
+      "tr": "Kan",
+      "ar": "دم"
+    }
+  },
+  {
+    "id": "local:blood_plasma",
+    "default_category": "HARAM",
+    "reason": "Blood derivative",
+    "reason_de": "Blutderivat",
+    "source": "consensus",
+    "names": {
+      "de": "Blutplasma",
+      "en": "Blood Plasma",
+      "tr": "Kan Plazması",
+      "ar": "بلازما الدم"
+    }
+  },
+  {
+    "id": "local:egg_lecithin",
+    "default_category": "HALAL",
+    "reason": "From eggs (halal source)",
+    "reason_de": "Aus Eiern (halal Quelle)",
+    "source": "consensus",
+    "names": {
+      "de": "Eilecithin",
+      "en": "Egg Lecithin"
+    }
+  },
+  {
+    "id": "local:halal_gelatin",
+    "default_category": "HALAL",
+    "reason": "Certified halal gelatin",
+    "reason_de": "Zertifizierte Halal-Gelatine",
+    "source": "consensus",
+    "names": {
+      "de": "Halal-Gelatine",
+      "en": "Halal Gelatin"
+    }
+  },
+  {
+    "id": "local:omega3",
+    "default_category": "HALAL",
+    "reason": "Usually from fish or algae",
+    "reason_de": "Meist aus Fisch oder Algen",
+    "source": "consensus",
+    "names": {
+      "de": "Omega-3-Fettsäuren",
+      "en": "Omega-3 Fatty Acids"
+    }
+  },
+  {
+    "id": "local:pepsin",
+    "default_category": "HARAM",
+    "reason": "Usually extracted from pork stomach lining",
+    "reason_de": "Wird meist aus der Magenschleimhaut von Schweinen gewonnen",
+    "source": "majority_opinion",
+    "alternatives": "Mikrobielle Enzyme",
+    "names": {
+      "de": "Pepsin",
+      "en": "Pepsin",
+      "tr": "Pepsin",
+      "ar": "ببسين"
+    }
+  },
+  {
+    "id": "local:plant_e471",
+    "default_category": "HALAL",
+    "reason": "Plant-derived emulsifier",
+    "reason_de": "Pflanzlicher Emulgator",
+    "source": "consensus",
+    "names": {
+      "de": "Mono- und Diglyceride von Speisefettsäuren (pflanzlich)",
+      "en": "Mono- and Diglycerides of Fatty Acids (vegetable)"
+    }
+  },
+  {
+    "id": "local:plant_glycerin",
+    "default_category": "HALAL",
+    "reason": "Plant-derived glycerin from vegetable oils",
+    "reason_de": "Pflanzliches Glycerin aus Pflanzenölen",
+    "source": "consensus",
+    "names": {
+      "de": "Pflanzliches Glycerin",
+      "en": "Vegetable Glycerin",
+      "tr": "Bitkisel Gliserin",
+      "ar": "جليسرين نباتي"
+    }
+  },
+  {
+    "id": "local:plant_whey",
+    "default_category": "HALAL",
+    "reason": "Plant-based alternative",
+    "reason_de": "Pflanzliche Alternative",
+    "source": "consensus",
+    "names": {
+      "de": "Pflanzliche Molke",
+      "en": "Plant Whey"
+    }
+  },
+  {
+    "id": "local:sugar_alcohols",
+    "default_category": "HALAL",
+    "reason": "Polyols such as sorbitol or maltitol are made from sugar or starch; despite the name they are not ethanol and do not intoxicate",
+    "reason_de": "Polyole wie Sorbit oder Maltit werden aus Zucker oder Stärke hergestellt; trotz des Namens kein Ethanol und nicht berauschend",
+    "source": "consensus",
+    "names": {
+      "de": "Zuckeralkohole",
+      "en": "Sugar alcohols",
+      "tr": "Şeker alkolleri"
+    },
+    "extra_names": [
+      {
+        "de": "Zuckeralkohol",
+        "en": "Sugar alcohol"
+      },
+      {
+        "de": "Polyole",
+        "en": "Polyols"
+      },
+      {
+        "de": "Polyol",
+        "en": "Polyol"
+      }
+    ]
+  }
+]

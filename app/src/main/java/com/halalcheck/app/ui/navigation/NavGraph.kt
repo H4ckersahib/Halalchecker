@@ -1,5 +1,6 @@
 package com.halalcheck.app.ui.navigation
 
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -22,7 +23,7 @@ object Routes {
     const val HISTORY = "history"
     const val SETTINGS = "settings"
 
-    fun result(barcode: String) = "result/$barcode"
+    fun result(barcode: String) = "result/${Uri.encode(barcode)}"
 }
 
 @Composable

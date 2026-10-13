@@ -1,16 +1,10 @@
 package com.halalcheck.app.ui.screens.result
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.scaleIn
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,9 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -38,7 +33,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -51,36 +45,44 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.halalcheck.app.R
+import com.halalcheck.app.data.remote.OpenFoodFactsApi
+import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Madhab
-import com.halalcheck.app.ui.components.HalalStatusBadge
+import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.ui.components.HalalStatusLarge
 import com.halalcheck.app.ui.components.IngredientDetailRow
-import com.halalcheck.app.ui.components.BadgeSize
+import com.halalcheck.app.ui.components.description
+import com.halalcheck.app.ui.components.displayName
 import com.halalcheck.app.ui.theme.*
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ResultScreen(
     onNavigateBack: () -> Unit,
     viewModel: ResultViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val product = uiState.product
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Ergebnis") },
+                title = { Text(stringResource(R.string.result_title)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Zurück"
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -90,262 +92,373 @@ fun ResultScreen(
             )
         }
     ) { paddingValues ->
+        val contentModifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
         when {
-            uiState.isLoading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    contentAlignment = Alignment.Center
+            uiState.isLoading -> LoadingContent(contentModifier)
+            uiState.error != null -> ErrorContent(uiState.error!!, onRetry = viewModel::retry, modifier = contentModifier)
+            product != null && product.source == DataSource.UNKNOWN -> NotFoundContent(uiState.barcode, contentModifier)
+            product != null -> ProductContent(
+                product = product,
+                madhab = uiState.madhab,
+                onMadhabSelected = viewModel::changeMadhab,
+                modifier = contentModifier
+            )
+        }
+    }
+}
+
+@Composable
+private fun LoadingContent(modifier: Modifier) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            CircularProgressIndicator(
+                color = Emerald500,
+                modifier = Modifier.size(48.dp)
+            )
+            Text(
+                text = stringResource(R.string.result_loading),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun ErrorContent(error: ResultError, onRetry: () -> Unit, modifier: Modifier) {
+    CenteredMessage(
+        emoji = "⚠️",
+        title = null,
+        text = stringResource(
+            when (error) {
+                ResultError.NETWORK -> R.string.result_error_network
+                ResultError.UNEXPECTED -> R.string.result_error_unexpected
+            }
+        ),
+        modifier = modifier
+    ) {
+        Button(
+            onClick = onRetry,
+            colors = ButtonDefaults.buttonColors(containerColor = Emerald500)
+        ) {
+            Icon(Icons.Default.Refresh, contentDescription = null)
+            Text(stringResource(R.string.result_retry), modifier = Modifier.padding(start = 8.dp))
+        }
+    }
+}
+
+@Composable
+private fun NotFoundContent(barcode: String, modifier: Modifier) {
+    val uriHandler = LocalUriHandler.current
+    CenteredMessage(
+        emoji = "🔍",
+        title = stringResource(R.string.result_not_found),
+        text = stringResource(R.string.result_not_found_hint, barcode),
+        modifier = modifier
+    ) {
+        Button(
+            onClick = { uriHandler.openUri(OpenFoodFactsApi.productPageUrl(barcode)) },
+            colors = ButtonDefaults.buttonColors(containerColor = Emerald500)
+        ) {
+            Text(stringResource(R.string.result_add_on_off))
+        }
+    }
+}
+
+@Composable
+private fun CenteredMessage(
+    emoji: String,
+    title: String?,
+    text: String,
+    modifier: Modifier,
+    action: @Composable () -> Unit
+) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(32.dp)
+        ) {
+            Text(text = emoji, style = MaterialTheme.typography.displayLarge)
+            if (title != null) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+            }
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center
+            )
+            action()
+        }
+    }
+}
+
+@Composable
+private fun ProductContent(
+    product: Product,
+    madhab: Madhab,
+    onMadhabSelected: (Madhab) -> Unit,
+    modifier: Modifier
+) {
+    val uriHandler = LocalUriHandler.current
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 32.dp)
+    ) {
+        // Status hero
+        item {
+            StatusCard(product)
+        }
+
+        if (product.hasHalalLabel || product.labelConflict) {
+            item {
+                LabelCard(product.labelConflict)
+            }
+        }
+
+        // Madhab selector
+        item {
+            MadhabSelector(
+                selectedMadhab = madhab,
+                onMadhabSelected = onMadhabSelected
+            )
+        }
+
+        // Ingredients analysis
+        if (product.analyzedIngredients.isNotEmpty()) {
+            item {
+                Text(
+                    text = pluralStringResource(
+                        R.plurals.result_ingredients_title,
+                        product.analyzedIngredients.size,
+                        product.analyzedIngredients.size
+                    ),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            // Problematic ingredients first
+            val sorted = product.analyzedIngredients.sortedBy {
+                when (it.status) {
+                    HalalStatus.HARAM -> 0
+                    HalalStatus.MASHBOOH -> 1
+                    HalalStatus.UNKNOWN -> 2
+                    HalalStatus.HALAL -> 3
+                }
+            }
+
+            items(sorted) { ingredient ->
+                IngredientDetailRow(analyzedIngredient = ingredient)
+            }
+        }
+
+        // Unknown ingredients warning
+        if (product.unknownIngredients.isNotEmpty()) {
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Amber50
+                    )
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        CircularProgressIndicator(
-                            color = Emerald500,
-                            modifier = Modifier.size(48.dp)
+                        Text(
+                            text = stringResource(R.string.result_unknown_title),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Amber700
                         )
                         Text(
-                            text = "Produkt wird analysiert...",
-                            style = MaterialTheme.typography.bodyLarge,
+                            text = product.unknownIngredients.joinToString(", "),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Amber600
+                        )
+                        Text(
+                            text = stringResource(R.string.result_unknown_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Amber600
+                        )
+                    }
+                }
+            }
+        }
+
+        // Raw ingredients text
+        if (product.ingredientsText.isNotEmpty()) {
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.result_original_ingredients),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = product.ingredientsText,
+                            style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
             }
+        }
 
-            uiState.error != null -> {
-                Box(
+        // Report a wrong result at the data source
+        item {
+            OutlinedButton(
+                onClick = { uriHandler.openUri(OpenFoodFactsApi.productPageUrl(product.barcode)) },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(18.dp))
+                Text(stringResource(R.string.result_fix_on_off), modifier = Modifier.padding(start = 8.dp))
+            }
+        }
+
+        // Disclaimer and attribution
+        item {
+            Text(
+                text = stringResource(R.string.result_disclaimer) + "\n" + stringResource(R.string.result_attribution),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+private fun StatusCard(product: Product) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // Product image
+            if (product.imageUrl != null) {
+                AsyncImage(
+                    model = product.imageUrl,
+                    contentDescription = product.name,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.padding(32.dp)
-                    ) {
-                        Text(
-                            text = "⚠️",
-                            style = MaterialTheme.typography.displayLarge
-                        )
-                        Text(
-                            text = uiState.error ?: "Unbekannter Fehler",
-                            style = MaterialTheme.typography.bodyLarge,
-                            textAlign = TextAlign.Center
-                        )
-                        Button(
-                            onClick = { viewModel.retry() },
-                            colors = ButtonDefaults.buttonColors(containerColor = Emerald500)
-                        ) {
-                            Icon(Icons.Default.Refresh, contentDescription = null)
-                            Text("Erneut versuchen", modifier = Modifier.padding(start = 8.dp))
-                        }
-                    }
-                }
+                        .size(120.dp)
+                        .clip(RoundedCornerShape(16.dp)),
+                    contentScale = ContentScale.Crop
+                )
             }
 
-            uiState.product != null -> {
-                val product = uiState.product!!
+            // Product name
+            Text(
+                text = product.name.ifBlank { stringResource(R.string.result_unnamed_product) },
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
 
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    contentPadding = androidx.compose.foundation.layout.PaddingValues(
-                        start = 16.dp,
-                        end = 16.dp,
-                        top = 8.dp,
-                        bottom = 32.dp
+            if (product.brand != null) {
+                Text(
+                    text = product.brand,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            // Large status display; a partly recognized list says how much was checked
+            val total = product.analyzedIngredients.size
+            val known = total - product.unknownIngredients.size
+            HalalStatusLarge(
+                status = product.halalStatus,
+                description = if (product.halalStatus == HalalStatus.UNKNOWN && known > 0) {
+                    pluralStringResource(R.plurals.result_partial, total, known, total)
+                } else {
+                    product.halalStatus.description()
+                }
+            )
+
+            // Confidence indicator
+            if (product.confidence > 0) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    LinearProgressIndicator(
+                        progress = { product.confidence },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(8.dp)
+                            .clip(RoundedCornerShape(4.dp)),
+                        color = Emerald500,
+                        trackColor = Slate200
                     )
-                ) {
-                    // Status hero
-                    item {
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(24.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                            elevation = CardDefaults.cardElevation(4.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(24.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.spacedBy(16.dp)
-                            ) {
-                                // Product image
-                                if (product.imageUrl != null) {
-                                    AsyncImage(
-                                        model = product.imageUrl,
-                                        contentDescription = product.name,
-                                        modifier = Modifier
-                                            .size(120.dp)
-                                            .clip(RoundedCornerShape(16.dp)),
-                                        contentScale = ContentScale.Crop
-                                    )
-                                }
-
-                                // Product name
-                                Text(
-                                    text = product.name,
-                                    style = MaterialTheme.typography.headlineSmall,
-                                    fontWeight = FontWeight.Bold,
-                                    textAlign = TextAlign.Center
-                                )
-
-                                if (product.brand != null) {
-                                    Text(
-                                        text = product.brand,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-
-                                // Large status display
-                                HalalStatusLarge(status = product.halalStatus)
-
-                                // Confidence indicator
-                                if (product.confidence > 0) {
-                                    Column(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalAlignment = Alignment.CenterHorizontally
-                                    ) {
-                                        LinearProgressIndicator(
-                                            progress = { product.confidence },
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .height(8.dp)
-                                                .clip(RoundedCornerShape(4.dp)),
-                                            color = Emerald500,
-                                            trackColor = Slate200
-                                        )
-                                        Text(
-                                            text = "Sicherheit: ${(product.confidence * 100).toInt()}%",
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            modifier = Modifier.padding(top = 4.dp)
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Madhab selector
-                    item {
-                        MadhabSelector(
-                            selectedMadhab = uiState.madhab,
-                            onMadhabSelected = { viewModel.changeMadhab(it) }
-                        )
-                    }
-
-                    // Ingredients analysis
-                    if (product.analyzedIngredients.isNotEmpty()) {
-                        item {
-                            Text(
-                                text = "Zutatenanalyse (${product.analyzedIngredients.size} Zutaten)",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-
-                        // Problematic ingredients first
-                        val sorted = product.analyzedIngredients.sortedBy {
-                            when (it.status) {
-                                HalalStatus.HARAM -> 0
-                                HalalStatus.MASHBOOH -> 1
-                                HalalStatus.UNKNOWN -> 2
-                                HalalStatus.HALAL -> 3
-                            }
-                        }
-
-                        items(sorted) { ingredient ->
-                            IngredientDetailRow(analyzedIngredient = ingredient)
-                        }
-                    }
-
-                    // Unknown ingredients warning
-                    if (product.unknownIngredients.isNotEmpty()) {
-                        item {
-                            Card(
-                                modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(16.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = Amber50
-                                )
-                            ) {
-                                Column(
-                                    modifier = Modifier.padding(16.dp),
-                                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                                ) {
-                                    Text(
-                                        text = "⚠️ Unbekannte Zutaten",
-                                        style = MaterialTheme.typography.titleSmall,
-                                        fontWeight = FontWeight.Bold,
-                                        color = Amber700
-                                    )
-                                    Text(
-                                        text = product.unknownIngredients.joinToString(", "),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = Amber600
-                                    )
-                                    Text(
-                                        text = "Diese Zutaten wurden nicht in unserer Datenbank gefunden. Bei Unsicherheit empfehlen wir, einen Gelehrten zu konsultieren.",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = Amber600
-                                    )
-                                }
-                            }
-                        }
-                    }
-
-                    // Raw ingredients text
-                    if (product.ingredientsText.isNotEmpty()) {
-                        item {
-                            Card(
-                                modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(16.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
-                                )
-                            ) {
-                                Column(
-                                    modifier = Modifier.padding(16.dp),
-                                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                                ) {
-                                    Text(
-                                        text = "📋 Originale Zutatenliste",
-                                        style = MaterialTheme.typography.titleSmall,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Text(
-                                        text = product.ingredientsText,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-                            }
-                        }
-                    }
-
-                    // Disclaimer
-                    item {
-                        Text(
-                            text = "⚠️ Diese Analyse ersetzt keine religiöse Beratung. Bei Zweifeln konsultiere bitte einen Gelehrten.",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
+                    Text(
+                        text = stringResource(R.string.result_confidence, (product.confidence * 100).toInt()),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun LabelCard(conflict: Boolean) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = if (conflict) Coral100 else Emerald100)
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Default.Verified,
+                contentDescription = null,
+                tint = if (conflict) Coral700 else Emerald700
+            )
+            Text(
+                text = stringResource(if (conflict) R.string.result_label_conflict else R.string.result_halal_label),
+                style = MaterialTheme.typography.bodyMedium,
+                color = if (conflict) Coral700 else Emerald700
+            )
         }
     }
 }
@@ -373,12 +486,12 @@ private fun MadhabSelector(
         ) {
             Column {
                 Text(
-                    text = "Rechtsschule (Madhab)",
+                    text = stringResource(R.string.result_madhab_label),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
-                    text = selectedMadhab.displayNameDe,
+                    text = selectedMadhab.displayName(),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -389,7 +502,7 @@ private fun MadhabSelector(
                     onClick = { expanded = true },
                     shape = RoundedCornerShape(12.dp)
                 ) {
-                    Text("Ändern")
+                    Text(stringResource(R.string.result_madhab_change))
                 }
 
                 DropdownMenu(
@@ -403,7 +516,7 @@ private fun MadhabSelector(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(madhab.displayNameDe)
+                                    Text(madhab.displayName())
                                     if (madhab == selectedMadhab) {
                                         Text("✓", color = Emerald500)
                                     }

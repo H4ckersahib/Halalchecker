@@ -2,44 +2,48 @@ package com.halalcheck.app.data.repository
 
 import com.halalcheck.app.data.local.dao.IngredientDao
 import com.halalcheck.app.data.local.entity.IngredientEntity
+import com.halalcheck.app.data.local.seed.IngredientAssetEntry
+import com.halalcheck.app.data.local.seed.IngredientSeeder
+import com.halalcheck.app.domain.engine.IngredientIndex
+import com.halalcheck.app.domain.model.Doubt
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Ingredient
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class IngredientRepository @Inject constructor(
-    private val ingredientDao: IngredientDao
+    private val ingredientDao: IngredientDao,
+    private val seeder: IngredientSeeder
 ) {
-    /**
-     * Get all ingredients from the local database.
-     */
-    suspend fun getAllIngredients(): List<Ingredient> {
-        return ingredientDao.getAllIngredients().map { it.toDomain() }
-    }
+    private val indexMutex = Mutex()
+
+    @Volatile
+    private var index: IngredientIndex? = null
 
     /**
-     * Observe all ingredients as a Flow.
+     * The lookup index over all ingredients. Built once per process, after seeding.
      */
-    fun getAllIngredientsFlow(): Flow<List<Ingredient>> {
-        return ingredientDao.getAllIngredientsFlow().map { entities ->
-            entities.map { it.toDomain() }
+    suspend fun getIndex(): IngredientIndex {
+        index?.let { return it }
+        return indexMutex.withLock {
+            index ?: run {
+                seeder.ensureSeeded()
+                val ingredients = ingredientDao.getAllIngredients()
+                withContext(Dispatchers.Default) { IngredientIndex(ingredients.map { it.toDomain() }) }
+            }.also { index = it }
         }
-    }
-
-    /**
-     * Search ingredients by name or ID.
-     */
-    suspend fun searchIngredients(query: String): List<Ingredient> {
-        return ingredientDao.searchIngredients(query).map { it.toDomain() }
     }
 
     /**
      * Get the total number of ingredients in the database.
      */
     suspend fun getIngredientCount(): Int {
+        seeder.ensureSeeded()
         return ingredientDao.getIngredientCount()
     }
 }
@@ -54,6 +58,8 @@ fun IngredientEntity.toDomain(): Ingredient {
         nameEn = nameEn,
         nameTr = nameTr,
         nameAr = nameAr,
+        nameFr = nameFr,
+        synonyms = synonyms?.split(IngredientAssetEntry.SYNONYM_SEPARATOR)?.filter { it.isNotBlank() } ?: emptyList(),
         defaultCategory = HalalStatus.fromString(defaultCategory),
         hanafiRuling = hanafiRuling?.let { HalalStatus.fromString(it) },
         malikiRuling = malikiRuling?.let { HalalStatus.fromString(it) },
@@ -62,6 +68,10 @@ fun IngredientEntity.toDomain(): Ingredient {
         reason = reason,
         reasonDe = reasonDe,
         source = source,
-        alternatives = alternatives?.split(",")?.map { it.trim() } ?: emptyList()
+        alternatives = alternatives?.split(",")?.map { it.trim() } ?: emptyList(),
+        doubt = Doubt.fromString(doubt),
+        inferredFrom = inferredFrom,
+        isClass = isClass,
+        eNumber = eNumber
     )
 }

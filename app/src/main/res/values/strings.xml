@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HalalCheck</string>
-    <string name="app_description">Prüfe ob Produkte halal sind</string>
 
     <!-- Home -->
-    <string name="home_title">HalalCheck</string>
     <string name="home_greeting">Bismillah! 🤲</string>
     <string name="home_subtitle">Scanne einen Barcode um zu prüfen ob ein Produkt halal ist.</string>
     <string name="home_scan_button">Barcode scannen</string>
     <string name="home_recent_scans">Letzte Scans</string>
+    <string name="home_show_all">Alle anzeigen →</string>
     <string name="home_no_scans">Noch keine Scans</string>
     <string name="home_no_scans_hint">Tippe auf den Scan-Button um dein erstes Produkt zu prüfen!</string>
     <string name="home_today">Heute</string>
@@ -20,7 +19,9 @@
     <string name="scanner_hint">Richte die Kamera auf den Barcode</string>
     <string name="scanner_manual">Manuell</string>
     <string name="scanner_manual_title">Barcode manuell eingeben</string>
+    <string name="scanner_manual_label">Barcode-Nummer</string>
     <string name="scanner_manual_hint">z.B. 4005500068211</string>
+    <string name="scanner_manual_invalid">Bitte 8 bis 14 Ziffern eingeben</string>
     <string name="scanner_search">Produkt suchen</string>
     <string name="scanner_permission_title">Kamera-Zugriff benötigt</string>
     <string name="scanner_permission_text">Bitte erlaube den Kamera-Zugriff um Barcodes zu scannen.</string>
@@ -29,17 +30,32 @@
     <!-- Result -->
     <string name="result_title">Ergebnis</string>
     <string name="result_loading">Produkt wird analysiert…</string>
+    <string name="result_unnamed_product">Unbekanntes Produkt</string>
     <string name="result_not_found">Produkt nicht gefunden</string>
+    <string name="result_not_found_hint">Open Food Facts kennt den Barcode %s noch nicht. Du kannst das Produkt dort mit Fotos der Zutatenliste hinzufügen – danach kann HalalCheck es prüfen.</string>
+    <string name="result_add_on_off">Produkt bei Open Food Facts hinzufügen</string>
+    <string name="result_fix_on_off">Daten auf Open Food Facts korrigieren</string>
+    <string name="result_error_network">Netzwerkfehler: Das Produkt konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.</string>
+    <string name="result_error_unexpected">Beim Analysieren ist ein unerwarteter Fehler aufgetreten.</string>
     <string name="result_confidence">Sicherheit: %d%%</string>
-    <string name="result_ingredients_title">Zutatenanalyse (%d Zutaten)</string>
+    <plurals name="result_partial">
+        <item quantity="one">Nicht vollständig geprüft: %1$d von %2$d Zutat erkannt, keine bedenklichen gefunden.</item>
+        <item quantity="other">Nicht vollständig geprüft: %1$d von %2$d Zutaten erkannt, keine bedenklichen gefunden.</item>
+    </plurals>
+    <string name="result_halal_label">Halal-Siegel auf der Verpackung (laut Open Food Facts)</string>
+    <string name="result_label_conflict">Achtung: Laut Open Food Facts trägt das Produkt ein Halal-Siegel, enthält aber eine verbotene Zutat. Bitte prüfe die Verpackung.</string>
+    <plurals name="result_ingredients_title">
+        <item quantity="one">Zutatenanalyse (%d Zutat)</item>
+        <item quantity="other">Zutatenanalyse (%d Zutaten)</item>
+    </plurals>
     <string name="result_unknown_title">⚠️ Unbekannte Zutaten</string>
-    <string name="result_unknown_hint">Diese Zutaten wurden nicht in unserer Datenbank gefunden.</string>
+    <string name="result_unknown_hint">Diese Zutaten wurden nicht in unserer Datenbank gefunden. Bei Unsicherheit empfehlen wir, einen Gelehrten zu konsultieren.</string>
     <string name="result_original_ingredients">📋 Originale Zutatenliste</string>
     <string name="result_disclaimer">⚠️ Diese Analyse ersetzt keine religiöse Beratung. Bei Zweifeln konsultiere bitte einen Gelehrten.</string>
+    <string name="result_attribution">Produktdaten: Open Food Facts (ODbL)</string>
     <string name="result_madhab_label">Rechtsschule (Madhab)</string>
     <string name="result_madhab_change">Ändern</string>
     <string name="result_retry">Erneut versuchen</string>
-    <string name="result_share">Teilen</string>
 
     <!-- Status -->
     <string name="status_halal">Halal</string>
@@ -51,28 +67,56 @@
     <string name="status_mashbooh_desc">Enthält zweifelhafte Zutaten</string>
     <string name="status_unknown_desc">Status konnte nicht bestimmt werden</string>
 
+    <!-- Why an ingredient got its status -->
+    <string name="reason_inferred">Abgeleitet von „%s“</string>
+    <string name="reason_not_specified">Nicht näher bezeichnet – die konkrete Zutat fehlt</string>
+    <string name="reason_off_additive">Laut Open Food Facts enthalten: %s</string>
+    <string name="reason_haram_qualifier">Quelle „%s“ – vom Schwein, verboten</string>
+    <string name="reason_animal_qualifier">Tierische Quelle („%s“) – Halal-Schlachtung nicht bestätigt</string>
+    <string name="reason_halal_source_qualifier">Quelle „%s“ ist pflanzlich oder unbedenklich</string>
+    <string name="reason_vegan_label">Produkt ist als vegan/vegetarisch gekennzeichnet → keine tierische Quelle</string>
+    <string name="reason_halal_label">Durch das Halal-Siegel des Produkts abgedeckt</string>
+    <string name="source_off_vegan">Pflanzlichen oder mineralischen Ursprungs (laut Open Food Facts)</string>
+    <string name="source_off_vegetarian">Vegetarisch, z.B. Milch, Ei oder Honig (laut Open Food Facts)</string>
+    <string name="source_off_maybe">Kann tierischen Ursprungs sein (laut Open Food Facts)</string>
+    <string name="source_off_animal">Tierischen Ursprungs – Tierart und Schlachtung unbekannt</string>
+
     <!-- History -->
     <string name="history_title">Verlauf</string>
     <string name="history_search">Produkt suchen…</string>
     <string name="history_empty">Keine Scans gefunden</string>
     <string name="history_clear">Verlauf löschen</string>
+    <string name="history_clear_confirm">Alle Scans aus dem Verlauf entfernen?</string>
     <string name="history_filter_all">Alle</string>
 
     <!-- Settings -->
     <string name="settings_title">Einstellungen</string>
     <string name="settings_madhab">Rechtsschule (Madhab)</string>
     <string name="settings_appearance">Darstellung</string>
-    <string name="settings_dark_mode">Dunkler Modus</string>
-    <string name="settings_dark_mode_desc">Augenschonendes Design</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Hell</string>
+    <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_language">Sprache</string>
+    <string name="settings_language_system">Systemsprache</string>
     <string name="settings_about">Über HalalCheck</string>
     <string name="settings_about_text">HalalCheck ist ein gemeinnütziges Open-Source-Projekt, das Muslimen hilft, informierte Entscheidungen über ihre Ernährung zu treffen.</string>
+    <string name="settings_data_sources">Produkt- und Zutatendaten: Open Food Facts (Open Database License). Halal-Bewertungen: HalalCheck.</string>
     <string name="settings_version">Version %s</string>
+    <string name="settings_disclaimer">⚠️ Diese App ersetzt keine religiöse Beratung.</string>
+
+    <!-- Madhab -->
+    <string name="madhab_hanafi">Hanafitisch</string>
+    <string name="madhab_maliki">Malikitisch</string>
+    <string name="madhab_shafi">Schafiitisch</string>
+    <string name="madhab_hanbali">Hanbalitisch</string>
 
     <!-- General -->
     <string name="back">Zurück</string>
+    <string name="option_selected">Ausgewählt</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="delete">Löschen</string>
     <string name="just_now">Gerade eben</string>
-    <string name="minutes_ago">%d Min.</string>
-    <string name="hours_ago">%d Std.</string>
+    <string name="minutes_ago">vor %d Min.</string>
+    <string name="hours_ago">vor %d Std.</string>
     <string name="yesterday">Gestern</string>
 </resources>

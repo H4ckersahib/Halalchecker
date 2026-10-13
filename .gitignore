@@ -23,3 +23,6 @@ local.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# Downloaded Open Food Facts taxonomies (tools/build_ingredient_db.py)
+tools/.cache/

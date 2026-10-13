@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "099b2e419d90d19f541d4499e399834d",
+    "identityHash": "a529cf8269a200fd1d98c94aa5418adf",
     "entities": [
       {
         "tableName": "ingredients",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name_de` TEXT NOT NULL, `name_en` TEXT NOT NULL, `name_tr` TEXT, `name_ar` TEXT, `default_category` TEXT NOT NULL, `hanafi_ruling` TEXT, `maliki_ruling` TEXT, `shafi_ruling` TEXT, `hanbali_ruling` TEXT, `reason` TEXT, `reason_de` TEXT, `source` TEXT, `alternatives` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name_de` TEXT NOT NULL, `name_en` TEXT NOT NULL, `name_tr` TEXT, `name_ar` TEXT, `default_category` TEXT NOT NULL, `hanafi_ruling` TEXT, `maliki_ruling` TEXT, `shafi_ruling` TEXT, `hanbali_ruling` TEXT, `reason` TEXT, `reason_de` TEXT, `source` TEXT, `alternatives` TEXT, `name_fr` TEXT, `synonyms` TEXT, `doubt` TEXT, `inferred_from` TEXT, `is_class` INTEGER NOT NULL DEFAULT 0, `e_number` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -91,6 +91,43 @@
             "columnName": "alternatives",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "nameFr",
+            "columnName": "name_fr",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "synonyms",
+            "columnName": "synonyms",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "doubt",
+            "columnName": "doubt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "inferredFrom",
+            "columnName": "inferred_from",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isClass",
+            "columnName": "is_class",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "eNumber",
+            "columnName": "e_number",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -104,7 +141,7 @@
       },
       {
         "tableName": "products",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`barcode` TEXT NOT NULL, `name` TEXT NOT NULL, `brand` TEXT, `image_url` TEXT, `ingredients_text` TEXT NOT NULL, `halal_status` TEXT NOT NULL, `confidence` REAL NOT NULL, `source` TEXT NOT NULL, `last_updated` INTEGER NOT NULL, PRIMARY KEY(`barcode`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`barcode` TEXT NOT NULL, `name` TEXT NOT NULL, `brand` TEXT, `image_url` TEXT, `ingredients_text` TEXT NOT NULL, `halal_status` TEXT NOT NULL, `confidence` REAL NOT NULL, `source` TEXT NOT NULL, `last_updated` INTEGER NOT NULL, `off_payload` TEXT, PRIMARY KEY(`barcode`))",
         "fields": [
           {
             "fieldPath": "barcode",
@@ -159,6 +196,12 @@
             "columnName": "last_updated",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "offPayload",
+            "columnName": "off_payload",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -172,8 +215,14 @@
       },
       {
         "tableName": "scan_history",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`barcode` TEXT NOT NULL, `product_name` TEXT NOT NULL, `brand` TEXT, `image_url` TEXT, `halal_status` TEXT NOT NULL, `scanned_at` INTEGER NOT NULL, PRIMARY KEY(`barcode`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `barcode` TEXT NOT NULL, `product_name` TEXT NOT NULL, `brand` TEXT, `image_url` TEXT, `halal_status` TEXT NOT NULL, `scanned_at` INTEGER NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "barcode",
             "columnName": "barcode",
@@ -212,9 +261,9 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": false,
+          "autoGenerate": true,
           "columnNames": [
-            "barcode"
+            "id"
           ]
         },
         "indices": [],
@@ -224,7 +273,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '099b2e419d90d19f541d4499e399834d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a529cf8269a200fd1d98c94aa5418adf')"
     ]
   }
 }

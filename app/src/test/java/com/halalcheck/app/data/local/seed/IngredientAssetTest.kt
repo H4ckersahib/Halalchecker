@@ -1,0 +1,151 @@
+package com.halalcheck.app.data.local.seed
+
+import com.halalcheck.app.data.repository.toDomain
+import com.halalcheck.app.domain.engine.HalalEngine
+import com.halalcheck.app.domain.engine.IngredientIndex
+import com.halalcheck.app.domain.model.DataSource
+import com.halalcheck.app.domain.model.Doubt
+import com.halalcheck.app.domain.model.HalalStatus
+import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.Product
+import com.squareup.moshi.Moshi
+import okio.buffer
+import okio.source
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.BeforeClass
+import org.junit.Test
+import java.io.File
+
+/**
+ * Checks the generated assets/ingredients_db.json and runs real German labels from Open Food Facts
+ * through the engine with it. Regenerate the asset with tools/build_ingredient_db.py.
+ */
+class IngredientAssetTest {
+
+    companion object {
+        private lateinit var asset: IngredientAsset
+        private lateinit var index: IngredientIndex
+
+        @BeforeClass
+        @JvmStatic
+        fun loadAsset() {
+            val file = File("src/main/assets/ingredients_db.json")
+            asset = file.source().buffer().use { IngredientAssetParser(Moshi.Builder().build()).parse(it) }!!
+            index = IngredientIndex(asset.ingredients.map { it.toEntity().toDomain() })
+        }
+    }
+
+    private val engine = HalalEngine()
+
+    @Test
+    fun `asset is well formed`() {
+        assertTrue("expected a large database, got ${asset.ingredients.size}", asset.ingredients.size > 5000)
+        assertEquals(asset.ingredients.size, asset.ingredients.map { it.id }.toSet().size)
+        val categories = setOf("HALAL", "HARAM", "MASHBOOH", "UNKNOWN")
+        asset.ingredients.forEach { entry ->
+            assertTrue("${entry.id}: ${entry.defaultCategory}", entry.defaultCategory in categories)
+            if (entry.defaultCategory == "MASHBOOH") assertNotNull("${entry.id} needs a doubt", Doubt.fromString(entry.doubt))
+        }
+    }
+
+    @Test
+    fun `parser skips an unchanged asset`() {
+        val skipped = File("src/main/assets/ingredients_db.json").source().buffer().use {
+            IngredientAssetParser(Moshi.Builder().build()).parse(it, skipIfVersion = asset.version)
+        }
+        assertNull(skipped)
+    }
+
+    @Test
+    fun `key ingredients have the expected rulings`() {
+        mapOf(
+            "e428" to HalalStatus.MASHBOOH, // gelatine
+            "pork_gelatin" to HalalStatus.HARAM,
+            "soya_lecithin" to HalalStatus.HALAL,
+            "e471" to HalalStatus.MASHBOOH,
+            "e120" to HalalStatus.HARAM,
+            "white_wine" to HalalStatus.HARAM,
+            "spirit_vinegar" to HalalStatus.HALAL,
+            "raisin" to HalalStatus.HALAL,
+            "hazelnut" to HalalStatus.HALAL,
+            "e150d" to HalalStatus.HALAL
+        ).forEach { (id, expected) ->
+            assertEquals(id, expected, index.byId(id)?.defaultCategory)
+        }
+    }
+
+    @Test
+    fun `Nutella is halal`() {
+        val result = analyze(
+            "Zucker, Palmöl, HASELNÜSSE 13 %, MAGERMILCHPULVER 8,7 %, fettarmer Kakao, Emulgator Lecithine (Soja), Vanillin",
+            additives = listOf("en:e322", "en:e322i")
+        )
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+    }
+
+    @Test
+    fun `Haribo is doubtful because of gelatine only`() {
+        val result = analyze(
+            "Glukosesirup, Zucker, Gelatine, Dextrose, Fruchtsaft aus Fruchtsaftkonzentrat: Apfel, Erdbeere, Himbeere, " +
+                "Orange, Zitrone, Ananas, Säuerungsmittel: Citronensäure, Frucht - und Pflanzenkonzentrate: Saflor, " +
+                "Spirulina, Apfel, Holunderbeere, Orange, Schwarze Johannisbeere, Kiwi, Zitrone, Aronia, Mango, " +
+                "Passionsfrucht, Traube, Aroma, Holunderbeerextrakt, Überzugsmittel: Bienenwachs weiß und gelb, Carnaubawachs"
+        )
+        assertEquals(result.describe(), HalalStatus.MASHBOOH, result.halalStatus)
+        val doubtful = result.analyzedIngredients.filter { it.status == HalalStatus.MASHBOOH }.map { it.ingredient?.id }.toSet()
+        assertEquals(result.describe(), setOf("e428", "flavouring"), doubtful)
+        assertTrue(result.describe(), result.analyzedIngredients.none { it.status == HalalStatus.HARAM })
+    }
+
+    @Test
+    fun `Coca Cola is doubtful only because of the natural flavourings`() {
+        val result = analyze(
+            "Wasser, Zucker, Kohlensäure, Farbstoff E150d, Säuerungsmittel: E338, natürliche Aromen inklusive Koffein",
+            additives = listOf("en:e150d", "en:e338")
+        )
+        assertEquals(result.describe(), HalalStatus.MASHBOOH, result.halalStatus)
+        val doubtful = result.analyzedIngredients.filter { it.status != HalalStatus.HALAL }
+        assertEquals(result.describe(), 1, doubtful.size)
+        assertEquals(result.describe(), "natural_flavouring", doubtful.single().ingredient?.id)
+    }
+
+    @Test
+    fun `Alpro labeled vegan is halal`() {
+        val result = analyze(
+            "Wasser, MANDELN (2,3%), Zucker, Calcium (Tricalciumphosphat), Meersalz, Stabilisatoren (Johannisbrotkernmehl, " +
+                "Gellan), Emulgator (Lecithine), natürliches Aroma, Vitamine (B2, B12, E, D2). Mandeln aus Spanien. " +
+                "Kann Spuren von Schalenfrüchten (keine Erdnüsse) enthalten.",
+            labels = listOf("en:vegetarian", "en:vegan", "en:no-milk"),
+            additives = listOf("en:e322", "en:e418")
+        )
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+    }
+
+    @Test
+    fun `dark chocolate with trace note is halal`() {
+        val result = analyze("Kakaomasse, Zucker, Kakaobutter, Emulgator (Sojalecithin), Vanille. Kann Haselnüsse, Mandeln, Milch enthalten.")
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+        assertEquals(result.describe(), 5, result.analyzedIngredients.size)
+    }
+
+    private fun analyze(text: String, labels: List<String> = emptyList(), additives: List<String> = emptyList()) =
+        engine.analyzeProduct(
+            Product(
+                barcode = "0",
+                name = "Test",
+                ingredientsText = text,
+                labelsTags = labels,
+                additivesTags = additives,
+                source = DataSource.OPEN_FOOD_FACTS
+            ),
+            index,
+            Madhab.HANAFI
+        )
+
+    private fun Product.describe() = analyzedIngredients.joinToString("\n", prefix = "\n") {
+        "${it.status} ${it.name} -> ${it.ingredient?.id} (${it.reason?.javaClass?.simpleName})"
+    }
+}

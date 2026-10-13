@@ -29,6 +29,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.halalcheck.app.R
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.ui.theme.*
 
@@ -85,7 +87,8 @@ fun HalalStatusBadge(
 @Composable
 fun HalalStatusLarge(
     status: HalalStatus,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    description: String = status.description()
 ) {
     Column(
         modifier = modifier,
@@ -113,7 +116,7 @@ fun HalalStatusLarge(
             color = status.textColor()
         )
         Text(
-            text = status.description(),
+            text = description,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -162,19 +165,25 @@ fun HalalStatus.textColor(): Color = when (this) {
     HalalStatus.UNKNOWN -> Slate500
 }
 
-fun HalalStatus.label(): String = when (this) {
-    HalalStatus.HALAL -> "Halal"
-    HalalStatus.HARAM -> "Haram"
-    HalalStatus.MASHBOOH -> "Zweifelhaft"
-    HalalStatus.UNKNOWN -> "Unbekannt"
-}
+@Composable
+fun HalalStatus.label(): String = stringResource(
+    when (this) {
+        HalalStatus.HALAL -> R.string.status_halal
+        HalalStatus.HARAM -> R.string.status_haram
+        HalalStatus.MASHBOOH -> R.string.status_mashbooh
+        HalalStatus.UNKNOWN -> R.string.status_unknown
+    }
+)
 
-fun HalalStatus.description(): String = when (this) {
-    HalalStatus.HALAL -> "Alle Zutaten sind erlaubt"
-    HalalStatus.HARAM -> "Enthält verbotene Zutaten"
-    HalalStatus.MASHBOOH -> "Enthält zweifelhafte Zutaten"
-    HalalStatus.UNKNOWN -> "Status konnte nicht bestimmt werden"
-}
+@Composable
+fun HalalStatus.description(): String = stringResource(
+    when (this) {
+        HalalStatus.HALAL -> R.string.status_halal_desc
+        HalalStatus.HARAM -> R.string.status_haram_desc
+        HalalStatus.MASHBOOH -> R.string.status_mashbooh_desc
+        HalalStatus.UNKNOWN -> R.string.status_unknown_desc
+    }
+)
 
 fun HalalStatus.emoji(): String = when (this) {
     HalalStatus.HALAL -> "✅"

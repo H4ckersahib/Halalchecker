@@ -1,9 +1,7 @@
 package com.halalcheck.app.ui.screens.home
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,17 +16,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -46,11 +41,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.halalcheck.app.R
 import com.halalcheck.app.ui.components.ProductCardCompact
-import com.halalcheck.app.ui.components.ProductCard
 import com.halalcheck.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,7 +78,7 @@ fun HomeScreen(
                             style = MaterialTheme.typography.headlineSmall
                         )
                         Text(
-                            text = "HalalCheck",
+                            text = stringResource(R.string.app_name),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
                         )
@@ -92,13 +88,13 @@ fun HomeScreen(
                     IconButton(onClick = onNavigateToHistory) {
                         Icon(
                             imageVector = Icons.Default.History,
-                            contentDescription = "Verlauf"
+                            contentDescription = stringResource(R.string.history_title)
                         )
                     }
                     IconButton(onClick = onNavigateToSettings) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = "Einstellungen"
+                            contentDescription = stringResource(R.string.settings_title)
                         )
                     }
                 },
@@ -118,7 +114,7 @@ fun HomeScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.QrCodeScanner,
-                    contentDescription = "Barcode scannen",
+                    contentDescription = stringResource(R.string.home_scan_button),
                     modifier = Modifier.size(36.dp)
                 )
             }
@@ -149,13 +145,13 @@ fun HomeScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Bismillah! 🤲",
+                            text = stringResource(R.string.home_greeting),
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = PureWhite
                         )
                         Text(
-                            text = "Scanne einen Barcode um zu prüfen ob ein Produkt halal ist.",
+                            text = stringResource(R.string.home_subtitle),
                             style = MaterialTheme.typography.bodyLarge,
                             color = PureWhite.copy(alpha = 0.9f)
                         )
@@ -167,15 +163,15 @@ fun HomeScreen(
                         ) {
                             StatItem(
                                 value = uiState.todayScanCount.toString(),
-                                label = "Heute"
+                                label = stringResource(R.string.home_today)
                             )
                             StatItem(
                                 value = uiState.totalScanCount.toString(),
-                                label = "Gesamt"
+                                label = stringResource(R.string.home_total)
                             )
                             StatItem(
                                 value = uiState.ingredientCount.toString(),
-                                label = "Zutaten in DB"
+                                label = stringResource(R.string.home_ingredients_db)
                             )
                         }
                     }
@@ -195,17 +191,18 @@ fun HomeScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Letzte Scans",
+                                text = stringResource(R.string.home_recent_scans),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "Alle anzeigen →",
+                                text = stringResource(R.string.home_show_all),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = Emerald500,
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(8.dp))
+                                    .clickable(onClick = onNavigateToHistory)
                                     .padding(4.dp)
                             )
                         }
@@ -218,31 +215,13 @@ fun HomeScreen(
                         contentPadding = PaddingValues(horizontal = 16.dp),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        items(recentScans.take(5)) { scan ->
+                        items(recentScans) { scan ->
                             ProductCardCompact(
                                 item = scan,
                                 onClick = { onNavigateToResult(scan.barcode) }
                             )
                         }
                     }
-                }
-
-                // Full list of recent scans
-                item {
-                    Text(
-                        text = "Scan-Verlauf",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                }
-
-                items(recentScans) { scan ->
-                    ProductCard(
-                        item = scan,
-                        onClick = { onNavigateToResult(scan.barcode) },
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
                 }
             } else {
                 // Empty state
@@ -268,12 +247,12 @@ fun HomeScreen(
                                 style = MaterialTheme.typography.displayMedium
                             )
                             Text(
-                                text = "Noch keine Scans",
+                                text = stringResource(R.string.home_no_scans),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.SemiBold
                             )
                             Text(
-                                text = "Tippe auf den Scan-Button um dein erstes Produkt zu prüfen!",
+                                text = stringResource(R.string.home_no_scans_hint),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )

@@ -2,6 +2,7 @@ package com.halalcheck.app.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -13,41 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.halalcheck.app.R
 import com.halalcheck.app.domain.model.AnalyzedIngredient
-import com.halalcheck.app.domain.model.HalalStatus
-
-/**
- * A chip displaying a single ingredient with its halal status color.
- */
-@Composable
-fun IngredientChip(
-    analyzedIngredient: AnalyzedIngredient,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .clip(RoundedCornerShape(20.dp))
-            .background(analyzedIngredient.status.backgroundColor())
-            .padding(horizontal = 12.dp, vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
-    ) {
-        Icon(
-            imageVector = analyzedIngredient.status.icon(),
-            contentDescription = null,
-            tint = analyzedIngredient.status.contentColor(),
-            modifier = Modifier.size(14.dp)
-        )
-        Text(
-            text = analyzedIngredient.name,
-            style = MaterialTheme.typography.labelMedium,
-            fontWeight = FontWeight.Medium,
-            color = analyzedIngredient.status.contentColor()
-        )
-    }
-}
+import com.halalcheck.app.domain.model.Ingredient
+import com.halalcheck.app.domain.model.Reason
 
 /**
  * A detailed ingredient row for the result screen.
@@ -57,6 +31,7 @@ fun IngredientDetailRow(
     analyzedIngredient: AnalyzedIngredient,
     modifier: Modifier = Modifier
 ) {
+    val reason = analyzedIngredient.reason?.text()
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
@@ -72,7 +47,7 @@ fun IngredientDetailRow(
             modifier = Modifier.size(20.dp)
         )
 
-        androidx.compose.foundation.layout.Column(
+        Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
@@ -82,9 +57,9 @@ fun IngredientDetailRow(
                 fontWeight = FontWeight.SemiBold,
                 color = analyzedIngredient.status.contentColor()
             )
-            if (analyzedIngredient.reason != null) {
+            if (reason != null) {
                 Text(
-                    text = analyzedIngredient.reason,
+                    text = reason,
                     style = MaterialTheme.typography.bodySmall,
                     color = analyzedIngredient.status.contentColor().copy(alpha = 0.8f)
                 )
@@ -97,4 +72,43 @@ fun IngredientDetailRow(
             size = BadgeSize.SMALL
         )
     }
+}
+
+@Composable
+private fun Reason.text(): String? = when (this) {
+    is Reason.Database -> ingredient.localizedReason()
+    is Reason.Inferred -> withReason(stringResource(R.string.reason_inferred, ingredient.localizedName()), ingredient)
+    is Reason.NotSpecified -> ingredient.localizedReason() ?: stringResource(R.string.reason_not_specified)
+    is Reason.OffAdditive -> withReason(stringResource(R.string.reason_off_additive, ingredient.localizedName()), ingredient)
+    is Reason.HaramQualifier -> stringResource(R.string.reason_haram_qualifier, qualifier)
+    is Reason.AnimalQualifier -> stringResource(R.string.reason_animal_qualifier, qualifier)
+    is Reason.HalalSourceQualifier -> stringResource(R.string.reason_halal_source_qualifier, qualifier)
+    Reason.VeganLabel -> stringResource(R.string.reason_vegan_label)
+    Reason.HalalLabel -> stringResource(R.string.reason_halal_label)
+}
+
+@Composable
+private fun withReason(prefix: String, ingredient: Ingredient): String =
+    ingredient.localizedReason()?.let { "$prefix – $it" } ?: prefix
+
+@Composable
+private fun Ingredient.localizedReason(): String? {
+    val german = LocalConfiguration.current.locales[0].language == "de"
+    val text = if (german) reasonDe ?: reason else reason ?: reasonDe
+    return text ?: when (source) {
+        "off_vegan" -> stringResource(R.string.source_off_vegan)
+        "off_vegetarian" -> stringResource(R.string.source_off_vegetarian)
+        "off_maybe" -> stringResource(R.string.source_off_maybe)
+        "off_animal" -> stringResource(R.string.source_off_animal)
+        else -> null
+    }
+}
+
+@Composable
+private fun Ingredient.localizedName(): String = when (LocalConfiguration.current.locales[0].language) {
+    "de" -> nameDe
+    "tr" -> nameTr ?: nameEn
+    "ar" -> nameAr ?: nameEn
+    "fr" -> nameFr ?: nameEn
+    else -> nameEn
 }

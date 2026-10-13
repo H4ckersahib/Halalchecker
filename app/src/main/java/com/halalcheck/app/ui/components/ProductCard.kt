@@ -18,15 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.halalcheck.app.domain.model.HalalStatus
+import com.halalcheck.app.R
 import com.halalcheck.app.domain.model.ScanHistoryItem
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.Date
-import java.util.Locale
 
 /**
  * Card displaying a scanned product with its halal status.
@@ -173,18 +174,14 @@ fun ProductCardCompact(
     }
 }
 
+@Composable
 private fun formatDate(timestamp: Long): String {
-    val now = System.currentTimeMillis()
-    val diff = now - timestamp
-
+    val diff = System.currentTimeMillis() - timestamp
     return when {
-        diff < 60_000 -> "Gerade eben"
-        diff < 3_600_000 -> "${diff / 60_000} Min."
-        diff < 86_400_000 -> "${diff / 3_600_000} Std."
-        diff < 172_800_000 -> "Gestern"
-        else -> {
-            val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY)
-            sdf.format(Date(timestamp))
-        }
+        diff < 60_000 -> stringResource(R.string.just_now)
+        diff < 3_600_000 -> stringResource(R.string.minutes_ago, (diff / 60_000).toInt())
+        diff < 86_400_000 -> stringResource(R.string.hours_ago, (diff / 3_600_000).toInt())
+        diff < 172_800_000 -> stringResource(R.string.yesterday)
+        else -> DateFormat.getDateInstance(DateFormat.MEDIUM, LocalConfiguration.current.locales[0]).format(Date(timestamp))
     }
 }

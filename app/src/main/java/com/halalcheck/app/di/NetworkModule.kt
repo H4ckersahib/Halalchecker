@@ -2,7 +2,6 @@ package com.halalcheck.app.di
 
 import com.halalcheck.app.data.remote.OpenFoodFactsApi
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,9 +20,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideMoshi(): Moshi {
-        return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+        // All models use @JsonClass(generateAdapter = true), so no reflection adapter is needed.
+        return Moshi.Builder().build()
     }
 
     @Provides

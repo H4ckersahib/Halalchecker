@@ -35,5 +35,9 @@ data class ProductEntity(
     val source: String = "UNKNOWN",
 
     @ColumnInfo(name = "last_updated")
-    val lastUpdated: Long = System.currentTimeMillis()
+    val lastUpdated: Long = System.currentTimeMillis(),
+
+    /** Moshi JSON of the fetched OpenFoodFactsProduct, so labels and structured ingredients survive caching. */
+    @ColumnInfo(name = "off_payload")
+    val offPayload: String? = null
 )

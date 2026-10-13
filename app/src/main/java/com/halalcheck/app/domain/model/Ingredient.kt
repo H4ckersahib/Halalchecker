@@ -9,6 +9,8 @@ data class Ingredient(
     val nameEn: String,
     val nameTr: String? = null,
     val nameAr: String? = null,
+    val nameFr: String? = null,
+    val synonyms: List<String> = emptyList(),
     val defaultCategory: HalalStatus,
     val hanafiRuling: HalalStatus? = null,
     val malikiRuling: HalalStatus? = null,
@@ -17,7 +19,15 @@ data class Ingredient(
     val reason: String? = null,
     val reasonDe: String? = null,
     val source: String? = null,
-    val alternatives: List<String> = emptyList()
+    val alternatives: List<String> = emptyList(),
+    /** Why a MASHBOOH ingredient is doubtful; decides whether a vegan label can resolve it. */
+    val doubt: Doubt? = null,
+    /** Id of the ancestor whose ruling this ingredient inherited, e.g. "alcohol" for "white_wine". */
+    val inferredFrom: String? = null,
+    /** A functional class such as "Emulgator" rather than a concrete ingredient. */
+    val isClass: Boolean = false,
+    /** Own or nearest ancestor E-number id, e.g. "e322i" for soy lecithin. */
+    val eNumber: String? = null
 ) {
     /**
      * Get the ruling for a specific madhab.
@@ -32,16 +42,25 @@ data class Ingredient(
         }
     }
 
-    /**
-     * Returns the localized name for the given language code.
-     */
-    fun getLocalizedName(languageCode: String): String {
-        return when (languageCode) {
-            "de" -> nameDe
-            "en" -> nameEn
-            "tr" -> nameTr ?: nameEn
-            "ar" -> nameAr ?: nameEn
-            else -> nameEn
+    fun allNames(): List<String> = listOfNotNull(nameDe, nameEn, nameTr, nameAr, nameFr) + synonyms
+}
+
+enum class Doubt {
+    /** Could be animal or plant derived (E471, gelatine, aroma). Resolved by a vegan/vegetarian label. */
+    ANIMAL_SOURCE,
+
+    /** May contain alcohol (vanilla extract, soy sauce). Not resolved by a vegan label. */
+    ALCOHOL,
+
+    /** Slaughter method, madhab differences, mixed products. */
+    OTHER;
+
+    companion object {
+        fun fromString(value: String?): Doubt? = when (value?.lowercase()) {
+            "animal_source" -> ANIMAL_SOURCE
+            "alcohol" -> ALCOHOL
+            "other" -> OTHER
+            else -> null
         }
     }
 }

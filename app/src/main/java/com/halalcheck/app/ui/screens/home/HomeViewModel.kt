@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,14 +40,14 @@ class HomeViewModel @Inject constructor(
 
     fun loadStats() {
         viewModelScope.launch {
-            val todayCount = productRepository.getTodayScanCount()
-            val totalCount = productRepository.getTotalScanCount()
-            val ingredientCount = ingredientRepository.getIngredientCount()
-            _uiState.value = HomeUiState(
-                todayScanCount = todayCount,
-                totalScanCount = totalCount,
-                ingredientCount = ingredientCount
-            )
+            _uiState.update {
+                it.copy(
+                    todayScanCount = productRepository.getTodayScanCount(),
+                    totalScanCount = productRepository.getTotalScanCount()
+                )
+            }
+            // Waits for the ingredient seeding, which takes a few seconds after an app update
+            _uiState.update { it.copy(ingredientCount = ingredientRepository.getIngredientCount()) }
         }
     }
 }

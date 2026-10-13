@@ -59,6 +59,7 @@ android {
 dependencies {
     // AndroidX Core
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -88,7 +89,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
     ksp(libs.moshi.codegen)
 
     // CameraX
@@ -96,7 +96,6 @@ dependencies {
     implementation(libs.camerax.camera2)
     implementation(libs.camerax.lifecycle)
     implementation(libs.camerax.view)
-    implementation(libs.camerax.mlkit)
 
     // ML Kit Barcode Scanning
     implementation(libs.mlkit.barcode)
