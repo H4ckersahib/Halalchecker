@@ -1,5 +1,6 @@
 package com.halalcheck.app.ui.screens.result
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,9 +21,11 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Eco
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Verified
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -38,6 +41,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -69,10 +74,12 @@ import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Madhab
 import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
+import com.halalcheck.app.domain.model.ProductFeedback
 import com.halalcheck.app.ui.components.HalalStatusLarge
 import com.halalcheck.app.ui.components.IngredientDetailRow
 import com.halalcheck.app.ui.components.description
 import com.halalcheck.app.ui.components.displayName
+import com.halalcheck.app.ui.components.label
 import com.halalcheck.app.ui.theme.*
 import java.text.DateFormat
 import java.util.Date
@@ -125,6 +132,9 @@ fun ResultScreen(
                 refreshError = uiState.refreshError,
                 onMadhabSelected = viewModel::changeMadhab,
                 onClaimChanged = viewModel::setPackageClaim,
+                feedback = uiState.feedback,
+                onSaveFeedback = viewModel::saveFeedback,
+                onDeleteFeedback = viewModel::deleteFeedback,
                 modifier = contentModifier
             )
         }
@@ -234,6 +244,9 @@ private fun ProductContent(
     refreshError: ResultError?,
     onMadhabSelected: (Madhab) -> Unit,
     onClaimChanged: (PackageClaim, Boolean) -> Unit,
+    feedback: ProductFeedback?,
+    onSaveFeedback: (HalalStatus?, String) -> Unit,
+    onDeleteFeedback: () -> Unit,
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
@@ -379,6 +392,11 @@ private fun ProductContent(
                     }
                 }
             }
+        }
+
+        // Testers report wrong verdicts; exported from Settings
+        item {
+            FeedbackCard(feedback = feedback, onSave = onSaveFeedback, onDelete = onDeleteFeedback)
         }
 
         // Report a wrong result at the data source
@@ -578,6 +596,116 @@ private fun PackageLabelsCard(product: Product, onClaimChanged: (PackageClaim, B
             }
         }
     }
+}
+
+@Composable
+private fun FeedbackCard(
+    feedback: ProductFeedback?,
+    onSave: (HalalStatus?, String) -> Unit,
+    onDelete: () -> Unit
+) {
+    var dialogOpen by remember { mutableStateOf(false) }
+    if (dialogOpen) {
+        FeedbackDialog(
+            initial = feedback,
+            onDismiss = { dialogOpen = false },
+            onSave = { expected, comment ->
+                onSave(expected, comment)
+                dialogOpen = false
+            }
+        )
+    }
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.feedback_title),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold
+            )
+            if (feedback == null) {
+                Text(
+                    text = stringResource(R.string.feedback_text),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                OutlinedButton(onClick = { dialogOpen = true }, shape = RoundedCornerShape(12.dp)) {
+                    Icon(Icons.Default.Flag, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Text(stringResource(R.string.feedback_report), modifier = Modifier.padding(start = 8.dp))
+                }
+            } else {
+                val summary = feedback.expectedStatus?.let { stringResource(R.string.feedback_saved, it.label()) }
+                    ?: stringResource(R.string.feedback_saved_unknown)
+                Text(text = summary, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                if (feedback.comment.isNotBlank()) {
+                    Text(
+                        text = "„${feedback.comment}“",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TextButton(onClick = { dialogOpen = true }) { Text(stringResource(R.string.feedback_edit)) }
+                    TextButton(onClick = onDelete) { Text(stringResource(R.string.delete)) }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FeedbackDialog(
+    initial: ProductFeedback?,
+    onDismiss: () -> Unit,
+    onSave: (HalalStatus?, String) -> Unit
+) {
+    // null = "don't know"
+    var expected by remember { mutableStateOf(initial?.expectedStatus) }
+    var comment by remember { mutableStateOf(initial?.comment.orEmpty()) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.feedback_dialog_title)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                listOf(HalalStatus.HALAL, HalalStatus.MASHBOOH, HalalStatus.HARAM, null).forEach { option ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(8.dp))
+                            .clickable { expected = option },
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(selected = expected == option, onClick = { expected = option })
+                        Text(option?.label() ?: stringResource(R.string.feedback_dont_know))
+                    }
+                }
+                OutlinedTextField(
+                    value = comment,
+                    onValueChange = { comment = it },
+                    label = { Text(stringResource(R.string.feedback_comment_label)) },
+                    placeholder = { Text(stringResource(R.string.feedback_comment_hint)) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                    minLines = 2
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onSave(expected, comment) }) { Text(stringResource(R.string.save)) }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
+        }
+    )
 }
 
 @Composable

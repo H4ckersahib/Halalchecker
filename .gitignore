@@ -19,6 +19,7 @@ local.properties
 # Signing keys
 *.jks
 *.keystore
+keystore.properties
 
 # OS
 .DS_Store
@@ -26,3 +27,6 @@ Thumbs.db
 
 # Downloaded Open Food Facts taxonomies (tools/build_ingredient_db.py)
 tools/.cache/
+
+# Exported test data from testers (personal data, see tools/analyze_feedback.py)
+feedback/

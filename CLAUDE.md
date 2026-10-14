@@ -19,9 +19,10 @@ Single Gradle module `:app`. Use `./gradlew` from Git Bash or `.\gradlew.bat` fr
 ./gradlew testDebugUnitTest        # JVM unit tests (app/src/test)
 ./gradlew testDebugUnitTest --tests "com.halalcheck.app.domain.engine.HalalEngineTest"   # single class
 ./gradlew connectedDebugAndroidTest  # instrumented tests; installs AND uninstalls on EVERY connected device
-./gradlew assembleRelease          # R8 minify + resource shrinking
+./gradlew assembleRelease          # R8 minify + resource shrinking; signed if keystore.properties exists
 python tools/build_ingredient_db.py            # regenerate the ingredient asset (stdlib only)
 python tools/build_ingredient_db.py --refresh  # same, re-downloading the OFF taxonomies first
+python tools/analyze_feedback.py               # report from testers' exports in feedback/ (not in Git)
 ```
 
 Unit tests:
@@ -34,7 +35,9 @@ Unit tests:
   `adb -s <serial> shell am instrument -w -e class com.halalcheck.app.data.local.MigrationTest com.halalcheck.app.debug.test/androidx.test.runner.AndroidJUnitRunner`.
 - Don't use hyphens in backtick test names: Android lint's Kotlin analysis crashes on them.
 
-Release builds run R8. `app/proguard-rules.pro` keeps the `data.remote` (Moshi API models), `data.local.entity` (Room entities) and `data.local.seed` (Moshi asset models) packages. If you move those classes to another package, add new keep rules. Moshi uses codegen only (`@JsonClass(generateAdapter = true)`); there is no reflection adapter, so every Moshi model needs the annotation.
+Release signing: `app/build.gradle.kts` reads `keystore.properties` from the project root (not in Git; template `keystore.properties.example`, key in `%USERPROFILE%\keys\`). Without it, release APKs are unsigned. Every APK given to testers must be signed with that same key, or updates can't install over it and testers lose their data. `versionCode` is the Git commit count, so it rises with every commit.
+
+Release builds run R8. `app/proguard-rules.pro` keeps the `data.remote` (Moshi API models), `data.local.entity` (Room entities) and `data.local.seed` (Moshi asset models) and `data.export` (Moshi export models) packages. If you move those classes to another package, add new keep rules. Moshi uses codegen only (`@JsonClass(generateAdapter = true)`); there is no reflection adapter, so every Moshi model needs the annotation.
 
 ## Architecture
 
@@ -108,12 +111,18 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 - Room stores enums as their `name` strings. Read them back with `HalalStatus.fromString()`, which is lenient and falls back to UNKNOWN. `DataSource` is read back with `valueOf`.
 - **Version and migration.**
-  - `HalalDatabase` is at **version 4**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`.
+  - `HalalDatabase` is at **version 5**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`. `MIGRATION_4_5` adds the `feedback` table.
   - There is **no** `fallbackToDestructiveMigration()`: a missing migration must fail instead of silently wiping the history. Extend `ALL_MIGRATIONS` and `MigrationTest`.
   - Bumping the version needs a new `Migration`.
   - Schemas are exported to `app/schemas/`.
 - **Product cache.** `products.off_payload` stores the fetched `OpenFoodFactsProduct` as Moshi JSON, so labels and structured ingredients survive caching. Rows from v1 have no payload and are re-fetched. When OFF can't be reached and a cached copy is used, `Product.offlineSince` carries its fetch time and the result screen says so. HTTP 429 becomes `ResultError.RATE_LIMITED`.
 - **Settings.** `UserPreferencesRepository` owns the Preferences DataStore ("settings"): madhab, dark mode (null = system), ingredient DB version, and per `PackageClaim` (vegan, vegetarian, halal) the barcodes whose package the user confirmed. Settings can delete these claims. The UI language is stored by AppCompat (`AppCompatDelegate.setApplicationLocales`, `autoStoreLocales` service in the manifest). That's why `MainActivity` is an `AppCompatActivity`.
+
+### Test phase: feedback and export
+
+- Testers report wrong verdicts on the result screen ("Fehler melden": expected status or "don't know", comment). Stored in the `feedback` table (one per barcode), see `FeedbackRepository`.
+- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
+- Exports contain personal data. They stay on the phone until shared; put received files into `feedback/` (git-ignored) and run `tools/analyze_feedback.py`. Bump `ExportFile.EXPORT_VERSION` and the script together when fields change.
 
 ### UI language
 

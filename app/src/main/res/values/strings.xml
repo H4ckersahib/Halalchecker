@@ -101,7 +101,7 @@
     <string name="settings_about">Über HalalCheck</string>
     <string name="settings_about_text">HalalCheck ist ein gemeinnütziges Open-Source-Projekt, das Muslimen hilft, informierte Entscheidungen über ihre Ernährung zu treffen.</string>
     <string name="settings_data_sources">Produkt- und Zutatendaten: Open Food Facts (Open Database License). Halal-Bewertungen: HalalCheck.</string>
-    <string name="settings_version">Version %s</string>
+    <string name="settings_version">Version %1$s (Build %2$d)</string>
     <string name="settings_disclaimer">⚠️ Diese App ersetzt keine religiöse Beratung.</string>
 
     <!-- Madhab -->
@@ -141,4 +141,23 @@
     <string name="settings_claims_title">Deine Verpackungsangaben</string>
     <string name="settings_claims_text">Von dir bestätigte Kennzeichnungen (vegan, vegetarisch, Halal-Siegel): %d</string>
     <string name="settings_claims_clear">Alle löschen</string>
+
+    <!-- Feedback and test data export -->
+    <string name="save">Speichern</string>
+    <string name="feedback_title">Stimmt die Bewertung?</string>
+    <string name="feedback_text">Wenn das Ergebnis falsch ist, sag, was richtig wäre. Die Rückmeldung bleibt auf deinem Handy, bis du sie in den Einstellungen exportierst.</string>
+    <string name="feedback_report">Fehler melden</string>
+    <string name="feedback_saved">Deine Rückmeldung: richtig wäre „%s“.</string>
+    <string name="feedback_saved_unknown">Deine Rückmeldung: Die Bewertung scheint falsch.</string>
+    <string name="feedback_edit">Bearbeiten</string>
+    <string name="feedback_dialog_title">Was wäre richtig?</string>
+    <string name="feedback_dont_know">Weiß nicht, aber es stimmt nicht</string>
+    <string name="feedback_comment_label">Kommentar (optional)</string>
+    <string name="feedback_comment_hint">z. B. Gelatine ist vom Rind, steht auf der Packung</string>
+    <string name="settings_testing_title">Testphase</string>
+    <string name="settings_tester_name">Dein Name (optional)</string>
+    <string name="settings_testing_text">Produkte im Verlauf: %1$d · Rückmeldungen: %2$d. Die Datei enthält deine gescannten Produkte und Rückmeldungen und verlässt dein Handy nur, wenn du sie teilst.</string>
+    <string name="settings_export">Testdaten exportieren</string>
+    <string name="settings_export_failed">Der Export ist fehlgeschlagen.</string>
+    <string name="export_share_title">Testdaten teilen</string>
 </resources>

@@ -72,6 +72,13 @@ class UserPreferencesRepository @Inject constructor(
         PackageClaim.HALAL -> KEY_HALAL_CONFIRMED
     }
 
+    /** Optional name a tester enters so exports can be told apart. */
+    val testerName: Flow<String> = context.dataStore.data.map { it[KEY_TESTER_NAME].orEmpty() }
+
+    suspend fun setTesterName(name: String) {
+        context.dataStore.edit { it[KEY_TESTER_NAME] = name }
+    }
+
     suspend fun ingredientsDbVersion(): Int? = context.dataStore.data.first()[KEY_INGREDIENTS_DB_VERSION]
 
     suspend fun setIngredientsDbVersion(version: Int) {
@@ -85,5 +92,6 @@ class UserPreferencesRepository @Inject constructor(
         val KEY_VEGAN_CONFIRMED = stringSetPreferencesKey("vegan_confirmed_barcodes")
         val KEY_VEGETARIAN_CONFIRMED = stringSetPreferencesKey("vegetarian_confirmed_barcodes")
         val KEY_HALAL_CONFIRMED = stringSetPreferencesKey("halal_confirmed_barcodes")
+        val KEY_TESTER_NAME = stringPreferencesKey("tester_name")
     }
 }

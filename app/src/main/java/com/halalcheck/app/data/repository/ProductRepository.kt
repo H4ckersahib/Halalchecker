@@ -49,10 +49,7 @@ class ProductRepository @Inject constructor(
     suspend fun lookupProduct(barcode: String, forceRefresh: Boolean = false): Result<Product> {
         val language = Locale.getDefault().language
         val cached = productDao.getProductByBarcode(barcode)
-        val cachedProduct = cached?.offPayload
-            ?.let { payload -> runCatching { payloadAdapter.fromJson(payload) }.getOrNull() }
-            ?.toDomain(barcode, language)
-            ?.copy(offlineSince = cached.lastUpdated)
+        val cachedProduct = cached?.let { toCachedProduct(it, language) }?.copy(offlineSince = cached.lastUpdated)
         if (!forceRefresh && cachedProduct != null && System.currentTimeMillis() - cached.lastUpdated < CACHE_MAX_AGE_MS) {
             return Result.success(cachedProduct.copy(offlineSince = null))
         }
@@ -78,6 +75,15 @@ class ProductRepository @Inject constructor(
     /** Offline: the cached copy, marked with when it was fetched so the UI can say so. */
     private fun cachedOrFailure(cached: Product?, error: Exception): Result<Product> =
         cached?.let { Result.success(it) } ?: Result.failure(error)
+
+    /** The cached product without network access (for the export), or null if it was never fetched. */
+    suspend fun cachedProduct(barcode: String): Product? =
+        productDao.getProductByBarcode(barcode)?.let { toCachedProduct(it, Locale.getDefault().language) }
+
+    private fun toCachedProduct(entity: ProductEntity, language: String): Product? =
+        entity.offPayload
+            ?.let { payload -> runCatching { payloadAdapter.fromJson(payload) }.getOrNull() }
+            ?.toDomain(entity.barcode, language)
 
     private fun notFound(barcode: String) = Product(barcode = barcode, name = "", source = DataSource.UNKNOWN)
 
@@ -158,6 +164,9 @@ class ProductRepository @Inject constructor(
         val startOfDay = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
         return scanHistoryDao.getScanCountSince(startOfDay)
     }
+
+    /** Number of products in the history, updated live. */
+    val scanCountFlow: Flow<Int> get() = scanHistoryDao.countFlow()
 
     /**
      * Get total scan count.

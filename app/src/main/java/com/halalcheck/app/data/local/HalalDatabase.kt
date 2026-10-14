@@ -4,9 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.halalcheck.app.data.local.dao.FeedbackDao
 import com.halalcheck.app.data.local.dao.IngredientDao
 import com.halalcheck.app.data.local.dao.ProductDao
 import com.halalcheck.app.data.local.dao.ScanHistoryDao
+import com.halalcheck.app.data.local.entity.FeedbackEntity
 import com.halalcheck.app.data.local.entity.IngredientEntity
 import com.halalcheck.app.data.local.entity.ProductEntity
 import com.halalcheck.app.data.local.entity.ScanHistoryEntity
@@ -18,9 +20,10 @@ import com.halalcheck.app.data.local.entity.ScanHistoryEntity
     entities = [
         IngredientEntity::class,
         ProductEntity::class,
-        ScanHistoryEntity::class
+        ScanHistoryEntity::class,
+        FeedbackEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = true
 )
 abstract class HalalDatabase : RoomDatabase() {
@@ -28,6 +31,7 @@ abstract class HalalDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
     abstract fun productDao(): ProductDao
     abstract fun scanHistoryDao(): ScanHistoryDao
+    abstract fun feedbackDao(): FeedbackDao
 
     companion object {
         const val DATABASE_NAME = "halalcheck_db"
@@ -63,6 +67,17 @@ abstract class HalalDatabase : RoomDatabase() {
             }
         }
 
-        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+        /** v5: testers' feedback on wrong results. */
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS feedback (barcode TEXT NOT NULL, expected_status TEXT, " +
+                        "comment TEXT NOT NULL, shown_status TEXT NOT NULL, madhab TEXT NOT NULL, " +
+                        "created_at INTEGER NOT NULL, PRIMARY KEY(barcode))"
+                )
+            }
+        }
+
+        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
     }
 }

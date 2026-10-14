@@ -7,8 +7,9 @@
 # Keep Room entities
 -keep class com.halalcheck.app.data.local.entity.** { *; }
 
-# Keep Moshi models of the bundled ingredient asset
+# Keep Moshi models of the bundled ingredient asset and the test data export
 -keep class com.halalcheck.app.data.local.seed.** { *; }
+-keep class com.halalcheck.app.data.export.** { *; }
 
 # Keep Hilt generated code
 -keep class dagger.hilt.** { *; }

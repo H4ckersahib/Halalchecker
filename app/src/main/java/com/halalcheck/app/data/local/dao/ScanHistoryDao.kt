@@ -21,6 +21,9 @@ interface ScanHistoryDao {
     fun searchScansFlow(query: String, status: String?): Flow<List<ScanHistoryEntity>>
 
     /** Replaces an earlier scan of the same barcode (unique index), so it moves to the top. */
+    @Query("SELECT * FROM scan_history ORDER BY scanned_at DESC")
+    suspend fun getAllScans(): List<ScanHistoryEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScan(scan: ScanHistoryEntity)
 
@@ -39,6 +42,9 @@ interface ScanHistoryDao {
 
     @Query("SELECT COUNT(*) FROM scan_history")
     suspend fun getScanCount(): Int
+
+    @Query("SELECT COUNT(*) FROM scan_history")
+    fun countFlow(): Flow<Int>
 
     @Query("SELECT COUNT(*) FROM scan_history WHERE scanned_at >= :since")
     suspend fun getScanCountSince(since: Long): Int

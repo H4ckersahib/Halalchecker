@@ -3,6 +3,7 @@ package com.halalcheck.app.di
 import android.content.Context
 import androidx.room.Room
 import com.halalcheck.app.data.local.HalalDatabase
+import com.halalcheck.app.data.local.dao.FeedbackDao
 import com.halalcheck.app.data.local.dao.IngredientDao
 import com.halalcheck.app.data.local.dao.ProductDao
 import com.halalcheck.app.data.local.dao.ScanHistoryDao
@@ -43,5 +44,10 @@ object DatabaseModule {
     @Provides
     fun provideScanHistoryDao(database: HalalDatabase): ScanHistoryDao {
         return database.scanHistoryDao()
+    }
+
+    @Provides
+    fun provideFeedbackDao(database: HalalDatabase): FeedbackDao {
+        return database.feedbackDao()
     }
 }

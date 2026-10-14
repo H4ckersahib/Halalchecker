@@ -101,7 +101,7 @@
     <string name="settings_about">About HalalCheck</string>
     <string name="settings_about_text">HalalCheck is a non-profit open-source project that helps Muslims make informed decisions about their food.</string>
     <string name="settings_data_sources">Product and ingredient data: Open Food Facts (Open Database License). Halal rulings: HalalCheck.</string>
-    <string name="settings_version">Version %s</string>
+    <string name="settings_version">Version %1$s (build %2$d)</string>
     <string name="settings_disclaimer">⚠️ This app does not replace religious guidance.</string>
 
     <!-- Madhab -->
@@ -141,4 +141,23 @@
     <string name="settings_claims_title">Your package labels</string>
     <string name="settings_claims_text">Labels you confirmed (vegan, vegetarian, halal label): %d</string>
     <string name="settings_claims_clear">Delete all</string>
+
+    <!-- Feedback and test data export -->
+    <string name="save">Save</string>
+    <string name="feedback_title">Is this verdict right?</string>
+    <string name="feedback_text">If the result is wrong, tell us what would be right. Your feedback stays on your phone until you export it in Settings.</string>
+    <string name="feedback_report">Report a mistake</string>
+    <string name="feedback_saved">Your feedback: it should be “%s”.</string>
+    <string name="feedback_saved_unknown">Your feedback: the verdict looks wrong.</string>
+    <string name="feedback_edit">Edit</string>
+    <string name="feedback_dialog_title">What would be right?</string>
+    <string name="feedback_dont_know">Not sure, but it\'s wrong</string>
+    <string name="feedback_comment_label">Comment (optional)</string>
+    <string name="feedback_comment_hint">e.g. the gelatine is from beef, it says so on the package</string>
+    <string name="settings_testing_title">Testing</string>
+    <string name="settings_tester_name">Your name (optional)</string>
+    <string name="settings_testing_text">Products in the history: %1$d · Feedback reports: %2$d. The file contains your scanned products and feedback and only leaves your phone if you share it.</string>
+    <string name="settings_export">Export test data</string>
+    <string name="settings_export_failed">The export failed.</string>
+    <string name="export_share_title">Share test data</string>
 </resources>

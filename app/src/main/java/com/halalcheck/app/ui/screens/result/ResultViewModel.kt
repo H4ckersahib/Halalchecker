@@ -4,13 +4,16 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halalcheck.app.data.preferences.UserPreferencesRepository
+import com.halalcheck.app.data.repository.FeedbackRepository
 import com.halalcheck.app.data.repository.IngredientRepository
 import com.halalcheck.app.data.repository.ProductRepository
 import com.halalcheck.app.domain.engine.HalalEngine
 import com.halalcheck.app.domain.model.DataSource
+import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Madhab
 import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
+import com.halalcheck.app.domain.model.ProductFeedback
 import com.halalcheck.app.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
@@ -39,13 +42,16 @@ data class ResultUiState(
     val error: ResultError? = null,
     /** Reloading failed; the previous result is still shown. */
     val refreshError: ResultError? = null,
-    val madhab: Madhab = Madhab.HANAFI
+    val madhab: Madhab = Madhab.HANAFI,
+    /** The tester's report that this result is wrong, if any. */
+    val feedback: ProductFeedback? = null
 )
 
 @HiltViewModel
 class ResultViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val productRepository: ProductRepository,
+    private val feedbackRepository: FeedbackRepository,
     private val ingredientRepository: IngredientRepository,
     private val preferences: UserPreferencesRepository,
     private val halalEngine: HalalEngine
@@ -88,7 +94,8 @@ class ResultViewModel @Inject constructor(
                     val withClaims = product.copy(userClaims = preferences.packageClaims(barcode))
                     val analyzed = analyze(withClaims, _uiState.value.madhab)
                     store(analyzed)
-                    _uiState.update { it.copy(isLoading = false, isRefreshing = false, product = analyzed) }
+                    val feedback = feedbackRepository.getFeedback(barcode)
+                    _uiState.update { it.copy(isLoading = false, isRefreshing = false, product = analyzed, feedback = feedback) }
                 },
                 onFailure = { error -> fail(errorType(error)) }
             )
@@ -163,6 +170,25 @@ class ResultViewModel @Inject constructor(
             }
             _uiState.update { it.copy(product = reanalyzed) }
         }
+    }
+
+    /** [expected] null = "don't know, but this looks wrong". Replaces an earlier report for this product. */
+    fun saveFeedback(expected: HalalStatus?, comment: String) {
+        val product = _uiState.value.product ?: return
+        val feedback = ProductFeedback(
+            barcode = barcode,
+            expectedStatus = expected,
+            comment = comment,
+            shownStatus = product.halalStatus,
+            madhab = _uiState.value.madhab
+        )
+        _uiState.update { it.copy(feedback = feedback) }
+        viewModelScope.launch { feedbackRepository.saveFeedback(feedback) }
+    }
+
+    fun deleteFeedback() {
+        _uiState.update { it.copy(feedback = null) }
+        viewModelScope.launch { feedbackRepository.deleteFeedback(barcode) }
     }
 
     fun retry() {
