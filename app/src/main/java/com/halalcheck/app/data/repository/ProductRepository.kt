@@ -44,14 +44,15 @@ class ProductRepository @Inject constructor(
     /**
      * Look up a product by barcode. A product Open Food Facts does not know is a success with
      * [DataSource.UNKNOWN]; only network problems without a cached copy are failures.
+     * [forceRefresh] skips a fresh cache, e.g. after the user corrected the data on Open Food Facts.
      */
-    suspend fun lookupProduct(barcode: String): Result<Product> {
+    suspend fun lookupProduct(barcode: String, forceRefresh: Boolean = false): Result<Product> {
         val language = Locale.getDefault().language
         val cached = productDao.getProductByBarcode(barcode)
         val cachedProduct = cached?.offPayload
             ?.let { payload -> runCatching { payloadAdapter.fromJson(payload) }.getOrNull() }
             ?.toDomain(barcode, language)
-        if (cachedProduct != null && System.currentTimeMillis() - cached.lastUpdated < CACHE_MAX_AGE_MS) {
+        if (!forceRefresh && cachedProduct != null && System.currentTimeMillis() - cached.lastUpdated < CACHE_MAX_AGE_MS) {
             return Result.success(cachedProduct)
         }
 
@@ -101,7 +102,7 @@ class ProductRepository @Inject constructor(
     }
 
     /**
-     * Save a scan to the history.
+     * Save a scan to the history. An earlier scan of the same product is replaced.
      */
     suspend fun saveScanToHistory(product: Product) {
         scanHistoryDao.insertScan(
@@ -113,6 +114,20 @@ class ProductRepository @Inject constructor(
                 halalStatus = product.halalStatus.name,
                 scannedAt = System.currentTimeMillis()
             )
+        )
+    }
+
+    /**
+     * Update the history entry of a product that was opened again (not scanned), e.g. from the
+     * history, so it shows the current result without moving to the top.
+     */
+    suspend fun updateHistoryEntry(product: Product) {
+        scanHistoryDao.updateScan(
+            barcode = product.barcode,
+            productName = product.name.ifBlank { product.barcode },
+            brand = product.brand,
+            imageUrl = product.imageUrl,
+            halalStatus = product.halalStatus.name
         )
     }
 

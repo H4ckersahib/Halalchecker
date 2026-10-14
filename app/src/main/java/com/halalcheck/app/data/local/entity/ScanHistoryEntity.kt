@@ -2,12 +2,16 @@ package com.halalcheck.app.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 /**
- * Room entity for the scan history.
+ * Room entity for the scan history. One row per product: scanning it again replaces the row.
  */
-@Entity(tableName = "scan_history")
+@Entity(
+    tableName = "scan_history",
+    indices = [Index(value = ["barcode"], unique = true)]
+)
 data class ScanHistoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

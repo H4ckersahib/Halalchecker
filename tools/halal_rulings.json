@@ -2488,8 +2488,8 @@
   {
     "id": "en:whey",
     "default_category": "MASHBOOH",
-    "reason": "Byproduct of cheese-making. If cheese uses animal rennet, whey inherits that concern.",
-    "reason_de": "Nebenprodukt der Käseherstellung. Wenn der Käse tierisches Lab enthält, gilt diese Problematik auch für die Molke.",
+    "reason": "By-product of cheese-making. Whether the rennet used was animal or microbial is almost never stated on the package. “from milk” is only the allergen notice and does not answer this.",
+    "reason_de": "Nebenprodukt der Käseherstellung. Ob das dabei verwendete Lab tierisch oder mikrobiell war, steht fast nie auf der Packung. Der Zusatz „aus Milch“ ist nur der Allergenhinweis und klärt das nicht.",
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "names": {
@@ -2502,8 +2502,8 @@
   {
     "id": "en:whey-powder",
     "default_category": "MASHBOOH",
-    "reason": "Same concern as whey regarding rennet source",
-    "reason_de": "Gleiche Problematik wie Molke bezüglich der Lab-Quelle",
+    "reason": "By-product of cheese-making. Whether the rennet used was animal or microbial is almost never stated on the package. “from milk” is only the allergen notice and does not answer this.",
+    "reason_de": "Nebenprodukt der Käseherstellung. Ob das dabei verwendete Lab tierisch oder mikrobiell war, steht fast nie auf der Packung. Der Zusatz „aus Milch“ ist nur der Allergenhinweis und klärt das nicht.",
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "names": {

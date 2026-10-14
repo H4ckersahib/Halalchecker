@@ -56,6 +56,13 @@
     <string name="result_madhab_label">Rechtsschule (Madhab)</string>
     <string name="result_madhab_change">Ändern</string>
     <string name="result_retry">Erneut versuchen</string>
+    <string name="result_refresh">Neu von Open Food Facts laden</string>
+    <string name="vegan_prompt_title">Steht „vegan“ oder „vegetarisch“ auf der Verpackung?</string>
+    <string name="vegan_prompt_text">Bei Open Food Facts fehlt dieses Label. Wenn es auf der Packung steht, stammen Zutaten wie Emulgatoren (E471) oder Aromen nicht vom Tier und gelten als halal.</string>
+    <string name="vegan_prompt_confirm">Ja, steht auf der Packung</string>
+    <string name="vegan_confirmed_title">Von dir bestätigt: vegan/vegetarisch gekennzeichnet</string>
+    <string name="vegan_confirmed_text">Trage das Label auch bei Open Food Facts ein (Button unten), dann profitieren alle Nutzer davon.</string>
+    <string name="vegan_confirmed_undo">Rückgängig</string>
 
     <!-- Status -->
     <string name="status_halal">Halal</string>

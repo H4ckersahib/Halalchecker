@@ -56,6 +56,13 @@
     <string name="result_madhab_label">School of thought (madhab)</string>
     <string name="result_madhab_change">Change</string>
     <string name="result_retry">Try again</string>
+    <string name="result_refresh">Reload from Open Food Facts</string>
+    <string name="vegan_prompt_title">Does the package say “vegan” or “vegetarian”?</string>
+    <string name="vegan_prompt_text">Open Food Facts doesn\'t list this label. If it is on the package, ingredients such as emulsifiers (E471) or flavourings are not of animal origin and count as halal.</string>
+    <string name="vegan_prompt_confirm">Yes, it\'s on the package</string>
+    <string name="vegan_confirmed_title">Confirmed by you: labeled vegan/vegetarian</string>
+    <string name="vegan_confirmed_text">Please add the label on Open Food Facts too (button below) so every user benefits.</string>
+    <string name="vegan_confirmed_undo">Undo</string>
 
     <!-- Status -->
     <string name="status_halal">Halal</string>

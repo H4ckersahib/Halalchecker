@@ -2,6 +2,8 @@ package com.halalcheck.app.ui.navigation
 
 import android.net.Uri
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,11 +21,14 @@ import com.halalcheck.app.ui.screens.settings.SettingsScreen
 object Routes {
     const val HOME = "home"
     const val SCANNER = "scanner"
-    const val RESULT = "result/{barcode}"
+    const val ARG_BARCODE = "barcode"
+    const val ARG_RECORD = "record"
+    const val RESULT = "result/{$ARG_BARCODE}?$ARG_RECORD={$ARG_RECORD}"
     const val HISTORY = "history"
     const val SETTINGS = "settings"
 
-    fun result(barcode: String) = "result/${Uri.encode(barcode)}"
+    /** [record]: a new scan that goes into the history; false when reopening a product from the history. */
+    fun result(barcode: String, record: Boolean = false) = "result/${Uri.encode(barcode)}?$ARG_RECORD=$record"
 }
 
 @Composable
@@ -35,30 +40,31 @@ fun HalalCheckNavGraph(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(Routes.HOME) {
+        composable(Routes.HOME) { entry ->
             HomeScreen(
                 onNavigateToScanner = {
-                    navController.navigate(Routes.SCANNER)
+                    entry.ifResumed { navController.navigate(Routes.SCANNER) }
                 },
                 onNavigateToHistory = {
-                    navController.navigate(Routes.HISTORY)
+                    entry.ifResumed { navController.navigate(Routes.HISTORY) }
                 },
                 onNavigateToSettings = {
-                    navController.navigate(Routes.SETTINGS)
+                    entry.ifResumed { navController.navigate(Routes.SETTINGS) }
                 },
                 onNavigateToResult = { barcode ->
-                    navController.navigate(Routes.result(barcode))
+                    entry.ifResumed { navController.navigate(Routes.result(barcode)) }
                 }
             )
         }
 
-        composable(Routes.SCANNER) {
+        composable(Routes.SCANNER) { entry ->
             ScannerScreen(
                 onNavigateBack = {
-                    navController.popBackStack()
+                    entry.ifResumed { navController.popBackStack() }
                 },
+                // ScannerViewModel reports only the first barcode, so no tap guard here
                 onBarcodeScanned = { barcode ->
-                    navController.navigate(Routes.result(barcode)) {
+                    navController.navigate(Routes.result(barcode, record = true)) {
                         popUpTo(Routes.SCANNER) { inclusive = true }
                     }
                 }
@@ -68,33 +74,45 @@ fun HalalCheckNavGraph(
         composable(
             route = Routes.RESULT,
             arguments = listOf(
-                navArgument("barcode") { type = NavType.StringType }
+                navArgument(Routes.ARG_BARCODE) { type = NavType.StringType },
+                navArgument(Routes.ARG_RECORD) {
+                    type = NavType.BoolType
+                    defaultValue = false
+                }
             )
-        ) {
+        ) { entry ->
             ResultScreen(
                 onNavigateBack = {
-                    navController.popBackStack()
+                    entry.ifResumed { navController.popBackStack() }
                 }
             )
         }
 
-        composable(Routes.HISTORY) {
+        composable(Routes.HISTORY) { entry ->
             HistoryScreen(
                 onNavigateBack = {
-                    navController.popBackStack()
+                    entry.ifResumed { navController.popBackStack() }
                 },
                 onNavigateToResult = { barcode ->
-                    navController.navigate(Routes.result(barcode))
+                    entry.ifResumed { navController.navigate(Routes.result(barcode)) }
                 }
             )
         }
 
-        composable(Routes.SETTINGS) {
+        composable(Routes.SETTINGS) { entry ->
             SettingsScreen(
                 onNavigateBack = {
-                    navController.popBackStack()
+                    entry.ifResumed { navController.popBackStack() }
                 }
             )
         }
     }
+}
+
+/**
+ * Ignores taps while a screen transition is running, so tapping a list item twice
+ * opens the product once.
+ */
+private inline fun NavBackStackEntry.ifResumed(action: () -> Unit) {
+    if (lifecycle.currentState == Lifecycle.State.RESUMED) action()
 }

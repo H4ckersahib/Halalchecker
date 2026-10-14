@@ -33,21 +33,22 @@ Release builds run R8. `app/proguard-rules.pro` keeps the `data.remote` (Moshi A
 
 ## Architecture
 
-The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (models + engine), `ui/` (Compose screens with `@HiltViewModel`s), and `di/` (Hilt modules for Room, Retrofit, Moshi). Repositories are provided through their `@Inject` constructors. Navigation uses string routes in `ui/navigation/NavGraph.kt`: `home`, `scanner`, `result/{barcode}`, `history`, `settings`.
+The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (models + engine), `ui/` (Compose screens with `@HiltViewModel`s), and `di/` (Hilt modules for Room, Retrofit, Moshi). Repositories are provided through their `@Inject` constructors. Navigation uses string routes in `ui/navigation/NavGraph.kt`: `home`, `scanner`, `result/{barcode}?record={record}`, `history`, `settings`. List taps go through `ifResumed`, so tapping twice opens one screen.
 
 ### Scan → result flow
 
-1. `ScannerScreen`: CameraX `ImageAnalysis` (background executor) with ML Kit, restricted to EAN-13/8 and UPC-A/E. QR codes are deliberately not scanned: their URLs can't be looked up and broke the route. Manual entry accepts 8–14 digits. When a barcode is found, it navigates to `result/{barcode}` and pops the scanner off the back stack.
-2. `ResultViewModel` reads `barcode` from `SavedStateHandle` and the default madhab from `UserPreferencesRepository`.
+1. `ScannerScreen`: CameraX `ImageAnalysis` (background executor) with ML Kit, restricted to EAN-13/8 and UPC-A/E. QR codes are deliberately not scanned: their URLs can't be looked up and broke the route. Manual entry accepts 8–14 digits. When a barcode is found, it navigates to `result/{barcode}?record=true` and pops the scanner off the back stack. Home and History open results with `record=false`.
+2. `ResultViewModel` reads `barcode` and `record` from `SavedStateHandle`, the default madhab and the user's vegan confirmation for this barcode from `UserPreferencesRepository`.
 3. `ProductRepository.lookupProduct()`:
    - A cached product younger than 7 days is used directly.
    - Otherwise it asks the Open Food Facts v2 API.
    - On a network error it falls back to a stale cache.
    - OFF answers unknown barcodes with **HTTP 404**; that becomes a placeholder product with `DataSource.UNKNOWN`, not an error. Placeholders are never cached or saved to history.
+   - The refresh button (`ResultViewModel.refresh`) skips the cache, e.g. after the user corrected the product on OFF.
    - Spec tiers "own backend" and "community" are TODO.
 4. `IngredientRepository.getIndex()` returns an in-memory `IngredientIndex`, built once per process after `IngredientSeeder` has run.
 5. `HalalEngine.analyzeProduct(product, index, madhab)` always re-analyzes from the product's source data (text, OFF ingredients, labels, additives), also on a cache hit and on madhab change. It runs on `Dispatchers.Default`.
-6. The status and confidence are written back to `products` (`ProductDao.updateAnalysis`), and a row is inserted into `scan_history`. `analyzedIngredients` is never persisted.
+6. The status and confidence are written back to `products` (`ProductDao.updateAnalysis`). A real scan (`record=true`) inserts the `scan_history` row (one row per barcode; a rescan replaces it and moves it to the top); reopening only updates the stored status. `analyzedIngredients` is never persisted.
 
 ### HalalEngine (`domain/engine/`)
 
@@ -60,18 +61,19 @@ This is the core logic and the most likely place for behavior changes. It has no
   - `Class: X` yields X when the head is a functional class (`Ingredient.isClass`, e.g. Emulgator, Säuerungsmittel). Otherwise the head is a "list head" that only counts if HARAM.
   - A bare class followed by more entries is treated as a typo for a colon.
   - A class prefix is stripped ("Emulgator Lecithine (Soja)" → "Lecithine").
-  - Parentheses hold an E-number (the ingredient), only source words (qualifiers: "Gelatine (Rind)"), or a composition (children). A recognized parent counts next to its composition only if HARAM or if it has a single child ("Molke (Milch)").
+  - Parentheses hold an E-number (the ingredient), only source words (qualifiers: "Gelatine (Rind)"), or a composition (children). A recognized parent counts next to its composition only if HARAM or if it has a single child ("Süßmolkenpulver (aus Milch)"); a HALAL single child is an annotation and is not listed.
+  - " - " separates entries except before und/oder ("Mono - und Diglyceride").
 - **Matching** (`IngredientIndex.findAll`), hash based:
   1. Whole phrase on names/synonyms in all languages, ignoring spacing and simple plural endings.
   2. E/INS numbers as whole tokens (`e322i` falls back to `e322`).
   3. Longest known word spans. A phrase can yield several matches; the most severe counts.
-  4. Compound heads ("Putenschinken" → "Schinken", marked `inferred`, never a class).
+  4. Compound heads ("Putenschinken" → "Schinken"), else the base product of a form word ("Kartoffelpulver" → "Kartoffel"; no "-extrakt"). Both are marked `inferred` and never match a class.
   - **There is no substring matching**; it produced false HARAM ("Weinbeeren" → Wein).
 - **Rules** (`HalalEngine.Analysis.evaluate`), applied the same way on every path:
   - A haram qualifier or compound modifier (`Qualifiers`, token based) makes the ingredient HARAM.
   - An animal word turns a pork-by-default HARAM ("Speck", "Schinken") into MASHBOOH.
   - For MASHBOOH: an animal word keeps it MASHBOOH, and a plant/synthetic/fish word makes it HALAL.
-  - A vegan/vegetarian label makes MASHBOOH HALAL only if `doubt == ANIMAL_SOURCE`.
+  - A vegan/vegetarian label makes MASHBOOH HALAL only if `doubt == ANIMAL_SOURCE`. The label comes from OFF `labels_tags` or from the user (`Product.userConfirmedVegan`, stored per barcode in DataStore), because OFF often lacks it. `Product.veganLabelWouldResolve` tells the result screen to ask.
   - A halal label makes MASHBOOH HALAL.
   - Reasons are a sealed `Reason`; the UI localizes them.
 - **Aggregation** (`determineOverallStatus`):
@@ -99,12 +101,12 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 - Room stores enums as their `name` strings. Read them back with `HalalStatus.fromString()`, which is lenient and falls back to UNKNOWN. `DataSource` is read back with `valueOf`.
 - **Version and migration.**
-  - `HalalDatabase` is at **version 2**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history.
+  - `HalalDatabase` is at **version 3**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`.
   - `fallbackToDestructiveMigration()` is still set as a safety net.
   - Bumping the version needs a new `Migration`.
   - Schemas are exported to `app/schemas/`.
 - **Product cache.** `products.off_payload` stores the fetched `OpenFoodFactsProduct` as Moshi JSON, so labels and structured ingredients survive caching. Rows from v1 have no payload and are re-fetched.
-- **Settings.** `UserPreferencesRepository` owns the Preferences DataStore ("settings"): madhab, dark mode (null = system), ingredient DB version. The UI language is stored by AppCompat (`AppCompatDelegate.setApplicationLocales`, `autoStoreLocales` service in the manifest). That's why `MainActivity` is an `AppCompatActivity`.
+- **Settings.** `UserPreferencesRepository` owns the Preferences DataStore ("settings"): madhab, dark mode (null = system), ingredient DB version, and the barcodes the user confirmed as labeled vegan. The UI language is stored by AppCompat (`AppCompatDelegate.setApplicationLocales`, `autoStoreLocales` service in the manifest). That's why `MainActivity` is an `AppCompatActivity`.
 
 ### UI language
 

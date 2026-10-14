@@ -22,8 +22,16 @@ interface ScanHistoryDao {
     @Query("SELECT * FROM scan_history WHERE product_name LIKE '%' || :query || '%' ORDER BY scanned_at DESC")
     fun searchScansFlow(query: String): Flow<List<ScanHistoryEntity>>
 
+    /** Replaces an earlier scan of the same barcode (unique index), so it moves to the top. */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScan(scan: ScanHistoryEntity)
+
+    /** Refreshes the stored result without changing when the product was scanned. */
+    @Query(
+        """UPDATE scan_history SET product_name = :productName, brand = :brand, image_url = :imageUrl,
+           halal_status = :halalStatus WHERE barcode = :barcode"""
+    )
+    suspend fun updateScan(barcode: String, productName: String, brand: String?, imageUrl: String?, halalStatus: String)
 
     @Query("DELETE FROM scan_history WHERE id = :id")
     suspend fun deleteScan(id: Long)

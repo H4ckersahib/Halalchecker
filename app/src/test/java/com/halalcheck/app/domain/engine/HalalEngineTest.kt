@@ -45,6 +45,7 @@ class HalalEngineTest {
             ),
             ingredient("e428", "Gelatine", "Gelatin", MASHBOOH, synonyms = listOf("Speisegelatine"), doubt = Doubt.ANIMAL_SOURCE, eNumber = "e428"),
             ingredient("e120", "Karmin", "Carmine", HARAM, synonyms = listOf("echtes Karmin", "Cochenille"), eNumber = "e120"),
+            ingredient("whey", "Molke", "Whey", MASHBOOH, synonyms = listOf("Süßmolkenpulver"), doubt = Doubt.ANIMAL_SOURCE),
             ingredient("vanilla_extract", "Vanilleextrakt", "Vanilla extract", MASHBOOH, doubt = Doubt.ALCOHOL),
             ingredient("flavouring", "Aroma", "Flavouring", MASHBOOH, synonyms = listOf("Aromen"), doubt = Doubt.ANIMAL_SOURCE),
             ingredient("natural_flavouring", "natürliche Aromen", "Natural flavouring", MASHBOOH, doubt = Doubt.ANIMAL_SOURCE),
@@ -174,6 +175,32 @@ class HalalEngineTest {
         assertTrue(conflict.labelConflict)
     }
 
+    @Test
+    fun `a vegan label the user confirmed on the package counts like one from Open Food Facts`() {
+        val text = "Zucker, natürliche Aromen, Emulgator (E471)"
+        val unlabeled = analyze(text)
+        assertEquals(MASHBOOH, unlabeled.halalStatus)
+        assertTrue(unlabeled.veganLabelWouldResolve)
+
+        assertEquals(HALAL, analyze(text, userConfirmedVegan = true).halalStatus)
+    }
+
+    @Test
+    fun `a vegan label cannot resolve an explicitly animal source`() {
+        assertFalse(analyze("Gelatine (Rind)").veganLabelWouldResolve)
+        assertEquals(MASHBOOH, analyze("Gelatine (Rind)", userConfirmedVegan = true).halalStatus)
+    }
+
+    // ── Annotations ────────────────────────────────────────────────────────────
+
+    @Test
+    fun `allergen note in parentheses is not listed as an extra ingredient`() {
+        val result = analyze("Zucker, Süßmolkenpulver (aus Milch)")
+        assertEquals(listOf("sugar", "whey"), result.ids())
+        // "aus Milch" names the allergen, not the rennet the whey's doubt is about
+        assertEquals(MASHBOOH, result.halalStatus)
+    }
+
     // ── Aggregation and madhab ─────────────────────────────────────────────────
 
     @Test
@@ -231,7 +258,8 @@ class HalalEngineTest {
         text: String,
         labels: List<String> = emptyList(),
         additives: List<String> = emptyList(),
-        madhab: Madhab = Madhab.HANAFI
+        madhab: Madhab = Madhab.HANAFI,
+        userConfirmedVegan: Boolean = false
     ): Product = engine.analyzeProduct(
         Product(
             barcode = "1",
@@ -239,7 +267,8 @@ class HalalEngineTest {
             ingredientsText = text,
             labelsTags = labels,
             additivesTags = additives,
-            source = DataSource.OPEN_FOOD_FACTS
+            source = DataSource.OPEN_FOOD_FACTS,
+            userConfirmedVegan = userConfirmedVegan
         ),
         index,
         madhab

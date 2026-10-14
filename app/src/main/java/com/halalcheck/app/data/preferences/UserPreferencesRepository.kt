@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.halalcheck.app.domain.model.Madhab
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -43,6 +44,17 @@ class UserPreferencesRepository @Inject constructor(
         }
     }
 
+    /** Barcodes whose package the user confirmed as labeled vegan/vegetarian (missing on Open Food Facts). */
+    suspend fun isVeganConfirmed(barcode: String): Boolean =
+        barcode in context.dataStore.data.first()[KEY_VEGAN_CONFIRMED].orEmpty()
+
+    suspend fun setVeganConfirmed(barcode: String, confirmed: Boolean) {
+        context.dataStore.edit { prefs ->
+            val current = prefs[KEY_VEGAN_CONFIRMED].orEmpty()
+            prefs[KEY_VEGAN_CONFIRMED] = if (confirmed) current + barcode else current - barcode
+        }
+    }
+
     suspend fun ingredientsDbVersion(): Int? = context.dataStore.data.first()[KEY_INGREDIENTS_DB_VERSION]
 
     suspend fun setIngredientsDbVersion(version: Int) {
@@ -53,5 +65,6 @@ class UserPreferencesRepository @Inject constructor(
         val KEY_MADHAB = stringPreferencesKey("madhab")
         val KEY_DARK_MODE = booleanPreferencesKey("dark_mode")
         val KEY_INGREDIENTS_DB_VERSION = intPreferencesKey("ingredients_db_version")
+        val KEY_VEGAN_CONFIRMED = stringSetPreferencesKey("vegan_confirmed_barcodes")
     }
 }

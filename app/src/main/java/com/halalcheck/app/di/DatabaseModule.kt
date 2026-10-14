@@ -25,7 +25,7 @@ object DatabaseModule {
             HalalDatabase::class.java,
             HalalDatabase.DATABASE_NAME
         )
-            .addMigrations(HalalDatabase.MIGRATION_1_2)
+            .addMigrations(HalalDatabase.MIGRATION_1_2, HalalDatabase.MIGRATION_2_3)
             .fallbackToDestructiveMigration()
             .build()
     }

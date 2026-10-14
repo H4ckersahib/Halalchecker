@@ -125,6 +125,27 @@ class IngredientAssetTest {
     }
 
     @Test
+    fun `Pom-Baer Ketchup is doubtful until its vegan label is confirmed`() {
+        // Open Food Facts only lists "en:no-gluten"; the package says "für Veganer geeignet"
+        val text = "Kartoffelpulver (30%), pflanzliche Öle (Sonnenblume, Raps in veränderlichen Gewichtsanteilen), " +
+            "Maisstärke, Kartoffelstärke, Zucker, jodiertes Speisesalz (Speisesalz, Kaliumjodat), natürliches Aroma, " +
+            "Hefeextrakt, Speisesalz, Emulgator (Mono - und Diglyceride von Speisefettsäuren), Zwiebelpulver, " +
+            "Tomatenpulver, Gewürz, Knoblauchpulver, Säuerungsmittel (Citronensäure), Kräuter. Kann Spuren von SOJA enthalten."
+        val unlabeled = analyze(text, labels = listOf("en:no-gluten"), additives = listOf("en:e330", "en:e471"))
+        assertEquals(unlabeled.describe(), HalalStatus.MASHBOOH, unlabeled.halalStatus)
+        val doubtful = unlabeled.analyzedIngredients.filter { it.status != HalalStatus.HALAL }.map { it.ingredient?.id }.toSet()
+        assertEquals(unlabeled.describe(), setOf("e471", "natural_flavouring"), doubtful)
+        assertTrue(unlabeled.veganLabelWouldResolve)
+
+        val confirmed = engine.analyzeProduct(
+            Product(barcode = "0", name = "Test", ingredientsText = text, source = DataSource.OPEN_FOOD_FACTS, userConfirmedVegan = true),
+            index,
+            Madhab.HANAFI
+        )
+        assertEquals(confirmed.describe(), HalalStatus.HALAL, confirmed.halalStatus)
+    }
+
+    @Test
     fun `dark chocolate with trace note is halal`() {
         val result = analyze("Kakaomasse, Zucker, Kakaobutter, Emulgator (Sojalecithin), Vanille. Kann Haselnüsse, Mandeln, Milch enthalten.")
         assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)

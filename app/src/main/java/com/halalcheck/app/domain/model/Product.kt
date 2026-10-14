@@ -22,10 +22,18 @@ data class Product(
     val analyzedIngredients: List<AnalyzedIngredient> = emptyList(),
     val unknownIngredients: List<String> = emptyList(),
     /** A halal label is present although a HARAM ingredient was found. */
-    val labelConflict: Boolean = false
+    val labelConflict: Boolean = false,
+    /** The user confirmed a vegan/vegetarian label on the package that Open Food Facts lacks. */
+    val userConfirmedVegan: Boolean = false,
+    /** Some doubtful ingredients would be resolved by a vegan/vegetarian label. */
+    val veganLabelWouldResolve: Boolean = false
 ) {
-    val hasVeganOrVegetarianLabel: Boolean
+    /** Vegan/vegetarian label according to Open Food Facts. */
+    val hasOffVeganLabel: Boolean
         get() = labelsTags.any { it.contains("vegan") || it.contains("vegetarian") }
+
+    val hasVeganOrVegetarianLabel: Boolean
+        get() = hasOffVeganLabel || userConfirmedVegan
 
     val hasHalalLabel: Boolean
         get() = labelsTags.any { it.contains("halal") }

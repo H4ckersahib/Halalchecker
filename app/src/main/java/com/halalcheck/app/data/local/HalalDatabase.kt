@@ -20,7 +20,7 @@ import com.halalcheck.app.data.local.entity.ScanHistoryEntity
         ProductEntity::class,
         ScanHistoryEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 abstract class HalalDatabase : RoomDatabase() {
@@ -42,6 +42,14 @@ abstract class HalalDatabase : RoomDatabase() {
                 db.execSQL("ALTER TABLE ingredients ADD COLUMN is_class INTEGER NOT NULL DEFAULT 0")
                 db.execSQL("ALTER TABLE ingredients ADD COLUMN e_number TEXT")
                 db.execSQL("ALTER TABLE products ADD COLUMN off_payload TEXT")
+            }
+        }
+
+        /** v3: one history row per barcode. Keeps the latest scan of each product. */
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("DELETE FROM scan_history WHERE id NOT IN (SELECT MAX(id) FROM scan_history GROUP BY barcode)")
+                db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_scan_history_barcode ON scan_history (barcode)")
             }
         }
     }

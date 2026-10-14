@@ -119,61 +119,6 @@ fun ProductCard(
     }
 }
 
-/**
- * Compact product card for horizontal scroll lists.
- */
-@Composable
-fun ProductCardCompact(
-    item: ScanHistoryItem,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier
-            .size(width = 140.dp, height = 160.dp)
-            .clickable(onClick = onClick),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Status icon
-            HalalStatusBadge(
-                status = item.halalStatus,
-                size = BadgeSize.MEDIUM,
-                showLabel = false
-            )
-
-            Text(
-                text = item.productName,
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.SemiBold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            if (item.brand != null) {
-                Text(
-                    text = item.brand,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        }
-    }
-}
-
 @Composable
 private fun formatDate(timestamp: Long): String {
     val diff = System.currentTimeMillis() - timestamp

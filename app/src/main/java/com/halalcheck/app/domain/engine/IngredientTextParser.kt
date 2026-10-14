@@ -182,7 +182,7 @@ class IngredientTextParser(
 
     private companion object {
         /** " - " separates entries, except in "Frucht - und Pflanzenkonzentrate". */
-        val LIST_DASH = Regex(" - (?!(und|oder|and|or)\b)", RegexOption.IGNORE_CASE)
+        val LIST_DASH = Regex(" - (?!(und|oder|and|or)\\b)", RegexOption.IGNORE_CASE)
         val PERCENTAGE = Regex("<?\\s*\\d+(?:[.,]\\d+)?\\s*%")
         val LEADING_LABEL = Regex("^(zutaten|zusammensetzung|ingredients|ingrédients|içindekiler)\\s*:\\s*", RegexOption.IGNORE_CASE)
         val LEADING_FILLER = Regex("^(enthält|contains|aus|from|davon|thereof)\\s+", RegexOption.IGNORE_CASE)

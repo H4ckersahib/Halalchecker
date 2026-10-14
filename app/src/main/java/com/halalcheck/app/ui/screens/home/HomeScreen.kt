@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -46,7 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.halalcheck.app.R
-import com.halalcheck.app.ui.components.ProductCardCompact
+import com.halalcheck.app.ui.components.ProductCard
 import com.halalcheck.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -209,19 +208,13 @@ fun HomeScreen(
                     }
                 }
 
-                // Horizontal scroll of recent scans
-                item {
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        items(recentScans) { scan ->
-                            ProductCardCompact(
-                                item = scan,
-                                onClick = { onNavigateToResult(scan.barcode) }
-                            )
-                        }
-                    }
+                // Same list style as the history screen
+                items(recentScans, key = { it.id }) { scan ->
+                    ProductCard(
+                        item = scan,
+                        onClick = { onNavigateToResult(scan.barcode) },
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
                 }
             } else {
                 // Empty state

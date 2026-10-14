@@ -47,7 +47,11 @@ class HalalEngine @Inject constructor() {
             confidence = calculateConfidence(analyzed),
             analyzedIngredients = analyzed,
             unknownIngredients = analyzed.filter { it.status == HalalStatus.UNKNOWN }.map { it.name },
-            labelConflict = product.hasHalalLabel && hasHaram
+            labelConflict = product.hasHalalLabel && hasHaram,
+            veganLabelWouldResolve = analyzed.any {
+                it.status == HalalStatus.MASHBOOH && it.ingredient?.doubt == Doubt.ANIMAL_SOURCE &&
+                    it.reason !is Reason.AnimalQualifier
+            }
         )
     }
 
@@ -159,16 +163,20 @@ class HalalEngine @Inject constructor() {
 
         /**
          * A recognized parent counts next to its composition if it is HARAM ("Speck (Schweinefleisch, Salz)")
-         * or has a single child, which is usually an annotation ("Molke (Milch)"). Otherwise the
-         * composition answers the parent's doubt ("Milchschokolade (Zucker, Kakaobutter, ...)").
+         * or has a single child, which is usually an annotation ("Süßmolkenpulver (aus Milch)"); a HALAL
+         * annotation adds nothing and is not listed. Otherwise the composition answers the parent's
+         * doubt ("Milchschokolade (Zucker, Kakaobutter, ...)").
          */
         private fun withParent(
             parent: AnalyzedIngredient?,
             childCount: Int,
             children: List<AnalyzedIngredient>
-        ): List<AnalyzedIngredient> =
-            if (parent != null && (parent.status == HalalStatus.HARAM || childCount == 1)) listOf(parent) + children
-            else children
+        ): List<AnalyzedIngredient> = when {
+            parent == null -> children
+            parent.status == HalalStatus.HARAM -> listOf(parent) + children
+            childCount == 1 -> listOf(parent) + children.filter { it.status != HalalStatus.HALAL }
+            else -> children
+        }
 
         private fun analyzeName(display: String, name: String, qualifiers: List<String>): AnalyzedIngredient? {
             // "Lecithine (Soja)" -> "Sojalecithine"

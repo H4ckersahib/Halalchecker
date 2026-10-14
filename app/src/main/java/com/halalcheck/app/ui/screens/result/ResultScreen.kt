@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Eco
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Verified
@@ -33,6 +34,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -86,6 +88,13 @@ fun ResultScreen(
                         )
                     }
                 },
+                actions = {
+                    if (product != null && !uiState.isLoading) {
+                        IconButton(onClick = viewModel::refresh) {
+                            Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.result_refresh))
+                        }
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
                 )
@@ -103,6 +112,7 @@ fun ResultScreen(
                 product = product,
                 madhab = uiState.madhab,
                 onMadhabSelected = viewModel::changeMadhab,
+                onVeganConfirmed = viewModel::setVeganConfirmed,
                 modifier = contentModifier
             )
         }
@@ -208,6 +218,7 @@ private fun ProductContent(
     product: Product,
     madhab: Madhab,
     onMadhabSelected: (Madhab) -> Unit,
+    onVeganConfirmed: (Boolean) -> Unit,
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
@@ -224,6 +235,13 @@ private fun ProductContent(
         if (product.hasHalalLabel || product.labelConflict) {
             item {
                 LabelCard(product.labelConflict)
+            }
+        }
+
+        // Open Food Facts often lacks the vegan label; the user holds the package
+        if (!product.hasOffVeganLabel && (product.userConfirmedVegan || product.veganLabelWouldResolve)) {
+            item {
+                VeganLabelCard(confirmed = product.userConfirmedVegan, onConfirmed = onVeganConfirmed)
             }
         }
 
@@ -431,6 +449,55 @@ private fun StatusCard(product: Product) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(top = 4.dp)
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun VeganLabelCard(confirmed: Boolean, onConfirmed: (Boolean) -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Eco,
+                    contentDescription = null,
+                    tint = Emerald500
+                )
+                Text(
+                    text = stringResource(if (confirmed) R.string.vegan_confirmed_title else R.string.vegan_prompt_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Text(
+                text = stringResource(if (confirmed) R.string.vegan_confirmed_text else R.string.vegan_prompt_text),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            if (confirmed) {
+                TextButton(onClick = { onConfirmed(false) }) {
+                    Text(stringResource(R.string.vegan_confirmed_undo))
+                }
+            } else {
+                OutlinedButton(
+                    onClick = { onConfirmed(true) },
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(stringResource(R.string.vegan_prompt_confirm))
                 }
             }
         }

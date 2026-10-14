@@ -69,7 +69,8 @@ class IngredientIndex(ingredients: List<Ingredient>) {
      * 1. the whole phrase,
      * 2. else E-numbers in it,
      * 3. else the longest known word spans ("natürliche Aromen inkl Koffein" -> both),
-     * 4. plus compound heads for words no span covered ("Putenschinken" -> "Schinken", inferred).
+     * 4. plus compound heads for words no span covered ("Putenschinken" -> "Schinken", inferred),
+     *    or the base product of a form word ("Kartoffelpulver" -> "Kartoffel", inferred).
      */
     fun findAll(phrase: String): List<IngredientMatch> {
         val normalized = normalize(phrase)
@@ -97,7 +98,7 @@ class IngredientIndex(ingredients: List<Ingredient>) {
             }
         }
         words.forEachIndexed { i, word ->
-            if (!covered[i]) headMatch(word)?.let { matches += it }
+            if (!covered[i]) (headMatch(word) ?: formMatch(word))?.let { matches += it }
         }
         return matches.distinctBy { it.ingredient.id }
     }
@@ -111,6 +112,14 @@ class IngredientIndex(ingredients: List<Ingredient>) {
             return IngredientMatch(ingredient, inferred = true, modifier = word.substring(0, split))
         }
         return null
+    }
+
+    /** "Kartoffelpulver" is potato in another form. Not "…extrakt": extracts may be made with alcohol. */
+    private fun formMatch(word: String): IngredientMatch? {
+        val suffix = FORM_SUFFIXES.firstOrNull { word.endsWith(it) && word.length - it.length >= 3 } ?: return null
+        val ingredient = lookupNormalized(word.dropLast(suffix.length)) ?: return null
+        if (ingredient.isClass) return null
+        return IngredientMatch(ingredient, inferred = true)
     }
 
     private fun lookupNormalized(normalized: String): Ingredient? {
@@ -131,6 +140,10 @@ class IngredientIndex(ingredients: List<Ingredient>) {
         private const val MIN_HEAD = 4
         private const val MIN_MODIFIER = 2
         private val PLURAL_ENDINGS = listOf("en", "n", "e", "s", "es", "er")
+        private val FORM_SUFFIXES = listOf(
+            "pulver", "flocken", "granulat", "grieß", "mehl", "püree", "mark", "stückchen", "stücke",
+            "würfel", "konzentrat", "paste", "saft", "raspeln", "splitter", "chips"
+        )
         private val NON_ALPHANUMERIC = Regex("[^\\p{L}\\p{N}]+")
 
         /** E or INS number as a whole token; suffix is a letter (e150d) or roman numeral (e322i, e450iii). */

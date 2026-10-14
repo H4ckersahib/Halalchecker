@@ -10,6 +10,7 @@ import com.halalcheck.app.domain.engine.HalalEngine
 import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.Madhab
 import com.halalcheck.app.domain.model.Product
+import com.halalcheck.app.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +44,10 @@ class ResultViewModel @Inject constructor(
     private val halalEngine: HalalEngine
 ) : ViewModel() {
 
-    private val barcode: String = savedStateHandle.get<String>("barcode") ?: ""
+    private val barcode: String = savedStateHandle.get<String>(Routes.ARG_BARCODE) ?: ""
+
+    /** True when opened by the scanner; opening a product from the history is not a new scan. */
+    private var recordScan: Boolean = savedStateHandle.get<Boolean>(Routes.ARG_RECORD) ?: false
 
     private val _uiState = MutableStateFlow(ResultUiState(barcode = barcode))
     val uiState: StateFlow<ResultUiState> = _uiState.asStateFlow()
@@ -51,20 +55,18 @@ class ResultViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _uiState.update { it.copy(madhab = preferences.madhab.first()) }
-            if (barcode.isNotEmpty()) analyzeProduct()
+            if (barcode.isNotEmpty()) analyzeProduct(forceRefresh = false)
         }
     }
 
-    private suspend fun analyzeProduct() {
+    private suspend fun analyzeProduct(forceRefresh: Boolean) {
         _uiState.update { it.copy(isLoading = true, error = null) }
         try {
-            productRepository.lookupProduct(barcode).fold(
+            productRepository.lookupProduct(barcode, forceRefresh).fold(
                 onSuccess = { product ->
-                    val analyzed = analyze(product, _uiState.value.madhab)
-                    if (analyzed.source != DataSource.UNKNOWN) {
-                        productRepository.saveAnalysis(analyzed)
-                        productRepository.saveScanToHistory(analyzed)
-                    }
+                    val withUserLabels = product.copy(userConfirmedVegan = preferences.isVeganConfirmed(barcode))
+                    val analyzed = analyze(withUserLabels, _uiState.value.madhab)
+                    store(analyzed)
                     _uiState.update { it.copy(isLoading = false, product = analyzed) }
                 },
                 onFailure = { error ->
@@ -84,6 +86,18 @@ class ResultViewModel @Inject constructor(
         return withContext(Dispatchers.Default) { halalEngine.analyzeProduct(product, index, madhab) }
     }
 
+    /** Saves the result; only the first analysis after a scan adds (or moves up) the history entry. */
+    private suspend fun store(product: Product) {
+        if (product.source == DataSource.UNKNOWN) return
+        productRepository.saveAnalysis(product)
+        if (recordScan) {
+            productRepository.saveScanToHistory(product)
+            recordScan = false
+        } else {
+            productRepository.updateHistoryEntry(product)
+        }
+    }
+
     /** Re-analyze with another madhab for this result only; the default stays in Settings. */
     fun changeMadhab(madhab: Madhab) {
         _uiState.update { it.copy(madhab = madhab) }
@@ -94,7 +108,23 @@ class ResultViewModel @Inject constructor(
         }
     }
 
+    /** The package says vegan/vegetarian although Open Food Facts lacks the label. Remembered per product. */
+    fun setVeganConfirmed(confirmed: Boolean) {
+        val product = _uiState.value.product ?: return
+        viewModelScope.launch {
+            preferences.setVeganConfirmed(barcode, confirmed)
+            val reanalyzed = analyze(product.copy(userConfirmedVegan = confirmed), _uiState.value.madhab)
+            store(reanalyzed)
+            _uiState.update { it.copy(product = reanalyzed) }
+        }
+    }
+
     fun retry() {
-        viewModelScope.launch { analyzeProduct() }
+        viewModelScope.launch { analyzeProduct(forceRefresh = false) }
+    }
+
+    /** Loads the product from Open Food Facts again, e.g. after correcting it there. */
+    fun refresh() {
+        viewModelScope.launch { analyzeProduct(forceRefresh = true) }
     }
 }
