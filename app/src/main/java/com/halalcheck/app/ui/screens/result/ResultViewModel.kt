@@ -9,11 +9,13 @@ import com.halalcheck.app.data.repository.ProductRepository
 import com.halalcheck.app.domain.engine.HalalEngine
 import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,13 +27,18 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-enum class ResultError { NETWORK, UNEXPECTED }
+enum class ResultError { NETWORK, RATE_LIMITED, UNEXPECTED }
 
 data class ResultUiState(
     val isLoading: Boolean = true,
+    /** Reloading while the previous result stays visible. */
+    val isRefreshing: Boolean = false,
     val barcode: String = "",
     val product: Product? = null,
+    /** Loading failed and there is nothing to show. */
     val error: ResultError? = null,
+    /** Reloading failed; the previous result is still shown. */
+    val refreshError: ResultError? = null,
     val madhab: Madhab = Madhab.HANAFI
 )
 
@@ -52,33 +59,57 @@ class ResultViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ResultUiState(barcode = barcode))
     val uiState: StateFlow<ResultUiState> = _uiState.asStateFlow()
 
+    /** The latest fetch or analysis; a newer action cancels it so an older result can't win. */
+    private var job: Job? = null
+
+    /** A cancelled re-analysis still owed the history an update. */
+    private var storePending = false
+
     init {
-        viewModelScope.launch {
+        launchExclusive {
             _uiState.update { it.copy(madhab = preferences.madhab.first()) }
-            if (barcode.isNotEmpty()) analyzeProduct(forceRefresh = false)
+            if (barcode.isNotEmpty()) load(forceRefresh = false)
         }
     }
 
-    private suspend fun analyzeProduct(forceRefresh: Boolean) {
-        _uiState.update { it.copy(isLoading = true, error = null) }
+    private fun launchExclusive(block: suspend () -> Unit) {
+        job?.cancel()
+        job = viewModelScope.launch { block() }
+    }
+
+    private suspend fun load(forceRefresh: Boolean) {
+        val previous = _uiState.value.product
+        _uiState.update {
+            if (previous == null) it.copy(isLoading = true, error = null) else it.copy(isRefreshing = true, refreshError = null)
+        }
         try {
             productRepository.lookupProduct(barcode, forceRefresh).fold(
                 onSuccess = { product ->
-                    val withUserLabels = product.copy(userConfirmedVegan = preferences.isVeganConfirmed(barcode))
-                    val analyzed = analyze(withUserLabels, _uiState.value.madhab)
+                    val withClaims = product.copy(userClaims = preferences.packageClaims(barcode))
+                    val analyzed = analyze(withClaims, _uiState.value.madhab)
                     store(analyzed)
-                    _uiState.update { it.copy(isLoading = false, product = analyzed) }
+                    _uiState.update { it.copy(isLoading = false, isRefreshing = false, product = analyzed) }
                 },
-                onFailure = { error ->
-                    val type = if (error is IOException || error is HttpException) ResultError.NETWORK else ResultError.UNEXPECTED
-                    _uiState.update { it.copy(isLoading = false, error = type) }
-                }
+                onFailure = { error -> fail(errorType(error)) }
             )
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            _uiState.update { it.copy(isLoading = false, error = ResultError.UNEXPECTED) }
+            fail(ResultError.UNEXPECTED)
         }
+    }
+
+    private fun fail(type: ResultError) {
+        _uiState.update {
+            if (it.product == null) it.copy(isLoading = false, error = type)
+            else it.copy(isRefreshing = false, refreshError = type)
+        }
+    }
+
+    private fun errorType(error: Throwable): ResultError = when {
+        error is HttpException && error.code() == HTTP_TOO_MANY_REQUESTS -> ResultError.RATE_LIMITED
+        error is IOException || error is HttpException -> ResultError.NETWORK
+        else -> ResultError.UNEXPECTED
     }
 
     private suspend fun analyze(product: Product, madhab: Madhab): Product {
@@ -101,30 +132,49 @@ class ResultViewModel @Inject constructor(
     /** Re-analyze with another madhab for this result only; the default stays in Settings. */
     fun changeMadhab(madhab: Madhab) {
         _uiState.update { it.copy(madhab = madhab) }
-        val product = _uiState.value.product ?: return
-        viewModelScope.launch {
-            val reanalyzed = analyze(product, madhab)
-            _uiState.update { it.copy(product = reanalyzed) }
-        }
+        if (_uiState.value.isLoading || _uiState.value.isRefreshing) return // the running load reads the madhab
+        reanalyze(store = false)
     }
 
-    /** The package says vegan/vegetarian although Open Food Facts lacks the label. Remembered per product. */
-    fun setVeganConfirmed(confirmed: Boolean) {
+    /**
+     * The user says the package shows this label. Vegan and vegetarian exclude each other
+     * (vegan includes vegetarian). Remembered per product until the user undoes it.
+     */
+    fun setPackageClaim(claim: PackageClaim, confirmed: Boolean) {
         val product = _uiState.value.product ?: return
+        var claims = if (confirmed) product.userClaims + claim else product.userClaims - claim
+        if (confirmed && claim == PackageClaim.VEGAN) claims = claims - PackageClaim.VEGETARIAN
+        if (confirmed && claim == PackageClaim.VEGETARIAN) claims = claims - PackageClaim.VEGAN
+        _uiState.update { it.copy(product = product.copy(userClaims = claims)) }
         viewModelScope.launch {
-            preferences.setVeganConfirmed(barcode, confirmed)
-            val reanalyzed = analyze(product.copy(userConfirmedVegan = confirmed), _uiState.value.madhab)
-            store(reanalyzed)
+            PackageClaim.entries.forEach { preferences.setPackageClaim(barcode, it, it in claims) }
+        }
+        reanalyze(store = true)
+    }
+
+    private fun reanalyze(store: Boolean) {
+        val product = _uiState.value.product ?: return
+        storePending = storePending || store
+        launchExclusive {
+            val reanalyzed = analyze(product, _uiState.value.madhab)
+            if (storePending) {
+                store(reanalyzed)
+                storePending = false
+            }
             _uiState.update { it.copy(product = reanalyzed) }
         }
     }
 
     fun retry() {
-        viewModelScope.launch { analyzeProduct(forceRefresh = false) }
+        launchExclusive { load(forceRefresh = false) }
     }
 
     /** Loads the product from Open Food Facts again, e.g. after correcting it there. */
     fun refresh() {
-        viewModelScope.launch { analyzeProduct(forceRefresh = true) }
+        launchExclusive { load(forceRefresh = true) }
+    }
+
+    private companion object {
+        const val HTTP_TOO_MANY_REQUESTS = 429
     }
 }

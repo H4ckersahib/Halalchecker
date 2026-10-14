@@ -30,11 +30,7 @@ class HistoryViewModel @Inject constructor(
 
     val scans: StateFlow<List<ScanHistoryItem>> =
         _uiState.flatMapLatest { state ->
-            when {
-                state.searchQuery.isNotBlank() -> productRepository.searchScansFlow(state.searchQuery)
-                state.selectedFilter != null -> productRepository.getScansByStatusFlow(state.selectedFilter)
-                else -> productRepository.getAllScansFlow()
-            }
+            productRepository.searchScansFlow(state.searchQuery, state.selectedFilter)
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     fun setFilter(status: HalalStatus?) {

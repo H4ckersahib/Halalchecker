@@ -5,13 +5,16 @@ import com.halalcheck.app.domain.engine.HalalEngine
 import com.halalcheck.app.domain.engine.IngredientIndex
 import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.Doubt
+import com.halalcheck.app.domain.model.KnownLabels
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.squareup.moshi.Moshi
 import okio.buffer
 import okio.source
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -135,14 +138,36 @@ class IngredientAssetTest {
         assertEquals(unlabeled.describe(), HalalStatus.MASHBOOH, unlabeled.halalStatus)
         val doubtful = unlabeled.analyzedIngredients.filter { it.status != HalalStatus.HALAL }.map { it.ingredient?.id }.toSet()
         assertEquals(unlabeled.describe(), setOf("e471", "natural_flavouring"), doubtful)
-        assertTrue(unlabeled.veganLabelWouldResolve)
+        assertTrue(unlabeled.dietLabelWouldResolve)
 
         val confirmed = engine.analyzeProduct(
-            Product(barcode = "0", name = "Test", ingredientsText = text, source = DataSource.OPEN_FOOD_FACTS, userConfirmedVegan = true),
+            Product(
+                barcode = "0", name = "Test", ingredientsText = text, source = DataSource.OPEN_FOOD_FACTS,
+                userClaims = setOf(PackageClaim.VEGAN)
+            ),
             index,
             Madhab.HANAFI
         )
         assertEquals(confirmed.describe(), HalalStatus.HALAL, confirmed.halalStatus)
+    }
+
+    @Test
+    fun `vanilla extract without manufacturer data is doubtful, not haram, in every school (REG-06)`() {
+        Madhab.entries.forEach { madhab ->
+            val result = engine.analyzeProduct(
+                Product(barcode = "0", name = "Test", ingredientsText = "Zucker, Bourbon-Vanilleextraktpulver", source = DataSource.OPEN_FOOD_FACTS),
+                index,
+                madhab
+            )
+            assertEquals("$madhab: ${result.describe()}", HalalStatus.MASHBOOH, result.halalStatus)
+        }
+    }
+
+    @Test
+    fun `negative Open Food Facts labels are not in the known label sets`() {
+        listOf("en:non-vegan", "en:non-vegetarian").forEach { tag ->
+            assertFalse(tag, tag in KnownLabels.VEGAN || tag in KnownLabels.VEGETARIAN || tag in KnownLabels.HALAL)
+        }
     }
 
     @Test

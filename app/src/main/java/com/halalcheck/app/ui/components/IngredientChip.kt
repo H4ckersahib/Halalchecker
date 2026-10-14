@@ -1,6 +1,7 @@
 package com.halalcheck.app.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,8 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.halalcheck.app.R
 import com.halalcheck.app.domain.model.AnalyzedIngredient
@@ -63,6 +66,25 @@ fun IngredientDetailRow(
                     style = MaterialTheme.typography.bodySmall,
                     color = analyzedIngredient.status.contentColor().copy(alpha = 0.8f)
                 )
+            }
+            val references = analyzedIngredient.ingredient?.references.orEmpty()
+            if (references.isNotEmpty()) {
+                val uriHandler = LocalUriHandler.current
+                val german = LocalConfiguration.current.locales[0].language == "de"
+                Text(
+                    text = stringResource(R.string.reason_sources),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = analyzedIngredient.status.contentColor().copy(alpha = 0.8f),
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+                references.forEach { reference ->
+                    Text(
+                        text = (if (german) reference.titleDe else null) ?: reference.title,
+                        style = MaterialTheme.typography.bodySmall.copy(textDecoration = TextDecoration.Underline),
+                        color = analyzedIngredient.status.contentColor(),
+                        modifier = Modifier.clickable { uriHandler.openUri(reference.url) }
+                    )
+                }
             }
         }
 

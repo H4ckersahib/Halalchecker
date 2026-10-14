@@ -5,9 +5,11 @@ import com.halalcheck.app.data.local.entity.IngredientEntity
 import com.halalcheck.app.data.local.seed.IngredientAssetEntry
 import com.halalcheck.app.data.local.seed.IngredientSeeder
 import com.halalcheck.app.domain.engine.IngredientIndex
+import com.halalcheck.app.domain.model.DietFlag
 import com.halalcheck.app.domain.model.Doubt
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Ingredient
+import com.halalcheck.app.domain.model.RulingReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -72,6 +74,11 @@ fun IngredientEntity.toDomain(): Ingredient {
         doubt = Doubt.fromString(doubt),
         inferredFrom = inferredFrom,
         isClass = isClass,
-        eNumber = eNumber
+        eNumber = eNumber,
+        vegan = DietFlag.fromString(vegan),
+        vegetarian = DietFlag.fromString(vegetarian),
+        references = IngredientAssetEntry.decodeReferences(rulingReferences)
+            .map { RulingReference(url = it.url, title = it.title, titleDe = it.titleDe) },
+        compositionResolves = compositionResolves
     )
 }

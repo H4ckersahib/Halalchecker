@@ -25,8 +25,8 @@ object DatabaseModule {
             HalalDatabase::class.java,
             HalalDatabase.DATABASE_NAME
         )
-            .addMigrations(HalalDatabase.MIGRATION_1_2, HalalDatabase.MIGRATION_2_3)
-            .fallbackToDestructiveMigration()
+            // No destructive fallback: a missing migration must fail loudly instead of wiping the history
+            .addMigrations(*HalalDatabase.ALL_MIGRATIONS)
             .build()
     }
 

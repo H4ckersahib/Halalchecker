@@ -27,7 +27,14 @@ data class Ingredient(
     /** A functional class such as "Emulgator" rather than a concrete ingredient. */
     val isClass: Boolean = false,
     /** Own or nearest ancestor E-number id, e.g. "e322i" for soy lecithin. */
-    val eNumber: String? = null
+    val eNumber: String? = null,
+    /** Whether the ingredient is vegan / vegetarian according to Open Food Facts. */
+    val vegan: DietFlag? = null,
+    val vegetarian: DietFlag? = null,
+    /** Published sources for the ruling, e.g. fatwa pages. */
+    val references: List<RulingReference> = emptyList(),
+    /** A listed composition answers the doubt ("Milchschokolade (Zucker, Kakaobutter, ...)"). */
+    val compositionResolves: Boolean = false
 ) {
     /**
      * Get the ruling for a specific madhab.
@@ -44,6 +51,21 @@ data class Ingredient(
 
     fun allNames(): List<String> = listOfNotNull(nameDe, nameEn, nameTr, nameAr, nameFr) + synonyms
 }
+
+enum class DietFlag {
+    YES, NO, MAYBE;
+
+    companion object {
+        fun fromString(value: String?): DietFlag? = when (value?.lowercase()) {
+            "yes" -> YES
+            "no" -> NO
+            "maybe" -> MAYBE
+            else -> null
+        }
+    }
+}
+
+data class RulingReference(val url: String, val title: String, val titleDe: String? = null)
 
 enum class Doubt {
     /** Could be animal or plant derived (E471, gelatine, aroma). Resolved by a vegan/vegetarian label. */

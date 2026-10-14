@@ -24,18 +24,20 @@ data class ParsedIngredient(
  */
 class IngredientTextParser(
     private val isClassName: (String) -> Boolean,
-    private val isKnown: (String) -> Boolean
+    private val isKnown: (String) -> Boolean,
+    private val isAdditive: (String) -> Boolean = { false }
 ) {
 
     fun parse(ingredientsText: String): List<ParsedIngredient> {
         val cleaned = clean(ingredientsText)
         if (cleaned.isBlank()) return emptyList()
         val items = splitTopLevel(cleaned, ',')
-        // "Farbstoff, Zuckerkulör (E150d)": a bare class name must be followed by the additive it
-        // names (EU labeling rules), so a comma there is a typo for a colon. Only a trailing class
-        // stays as "not specified".
+        // "Farbstoff, Zuckerkulör (E150d)": a bare class name directly followed by an additive is a
+        // typo for a colon. Otherwise ("Farbstoff, Zucker") the class stays as "not specified".
         return items
-            .filterIndexed { i, item -> i == items.lastIndex || !isClassName(cleanName(item)) }
+            .filterIndexed { i, item ->
+                !isClassName(cleanName(item)) || items.getOrNull(i + 1)?.let { isAdditive(it) } != true
+            }
             .flatMap { parseTopLevelItem(it) }
     }
 

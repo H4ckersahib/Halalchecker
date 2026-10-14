@@ -23,21 +23,32 @@ data class Product(
     val unknownIngredients: List<String> = emptyList(),
     /** A halal label is present although a HARAM ingredient was found. */
     val labelConflict: Boolean = false,
-    /** The user confirmed a vegan/vegetarian label on the package that Open Food Facts lacks. */
-    val userConfirmedVegan: Boolean = false,
-    /** Some doubtful ingredients would be resolved by a vegan/vegetarian label. */
-    val veganLabelWouldResolve: Boolean = false
+    /** What the user confirmed is printed on the package (Open Food Facts often lacks it). */
+    val userClaims: Set<PackageClaim> = emptySet(),
+    /** Some doubtful ingredients would be resolved by a valid vegan/vegetarian label. */
+    val dietLabelWouldResolve: Boolean = false,
+    /** Ingredients that contradict a vegan claim (milk, honey, gelatine ...); the claim is then ignored. */
+    val veganConflicts: List<String> = emptyList(),
+    /** Ingredients that contradict a vegetarian claim (meat, gelatine ...); the claim is then ignored. */
+    val vegetarianConflicts: List<String> = emptyList(),
+    /** The ingredient text and Open Food Facts' own parse disagree about a doubtful or haram ingredient. */
+    val sourceConflict: Boolean = false,
+    /** Set when Open Food Facts could not be reached and a cached copy from this time is shown. */
+    val offlineSince: Long? = null
 ) {
-    /** Vegan/vegetarian label according to Open Food Facts. */
-    val hasOffVeganLabel: Boolean
-        get() = labelsTags.any { it.contains("vegan") || it.contains("vegetarian") }
+    val offVegan: Boolean get() = labelsTags.any { it in KnownLabels.VEGAN }
+    val offVegetarian: Boolean get() = labelsTags.any { it in KnownLabels.VEGETARIAN }
+    /** A halal label on Open Food Facts: community data, shown as a hint only. */
+    val offHalal: Boolean get() = labelsTags.any { it in KnownLabels.HALAL }
 
-    val hasVeganOrVegetarianLabel: Boolean
-        get() = hasOffVeganLabel || userConfirmedVegan
-
-    val hasHalalLabel: Boolean
-        get() = labelsTags.any { it.contains("halal") }
+    val claimsVegan: Boolean get() = offVegan || PackageClaim.VEGAN in userClaims
+    /** A vegetarian claim of its own, not one implied by a vegan claim (which may be wrong). */
+    val claimsVegetarian: Boolean get() = (offVegetarian && !offVegan) || PackageClaim.VEGETARIAN in userClaims
+    /** Only the user's confirmation counts for the verdict, never the Open Food Facts tag alone. */
+    val halalConfirmed: Boolean get() = PackageClaim.HALAL in userClaims
 }
+
+enum class PackageClaim { VEGAN, VEGETARIAN, HALAL }
 
 /** An ingredient node from Open Food Facts' own parse ("id" is a taxonomy id like "en:soya-lecithin"). */
 data class SourceIngredient(

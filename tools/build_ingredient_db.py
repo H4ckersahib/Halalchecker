@@ -36,7 +36,14 @@ SEVERITY = {"HALAL": 0, "UNKNOWN": 1, "MASHBOOH": 2, "HARAM": 3}
 DOUBTS = {"animal_source", "alcohol", "other"}
 E_NUMBER = re.compile(r"en:e\d{3,4}[a-z]*")
 RULING_FIELDS = ("default_category", "hanafi_ruling", "maliki_ruling", "shafi_ruling", "hanbali_ruling",
-                 "reason", "reason_de", "source", "alternatives", "doubt")
+                 "reason", "reason_de", "source", "alternatives", "doubt", "references", "composition_resolves")
+DIET_VALUES = {"yes", "no", "maybe"}
+# Words that hint at alcohol in entries classified HALAL only from OFF's vegan flags; printed for review.
+ALCOHOL_WORDS = re.compile(
+    r"wein(?!s.ure|blatt|bl.tter|traube|beer|stein)|wine|bier|beer|rum|lik.r|liqueur|liquor|schnaps|brandy|"
+    r"whisk|wodka|vodka|sake|cognac|sherry|alkohol|alcohol|spirit|gin|champagner|champagne|"
+    r"cidre|cider(?! appl)|met|mead",
+    re.IGNORECASE)
 
 
 def load_taxonomy(name, refresh):
@@ -142,7 +149,7 @@ def node_names(tax_node, additive_node):
     return names
 
 
-def build_entry(entry_id, names, synonyms, ruling, inferred_from, is_class, e_number=None):
+def build_entry(entry_id, names, synonyms, ruling, inferred_from, is_class, e_number=None, diet=(None, None)):
     names = {k: v.strip() for k, v in names.items() if v and v.strip()}
     fallback = next((names[lang] for lang in LANGS if names.get(lang)), entry_id.replace("_", " "))
     entry = {
@@ -172,6 +179,10 @@ def build_entry(entry_id, names, synonyms, ruling, inferred_from, is_class, e_nu
         entry["is_class"] = True
     if e_number:
         entry["e_number"] = e_number
+    if diet[0]:
+        entry["vegan"] = diet[0]
+    if diet[1]:
+        entry["vegetarian"] = diet[1]
     return entry
 
 
@@ -189,6 +200,12 @@ def validate_rulings(rulings, tax):
             errors.append(f"{rid}: MASHBOOH rulings need a doubt ({', '.join(sorted(DOUBTS))})")
         if rid.startswith("local:") and not r.get("names", {}).get("de"):
             errors.append(f"{rid}: local entries need names.de")
+        for diet in ("vegan", "vegetarian"):
+            if diet in r and r[diet] not in DIET_VALUES:
+                errors.append(f"{rid}: invalid {diet} {r[diet]!r}")
+        for ref in r.get("references", []):
+            if not (ref.get("url", "").startswith("https://") and ref.get("title")):
+                errors.append(f"{rid}: references need an https url and a title")
     if errors:
         sys.exit("halal_rulings.json is invalid:\n  " + "\n  ".join(errors))
 
@@ -222,8 +239,9 @@ def main():
             synonyms += [v for v in extra.values() if v]
         if curated.get("names"):
             names = {**names, **curated["names"]}
+        diet = (inherited_flag(tax, node_id, "vegan"), inherited_flag(tax, node_id, "vegetarian"))
         entry = build_entry(app_id(node_id), names, synonyms, ruling or {"default_category": "UNKNOWN"},
-                            inferred_from, is_class, e_number_of(tax, node_id))
+                            inferred_from, is_class, e_number_of(tax, node_id), diet)
         entries[entry["id"]] = entry
         origin[entry["id"]] = node_id
 
@@ -233,7 +251,8 @@ def main():
             if eid in entries:
                 sys.exit(f"{rid} collides with the OFF-derived id {eid}")
             synonyms = [v for extra in r.get("extra_names", []) for v in extra.values()]
-            entries[eid] = build_entry(eid, r["names"], synonyms, r, None, False)
+            entries[eid] = build_entry(eid, r["names"], synonyms, r, None, False, None,
+                                       (r.get("vegan"), r.get("vegetarian")))
 
     ingredient_list = [entries[k] for k in sorted(entries)]
     digest = hashlib.sha256(json.dumps(ingredient_list, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
@@ -262,6 +281,13 @@ def main():
             print(f"  {node_id}: {verdicts} -> {pick}")
     suspicious = [e for e in ingredient_list if e["default_category"] == "HARAM" and e.get("inferred_from")
                   and "yes" in (flag(tax[origin[e["id"]]], "vegan"), flag(tax[origin[e["id"]]], "vegetarian"))]
+    alcohol_like = [e for e in ingredient_list if e["source"] in ("off_vegan", "off_vegetarian")
+                    and any(ALCOHOL_WORDS.search(n) for n in [e["name_de"], e["name_en"]] + e.get("synonyms", []))]
+    if alcohol_like:
+        print(f"\n{len(alcohol_like)} entries classified HALAL from OFF vegan flags whose names mention alcohol "
+              f"(review; add a ruling to override):")
+        for e in alcohol_like:
+            print(f"  {e['id']}: {e['name_de']}")
     if suspicious:
         print(f"\n{len(suspicious)} inherited HARAM entries that OFF flags as vegan/vegetarian (review):")
         for e in suspicious:

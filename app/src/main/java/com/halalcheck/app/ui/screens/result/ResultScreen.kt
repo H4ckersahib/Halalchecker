@@ -3,6 +3,8 @@ package com.halalcheck.app.ui.screens.result
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,7 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Eco
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.Button
@@ -27,6 +31,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -47,6 +53,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -60,12 +67,15 @@ import com.halalcheck.app.data.remote.OpenFoodFactsApi
 import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.ui.components.HalalStatusLarge
 import com.halalcheck.app.ui.components.IngredientDetailRow
 import com.halalcheck.app.ui.components.description
 import com.halalcheck.app.ui.components.displayName
 import com.halalcheck.app.ui.theme.*
+import java.text.DateFormat
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,7 +99,7 @@ fun ResultScreen(
                     }
                 },
                 actions = {
-                    if (product != null && !uiState.isLoading) {
+                    if (product != null && !uiState.isLoading && !uiState.isRefreshing) {
                         IconButton(onClick = viewModel::refresh) {
                             Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.result_refresh))
                         }
@@ -111,8 +121,10 @@ fun ResultScreen(
             product != null -> ProductContent(
                 product = product,
                 madhab = uiState.madhab,
+                isRefreshing = uiState.isRefreshing,
+                refreshError = uiState.refreshError,
                 onMadhabSelected = viewModel::changeMadhab,
-                onVeganConfirmed = viewModel::setVeganConfirmed,
+                onClaimChanged = viewModel::setPackageClaim,
                 modifier = contentModifier
             )
         }
@@ -147,6 +159,7 @@ private fun ErrorContent(error: ResultError, onRetry: () -> Unit, modifier: Modi
         text = stringResource(
             when (error) {
                 ResultError.NETWORK -> R.string.result_error_network
+                ResultError.RATE_LIMITED -> R.string.result_error_rate_limited
                 ResultError.UNEXPECTED -> R.string.result_error_unexpected
             }
         ),
@@ -217,32 +230,54 @@ private fun CenteredMessage(
 private fun ProductContent(
     product: Product,
     madhab: Madhab,
+    isRefreshing: Boolean,
+    refreshError: ResultError?,
     onMadhabSelected: (Madhab) -> Unit,
-    onVeganConfirmed: (Boolean) -> Unit,
+    onClaimChanged: (PackageClaim, Boolean) -> Unit,
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
+    val notice = when {
+        refreshError == ResultError.RATE_LIMITED -> stringResource(R.string.result_error_rate_limited)
+        refreshError != null -> stringResource(R.string.result_refresh_failed)
+        product.offlineSince != null -> stringResource(R.string.result_offline, formatDateTime(product.offlineSince))
+        else -> null
+    }
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 32.dp)
     ) {
+        if (isRefreshing) {
+            item {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = Emerald500)
+            }
+        }
+        if (notice != null) {
+            item { NoticeCard(notice) }
+        }
+
         // Status hero
         item {
             StatusCard(product)
         }
 
-        if (product.hasHalalLabel || product.labelConflict) {
+        if (product.labelConflict) {
             item {
-                LabelCard(product.labelConflict)
+                LabelConflictCard()
             }
         }
 
-        // Open Food Facts often lacks the vegan label; the user holds the package
-        if (!product.hasOffVeganLabel && (product.userConfirmedVegan || product.veganLabelWouldResolve)) {
+        // Open Food Facts often lacks labels; the user holds the package
+        val hasLabels = product.offVegetarian || product.offHalal || product.userClaims.isNotEmpty()
+        if (hasLabels || product.analyzedIngredients.any { it.status == HalalStatus.MASHBOOH }) {
             item {
-                VeganLabelCard(confirmed = product.userConfirmedVegan, onConfirmed = onVeganConfirmed)
+                PackageLabelsCard(product = product, onClaimChanged = onClaimChanged)
             }
+        }
+
+        if (product.sourceConflict) {
+            item { NoticeCard(stringResource(R.string.result_source_conflict)) }
         }
 
         // Madhab selector
@@ -455,8 +490,9 @@ private fun StatusCard(product: Product) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun VeganLabelCard(confirmed: Boolean, onConfirmed: (Boolean) -> Unit) {
+private fun PackageLabelsCard(product: Product, onClaimChanged: (PackageClaim, Boolean) -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
@@ -472,44 +508,112 @@ private fun VeganLabelCard(confirmed: Boolean, onConfirmed: (Boolean) -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.Eco,
-                    contentDescription = null,
-                    tint = Emerald500
-                )
+                Icon(imageVector = Icons.Default.Eco, contentDescription = null, tint = Emerald500)
                 Text(
-                    text = stringResource(if (confirmed) R.string.vegan_confirmed_title else R.string.vegan_prompt_title),
+                    text = stringResource(R.string.labels_title),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold
                 )
             }
+            val offLabels = listOfNotNull(
+                stringResource(R.string.label_vegan).takeIf { product.offVegan },
+                stringResource(R.string.label_vegetarian).takeIf { product.offVegetarian && !product.offVegan },
+                stringResource(R.string.label_halal).takeIf { product.offHalal }
+            )
+            if (offLabels.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.labels_off, offLabels.joinToString(", ")),
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            if (product.offHalal && !product.halalConfirmed) {
+                Text(
+                    text = stringResource(R.string.labels_off_halal_unverified),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
             Text(
-                text = stringResource(if (confirmed) R.string.vegan_confirmed_text else R.string.vegan_prompt_text),
+                text = stringResource(R.string.labels_text),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            if (confirmed) {
-                TextButton(onClick = { onConfirmed(false) }) {
-                    Text(stringResource(R.string.vegan_confirmed_undo))
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf(
+                    PackageClaim.VEGAN to R.string.label_vegan,
+                    PackageClaim.VEGETARIAN to R.string.label_vegetarian,
+                    PackageClaim.HALAL to R.string.label_halal
+                ).forEach { (claim, label) ->
+                    val selected = claim in product.userClaims
+                    FilterChip(
+                        selected = selected,
+                        onClick = { onClaimChanged(claim, !selected) },
+                        label = { Text(stringResource(label)) },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            selectedLeadingIconColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        ),
+                        leadingIcon = if (selected) {
+                            { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(18.dp)) }
+                        } else {
+                            null
+                        }
+                    )
                 }
-            } else {
-                OutlinedButton(
-                    onClick = { onConfirmed(true) },
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Text(stringResource(R.string.vegan_prompt_confirm))
-                }
+            }
+            if (product.veganConflicts.isNotEmpty()) {
+                ConflictText(stringResource(R.string.labels_conflict_vegan, product.veganConflicts.joinToString(", ")))
+            }
+            if (product.vegetarianConflicts.isNotEmpty()) {
+                ConflictText(stringResource(R.string.labels_conflict_vegetarian, product.vegetarianConflicts.joinToString(", ")))
+            }
+            if (product.userClaims.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.labels_confirmed_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }
 }
 
 @Composable
-private fun LabelCard(conflict: Boolean) {
+private fun ConflictText(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodySmall,
+        fontWeight = FontWeight.SemiBold,
+        color = MaterialTheme.colorScheme.error
+    )
+}
+
+@Composable
+private fun NoticeCard(text: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = if (conflict) Coral100 else Emerald100)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(imageVector = Icons.Default.Info, contentDescription = null)
+            Text(text = text, style = MaterialTheme.typography.bodySmall)
+        }
+    }
+}
+
+@Composable
+private fun LabelConflictCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer)
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -519,16 +623,21 @@ private fun LabelCard(conflict: Boolean) {
             Icon(
                 imageVector = Icons.Default.Verified,
                 contentDescription = null,
-                tint = if (conflict) Coral700 else Emerald700
+                tint = MaterialTheme.colorScheme.onErrorContainer
             )
             Text(
-                text = stringResource(if (conflict) R.string.result_label_conflict else R.string.result_halal_label),
+                text = stringResource(R.string.result_label_conflict),
                 style = MaterialTheme.typography.bodyMedium,
-                color = if (conflict) Coral700 else Emerald700
+                color = MaterialTheme.colorScheme.onErrorContainer
             )
         }
     }
 }
+
+@Composable
+private fun formatDateTime(millis: Long): String =
+    DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, LocalConfiguration.current.locales[0])
+        .format(Date(millis))
 
 @Composable
 private fun MadhabSelector(
@@ -544,10 +653,9 @@ private fun MadhabSelector(
             containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
         )
     ) {
+      Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -598,5 +706,12 @@ private fun MadhabSelector(
                 }
             }
         }
+        // Most ingredients have no school-specific ruling; say so instead of implying more detail
+        Text(
+            text = stringResource(R.string.result_madhab_hint),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      }
     }
 }

@@ -233,7 +233,20 @@
       "en": "Cheese",
       "tr": "Peynir",
       "ar": "جبن"
-    }
+    },
+    "references": [
+      {
+        "url": "https://islamqa.org/hanafi/seekersguidance-hanafi/32352/",
+        "title": "SeekersGuidance (Hanafi): rennet from any animal except pig is permissible",
+        "title_de": "SeekersGuidance (hanafitisch): Lab von jedem Tier außer Schwein ist erlaubt"
+      },
+      {
+        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "title": "Askimam (Hanafi): how rennet and whey powder are made today",
+        "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      }
+    ],
+    "composition_resolves": true
   },
   {
     "id": "en:chicken",
@@ -1743,7 +1756,22 @@
     "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
     "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
     "source": "scholarly_opinion",
-    "doubt": "other"
+    "doubt": "other",
+    "extra_names": [
+      {
+        "de": "Fleischerzeugnis",
+        "en": "Meat product"
+      },
+      {
+        "de": "Fleischerzeugnisse"
+      },
+      {
+        "de": "Fleischzubereitung"
+      },
+      {
+        "de": "Fleischwaren"
+      }
+    ]
   },
   {
     "id": "en:microbial-rennet",
@@ -1781,7 +1809,8 @@
     "names": {
       "de": "Milchschokolade",
       "en": "Milk Chocolate"
-    }
+    },
+    "composition_resolves": true
   },
   {
     "id": "en:milk-proteins",
@@ -2024,6 +2053,13 @@
     }
   },
   {
+    "default_category": "HARAM",
+    "reason": "Intoxicant - prohibited as ingredient",
+    "reason_de": "Rauschmittel – als Zutat verboten",
+    "source": "quran_hadith",
+    "id": "en:raspberry-liqueur"
+  },
+  {
     "id": "en:rennet",
     "default_category": "MASHBOOH",
     "hanafi_ruling": "MASHBOOH",
@@ -2040,7 +2076,19 @@
       "en": "Rennet",
       "tr": "Peynir Mayası",
       "ar": "منفحة"
-    }
+    },
+    "references": [
+      {
+        "url": "https://islamqa.org/hanafi/seekersguidance-hanafi/32352/",
+        "title": "SeekersGuidance (Hanafi): rennet from any animal except pig is permissible",
+        "title_de": "SeekersGuidance (hanafitisch): Lab von jedem Tier außer Schwein ist erlaubt"
+      },
+      {
+        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "title": "Askimam (Hanafi): how rennet and whey powder are made today",
+        "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      }
+    ]
   },
   {
     "id": "en:rice",
@@ -2349,10 +2397,8 @@
   {
     "id": "en:vanilla-extract",
     "default_category": "MASHBOOH",
-    "hanafi_ruling": "HARAM",
-    "hanbali_ruling": "HARAM",
-    "reason": "Often contains alcohol as carrier/solvent",
-    "reason_de": "Enthält oft Alkohol als Trägerstoff/Lösungsmittel",
+    "reason": "Usually made with alcohol. Whether the product contains alcohol and from what source is not stated; scholars judge this differently (see sources).",
+    "reason_de": "Wird meist mit Alkohol hergestellt. Ob das Produkt Alkohol enthält und woraus er stammt, steht nicht auf der Packung; Gelehrte bewerten das unterschiedlich (siehe Quellen).",
     "source": "scholarly_opinion",
     "doubt": "alcohol",
     "names": {
@@ -2360,7 +2406,19 @@
       "en": "Vanilla Extract",
       "tr": "Vanilya Özütü",
       "ar": "خلاصة الفانيليا"
-    }
+    },
+    "references": [
+      {
+        "url": "https://islamqa.org/hanafi/askimam/82998/what-is-the-ruling-on-vanilla-extract-and-vanillin/",
+        "title": "Askimam (Hanafi): vanilla extract is permissible if its alcohol is not made from grapes or dates",
+        "title_de": "Askimam (hanafitisch): Vanilleextrakt erlaubt, wenn der Alkohol nicht aus Trauben oder Datteln stammt"
+      },
+      {
+        "url": "https://islamqa.org/hanafi/askimam/81206/",
+        "title": "Askimam (Hanafi): alcohol in medicines and vanilla extract",
+        "title_de": "Askimam (hanafitisch): Alkohol in Medikamenten und Vanilleextrakt"
+      }
+    ]
   },
   {
     "id": "en:vegetable-fat",
@@ -2497,7 +2555,19 @@
       "en": "Whey",
       "tr": "Peynir Altı Suyu",
       "ar": "مصل اللبن"
-    }
+    },
+    "references": [
+      {
+        "url": "https://islamqa.org/hanafi/askimam/85064/",
+        "title": "Askimam (Hanafi): whey powder and microbial rennet",
+        "title_de": "Askimam (hanafitisch): Molkenpulver und mikrobielles Lab"
+      },
+      {
+        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "title": "Askimam (Hanafi): how rennet and whey powder are made today",
+        "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      }
+    ]
   },
   {
     "id": "en:whey-powder",
@@ -2511,7 +2581,19 @@
       "en": "Whey Powder",
       "tr": "Peynir Altı Suyu Tozu",
       "ar": "مسحوق مصل اللبن"
-    }
+    },
+    "references": [
+      {
+        "url": "https://islamqa.org/hanafi/askimam/85064/",
+        "title": "Askimam (Hanafi): whey powder and microbial rennet",
+        "title_de": "Askimam (hanafitisch): Molkenpulver und mikrobielles Lab"
+      },
+      {
+        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "title": "Askimam (Hanafi): how rennet and whey powder are made today",
+        "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      }
+    ]
   },
   {
     "id": "en:whole-milk-powder",
@@ -2579,7 +2661,9 @@
     "names": {
       "de": "Aktivkohle",
       "en": "Activated Carbon"
-    }
+    },
+    "vegan": "maybe",
+    "vegetarian": "maybe"
   },
   {
     "id": "local:blood",
@@ -2592,7 +2676,9 @@
       "en": "Blood",
       "tr": "Kan",
       "ar": "دم"
-    }
+    },
+    "vegan": "no",
+    "vegetarian": "no"
   },
   {
     "id": "local:blood_plasma",
@@ -2605,7 +2691,9 @@
       "en": "Blood Plasma",
       "tr": "Kan Plazması",
       "ar": "بلازما الدم"
-    }
+    },
+    "vegan": "no",
+    "vegetarian": "no"
   },
   {
     "id": "local:egg_lecithin",
@@ -2616,7 +2704,9 @@
     "names": {
       "de": "Eilecithin",
       "en": "Egg Lecithin"
-    }
+    },
+    "vegan": "no",
+    "vegetarian": "yes"
   },
   {
     "id": "local:halal_gelatin",
@@ -2627,7 +2717,9 @@
     "names": {
       "de": "Halal-Gelatine",
       "en": "Halal Gelatin"
-    }
+    },
+    "vegan": "no",
+    "vegetarian": "no"
   },
   {
     "id": "local:omega3",
@@ -2638,7 +2730,9 @@
     "names": {
       "de": "Omega-3-Fettsäuren",
       "en": "Omega-3 Fatty Acids"
-    }
+    },
+    "vegan": "maybe",
+    "vegetarian": "maybe"
   },
   {
     "id": "local:pepsin",
@@ -2652,7 +2746,9 @@
       "en": "Pepsin",
       "tr": "Pepsin",
       "ar": "ببسين"
-    }
+    },
+    "vegan": "no",
+    "vegetarian": "no"
   },
   {
     "id": "local:plant_e471",
@@ -2663,7 +2759,9 @@
     "names": {
       "de": "Mono- und Diglyceride von Speisefettsäuren (pflanzlich)",
       "en": "Mono- and Diglycerides of Fatty Acids (vegetable)"
-    }
+    },
+    "vegan": "yes",
+    "vegetarian": "yes"
   },
   {
     "id": "local:plant_glycerin",
@@ -2676,7 +2774,9 @@
       "en": "Vegetable Glycerin",
       "tr": "Bitkisel Gliserin",
       "ar": "جليسرين نباتي"
-    }
+    },
+    "vegan": "yes",
+    "vegetarian": "yes"
   },
   {
     "id": "local:plant_whey",
@@ -2687,7 +2787,9 @@
     "names": {
       "de": "Pflanzliche Molke",
       "en": "Plant Whey"
-    }
+    },
+    "vegan": "yes",
+    "vegetarian": "yes"
   },
   {
     "id": "local:sugar_alcohols",
@@ -2713,6 +2815,8 @@
         "de": "Polyol",
         "en": "Polyol"
       }
-    ]
+    ],
+    "vegan": "yes",
+    "vegetarian": "yes"
   }
 ]

@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -144,25 +145,59 @@ fun HalalStatus.icon(): ImageVector = when (this) {
     HalalStatus.UNKNOWN -> Icons.Default.QuestionMark
 }
 
-fun HalalStatus.backgroundColor(): Color = when (this) {
-    HalalStatus.HALAL -> Emerald100
-    HalalStatus.HARAM -> Coral100
-    HalalStatus.MASHBOOH -> Amber100
-    HalalStatus.UNKNOWN -> Slate200
+/** Status colors follow the app theme: pastel on light, deep tones with light text on dark. */
+@Composable
+private fun isDarkTheme(): Boolean = MaterialTheme.colorScheme.background.luminance() < 0.5f
+
+@Composable
+fun HalalStatus.backgroundColor(): Color = if (isDarkTheme()) {
+    when (this) {
+        HalalStatus.HALAL -> Emerald800
+        HalalStatus.HARAM -> Coral700
+        HalalStatus.MASHBOOH -> Amber700
+        HalalStatus.UNKNOWN -> Slate700
+    }
+} else {
+    when (this) {
+        HalalStatus.HALAL -> Emerald100
+        HalalStatus.HARAM -> Coral100
+        HalalStatus.MASHBOOH -> Amber100
+        HalalStatus.UNKNOWN -> Slate200
+    }
 }
 
-fun HalalStatus.contentColor(): Color = when (this) {
-    HalalStatus.HALAL -> Emerald700
-    HalalStatus.HARAM -> Coral700
-    HalalStatus.MASHBOOH -> Amber700
-    HalalStatus.UNKNOWN -> Slate600
+@Composable
+fun HalalStatus.contentColor(): Color = if (isDarkTheme()) {
+    when (this) {
+        HalalStatus.HALAL -> Emerald200
+        HalalStatus.HARAM -> Coral200
+        HalalStatus.MASHBOOH -> Amber200
+        HalalStatus.UNKNOWN -> Slate200
+    }
+} else {
+    when (this) {
+        HalalStatus.HALAL -> Emerald700
+        HalalStatus.HARAM -> Coral700
+        HalalStatus.MASHBOOH -> Amber700
+        HalalStatus.UNKNOWN -> Slate600
+    }
 }
 
-fun HalalStatus.textColor(): Color = when (this) {
-    HalalStatus.HALAL -> Emerald600
-    HalalStatus.HARAM -> Coral600
-    HalalStatus.MASHBOOH -> Amber600
-    HalalStatus.UNKNOWN -> Slate500
+@Composable
+fun HalalStatus.textColor(): Color = if (isDarkTheme()) {
+    when (this) {
+        HalalStatus.HALAL -> Emerald400
+        HalalStatus.HARAM -> Coral400
+        HalalStatus.MASHBOOH -> Amber400
+        HalalStatus.UNKNOWN -> Slate400
+    }
+} else {
+    when (this) {
+        HalalStatus.HALAL -> Emerald600
+        HalalStatus.HARAM -> Coral600
+        HalalStatus.MASHBOOH -> Amber600
+        HalalStatus.UNKNOWN -> Slate500
+    }
 }
 
 @Composable

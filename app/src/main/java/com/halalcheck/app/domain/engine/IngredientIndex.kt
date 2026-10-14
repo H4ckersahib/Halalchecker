@@ -67,27 +67,34 @@ class IngredientIndex(ingredients: List<Ingredient>) {
     /**
      * All ingredients found in [phrase]:
      * 1. the whole phrase,
-     * 2. else E-numbers in it,
-     * 3. else the longest known word spans ("natürliche Aromen inkl Koffein" -> both),
+     * 2. else every E-number in it plus what the words around them contain
+     *    ("Schweinefleisch mit E471" -> both),
+     * 3. the longest known word spans ("natürliche Aromen inkl Koffein" -> both),
      * 4. plus compound heads for words no span covered ("Putenschinken" -> "Schinken", inferred),
      *    or the base product of a form word ("Kartoffelpulver" -> "Kartoffel", inferred).
+     * A functional class ("Farbstoff") only counts when nothing more specific was found.
      */
     fun findAll(phrase: String): List<IngredientMatch> {
         val normalized = normalize(phrase)
         if (normalized.isEmpty()) return emptyList()
         lookupNormalized(normalized)?.let { return listOf(IngredientMatch(it)) }
 
-        val eNumbers = E_NUMBER.findAll(normalized)
-            .mapNotNull { eNumber(it.groupValues[1], it.groupValues[2].ifEmpty { null }) }
-            .distinct()
-            .map { IngredientMatch(it) }
-            .toList()
-        if (eNumbers.isNotEmpty()) return eNumbers
+        val matches = mutableListOf<IngredientMatch>()
+        E_NUMBER.findAll(normalized).forEach { m ->
+            eNumber(m.groupValues[1], m.groupValues[2].ifEmpty { null })?.let { matches += IngredientMatch(it) }
+        }
+        // Split at the E-numbers so that no word span bridges one
+        E_NUMBER.split(normalized).map { it.trim() }.filter { it.isNotEmpty() }.forEach { segment ->
+            matches += wordMatches(segment.split(' '))
+        }
+        val distinct = matches.distinctBy { it.ingredient.id }
+        return distinct.filterNot { it.ingredient.isClass }.ifEmpty { distinct }
+    }
 
-        val words = normalized.split(' ')
+    private fun wordMatches(words: List<String>): List<IngredientMatch> {
         val covered = BooleanArray(words.size)
         val matches = mutableListOf<IngredientMatch>()
-        for (length in words.size - 1 downTo 1) {
+        for (length in words.size downTo 1) {
             for (start in 0..words.size - length) {
                 if ((start until start + length).any { covered[it] }) continue
                 val span = words.subList(start, start + length)
@@ -100,7 +107,7 @@ class IngredientIndex(ingredients: List<Ingredient>) {
         words.forEachIndexed { i, word ->
             if (!covered[i]) (headMatch(word) ?: formMatch(word))?.let { matches += it }
         }
-        return matches.distinctBy { it.ingredient.id }
+        return matches
     }
 
     private fun headMatch(word: String): IngredientMatch? {

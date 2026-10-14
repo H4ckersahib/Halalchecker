@@ -30,7 +30,11 @@ data class IngredientAssetEntry(
     val doubt: String? = null,
     @Json(name = "inferred_from") val inferredFrom: String? = null,
     @Json(name = "is_class") val isClass: Boolean? = null,
-    @Json(name = "e_number") val eNumber: String? = null
+    @Json(name = "e_number") val eNumber: String? = null,
+    val vegan: String? = null,
+    val vegetarian: String? = null,
+    val references: List<AssetReference>? = null,
+    @Json(name = "composition_resolves") val compositionResolves: Boolean? = null
 ) {
     fun toEntity() = IngredientEntity(
         id = id,
@@ -52,13 +56,40 @@ data class IngredientAssetEntry(
         doubt = doubt,
         inferredFrom = inferredFrom,
         isClass = isClass == true,
-        eNumber = eNumber
+        eNumber = eNumber,
+        vegan = vegan,
+        vegetarian = vegetarian,
+        rulingReferences = references?.takeIf { it.isNotEmpty() }?.let(::encodeReferences),
+        compositionResolves = compositionResolves == true
     )
 
     companion object {
         const val SYNONYM_SEPARATOR = "|"
+        private const val FIELD_SEPARATOR = '\u001F'
+        private const val RECORD_SEPARATOR = '\u001E'
+
+        /** Stored in one Room column: url, title, title_de per record. */
+        fun encodeReferences(references: List<AssetReference>): String =
+            references.joinToString(RECORD_SEPARATOR.toString()) {
+                listOf(it.url, it.title, it.titleDe.orEmpty()).joinToString(FIELD_SEPARATOR.toString())
+            }
+
+        fun decodeReferences(encoded: String?): List<AssetReference> =
+            encoded.orEmpty().split(RECORD_SEPARATOR).mapNotNull { record ->
+                val fields = record.split(FIELD_SEPARATOR)
+                if (fields.size < 2 || fields[0].isBlank()) null
+                else AssetReference(url = fields[0], title = fields[1], titleDe = fields.getOrNull(2)?.ifBlank { null })
+            }
     }
 }
+
+/** A published source for a ruling, e.g. a fatwa page. */
+@JsonClass(generateAdapter = true)
+data class AssetReference(
+    val url: String,
+    val title: String,
+    @Json(name = "title_de") val titleDe: String? = null
+)
 
 class IngredientAsset(val version: Int, val ingredients: List<IngredientAssetEntry>)
 

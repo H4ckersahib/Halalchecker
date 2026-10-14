@@ -21,7 +21,7 @@
     <string name="scanner_manual_title">Barcode manuell eingeben</string>
     <string name="scanner_manual_label">Barcode-Nummer</string>
     <string name="scanner_manual_hint">z.B. 4005500068211</string>
-    <string name="scanner_manual_invalid">Bitte 8 bis 14 Ziffern eingeben</string>
+    <string name="scanner_manual_invalid">Bitte 8, 12, 13 oder 14 Ziffern eingeben</string>
     <string name="scanner_search">Produkt suchen</string>
     <string name="scanner_permission_title">Kamera-Zugriff benötigt</string>
     <string name="scanner_permission_text">Bitte erlaube den Kamera-Zugriff um Barcodes zu scannen.</string>
@@ -37,12 +37,11 @@
     <string name="result_fix_on_off">Daten auf Open Food Facts korrigieren</string>
     <string name="result_error_network">Netzwerkfehler: Das Produkt konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.</string>
     <string name="result_error_unexpected">Beim Analysieren ist ein unerwarteter Fehler aufgetreten.</string>
-    <string name="result_confidence">Sicherheit: %d%%</string>
+    <string name="result_confidence">Zutaten erkannt: %d%%</string>
     <plurals name="result_partial">
         <item quantity="one">Nicht vollständig geprüft: %1$d von %2$d Zutat erkannt, keine bedenklichen gefunden.</item>
         <item quantity="other">Nicht vollständig geprüft: %1$d von %2$d Zutaten erkannt, keine bedenklichen gefunden.</item>
     </plurals>
-    <string name="result_halal_label">Halal-Siegel auf der Verpackung (laut Open Food Facts)</string>
     <string name="result_label_conflict">Achtung: Laut Open Food Facts trägt das Produkt ein Halal-Siegel, enthält aber eine verbotene Zutat. Bitte prüfe die Verpackung.</string>
     <plurals name="result_ingredients_title">
         <item quantity="one">Zutatenanalyse (%d Zutat)</item>
@@ -57,12 +56,6 @@
     <string name="result_madhab_change">Ändern</string>
     <string name="result_retry">Erneut versuchen</string>
     <string name="result_refresh">Neu von Open Food Facts laden</string>
-    <string name="vegan_prompt_title">Steht „vegan“ oder „vegetarisch“ auf der Verpackung?</string>
-    <string name="vegan_prompt_text">Bei Open Food Facts fehlt dieses Label. Wenn es auf der Packung steht, stammen Zutaten wie Emulgatoren (E471) oder Aromen nicht vom Tier und gelten als halal.</string>
-    <string name="vegan_prompt_confirm">Ja, steht auf der Packung</string>
-    <string name="vegan_confirmed_title">Von dir bestätigt: vegan/vegetarisch gekennzeichnet</string>
-    <string name="vegan_confirmed_text">Trage das Label auch bei Open Food Facts ein (Button unten), dann profitieren alle Nutzer davon.</string>
-    <string name="vegan_confirmed_undo">Rückgängig</string>
 
     <!-- Status -->
     <string name="status_halal">Halal</string>
@@ -126,4 +119,26 @@
     <string name="minutes_ago">vor %d Min.</string>
     <string name="hours_ago">vor %d Std.</string>
     <string name="yesterday">Gestern</string>
+
+    <!-- Package labels, notices, sources -->
+    <string name="scanner_manual_check_digit">Die Prüfziffer stimmt nicht – bitte den Barcode kontrollieren</string>
+    <string name="result_error_rate_limited">Open Food Facts hat gerade zu viele Anfragen bekommen. Bitte warte einen Moment und versuche es dann erneut.</string>
+    <string name="result_refresh_failed">Neu laden fehlgeschlagen – angezeigt wird der bisherige Stand.</string>
+    <string name="result_offline">Keine Verbindung zu Open Food Facts. Angezeigt wird der gespeicherte Stand vom %s.</string>
+    <string name="result_source_conflict">Die Zutatenliste und die Daten von Open Food Facts weichen voneinander ab. Bedenkliche Zutaten aus beiden Quellen werden angezeigt.</string>
+    <string name="result_madhab_hint">Abweichende Bewertungen der Rechtsschulen sind nur für einzelne Zutaten hinterlegt (z. B. Meeresfrüchte, Essig, Schellack). Sonst gilt die allgemeine Bewertung.</string>
+    <string name="labels_title">Was steht auf der Verpackung?</string>
+    <string name="labels_text">Open Food Facts fehlen solche Angaben oft. Tippe an, was auf der Packung steht: „vegan“ oder „vegetarisch“ klärt Zweifel über tierische Herkunft (z. B. E471, Aroma). Ein Halal-Siegel klärt alle zweifelhaften Zutaten, aber nie verbotene oder unbekannte.</string>
+    <string name="labels_off">Laut Open Food Facts: %s</string>
+    <string name="labels_off_halal_unverified">Das Halal-Siegel wurde bei Open Food Facts von Nutzern eingetragen und ist ungeprüft. Es zählt erst, wenn du es auf der Packung siehst und hier bestätigst.</string>
+    <string name="label_vegan">Vegan</string>
+    <string name="label_vegetarian">Vegetarisch</string>
+    <string name="label_halal">Halal-Siegel</string>
+    <string name="labels_conflict_vegan">Widerspruch: „vegan“ passt nicht zu %s. Das Label wird deshalb nicht berücksichtigt.</string>
+    <string name="labels_conflict_vegetarian">Widerspruch: „vegetarisch“ passt nicht zu %s. Das Label wird deshalb nicht berücksichtigt.</string>
+    <string name="labels_confirmed_hint">Von dir bestätigt. Trage fehlende Angaben auch bei Open Food Facts ein (Button unten), dann profitieren alle.</string>
+    <string name="reason_sources">Quellen zur Einordnung (keine Bewertung dieses Produkts):</string>
+    <string name="settings_claims_title">Deine Verpackungsangaben</string>
+    <string name="settings_claims_text">Von dir bestätigte Kennzeichnungen (vegan, vegetarisch, Halal-Siegel): %d</string>
+    <string name="settings_claims_clear">Alle löschen</string>
 </resources>

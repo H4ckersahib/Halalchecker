@@ -87,6 +87,11 @@ fun ScannerScreen(
     }
 
     LaunchedEffect(Unit) {
+        // The camera is optional hardware (manifest); without one, go straight to manual entry
+        if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+            viewModel.showManualInput()
+            return@LaunchedEffect
+        }
         val hasPermission = ContextCompat.checkSelfPermission(
             context, Manifest.permission.CAMERA
         ) == PackageManager.PERMISSION_GRANTED
@@ -179,11 +184,18 @@ fun ScannerScreen(
                     onValueChange = { viewModel.onManualBarcodeChange(it) },
                     label = { Text(stringResource(R.string.scanner_manual_label)) },
                     placeholder = { Text(stringResource(R.string.scanner_manual_hint)) },
-                    isError = uiState.manualBarcodeInvalid,
-                    supportingText = if (uiState.manualBarcodeInvalid) {
-                        { Text(stringResource(R.string.scanner_manual_invalid)) }
-                    } else {
-                        null
+                    isError = uiState.manualBarcodeProblem != null,
+                    supportingText = uiState.manualBarcodeProblem?.let { problem ->
+                        {
+                            Text(
+                                stringResource(
+                                    when (problem) {
+                                        Gtin.Problem.LENGTH -> R.string.scanner_manual_invalid
+                                        Gtin.Problem.CHECK_DIGIT -> R.string.scanner_manual_check_digit
+                                    }
+                                )
+                            )
+                        }
                     },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(

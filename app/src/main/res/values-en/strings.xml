@@ -21,7 +21,7 @@
     <string name="scanner_manual_title">Enter barcode manually</string>
     <string name="scanner_manual_label">Barcode number</string>
     <string name="scanner_manual_hint">e.g. 4005500068211</string>
-    <string name="scanner_manual_invalid">Please enter 8 to 14 digits</string>
+    <string name="scanner_manual_invalid">Please enter 8, 12, 13 or 14 digits</string>
     <string name="scanner_search">Search product</string>
     <string name="scanner_permission_title">Camera access required</string>
     <string name="scanner_permission_text">Please allow camera access to scan barcodes.</string>
@@ -37,12 +37,11 @@
     <string name="result_fix_on_off">Correct the data on Open Food Facts</string>
     <string name="result_error_network">Network error: the product could not be loaded. Please check your internet connection.</string>
     <string name="result_error_unexpected">An unexpected error occurred during the analysis.</string>
-    <string name="result_confidence">Confidence: %d%%</string>
+    <string name="result_confidence">Ingredients recognized: %d%%</string>
     <plurals name="result_partial">
         <item quantity="one">Not fully checked: %1$d of %2$d ingredient recognized, none of concern found.</item>
         <item quantity="other">Not fully checked: %1$d of %2$d ingredients recognized, none of concern found.</item>
     </plurals>
-    <string name="result_halal_label">Halal label on the packaging (according to Open Food Facts)</string>
     <string name="result_label_conflict">Caution: according to Open Food Facts this product carries a halal label but contains a prohibited ingredient. Please check the packaging.</string>
     <plurals name="result_ingredients_title">
         <item quantity="one">Ingredient analysis (%d ingredient)</item>
@@ -57,12 +56,6 @@
     <string name="result_madhab_change">Change</string>
     <string name="result_retry">Try again</string>
     <string name="result_refresh">Reload from Open Food Facts</string>
-    <string name="vegan_prompt_title">Does the package say “vegan” or “vegetarian”?</string>
-    <string name="vegan_prompt_text">Open Food Facts doesn\'t list this label. If it is on the package, ingredients such as emulsifiers (E471) or flavourings are not of animal origin and count as halal.</string>
-    <string name="vegan_prompt_confirm">Yes, it\'s on the package</string>
-    <string name="vegan_confirmed_title">Confirmed by you: labeled vegan/vegetarian</string>
-    <string name="vegan_confirmed_text">Please add the label on Open Food Facts too (button below) so every user benefits.</string>
-    <string name="vegan_confirmed_undo">Undo</string>
 
     <!-- Status -->
     <string name="status_halal">Halal</string>
@@ -126,4 +119,26 @@
     <string name="minutes_ago">%d min ago</string>
     <string name="hours_ago">%d h ago</string>
     <string name="yesterday">Yesterday</string>
+
+    <!-- Package labels, notices, sources -->
+    <string name="scanner_manual_check_digit">The check digit doesn\'t match – please check the barcode</string>
+    <string name="result_error_rate_limited">Open Food Facts is receiving too many requests right now. Please wait a moment and try again.</string>
+    <string name="result_refresh_failed">Reloading failed – showing the previous data.</string>
+    <string name="result_offline">No connection to Open Food Facts. Showing the data saved on %s.</string>
+    <string name="result_source_conflict">The ingredient list and the Open Food Facts data disagree. Doubtful ingredients from both sources are shown.</string>
+    <string name="result_madhab_hint">School-specific rulings are only recorded for some ingredients (e.g. seafood, vinegar, shellac). Otherwise the general ruling applies.</string>
+    <string name="labels_title">What does the package say?</string>
+    <string name="labels_text">Open Food Facts often lacks this. Tap what the package shows: “vegan” or “vegetarian” answers doubts about animal origin (e.g. E471, flavourings). A halal label resolves all doubtful ingredients, but never prohibited or unknown ones.</string>
+    <string name="labels_off">According to Open Food Facts: %s</string>
+    <string name="labels_off_halal_unverified">The halal label was entered on Open Food Facts by users and is unverified. It only counts once you see it on the package and confirm it here.</string>
+    <string name="label_vegan">Vegan</string>
+    <string name="label_vegetarian">Vegetarian</string>
+    <string name="label_halal">Halal label</string>
+    <string name="labels_conflict_vegan">Contradiction: “vegan” doesn\'t match %s. The label is therefore ignored.</string>
+    <string name="labels_conflict_vegetarian">Contradiction: “vegetarian” doesn\'t match %s. The label is therefore ignored.</string>
+    <string name="labels_confirmed_hint">Confirmed by you. Please add missing labels on Open Food Facts too (button below) so everyone benefits.</string>
+    <string name="reason_sources">Sources for context (not a ruling on this product):</string>
+    <string name="settings_claims_title">Your package labels</string>
+    <string name="settings_claims_text">Labels you confirmed (vegan, vegetarian, halal label): %d</string>
+    <string name="settings_claims_clear">Delete all</string>
 </resources>

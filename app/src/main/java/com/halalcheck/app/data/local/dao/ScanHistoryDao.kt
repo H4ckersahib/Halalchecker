@@ -10,17 +10,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ScanHistoryDao {
 
-    @Query("SELECT * FROM scan_history ORDER BY scanned_at DESC")
-    fun getAllScansFlow(): Flow<List<ScanHistoryEntity>>
-
     @Query("SELECT * FROM scan_history ORDER BY scanned_at DESC LIMIT :limit")
     fun getRecentScansFlow(limit: Int): Flow<List<ScanHistoryEntity>>
 
-    @Query("SELECT * FROM scan_history WHERE halal_status = :status ORDER BY scanned_at DESC")
-    fun getScansByStatusFlow(status: String): Flow<List<ScanHistoryEntity>>
-
-    @Query("SELECT * FROM scan_history WHERE product_name LIKE '%' || :query || '%' ORDER BY scanned_at DESC")
-    fun searchScansFlow(query: String): Flow<List<ScanHistoryEntity>>
+    /** [status] null = all statuses; an empty [query] matches every name. */
+    @Query(
+        """SELECT * FROM scan_history WHERE (:status IS NULL OR halal_status = :status)
+           AND product_name LIKE '%' || :query || '%' ORDER BY scanned_at DESC"""
+    )
+    fun searchScansFlow(query: String, status: String?): Flow<List<ScanHistoryEntity>>
 
     /** Replaces an earlier scan of the same barcode (unique index), so it moves to the top. */
     @Insert(onConflict = OnConflictStrategy.REPLACE)

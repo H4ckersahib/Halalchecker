@@ -1,8 +1,10 @@
 package com.halalcheck.app.domain.engine
 
 import com.halalcheck.app.domain.model.AnalyzedIngredient
+import com.halalcheck.app.domain.model.DietFlag
 import com.halalcheck.app.domain.model.Doubt
 import com.halalcheck.app.domain.model.HalalStatus
+import com.halalcheck.app.domain.model.Ingredient
 import com.halalcheck.app.domain.model.Madhab
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.domain.model.Reason
@@ -14,9 +16,11 @@ import javax.inject.Singleton
  * The HalalEngine is the core analysis component of HalalCheck.
  *
  * It analyzes a product twice, from its ingredient text ([IngredientTextParser]) and from the
- * ingredient list Open Food Facts parsed itself (taxonomy ids), keeps whichever recognized more,
- * then adds doubtful additives that only Open Food Facts listed. Each ingredient gets the ruling of
- * the chosen madhab, adjusted by source qualifiers and the product's vegan/halal labels.
+ * ingredient list Open Food Facts parsed itself (taxonomy ids). It keeps the result that recognized
+ * more, adds doubtful or haram findings only the other one had, then adds doubtful additives that
+ * only Open Food Facts listed. Each ingredient gets the ruling of the chosen madhab, adjusted by
+ * source qualifiers and the labels on the package (vegan/vegetarian if consistent with the
+ * ingredients, a halal label only when the user confirmed it).
  */
 @Singleton
 class HalalEngine @Inject constructor() {
@@ -26,56 +30,87 @@ class HalalEngine @Inject constructor() {
         index: IngredientIndex,
         madhab: Madhab
     ): Product {
-        val analysis = Analysis(
-            index = index,
-            madhab = madhab,
-            veganLabel = product.hasVeganOrVegetarianLabel,
-            halalLabel = product.hasHalalLabel
-        )
-        val fromText = dedupe(analysis.analyzeText(product.ingredientsText))
-        val fromOff = dedupe(analysis.analyzeNodes(product.sourceIngredients))
-        val chosen = if (fromOff.isNotEmpty() && (fromText.isEmpty() || knownRatio(fromOff) > knownRatio(fromText))) {
-            fromOff
-        } else {
-            fromText
-        }
-        val analyzed = chosen + analysis.additivesNotListed(product.additivesTags, chosen)
-        val hasHaram = analyzed.any { it.status == HalalStatus.HARAM }
+        val halalConfirmed = product.halalConfirmed
+        val withoutDietLabel = analyzeAll(product, Analysis(index, madhab, dietLabel = false, halalLabel = halalConfirmed))
 
+        // Each vegan/vegetarian claim is checked on its own; one the ingredients contradict is not used.
+        val ingredients = withoutDietLabel.ingredients
+        val veganConflicts = if (product.claimsVegan) conflictsWith(ingredients) { it.vegan == DietFlag.NO } else emptyList()
+        val vegetarianConflicts = if (product.claimsVegetarian) {
+            conflictsWith(ingredients) { it.vegetarian == DietFlag.NO }
+        } else {
+            emptyList()
+        }
+        val dietLabelValid = (product.claimsVegan && veganConflicts.isEmpty()) ||
+            (product.claimsVegetarian && vegetarianConflicts.isEmpty())
+        val result = if (dietLabelValid) {
+            analyzeAll(product, Analysis(index, madhab, dietLabel = true, halalLabel = halalConfirmed))
+        } else {
+            withoutDietLabel
+        }
+
+        val analyzed = result.ingredients
+        val hasHaram = analyzed.any { it.status == HalalStatus.HARAM }
         return product.copy(
-            halalStatus = determineOverallStatus(analyzed, product.hasHalalLabel),
+            halalStatus = determineOverallStatus(analyzed),
             confidence = calculateConfidence(analyzed),
             analyzedIngredients = analyzed,
             unknownIngredients = analyzed.filter { it.status == HalalStatus.UNKNOWN }.map { it.name },
-            labelConflict = product.hasHalalLabel && hasHaram,
-            veganLabelWouldResolve = analyzed.any {
+            labelConflict = (product.offHalal || halalConfirmed) && hasHaram,
+            dietLabelWouldResolve = analyzed.any {
                 it.status == HalalStatus.MASHBOOH && it.ingredient?.doubt == Doubt.ANIMAL_SOURCE &&
                     it.reason !is Reason.AnimalQualifier
-            }
+            },
+            veganConflicts = veganConflicts,
+            vegetarianConflicts = vegetarianConflicts,
+            sourceConflict = result.sourceConflict
         )
     }
 
+    private class AnalysisResult(val ingredients: List<AnalyzedIngredient>, val sourceConflict: Boolean)
+
+    private fun analyzeAll(product: Product, analysis: Analysis): AnalysisResult {
+        val fromText = dedupe(analysis.analyzeText(product.ingredientsText))
+        val fromOff = dedupe(analysis.analyzeNodes(product.sourceIngredients))
+        val offWins = fromOff.isNotEmpty() && (fromText.isEmpty() || knownRatio(fromOff) > knownRatio(fromText))
+        val (chosen, other) = if (offWins) fromOff to fromText else fromText to fromOff
+        // Doubtful or haram findings of the other source must not disappear with it.
+        val chosenFamilies = chosen.mapNotNull { it.ingredient?.let(::family) }.toSet()
+        val missing = other.filter {
+            (it.status == HalalStatus.HARAM || it.status == HalalStatus.MASHBOOH) &&
+                it.ingredient?.let(::family) !in chosenFamilies
+        }
+        val merged = chosen + missing
+        return AnalysisResult(merged + analysis.additivesNotListed(product.additivesTags, merged), missing.isNotEmpty())
+    }
+
+    /** Names of recognized ingredients that contradict a diet claim. Compound guesses don't count. */
+    private fun conflictsWith(ingredients: List<AnalyzedIngredient>, contradicts: (Ingredient) -> Boolean): List<String> =
+        ingredients.filter { entry ->
+            val ingredient = entry.ingredient ?: return@filter false
+            !entry.inferred && entry.reason !is Reason.HalalSourceQualifier && contradicts(ingredient)
+        }.map { it.name }.distinct()
+
     /**
      * Rules:
-     * - Any HARAM ingredient → HARAM, even with a halal label
-     * - Otherwise a halal label → HALAL
+     * - Any HARAM ingredient → HARAM
      * - Any MASHBOOH → MASHBOOH
-     * - Any ingredient not recognized → UNKNOWN ("nicht vollständig geprüft")
+     * - Any ingredient not recognized, or nothing to analyze → UNKNOWN ("nicht vollständig geprüft")
      * - Otherwise HALAL
+     * A confirmed halal label only resolves doubtful ingredients (see [Analysis.evaluate]).
      */
-    fun determineOverallStatus(analyzedIngredients: List<AnalyzedIngredient>, halalLabel: Boolean = false): HalalStatus {
+    fun determineOverallStatus(analyzedIngredients: List<AnalyzedIngredient>): HalalStatus {
         val statuses = analyzedIngredients.map { it.status }
         return when {
-            statuses.isEmpty() -> if (halalLabel) HalalStatus.HALAL else HalalStatus.UNKNOWN
+            statuses.isEmpty() -> HalalStatus.UNKNOWN
             HalalStatus.HARAM in statuses -> HalalStatus.HARAM
-            halalLabel -> HalalStatus.HALAL
             HalalStatus.MASHBOOH in statuses -> HalalStatus.MASHBOOH
             HalalStatus.UNKNOWN in statuses -> HalalStatus.UNKNOWN
             else -> HalalStatus.HALAL
         }
     }
 
-    /** Share of recognized ingredients (0.0 - 1.0); compound-head matches count half. */
+    /** Share of recognized ingredients (0.0 - 1.0); compound-head matches count half. Not a religious certainty. */
     fun calculateConfidence(analyzedIngredients: List<AnalyzedIngredient>): Float {
         if (analyzedIngredients.isEmpty()) return 0f
         val known = analyzedIngredients.sumOf { ingredient ->
@@ -105,12 +140,15 @@ class HalalEngine @Inject constructor() {
     private class Analysis(
         val index: IngredientIndex,
         val madhab: Madhab,
-        val veganLabel: Boolean,
+        /** A vegan/vegetarian label that the ingredients don't contradict. */
+        val dietLabel: Boolean,
+        /** A halal label the user confirmed on the package. */
         val halalLabel: Boolean
     ) {
         private val parser = IngredientTextParser(
             isClassName = index::isClassName,
-            isKnown = { index.exact(it) != null }
+            isKnown = { index.exact(it) != null },
+            isAdditive = { text -> index.findAll(text).any { it.ingredient.eNumber != null } }
         )
 
         fun analyzeText(text: String): List<AnalyzedIngredient> =
@@ -141,11 +179,16 @@ class HalalEngine @Inject constructor() {
             return withParent(parent, parsed.children.size, children)
         }
 
-        /** Same rule as the text parser: a bare class followed by more entries is a typo for a colon. */
+        /** Same rule as the text parser: a bare class directly followed by an additive is a typo for a colon. */
         fun analyzeNodes(nodes: List<SourceIngredient>): List<AnalyzedIngredient> =
             nodes.filterIndexed { i, node ->
-                i == nodes.lastIndex || node.children.isNotEmpty() || node.id?.let { index.byOffId(it) }?.isClass != true
+                val bareClass = node.children.isEmpty() && node.id?.let { index.byOffId(it) }?.isClass == true
+                !bareClass || nodes.getOrNull(i + 1)?.let(::isAdditiveNode) != true
             }.flatMap { analyzeNode(it) }
+
+        private fun isAdditiveNode(node: SourceIngredient): Boolean =
+            node.id?.let { index.byOffId(it) }?.eNumber != null ||
+                index.findAll(node.text).any { it.ingredient.eNumber != null }
 
         /** Open Food Facts' own parse: taxonomy id first, our text matching as fallback. */
         private fun analyzeNode(node: SourceIngredient): List<AnalyzedIngredient> {
@@ -162,10 +205,15 @@ class HalalEngine @Inject constructor() {
         }
 
         /**
-         * A recognized parent counts next to its composition if it is HARAM ("Speck (Schweinefleisch, Salz)")
-         * or has a single child, which is usually an annotation ("Süßmolkenpulver (aus Milch)"); a HALAL
-         * annotation adds nothing and is not listed. Otherwise the composition answers the parent's
-         * doubt ("Milchschokolade (Zucker, Kakaobutter, ...)").
+         * A recognized parent counts next to its composition if
+         * - it is HARAM ("Speck (Schweinefleisch, Salz)"),
+         * - it has a single child, usually an annotation ("Süßmolkenpulver (aus Milch)"); a HALAL
+         *   annotation adds nothing and is not listed,
+         * - or it is doubtful in a way its composition can't answer ("Wurst (Salz, Gewürze)": the
+         *   slaughter; "Aroma (Wasser, Zucker)": the flavouring itself).
+         * Doubts that only ask what is inside are answered by the composition: OFF-derived "may contain
+         * animal products" ("Füllung (Zucker, Palmfett)") and curated entries marked compositionResolves
+         * ("Milchschokolade (Zucker, Kakaobutter, ...)").
          */
         private fun withParent(
             parent: AnalyzedIngredient?,
@@ -175,8 +223,12 @@ class HalalEngine @Inject constructor() {
             parent == null -> children
             parent.status == HalalStatus.HARAM -> listOf(parent) + children
             childCount == 1 -> listOf(parent) + children.filter { it.status != HalalStatus.HALAL }
+            parent.status == HalalStatus.MASHBOOH && compositionCannotAnswer(parent.ingredient) -> listOf(parent) + children
             else -> children
         }
+
+        private fun compositionCannotAnswer(ingredient: Ingredient?): Boolean =
+            ingredient != null && !ingredient.compositionResolves && ingredient.source?.startsWith("off_") != true
 
         private fun analyzeName(display: String, name: String, qualifiers: List<String>): AnalyzedIngredient? {
             // "Lecithine (Soja)" -> "Sojalecithine"
@@ -201,6 +253,7 @@ class HalalEngine @Inject constructor() {
             val haram = sources.firstOrNull { it.second == QualifierKind.HARAM }?.first
             val animal = sources.firstOrNull { it.second == QualifierKind.ANIMAL }?.first
             val halalSource = sources.firstOrNull { it.second == QualifierKind.HALAL_SOURCE }?.first
+            val sourceDoubt = ingredient.doubt == Doubt.ANIMAL_SOURCE
             when {
                 haram != null -> {
                     status = HalalStatus.HARAM
@@ -212,13 +265,14 @@ class HalalEngine @Inject constructor() {
                     reason = Reason.AnimalQualifier(animal)
                 }
                 animal != null && status == HalalStatus.MASHBOOH -> reason = Reason.AnimalQualifier(animal)
-                halalSource != null && status == HalalStatus.MASHBOOH -> {
+                // A plant source answers "animal or plant?", not alcohol or slaughter ("Sojasoße (Soja)")
+                halalSource != null && status == HalalStatus.MASHBOOH && sourceDoubt -> {
                     status = HalalStatus.HALAL
                     reason = Reason.HalalSourceQualifier(halalSource)
                 }
             }
 
-            if (status == HalalStatus.MASHBOOH && veganLabel && animal == null && ingredient.doubt == Doubt.ANIMAL_SOURCE) {
+            if (status == HalalStatus.MASHBOOH && dietLabel && animal == null && sourceDoubt) {
                 status = HalalStatus.HALAL
                 reason = Reason.VeganLabel
             }
@@ -253,6 +307,9 @@ class HalalEngine @Inject constructor() {
         fun isPorkByDefault(id: String, inferredFrom: String?) = id in PORK_BY_DEFAULT || inferredFrom in PORK_BY_DEFAULT
 
         fun eBase(id: String): String = E_BASE.find(id)?.value ?: id
+
+        /** The same ingredient under different ids: E-number family, or the curated entry it inherits from. */
+        fun family(ingredient: Ingredient): String = ingredient.eNumber?.let(::eBase) ?: ingredient.inferredFrom ?: ingredient.id
 
         fun severity(status: HalalStatus): Int = when (status) {
             HalalStatus.HALAL -> 0

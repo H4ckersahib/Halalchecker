@@ -18,7 +18,7 @@ Single Gradle module `:app`. Use `./gradlew` from Git Bash or `.\gradlew.bat` fr
 ./gradlew lintDebug
 ./gradlew testDebugUnitTest        # JVM unit tests (app/src/test)
 ./gradlew testDebugUnitTest --tests "com.halalcheck.app.domain.engine.HalalEngineTest"   # single class
-./gradlew connectedDebugAndroidTest  # instrumented tests (app/src/androidTest), needs a device
+./gradlew connectedDebugAndroidTest  # instrumented tests; installs AND uninstalls on EVERY connected device
 ./gradlew assembleRelease          # R8 minify + resource shrinking
 python tools/build_ingredient_db.py            # regenerate the ingredient asset (stdlib only)
 python tools/build_ingredient_db.py --refresh  # same, re-downloading the OFF taxonomies first
@@ -27,6 +27,11 @@ python tools/build_ingredient_db.py --refresh  # same, re-downloading the OFF ta
 Unit tests:
 - `HalalEngineTest` runs the engine against a small fixture index, one test per known matching pitfall.
 - `IngredientAssetTest` loads the real `assets/ingredients_db.json` and runs real German labels through the engine. Run it after regenerating the asset.
+- `ProductMappingTest` (OFF JSON to `Product`) and `GtinTest` (manual barcode check digits) are plain JVM tests too.
+- `app/src/androidTest/.../MigrationTest` upgrades a v1 database through all migrations (`MigrationTestHelper`,
+  schemas from `app/schemas/` via the androidTest assets). To run it on one device only (the developer's phone may be
+  connected over wireless ADB), install `app-debug.apk` and `app-debug-androidTest.apk` with `adb -s <serial>` and run
+  `adb -s <serial> shell am instrument -w -e class com.halalcheck.app.data.local.MigrationTest com.halalcheck.app.debug.test/androidx.test.runner.AndroidJUnitRunner`.
 - Don't use hyphens in backtick test names: Android lint's Kotlin analysis crashes on them.
 
 Release builds run R8. `app/proguard-rules.pro` keeps the `data.remote` (Moshi API models), `data.local.entity` (Room entities) and `data.local.seed` (Moshi asset models) packages. If you move those classes to another package, add new keep rules. Moshi uses codegen only (`@JsonClass(generateAdapter = true)`); there is no reflection adapter, so every Moshi model needs the annotation.
@@ -54,36 +59,37 @@ The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (mod
 
 This is the core logic and the most likely place for behavior changes. It has no Android dependencies.
 
-- **Two pipelines, best one wins.** The engine analyzes the ingredient text with `IngredientTextParser`, and separately OFF's own parsed `ingredients[]` (taxonomy ids, looked up via `IngredientIndex.byOffId`). It keeps whichever recognizes the larger share. It then adds doubtful or haram additives from OFF's `additives_tags` that aren't already covered (compared by `Ingredient.eNumber` family, so soy lecithin covers E322).
+- **Two pipelines, merged.** The engine analyzes the ingredient text with `IngredientTextParser`, and separately OFF's own parsed `ingredients[]` (taxonomy ids, looked up via `IngredientIndex.byOffId`). It keeps whichever recognizes the larger share, then adds HARAM/MASHBOOH findings only the other one had (same ingredient = same E-number family or curated ancestor) and sets `Product.sourceConflict`. Finally it adds doubtful or haram additives from OFF's `additives_tags` that aren't already covered (compared by `Ingredient.eNumber` family, so soy lecithin covers E322).
 - **Parsing** (`IngredientTextParser`):
   - Strips percentages, empty brackets, `*`/`_`, and a leading "Zutaten:".
   - Drops note sentences (traces, origin, "mindestens") and note items ("Kann …").
   - `Class: X` yields X when the head is a functional class (`Ingredient.isClass`, e.g. Emulgator, Säuerungsmittel). Otherwise the head is a "list head" that only counts if HARAM.
-  - A bare class followed by more entries is treated as a typo for a colon.
+  - A bare class directly followed by an additive ("Farbstoff, Zuckerkulör (E150d)") is treated as a typo for a colon; otherwise ("Farbstoff, Zucker") it stays as "not specified".
   - A class prefix is stripped ("Emulgator Lecithine (Soja)" → "Lecithine").
-  - Parentheses hold an E-number (the ingredient), only source words (qualifiers: "Gelatine (Rind)"), or a composition (children). A recognized parent counts next to its composition only if HARAM or if it has a single child ("Süßmolkenpulver (aus Milch)"); a HALAL single child is an annotation and is not listed.
+  - Parentheses hold an E-number (the ingredient), only source words (qualifiers: "Gelatine (Rind)"), or a composition (children). A recognized parent counts next to its composition if it is HARAM, if it has a single child ("Süßmolkenpulver (aus Milch)"; a HALAL single child is an annotation and is not listed), or if it is MASHBOOH in a way the composition can't answer ("Wurst (Salz, Gewürze)", "Aroma (Wasser, Zucker)"). It is dropped when its doubt only asks what is inside: OFF-derived entries (`source` `off_*`, "Füllung") and curated entries with `compositionResolves` ("Milchschokolade", "Käse").
   - " - " separates entries except before und/oder ("Mono - und Diglyceride").
 - **Matching** (`IngredientIndex.findAll`), hash based:
   1. Whole phrase on names/synonyms in all languages, ignoring spacing and simple plural endings.
-  2. E/INS numbers as whole tokens (`e322i` falls back to `e322`).
+  2. E/INS numbers as whole tokens (`e322i` falls back to `e322`), plus whatever the words around them contain ("Schweinefleisch mit E471" yields both).
   3. Longest known word spans. A phrase can yield several matches; the most severe counts.
   4. Compound heads ("Putenschinken" → "Schinken"), else the base product of a form word ("Kartoffelpulver" → "Kartoffel"; no "-extrakt"). Both are marked `inferred` and never match a class.
+  - A functional class only counts when the phrase contains nothing more specific.
   - **There is no substring matching**; it produced false HARAM ("Weinbeeren" → Wein).
 - **Rules** (`HalalEngine.Analysis.evaluate`), applied the same way on every path:
   - A haram qualifier or compound modifier (`Qualifiers`, token based) makes the ingredient HARAM.
   - An animal word turns a pork-by-default HARAM ("Speck", "Schinken") into MASHBOOH.
-  - For MASHBOOH: an animal word keeps it MASHBOOH, and a plant/synthetic/fish word makes it HALAL.
-  - A vegan/vegetarian label makes MASHBOOH HALAL only if `doubt == ANIMAL_SOURCE`. The label comes from OFF `labels_tags` or from the user (`Product.userConfirmedVegan`, stored per barcode in DataStore), because OFF often lacks it. `Product.veganLabelWouldResolve` tells the result screen to ask.
-  - A halal label makes MASHBOOH HALAL.
+  - For MASHBOOH: an animal word keeps it MASHBOOH; a plant/synthetic/fish word makes it HALAL only if `doubt == ANIMAL_SOURCE` ("Sojasoße (Soja)" stays MASHBOOH: its doubt is alcohol).
+  - OFF labels are matched exactly against `KnownLabels` (OFF labels taxonomy descendants of en:vegan / en:vegetarian / en:halal). Never use substring matching: OFF has `en:non-vegan` and `en:non-vegetarian`.
+  - A vegan or vegetarian claim (from OFF or from the user's `Product.userClaims`) makes MASHBOOH HALAL only if `doubt == ANIMAL_SOURCE`, and only if no recognized, non-inferred ingredient has `vegan == NO` (resp. `vegetarian == NO`). Each claim is checked on its own; contradicted claims are reported in `veganConflicts` / `vegetarianConflicts` and ignored. `Product.dietLabelWouldResolve` tells the result screen to ask.
+  - A halal label counts only when the user confirmed it on the package (`PackageClaim.HALAL`). It makes MASHBOOH HALAL but never UNKNOWN or HARAM. An OFF halal tag alone is shown as an unverified hint; with a HARAM ingredient it sets `labelConflict`.
   - Reasons are a sealed `Reason`; the UI localizes them.
 - **Aggregation** (`determineOverallStatus`):
-  - Any HARAM makes the product HARAM (even with a halal label, which sets `labelConflict`).
-  - Otherwise a halal label makes it HALAL.
+  - Any HARAM makes the product HARAM.
   - Otherwise any MASHBOOH makes it MASHBOOH.
-  - Otherwise any unrecognized ingredient makes it UNKNOWN (the UI says "nicht vollständig geprüft").
+  - Otherwise any unrecognized ingredient, or nothing to analyze, makes it UNKNOWN (the UI says "nicht vollständig geprüft").
   - Otherwise HALAL.
-  - Confidence is the recognized share, with inferred matches counting half.
-- **Madhab**: `Ingredient.getRulingForMadhab()` uses the per-madhab ruling if one is set, otherwise `defaultCategory`.
+  - Confidence is the recognized share, with inferred matches counting half. The UI calls it "Zutaten erkannt", not certainty.
+- **Madhab**: `Ingredient.getRulingForMadhab()` uses the per-madhab ruling if one is set, otherwise `defaultCategory`. Only a few curated entries have per-madhab rulings; the result screen says so.
 
 ### Ingredient database
 
@@ -91,9 +97,10 @@ This is the core logic and the most likely place for behavior changes. It has no
 - **Change rulings in `tools/halal_rulings.json`**, then regenerate:
   - Keys are OFF taxonomy ids (`en:pork`); use `local:<id>` for ingredients OFF lacks.
   - MASHBOOH rulings need a `doubt`.
+  - Optional: `references` (list of `{url, title, title_de}`, shown as links under the ingredient: sources for context, not a ruling on the product), `composition_resolves`, and `vegan`/`vegetarian` for `local:` entries (OFF nodes get them from the taxonomy).
   - Descendants inherit the nearest curated ruling (`en:wine` → `en:alcohol`).
   - Uncurated nodes are classified from OFF's vegan flags (`source: off_vegan` / `off_vegetarian` / `off_maybe` / `off_animal`).
-  - The script prints conflicts between equally near ancestors; add a ruling for the node to override.
+  - The script prints conflicts between equally near ancestors, and entries classified HALAL only from OFF vegan flags whose names mention alcohol (this found "Himbeerlikör"); add a ruling for the node to override.
 - **Entry format.** The root is `{version, generated, license, ingredients}`. Ids are the OFF id without `en:` and with `-`→`_` (`soya_lecithin`, `e471`); other languages keep a prefix (`fr_…`). `synonyms` is an array in the JSON and a `|`-joined string in Room. `alternatives` is a comma-separated string.
 - **Seeding.** `IngredientSeeder` replaces the `ingredients` table whenever the asset's `version` (a content hash) differs from the one stored in DataStore, so asset updates reach existing installs. Callers await it; the first start after an update takes a few seconds.
 
@@ -101,12 +108,12 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 - Room stores enums as their `name` strings. Read them back with `HalalStatus.fromString()`, which is lenient and falls back to UNKNOWN. `DataSource` is read back with `valueOf`.
 - **Version and migration.**
-  - `HalalDatabase` is at **version 3**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`.
-  - `fallbackToDestructiveMigration()` is still set as a safety net.
+  - `HalalDatabase` is at **version 4**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`.
+  - There is **no** `fallbackToDestructiveMigration()`: a missing migration must fail instead of silently wiping the history. Extend `ALL_MIGRATIONS` and `MigrationTest`.
   - Bumping the version needs a new `Migration`.
   - Schemas are exported to `app/schemas/`.
-- **Product cache.** `products.off_payload` stores the fetched `OpenFoodFactsProduct` as Moshi JSON, so labels and structured ingredients survive caching. Rows from v1 have no payload and are re-fetched.
-- **Settings.** `UserPreferencesRepository` owns the Preferences DataStore ("settings"): madhab, dark mode (null = system), ingredient DB version, and the barcodes the user confirmed as labeled vegan. The UI language is stored by AppCompat (`AppCompatDelegate.setApplicationLocales`, `autoStoreLocales` service in the manifest). That's why `MainActivity` is an `AppCompatActivity`.
+- **Product cache.** `products.off_payload` stores the fetched `OpenFoodFactsProduct` as Moshi JSON, so labels and structured ingredients survive caching. Rows from v1 have no payload and are re-fetched. When OFF can't be reached and a cached copy is used, `Product.offlineSince` carries its fetch time and the result screen says so. HTTP 429 becomes `ResultError.RATE_LIMITED`.
+- **Settings.** `UserPreferencesRepository` owns the Preferences DataStore ("settings"): madhab, dark mode (null = system), ingredient DB version, and per `PackageClaim` (vegan, vegetarian, halal) the barcodes whose package the user confirmed. Settings can delete these claims. The UI language is stored by AppCompat (`AppCompatDelegate.setApplicationLocales`, `autoStoreLocales` service in the manifest). That's why `MainActivity` is an `AppCompatActivity`.
 
 ### UI language
 
@@ -115,5 +122,6 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 ### Known gaps
 
-- The status colors in `ui/components/HalalStatusBadge.kt` are light-mode colors, so ingredient rows have low contrast in dark mode.
+- User package claims are not invalidated when the product's OFF data changes later.
+- Rulings still use `defaultCategory` plus a few madhab fields; a model with separate product facts, sourced fiqh rules and assessments (see the external review) is not implemented.
 - `ProductEntity`'s `name`/`brand`/`image_url`/`ingredients_text` columns are still written, but a cache hit is rebuilt from `off_payload` only.

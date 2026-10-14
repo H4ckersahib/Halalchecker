@@ -20,7 +20,7 @@ import com.halalcheck.app.data.local.entity.ScanHistoryEntity
         ProductEntity::class,
         ScanHistoryEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = true
 )
 abstract class HalalDatabase : RoomDatabase() {
@@ -52,5 +52,17 @@ abstract class HalalDatabase : RoomDatabase() {
                 db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_scan_history_barcode ON scan_history (barcode)")
             }
         }
+
+        /** v4: diet flags, ruling sources and the composition marker for ingredients (reseeded anyway). */
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE ingredients ADD COLUMN vegan TEXT")
+                db.execSQL("ALTER TABLE ingredients ADD COLUMN vegetarian TEXT")
+                db.execSQL("ALTER TABLE ingredients ADD COLUMN ruling_references TEXT")
+                db.execSQL("ALTER TABLE ingredients ADD COLUMN composition_resolves INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
+        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
     }
 }

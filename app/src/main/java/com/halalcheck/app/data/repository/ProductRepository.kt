@@ -52,8 +52,9 @@ class ProductRepository @Inject constructor(
         val cachedProduct = cached?.offPayload
             ?.let { payload -> runCatching { payloadAdapter.fromJson(payload) }.getOrNull() }
             ?.toDomain(barcode, language)
+            ?.copy(offlineSince = cached.lastUpdated)
         if (!forceRefresh && cachedProduct != null && System.currentTimeMillis() - cached.lastUpdated < CACHE_MAX_AGE_MS) {
-            return Result.success(cachedProduct)
+            return Result.success(cachedProduct.copy(offlineSince = null))
         }
 
         return try {
@@ -74,6 +75,7 @@ class ProductRepository @Inject constructor(
         }
     }
 
+    /** Offline: the cached copy, marked with when it was fetched so the UI can say so. */
     private fun cachedOrFailure(cached: Product?, error: Exception): Result<Product> =
         cached?.let { Result.success(it) } ?: Result.failure(error)
 
@@ -141,28 +143,10 @@ class ProductRepository @Inject constructor(
     }
 
     /**
-     * Get all scan history as Flow.
+     * Search the history by product name, optionally only one status. Both filters apply together.
      */
-    fun getAllScansFlow(): Flow<List<ScanHistoryItem>> {
-        return scanHistoryDao.getAllScansFlow().map { entities ->
-            entities.map { it.toDomain() }
-        }
-    }
-
-    /**
-     * Get scans filtered by status.
-     */
-    fun getScansByStatusFlow(status: HalalStatus): Flow<List<ScanHistoryItem>> {
-        return scanHistoryDao.getScansByStatusFlow(status.name).map { entities ->
-            entities.map { it.toDomain() }
-        }
-    }
-
-    /**
-     * Search scan history.
-     */
-    fun searchScansFlow(query: String): Flow<List<ScanHistoryItem>> {
-        return scanHistoryDao.searchScansFlow(query).map { entities ->
+    fun searchScansFlow(query: String, status: HalalStatus?): Flow<List<ScanHistoryItem>> {
+        return scanHistoryDao.searchScansFlow(query.trim(), status?.name).map { entities ->
             entities.map { it.toDomain() }
         }
     }
@@ -218,13 +202,13 @@ fun OpenFoodFactsProduct.toDomain(barcode: String, language: String): Product {
     )
 }
 
+/** Keeps nodes without text if they have a taxonomy id or children ("en:pork" must not get lost). */
 private fun OpenFoodFactsIngredient.toDomain(): SourceIngredient? {
-    val text = text?.takeIf { it.isNotBlank() } ?: return null
-    return SourceIngredient(
-        id = id,
-        text = text,
-        children = ingredients.orEmpty().mapNotNull { it.toDomain() }
-    )
+    val children = ingredients.orEmpty().mapNotNull { it.toDomain() }
+    val displayText = text?.takeIf { it.isNotBlank() }
+        ?: id?.substringAfter(':')?.replace('-', ' ')
+        ?: if (children.isNotEmpty()) "" else return null
+    return SourceIngredient(id = id, text = displayText, children = children)
 }
 
 /**

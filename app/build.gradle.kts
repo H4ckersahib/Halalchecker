@@ -54,6 +54,11 @@ android {
         compose = true
         buildConfig = true
     }
+
+    // Exported Room schemas for MigrationTest
+    sourceSets {
+        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -111,6 +116,7 @@ dependencies {
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext)
+    androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)

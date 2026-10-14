@@ -1,6 +1,7 @@
 package com.halalcheck.app.domain.engine
 
 import com.halalcheck.app.domain.model.DataSource
+import com.halalcheck.app.domain.model.DietFlag
 import com.halalcheck.app.domain.model.Doubt
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.HalalStatus.HALAL
@@ -9,6 +10,7 @@ import com.halalcheck.app.domain.model.HalalStatus.MASHBOOH
 import com.halalcheck.app.domain.model.HalalStatus.UNKNOWN
 import com.halalcheck.app.domain.model.Ingredient
 import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.domain.model.Reason
 import com.halalcheck.app.domain.model.SourceIngredient
@@ -26,7 +28,7 @@ class HalalEngineTest {
             ingredient("water", "Wasser", "Water", HALAL),
             ingredient("sugar", "Zucker", "Sugar", HALAL),
             ingredient("salt", "Salz", "Salt", HALAL),
-            ingredient("milk", "Milch", "Milk", HALAL),
+            ingredient("milk", "Milch", "Milk", HALAL, vegan = DietFlag.NO, vegetarian = DietFlag.YES),
             ingredient("cocoa", "Kakao", "Cocoa", HALAL),
             ingredient("almond", "Mandel", "Almond", HALAL, synonyms = listOf("Mandeln")),
             ingredient("berries", "Beeren", "Berries", HALAL),
@@ -41,15 +43,23 @@ class HalalEngineTest {
             ),
             ingredient(
                 "e471", "Mono- und Diglyceride von Speisefettsäuren", "Mono- and diglycerides of fatty acids", MASHBOOH,
-                synonyms = listOf("E471"), doubt = Doubt.ANIMAL_SOURCE, eNumber = "e471"
+                synonyms = listOf("E471"), doubt = Doubt.ANIMAL_SOURCE, eNumber = "e471",
+                vegan = DietFlag.MAYBE, vegetarian = DietFlag.MAYBE
             ),
-            ingredient("e428", "Gelatine", "Gelatin", MASHBOOH, synonyms = listOf("Speisegelatine"), doubt = Doubt.ANIMAL_SOURCE, eNumber = "e428"),
+            ingredient(
+                "e428", "Gelatine", "Gelatin", MASHBOOH, synonyms = listOf("Speisegelatine"), doubt = Doubt.ANIMAL_SOURCE,
+                eNumber = "e428", vegan = DietFlag.NO, vegetarian = DietFlag.NO
+            ),
             ingredient("e120", "Karmin", "Carmine", HARAM, synonyms = listOf("echtes Karmin", "Cochenille"), eNumber = "e120"),
             ingredient("whey", "Molke", "Whey", MASHBOOH, synonyms = listOf("Süßmolkenpulver"), doubt = Doubt.ANIMAL_SOURCE),
             ingredient("vanilla_extract", "Vanilleextrakt", "Vanilla extract", MASHBOOH, doubt = Doubt.ALCOHOL),
             ingredient("flavouring", "Aroma", "Flavouring", MASHBOOH, synonyms = listOf("Aromen"), doubt = Doubt.ANIMAL_SOURCE),
             ingredient("natural_flavouring", "natürliche Aromen", "Natural flavouring", MASHBOOH, doubt = Doubt.ANIMAL_SOURCE),
-            ingredient("pork", "Schweinefleisch", "Pork", HARAM, synonyms = listOf("Schwein")),
+            ingredient("pork", "Schweinefleisch", "Pork", HARAM, synonyms = listOf("Schwein"), vegan = DietFlag.NO, vegetarian = DietFlag.NO),
+            ingredient("soy_sauce", "Sojasoße", "Soy sauce", MASHBOOH, doubt = Doubt.ALCOHOL),
+            ingredient("sausage", "Wurst", "Sausage", MASHBOOH, doubt = Doubt.OTHER, inferredFrom = "meat"),
+            ingredient("filling", "Füllung", "Filling", MASHBOOH, doubt = Doubt.ANIMAL_SOURCE, source = "off_maybe"),
+            ingredient("milk_chocolate", "Milchschokolade", "Milk chocolate", MASHBOOH, doubt = Doubt.OTHER, compositionResolves = true),
             ingredient("ham", "Schinken", "Ham", HARAM),
             ingredient("bacon", "Speck", "Bacon", HARAM),
             ingredient("wine", "Wein", "Wine", HARAM),
@@ -135,6 +145,32 @@ class HalalEngineTest {
     }
 
     @Test
+    fun `bare class followed by something else stays unspecified (REG-14)`() {
+        val result = analyze("Farbstoff, Zucker")
+        assertEquals(listOf("colour", "sugar"), result.ids())
+        assertEquals(MASHBOOH, result.halalStatus)
+    }
+
+    @Test
+    fun `an E-number does not hide the rest of the phrase (REG-04)`() {
+        val result = analyze("Schweinefleisch mit E471")
+        assertEquals(HARAM, result.halalStatus)
+        assertEquals("pork", result.analyzedIngredients.single().ingredient?.id)
+    }
+
+    @Test
+    fun `a parent whose doubt the composition can't answer is kept`() {
+        assertEquals(MASHBOOH, analyze("Wurst (Salz, Zucker)").halalStatus)
+        assertEquals(MASHBOOH, analyze("Aroma (Wasser, Zucker)").halalStatus)
+    }
+
+    @Test
+    fun `a parent whose doubt is only about its contents is answered by the composition`() {
+        assertEquals(HALAL, analyze("Füllung (Zucker, Salz)").halalStatus)
+        assertEquals(HALAL, analyze("Milchschokolade (Zucker, Kakao, Milch)").halalStatus)
+    }
+
+    @Test
     fun `class without content is unspecified`() {
         val entry = analyze("Zucker, Emulgator").analyzedIngredients.last()
         assertEquals(MASHBOOH, entry.status)
@@ -167,12 +203,31 @@ class HalalEngineTest {
     }
 
     @Test
-    fun `halal label resolves doubts but never haram`() {
-        assertEquals(HALAL, analyze("Zucker, Gelatine", labels = listOf("en:halal")).halalStatus)
+    fun `negative labels never count as positive (REG-01, REG-02)`() {
+        val nonHalal = analyze("Zucker, Gelatine", labels = listOf("en:non-halal"))
+        assertFalse(nonHalal.offHalal)
+        assertEquals(MASHBOOH, nonHalal.halalStatus)
+        assertEquals(MASHBOOH, analyze("Zucker, Emulgator (E471)", labels = listOf("en:non-vegan")).halalStatus)
+        assertEquals(MASHBOOH, analyze("Zucker, Emulgator (E471)", labels = listOf("en:non-vegetarian")).halalStatus)
+    }
 
-        val conflict = analyze("Zucker, Schweinefleisch", labels = listOf("en:halal"))
+    @Test
+    fun `a halal label from Open Food Facts alone is only a hint (REG-03)`() {
+        val result = analyze("Zucker, Gelatine", labels = listOf("en:halal"))
+        assertTrue(result.offHalal)
+        assertEquals(MASHBOOH, result.halalStatus)
+    }
+
+    @Test
+    fun `a confirmed halal label resolves doubts but not unknown or haram ingredients`() {
+        assertEquals(HALAL, analyze("Zucker, Gelatine", claims = setOf(PackageClaim.HALAL)).halalStatus)
+        assertEquals(UNKNOWN, analyze("Zucker, Quinoaflocken", claims = setOf(PackageClaim.HALAL)).halalStatus)
+        assertEquals(UNKNOWN, analyze("", claims = setOf(PackageClaim.HALAL)).halalStatus)
+
+        val conflict = analyze("Zucker, Schweinefleisch", claims = setOf(PackageClaim.HALAL))
         assertEquals(HARAM, conflict.halalStatus)
         assertTrue(conflict.labelConflict)
+        assertTrue(analyze("Zucker, Schweinefleisch", labels = listOf("en:halal")).labelConflict)
     }
 
     @Test
@@ -180,15 +235,54 @@ class HalalEngineTest {
         val text = "Zucker, natürliche Aromen, Emulgator (E471)"
         val unlabeled = analyze(text)
         assertEquals(MASHBOOH, unlabeled.halalStatus)
-        assertTrue(unlabeled.veganLabelWouldResolve)
+        assertTrue(unlabeled.dietLabelWouldResolve)
 
-        assertEquals(HALAL, analyze(text, userConfirmedVegan = true).halalStatus)
+        assertEquals(HALAL, analyze(text, claims = setOf(PackageClaim.VEGAN)).halalStatus)
+        assertEquals(HALAL, analyze(text, claims = setOf(PackageClaim.VEGETARIAN)).halalStatus)
+    }
+
+    @Test
+    fun `vegetarian is not vegan (REG-08)`() {
+        val text = "Zucker, Milch, Emulgator (E471)"
+        val vegetarian = analyze(text, claims = setOf(PackageClaim.VEGETARIAN))
+        assertEquals(HALAL, vegetarian.halalStatus)
+        assertTrue(vegetarian.veganConflicts.isEmpty())
+    }
+
+    @Test
+    fun `a diet claim the ingredients contradict is not used (REG-09)`() {
+        val vegan = analyze("Zucker, Milch, Emulgator (E471)", claims = setOf(PackageClaim.VEGAN))
+        assertEquals(listOf("Milch"), vegan.veganConflicts)
+        assertEquals(MASHBOOH, vegan.halalStatus)
+
+        val offVegan = analyze("Zucker, Milch, Emulgator (E471)", labels = listOf("en:vegan"))
+        assertEquals(MASHBOOH, offVegan.halalStatus)
+
+        val vegetarian = analyze("Zucker, Gelatine", claims = setOf(PackageClaim.VEGETARIAN))
+        assertEquals(listOf("Gelatine"), vegetarian.vegetarianConflicts)
+        assertEquals(MASHBOOH, vegetarian.halalStatus)
+    }
+
+    @Test
+    fun `a wrong vegan claim does not cancel an independent vegetarian label`() {
+        val result = analyze(
+            "Zucker, Milch, Emulgator (E471)",
+            labels = listOf("en:vegetarian"),
+            claims = setOf(PackageClaim.VEGAN)
+        )
+        assertEquals(listOf("Milch"), result.veganConflicts)
+        assertEquals(HALAL, result.halalStatus)
     }
 
     @Test
     fun `a vegan label cannot resolve an explicitly animal source`() {
-        assertFalse(analyze("Gelatine (Rind)").veganLabelWouldResolve)
-        assertEquals(MASHBOOH, analyze("Gelatine (Rind)", userConfirmedVegan = true).halalStatus)
+        assertFalse(analyze("Gelatine (Rind)").dietLabelWouldResolve)
+        assertEquals(MASHBOOH, analyze("Gelatine (Rind)", claims = setOf(PackageClaim.VEGAN)).halalStatus)
+    }
+
+    @Test
+    fun `a plant source answers animal-source doubts only`() {
+        assertEquals(MASHBOOH, analyze("Sojasoße (Soja)").halalStatus)
     }
 
     // ── Annotations ────────────────────────────────────────────────────────────
@@ -237,6 +331,17 @@ class HalalEngineTest {
     }
 
     @Test
+    fun `haram found in the text survives when the OFF parse wins (REG-05)`() {
+        val result = analyze(
+            "Schweinefleisch, Quinoaflocken",
+            sourceIngredients = listOf(SourceIngredient("en:sugar", "Zucker"))
+        )
+        assertEquals(HARAM, result.halalStatus)
+        assertTrue(result.sourceConflict)
+        assertTrue("pork" in result.ids())
+    }
+
+    @Test
     fun `OFF additives are added only when not already covered`() {
         val covered = analyze("Zucker, Sojalecithin", additives = listOf("en:e322", "en:e322i"))
         assertEquals(listOf("sugar", "soya_lecithin"), covered.ids())
@@ -259,7 +364,8 @@ class HalalEngineTest {
         labels: List<String> = emptyList(),
         additives: List<String> = emptyList(),
         madhab: Madhab = Madhab.HANAFI,
-        userConfirmedVegan: Boolean = false
+        claims: Set<PackageClaim> = emptySet(),
+        sourceIngredients: List<SourceIngredient> = emptyList()
     ): Product = engine.analyzeProduct(
         Product(
             barcode = "1",
@@ -267,8 +373,9 @@ class HalalEngineTest {
             ingredientsText = text,
             labelsTags = labels,
             additivesTags = additives,
+            sourceIngredients = sourceIngredients,
             source = DataSource.OPEN_FOOD_FACTS,
-            userConfirmedVegan = userConfirmedVegan
+            userClaims = claims
         ),
         index,
         madhab
@@ -285,7 +392,12 @@ class HalalEngineTest {
         doubt: Doubt? = null,
         hanafi: HalalStatus? = null,
         isClass: Boolean = false,
-        eNumber: String? = null
+        eNumber: String? = null,
+        vegan: DietFlag? = null,
+        vegetarian: DietFlag? = null,
+        inferredFrom: String? = null,
+        source: String = "test",
+        compositionResolves: Boolean = false
     ) = Ingredient(
         id = id,
         nameDe = nameDe,
@@ -296,6 +408,10 @@ class HalalEngineTest {
         doubt = doubt,
         isClass = isClass,
         eNumber = eNumber,
-        source = "test"
+        vegan = vegan,
+        vegetarian = vegetarian,
+        inferredFrom = inferredFrom,
+        source = source,
+        compositionResolves = compositionResolves
     )
 }

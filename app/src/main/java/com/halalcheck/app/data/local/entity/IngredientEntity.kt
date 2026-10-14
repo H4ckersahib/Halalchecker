@@ -69,5 +69,17 @@ data class IngredientEntity(
     val isClass: Boolean = false, // functional class such as "Emulgator"
 
     @ColumnInfo(name = "e_number")
-    val eNumber: String? = null // own or nearest ancestor E-number id, e.g. "e322i"
+    val eNumber: String? = null, // own or nearest ancestor E-number id, e.g. "e322i"
+
+    @ColumnInfo(name = "vegan")
+    val vegan: String? = null, // yes, no, maybe (Open Food Facts)
+
+    @ColumnInfo(name = "vegetarian")
+    val vegetarian: String? = null, // yes, no, maybe (Open Food Facts)
+
+    @ColumnInfo(name = "ruling_references")
+    val rulingReferences: String? = null, // see IngredientAssetEntry.encodeReferences
+
+    @ColumnInfo(name = "composition_resolves", defaultValue = "0")
+    val compositionResolves: Boolean = false // a listed composition answers this ingredient's doubt
 )

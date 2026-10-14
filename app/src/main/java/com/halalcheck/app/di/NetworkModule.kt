@@ -1,5 +1,6 @@
 package com.halalcheck.app.di
 
+import com.halalcheck.app.BuildConfig
 import com.halalcheck.app.data.remote.OpenFoodFactsApi
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -34,9 +35,9 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor { chain ->
-                // Required User-Agent header for Open Food Facts API
+                // Open Food Facts asks for "AppName/Version (contact)"
                 val request = chain.request().newBuilder()
-                    .header("User-Agent", "HalalCheck Android App - v1.0 - https://github.com/halalcheck")
+                    .header("User-Agent", "HalalCheck/${BuildConfig.VERSION_NAME} (Android; https://github.com/H4ckersahib/Halalchecker)")
                     .build()
                 chain.proceed(request)
             }

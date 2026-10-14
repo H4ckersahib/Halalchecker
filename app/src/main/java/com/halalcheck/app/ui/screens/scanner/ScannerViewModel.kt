@@ -13,7 +13,7 @@ data class ScannerUiState(
     val hasCameraPermission: Boolean = false,
     val showManualInput: Boolean = false,
     val manualBarcode: String = "",
-    val manualBarcodeInvalid: Boolean = false
+    val manualBarcodeProblem: Gtin.Problem? = null
 )
 
 @HiltViewModel
@@ -33,28 +33,31 @@ class ScannerViewModel @Inject constructor() : ViewModel() {
         _uiState.update { it.copy(hasCameraPermission = granted) }
     }
 
+    fun showManualInput() {
+        _uiState.update { it.copy(showManualInput = true) }
+    }
+
     fun toggleManualInput() {
         _uiState.update { it.copy(showManualInput = !it.showManualInput) }
     }
 
     fun onManualBarcodeChange(barcode: String) {
         _uiState.update {
-            it.copy(manualBarcode = barcode.filter(Char::isDigit).take(MAX_BARCODE_LENGTH), manualBarcodeInvalid = false)
+            it.copy(manualBarcode = barcode.filter(Char::isDigit).take(MAX_BARCODE_LENGTH), manualBarcodeProblem = null)
         }
     }
 
     fun submitManualBarcode() {
         val barcode = _uiState.value.manualBarcode
-        if (barcode.length in MIN_BARCODE_LENGTH..MAX_BARCODE_LENGTH) {
+        val problem = Gtin.problem(barcode)
+        if (problem == null) {
             onBarcodeDetected(barcode)
         } else {
-            _uiState.update { it.copy(manualBarcodeInvalid = true) }
+            _uiState.update { it.copy(manualBarcodeProblem = problem) }
         }
     }
 
     private companion object {
-        // EAN-8 up to GTIN-14
-        const val MIN_BARCODE_LENGTH = 8
-        const val MAX_BARCODE_LENGTH = 14
+        const val MAX_BARCODE_LENGTH = 14 // GTIN-14
     }
 }

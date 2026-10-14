@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.halalcheck.app.domain.model.Madhab
+import com.halalcheck.app.domain.model.PackageClaim
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -44,15 +45,31 @@ class UserPreferencesRepository @Inject constructor(
         }
     }
 
-    /** Barcodes whose package the user confirmed as labeled vegan/vegetarian (missing on Open Food Facts). */
-    suspend fun isVeganConfirmed(barcode: String): Boolean =
-        barcode in context.dataStore.data.first()[KEY_VEGAN_CONFIRMED].orEmpty()
+    /** What the user confirmed is printed on this product's package (labels Open Food Facts lacks). */
+    suspend fun packageClaims(barcode: String): Set<PackageClaim> {
+        val prefs = context.dataStore.data.first()
+        return PackageClaim.entries.filterTo(mutableSetOf()) { barcode in prefs[claimKey(it)].orEmpty() }
+    }
 
-    suspend fun setVeganConfirmed(barcode: String, confirmed: Boolean) {
+    suspend fun setPackageClaim(barcode: String, claim: PackageClaim, confirmed: Boolean) {
         context.dataStore.edit { prefs ->
-            val current = prefs[KEY_VEGAN_CONFIRMED].orEmpty()
-            prefs[KEY_VEGAN_CONFIRMED] = if (confirmed) current + barcode else current - barcode
+            val current = prefs[claimKey(claim)].orEmpty()
+            prefs[claimKey(claim)] = if (confirmed) current + barcode else current - barcode
         }
+    }
+
+    val packageClaimCount: Flow<Int> = context.dataStore.data.map { prefs ->
+        PackageClaim.entries.sumOf { prefs[claimKey(it)].orEmpty().size }
+    }
+
+    suspend fun clearPackageClaims() {
+        context.dataStore.edit { prefs -> PackageClaim.entries.forEach { prefs.remove(claimKey(it)) } }
+    }
+
+    private fun claimKey(claim: PackageClaim) = when (claim) {
+        PackageClaim.VEGAN -> KEY_VEGAN_CONFIRMED
+        PackageClaim.VEGETARIAN -> KEY_VEGETARIAN_CONFIRMED
+        PackageClaim.HALAL -> KEY_HALAL_CONFIRMED
     }
 
     suspend fun ingredientsDbVersion(): Int? = context.dataStore.data.first()[KEY_INGREDIENTS_DB_VERSION]
@@ -66,5 +83,7 @@ class UserPreferencesRepository @Inject constructor(
         val KEY_DARK_MODE = booleanPreferencesKey("dark_mode")
         val KEY_INGREDIENTS_DB_VERSION = intPreferencesKey("ingredients_db_version")
         val KEY_VEGAN_CONFIRMED = stringSetPreferencesKey("vegan_confirmed_barcodes")
+        val KEY_VEGETARIAN_CONFIRMED = stringSetPreferencesKey("vegetarian_confirmed_barcodes")
+        val KEY_HALAL_CONFIRMED = stringSetPreferencesKey("halal_confirmed_barcodes")
     }
 }

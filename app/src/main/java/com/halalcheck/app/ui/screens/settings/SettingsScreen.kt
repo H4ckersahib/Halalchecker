@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.Eco
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -24,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -112,6 +114,29 @@ fun SettingsScreen(
                         isSelected = uiState.language == code,
                         onClick = { viewModel.setLanguage(code) }
                     )
+                }
+            }
+
+            // Package labels confirmed on results (stored on this device only)
+            SettingsSection(title = stringResource(R.string.settings_claims_title), icon = Icons.Default.Eco) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.settings_claims_text, uiState.packageClaimCount),
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f)
+                    )
+                    TextButton(
+                        onClick = viewModel::clearPackageClaims,
+                        enabled = uiState.packageClaimCount > 0
+                    ) {
+                        Text(stringResource(R.string.settings_claims_clear))
+                    }
                 }
             }
 
