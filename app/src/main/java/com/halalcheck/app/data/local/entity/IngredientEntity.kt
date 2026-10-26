@@ -81,5 +81,8 @@ data class IngredientEntity(
     val rulingReferences: String? = null, // see IngredientAssetEntry.encodeReferences
 
     @ColumnInfo(name = "composition_resolves", defaultValue = "0")
-    val compositionResolves: Boolean = false // a listed composition answers this ingredient's doubt
+    val compositionResolves: Boolean = false, // a listed composition answers this ingredient's doubt
+
+    @ColumnInfo(name = "names_de")
+    val namesDe: String? = null // "|"-separated real German names and synonyms
 )

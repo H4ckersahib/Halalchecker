@@ -23,7 +23,7 @@ import com.halalcheck.app.data.local.entity.ScanHistoryEntity
         ScanHistoryEntity::class,
         FeedbackEntity::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = true
 )
 abstract class HalalDatabase : RoomDatabase() {
@@ -78,6 +78,13 @@ abstract class HalalDatabase : RoomDatabase() {
             }
         }
 
-        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+        /** v6: German names on their own, for splitting German compounds (reseeded anyway). */
+        val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE ingredients ADD COLUMN names_de TEXT")
+            }
+        }
+
+        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
     }
 }

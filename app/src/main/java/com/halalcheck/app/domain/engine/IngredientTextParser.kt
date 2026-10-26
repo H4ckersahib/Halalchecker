@@ -42,7 +42,10 @@ class IngredientTextParser(
     }
 
     private fun clean(text: String): String {
-        var t = text
+        var t = decodeEntities(text)
+            // Spring or brand names: Mineralwasser "Fonti di Crodo"
+            .replace(QUOTED, " ")
+            .replace(Regex("[\"„“”«»]"), "")
             .replace('[', '(').replace('{', '(').replace(']', ')').replace('}', ')')
             .replace(Regex("[*_†°]"), "")
             .replace(PERCENTAGE, "")
@@ -51,18 +54,47 @@ class IngredientTextParser(
             .replace(LIST_DASH, ", ")
             .replace(Regex("\\s+"), " ")
             .trim()
-        t = t.replace(LEADING_LABEL, "")
+        // "Mars GmbH, Postfach … Zutaten: Süßungsmittel …": photographed labels often start before the list
+        LABEL.findAll(t).firstOrNull { depthAt(t, it.range.first) == 0 }?.let { t = t.substring(it.range.last + 1).trim() }
         // Keep sentences that are not notes ("Kann Spuren von ... enthalten.", "Mandeln aus Spanien.")
         val sentences = splitTopLevel(t, '.')
         return sentences.filterIndexed { i, s -> i == 0 || !isNoteSentence(s) }.joinToString(", ")
     }
 
     private fun isNoteSentence(sentence: String): Boolean =
-        NOTE_SENTENCE.containsMatchIn(sentence) || ORIGIN_SENTENCE.containsMatchIn(sentence.trim())
+        NOTE_SENTENCE.containsMatchIn(sentence) || ORIGIN_SENTENCE.containsMatchIn(sentence.trim()) ||
+            JUNK.containsMatchIn(sentence)
+
+    private fun isNoteItem(item: String): Boolean = NOTE_ITEM.containsMatchIn(item) || JUNK.containsMatchIn(item)
+
+    /** Open Food Facts sometimes keeps HTML entities: Mineralwasser &quot;Fonti di Crodo&quot;. */
+    private fun decodeEntities(text: String): String =
+        HTML_ENTITY.replace(text) { m ->
+            val name = m.groupValues[1]
+            val char = when {
+                name.startsWith("#x", ignoreCase = true) -> name.drop(2).toIntOrNull(16)
+                name.startsWith("#") -> name.drop(1).toIntOrNull()
+                else -> null
+            }
+            char?.takeIf { Character.isValidCodePoint(it) }?.let { String(Character.toChars(it)) }
+                ?: NAMED_ENTITIES[name.lowercase()]
+                ?: m.value
+        }
+
+    private fun depthAt(text: String, index: Int): Int {
+        var depth = 0
+        for (i in 0 until index) {
+            when (text[i]) {
+                '(' -> depth++
+                ')' -> depth = (depth - 1).coerceAtLeast(0)
+            }
+        }
+        return depth
+    }
 
     private fun parseTopLevelItem(item: String): List<ParsedIngredient> {
         val text = item.trim()
-        if (text.length <= 1 || NOTE_ITEM.containsMatchIn(text)) return emptyList()
+        if (text.length <= 1 || isNoteItem(text)) return emptyList()
         val colon = indexOfTopLevel(text, ':')
         if (colon > 0) {
             val head = text.substring(0, colon).trim()
@@ -78,7 +110,7 @@ class IngredientTextParser(
 
     private fun parseItem(raw: String): List<ParsedIngredient> {
         val text = raw.trim().removeSuffix(".").trim()
-        if (text.length <= 1 || NOTE_ITEM.containsMatchIn(text)) return emptyList()
+        if (text.length <= 1 || isNoteItem(text)) return emptyList()
 
         val open = text.indexOf('(')
         val close = if (open >= 0) matchingParen(text, open) else -1
@@ -186,7 +218,7 @@ class IngredientTextParser(
         /** " - " separates entries, except in "Frucht - und Pflanzenkonzentrate". */
         val LIST_DASH = Regex(" - (?!(und|oder|and|or)\\b)", RegexOption.IGNORE_CASE)
         val PERCENTAGE = Regex("<?\\s*\\d+(?:[.,]\\d+)?\\s*%")
-        val LEADING_LABEL = Regex("^(zutaten|zusammensetzung|ingredients|ingrédients|içindekiler)\\s*:\\s*", RegexOption.IGNORE_CASE)
+        val LABEL = Regex("(?<!\\p{L})(zutaten|zusammensetzung|ingredients|ingrédients|içindekiler)\\s*:", RegexOption.IGNORE_CASE)
         val LEADING_FILLER = Regex("^(enthält|contains|aus|from|davon|thereof)\\s+", RegexOption.IGNORE_CASE)
         val E_NUMBER_ONLY = Regex("(?:E|INS)\\s*-?\\s*\\d{3,4}\\s*[a-z]{0,3}", RegexOption.IGNORE_CASE)
         val NOTE_SENTENCE = Regex(
@@ -197,5 +229,19 @@ class IngredientTextParser(
         )
         val ORIGIN_SENTENCE = Regex("\\b(aus|from)\\s+\\p{Lu}\\p{L}+$")
         val NOTE_ITEM = Regex("^(mindestens|min\\b|at least|kann\\b|may contain|spuren|traces?\\b)", RegexOption.IGNORE_CASE)
+
+        /** Text around the list on photographed labels: address, web links, nutrition table, storage, use. */
+        val JUNK = Regex(
+            "www\\.|https?://|\\S@\\S|\\bpostfach\\b|\\bgmbh\\b|\\bkcal\\b|\\bkj\\b|brennwert|nährwert|nutrition|" +
+                "zertifiziert|certified|verzehr|phenylalanin|lebensweise|ernährung|\\bk[üu]hl\\b|\\blagern\\b|" +
+                "aufbewahren|\\bbewahren\\b|recycel",
+            RegexOption.IGNORE_CASE
+        )
+        val QUOTED = Regex("[\"„“”«»][^\"„“”«»,()]{1,60}[\"„“”«»]")
+        val HTML_ENTITY = Regex("&(#\\d{1,7}|#x[0-9a-f]{1,6}|[a-z]{2,8});", RegexOption.IGNORE_CASE)
+        val NAMED_ENTITIES = mapOf(
+            "quot" to "\"", "amp" to "&", "apos" to "'", "lt" to "<", "gt" to ">", "nbsp" to " ",
+            "auml" to "ä", "ouml" to "ö", "uuml" to "ü", "szlig" to "ß"
+        )
     }
 }

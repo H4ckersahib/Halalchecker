@@ -38,6 +38,8 @@ E_NUMBER = re.compile(r"en:e\d{3,4}[a-z]*")
 RULING_FIELDS = ("default_category", "hanafi_ruling", "maliki_ruling", "shafi_ruling", "hanbali_ruling",
                  "reason", "reason_de", "source", "alternatives", "doubt", "references", "composition_resolves")
 DIET_VALUES = {"yes", "no", "maybe"}
+# Taxonomy ids of mixtures ("en:vitamin-a-and-d"), as opposed to one material in a form.
+MIXTURE_ID = re.compile(r"-(and|with|und|mit|et|avec|y|con|ve)-")
 # Words that hint at alcohol in entries classified HALAL only from OFF's vegan flags; printed for review.
 ALCOHOL_WORDS = re.compile(
     r"wein(?!s.ure|blatt|bl.tter|traube|beer|stein)|wine|bier|beer|rum|lik.r|liqueur|liquor|schnaps|brandy|"
@@ -83,15 +85,28 @@ def ancestors_by_depth(tax, node_id):
         frontier = nxt
 
 
-def inherited_flag(tax, node_id, prop):
-    own = flag(tax[node_id], prop)
-    if own:
-        return own
-    for _, anc in ancestors_by_depth(tax, node_id):
-        value = flag(tax.get(anc, {}), prop)
-        if value:
-            return value
-    return None
+_inherited = {}
+
+
+def inherited_flag(tax, node_id, prop, visiting=frozenset()):
+    """The node's own flag, else its parents' flags combined.
+
+    "no" from any parent wins. Otherwise a node with several parents is usually a material in a form
+    ("en:strawberry-puree" under "en:strawberry" and "en:puree"): the material's "yes" beats the
+    form's "maybe". A mixture ("en:vitamin-a-and-d") takes its most doubtful parent.
+    """
+    key = (node_id, prop)
+    if key in _inherited:
+        return _inherited[key]
+    node = tax.get(node_id, {})
+    value = flag(node, prop)
+    if not value:
+        values = {inherited_flag(tax, p, prop, visiting | {node_id})
+                  for p in node.get("parents", []) if p not in visiting and p != node_id}
+        order = ("no", "maybe", "yes") if MIXTURE_ID.search(node_id) else ("no", "yes", "maybe")
+        value = next((v for v in order if v in values), None)
+    _inherited[key] = value
+    return value
 
 
 def e_number_of(tax, node_id):
@@ -149,7 +164,8 @@ def node_names(tax_node, additive_node):
     return names
 
 
-def build_entry(entry_id, names, synonyms, ruling, inferred_from, is_class, e_number=None, diet=(None, None)):
+def build_entry(entry_id, names, synonyms, german, ruling, inferred_from, is_class, e_number=None,
+                diet=(None, None)):
     names = {k: v.strip() for k, v in names.items() if v and v.strip()}
     fallback = next((names[lang] for lang in LANGS if names.get(lang)), entry_id.replace("_", " "))
     entry = {
@@ -169,6 +185,15 @@ def build_entry(entry_id, names, synonyms, ruling, inferred_from, is_class, e_nu
             unique.append(s)
     if unique:
         entry["synonyms"] = unique
+    # Only real German names (name_de falls back to English); the app splits German compounds with them
+    german_unique, seen = [], set()
+    for s in german:
+        s = (s or "").strip()
+        if s and s.lower() not in seen:
+            seen.add(s.lower())
+            german_unique.append(s)
+    if german_unique:
+        entry["names_de"] = german_unique
     for field in RULING_FIELDS:
         if ruling.get(field):
             entry[field] = ruling[field]
@@ -239,8 +264,10 @@ def main():
             synonyms += [v for v in extra.values() if v]
         if curated.get("names"):
             names = {**names, **curated["names"]}
+        german = [names.get("de")] + (node.get("synonyms", {}).get("de") or [])
+        german += [extra.get("de") for extra in curated.get("extra_names", [])]
         diet = (inherited_flag(tax, node_id, "vegan"), inherited_flag(tax, node_id, "vegetarian"))
-        entry = build_entry(app_id(node_id), names, synonyms, ruling or {"default_category": "UNKNOWN"},
+        entry = build_entry(app_id(node_id), names, synonyms, german, ruling or {"default_category": "UNKNOWN"},
                             inferred_from, is_class, e_number_of(tax, node_id), diet)
         entries[entry["id"]] = entry
         origin[entry["id"]] = node_id
@@ -251,7 +278,8 @@ def main():
             if eid in entries:
                 sys.exit(f"{rid} collides with the OFF-derived id {eid}")
             synonyms = [v for extra in r.get("extra_names", []) for v in extra.values()]
-            entries[eid] = build_entry(eid, r["names"], synonyms, r, None, False, None,
+            german = [r["names"]["de"]] + [extra.get("de") for extra in r.get("extra_names", [])]
+            entries[eid] = build_entry(eid, r["names"], synonyms, german, r, None, False, None,
                                        (r.get("vegan"), r.get("vegetarian")))
 
     ingredient_list = [entries[k] for k in sorted(entries)]

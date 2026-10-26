@@ -127,7 +127,7 @@ private fun Ingredient.localizedReason(): String? {
 }
 
 @Composable
-private fun Ingredient.localizedName(): String = when (LocalConfiguration.current.locales[0].language) {
+internal fun Ingredient.localizedName(): String = when (LocalConfiguration.current.locales[0].language) {
     "de" -> nameDe
     "tr" -> nameTr ?: nameEn
     "ar" -> nameAr ?: nameEn

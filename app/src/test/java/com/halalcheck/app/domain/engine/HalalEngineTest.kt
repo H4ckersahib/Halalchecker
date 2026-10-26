@@ -63,6 +63,15 @@ class HalalEngineTest {
             ingredient("ham", "Schinken", "Ham", HARAM),
             ingredient("bacon", "Speck", "Bacon", HARAM),
             ingredient("wine", "Wein", "Wine", HARAM),
+            ingredient("beer", "Bier", "Beer", HARAM),
+            ingredient("rum", "Rum", "Rum", HARAM),
+            ingredient("strawberry", "Erdbeere", "Strawberry", HALAL, synonyms = listOf("Erdbeeren")),
+            ingredient("blueberry", "Heidelbeere", "Blueberry", HALAL),
+            ingredient("raisin", "Rosine", "Raisin", HALAL, synonyms = listOf("Rosinen")),
+            ingredient("yogurt", "Joghurt", "Yogurt", HALAL),
+            ingredient("juice", "Saft", "Juice", MASHBOOH, doubt = Doubt.ANIMAL_SOURCE, source = "off_maybe"),
+            // An English-only entry: its name_de is the English fallback
+            ingredient("smoothie", "Smoothie", "Smoothie", HALAL, german = emptyList()),
             ingredient("blood", "Blut", "Blood", HARAM),
             ingredient("shrimp", "Garnelen", "Shrimp", HALAL, hanafi = MASHBOOH),
             ingredient("emulsifier", "Emulgator", "Emulsifier", MASHBOOH, synonyms = listOf("Emulgatoren"), doubt = Doubt.ANIMAL_SOURCE, isClass = true),
@@ -115,6 +124,32 @@ class HalalEngineTest {
         val result = analyze("Weinbeeren, Blutorangensaft")
         assertEquals(HALAL, result.halalStatus)
         assertTrue(result.analyzedIngredients.all { it.inferred })
+    }
+
+    @Test
+    fun `German compounds are split with German names only`() {
+        // "Erdbeer" ends in the English "beer"
+        listOf("Erdbeer-Joghurt", "Erdbeerjoghurt", "Erdbeer", "Erdbeer-Smoothie").forEach { text ->
+            assertEquals(text, HALAL, analyze(text).halalStatus)
+        }
+        assertEquals(listOf("yogurt"), analyze("Erdbeer-Joghurt").ids())
+        assertFalse(analyze("Erdbeer-Joghurt").analyzedIngredients.single().inferred) // the hyphen names the head
+        assertEquals(listOf("strawberry"), analyze("Erdbeer").ids()) // combining form of "Erdbeere"
+    }
+
+    @Test
+    fun `a form word after a hyphen is the base product`() {
+        val entry = analyze("Heidelbeer-Saft").analyzedIngredients.single()
+        assertEquals("blueberry", entry.ingredient?.id)
+        assertEquals(HALAL, entry.status)
+        assertTrue(entry.inferred)
+    }
+
+    @Test
+    fun `a haram modifier of a compound counts`() {
+        assertEquals(HARAM, analyze("Rum-Rosinen").halalStatus)
+        assertEquals(HARAM, analyze("Rumrosinen").halalStatus)
+        assertEquals(HARAM, analyze("Erdbeer-Bier").halalStatus)
     }
 
     @Test
@@ -352,6 +387,36 @@ class HalalEngineTest {
     }
 
     @Test
+    fun `a haram word in the product name is a hint, not a verdict`() {
+        fun named(name: String, text: String) = engine.analyzeProduct(
+            Product(barcode = "1", name = name, ingredientsText = text, source = DataSource.OPEN_FOOD_FACTS),
+            index,
+            Madhab.HANAFI
+        )
+        val noList = named("Rum Trüffel", "")
+        assertEquals(UNKNOWN, noList.halalStatus)
+        assertEquals(listOf("rum"), noList.nameMentions.map { it.id })
+        assertEquals(listOf("rum"), named("Rum Trüffel", "Zucker, Kakao").nameMentions.map { it.id })
+        assertTrue(named("Rum Trüffel", "Zucker, Rum").nameMentions.isEmpty()) // already HARAM
+        assertTrue(named("Glücksschwein", "Zucker").nameMentions.isEmpty()) // marzipan, only a compound guess
+    }
+
+    @Test
+    fun `text around the list on a photographed label is ignored`() {
+        val result = analyze(
+            "MARS GMBH, POSTFACH 1414. www.mars.de ZUCKERFREIER KAUGUMMI. ZUTATEN: Zucker, Salz. " +
+                "KÜHL UND TROCKEN LAGERN. Nährwerte: Brennwert 731 kJ/175 kcal, mehrwertige Alkohole 71 g"
+        )
+        assertEquals(listOf("sugar", "salt"), result.ids())
+    }
+
+    @Test
+    fun `html entities and quoted names are removed`() {
+        assertEquals(listOf("water", "sugar", "salt"), analyze("Wasser &quot;Quelle Nord&quot;, Zucker, Salz").ids())
+        assertEquals(listOf("water", "cocoa"), analyze("Mineralwasser „Quelle Nord“, Kakao&#44; Wasser").ids().distinct())
+    }
+
+    @Test
     fun `nothing to analyze is unknown`() {
         assertEquals(UNKNOWN, analyze("").halalStatus)
         assertFalse(analyze("").labelConflict)
@@ -397,12 +462,14 @@ class HalalEngineTest {
         vegetarian: DietFlag? = null,
         inferredFrom: String? = null,
         source: String = "test",
-        compositionResolves: Boolean = false
+        compositionResolves: Boolean = false,
+        german: List<String> = listOf(nameDe) + synonyms
     ) = Ingredient(
         id = id,
         nameDe = nameDe,
         nameEn = nameEn,
         synonyms = synonyms,
+        germanNames = german,
         defaultCategory = category,
         hanafiRuling = hanafi,
         doubt = doubt,

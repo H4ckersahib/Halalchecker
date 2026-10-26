@@ -11,6 +11,8 @@ data class Ingredient(
     val nameAr: String? = null,
     val nameFr: String? = null,
     val synonyms: List<String> = emptyList(),
+    /** Real German names and synonyms ([nameDe] may be an English fallback); used to split German compounds. */
+    val germanNames: List<String> = emptyList(),
     val defaultCategory: HalalStatus,
     val hanafiRuling: HalalStatus? = null,
     val malikiRuling: HalalStatus? = null,

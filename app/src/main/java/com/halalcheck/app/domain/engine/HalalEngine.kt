@@ -63,8 +63,27 @@ class HalalEngine @Inject constructor() {
             },
             veganConflicts = veganConflicts,
             vegetarianConflicts = vegetarianConflicts,
-            sourceConflict = result.sourceConflict
+            sourceConflict = result.sourceConflict,
+            nameMentions = if (hasHaram) emptyList() else nameMentions(product.name, analyzed, index, madhab)
         )
+    }
+
+    /**
+     * "Effekt Vodka Energie" without an ingredient list: the name is a hint to check the package, not a
+     * verdict. Whole words only, so "Glücksschwein" (marzipan) does not count.
+     */
+    private fun nameMentions(
+        name: String,
+        analyzed: List<AnalyzedIngredient>,
+        index: IngredientIndex,
+        madhab: Madhab
+    ): List<Ingredient> {
+        val listed = analyzed.mapNotNull { it.ingredient?.let(::family) }.toSet()
+        return index.findAll(name)
+            .filter { !it.inferred && it.ingredient.getRulingForMadhab(madhab) == HalalStatus.HARAM }
+            .map { it.ingredient }
+            .filter { family(it) !in listed }
+            .distinctBy { family(it) }
     }
 
     private class AnalysisResult(val ingredients: List<AnalyzedIngredient>, val sourceConflict: Boolean)

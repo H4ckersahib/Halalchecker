@@ -1559,6 +1559,23 @@
     }
   },
   {
+    "id": "en:fruits-preparation",
+    "default_category": "MASHBOOH",
+    "reason": "Usually fruit, sugar and thickeners, but may contain gelatine; the listed composition answers it",
+    "reason_de": "Meist Obst, Zucker und Verdickungsmittel, kann aber Gelatine enthalten; die angegebene Zusammensetzung klärt es",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "extra_names": [
+      {
+        "de": "Fruchtzubereitungen"
+      },
+      {
+        "de": "Früchtezubereitung"
+      }
+    ],
+    "composition_resolves": true
+  },
+  {
     "id": "en:garlic",
     "default_category": "HALAL",
     "source": "consensus",
@@ -1592,6 +1609,26 @@
       "tr": "Glikoz Şurubu",
       "ar": "شراب الجلوكوز"
     }
+  },
+  {
+    "id": "en:gum-base",
+    "default_category": "MASHBOOH",
+    "reason": "Synthetic polymers and resins, but softeners and emulsifiers (glycerin, stearates) may be of animal origin",
+    "reason_de": "Synthetische Polymere und Harze, aber Weichmacher und Emulgatoren (Glycerin, Stearate) können tierisch sein",
+    "source": "scholarly_opinion",
+    "doubt": "animal_source",
+    "extra_names": [
+      {
+        "de": "Kaubasis",
+        "en": "Chewing gum base"
+      },
+      {
+        "de": "Kaugummibasis"
+      },
+      {
+        "de": "Kaugummimasse"
+      }
+    ]
   },
   {
     "id": "en:ham",
@@ -2018,6 +2055,21 @@
       "tr": "Koruyucu",
       "ar": "مادة حافظة"
     }
+  },
+  {
+    "id": "en:pulp",
+    "default_category": "HALAL",
+    "reason": "The flesh of a fruit; despite the German word \"Fleisch\" not meat",
+    "reason_de": "Das Innere einer Frucht; trotz des Wortes \"Fleisch\" kein Fleisch",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Fruchtmark"
+      },
+      {
+        "de": "Fruchtpulpe"
+      }
+    ]
   },
   {
     "id": "en:raising-agent",
@@ -2696,6 +2748,25 @@
     "vegetarian": "no"
   },
   {
+    "id": "local:coconut_flesh",
+    "default_category": "HALAL",
+    "reason": "The white flesh of the coconut, plant-based",
+    "reason_de": "Das weiße Fruchtfleisch der Kokosnuss, pflanzlich",
+    "source": "consensus",
+    "names": {
+      "de": "Kokosfleisch",
+      "en": "Coconut flesh"
+    },
+    "extra_names": [
+      {
+        "de": "Kokosnussfleisch",
+        "en": "Coconut meat"
+      }
+    ],
+    "vegan": "yes",
+    "vegetarian": "yes"
+  },
+  {
     "id": "local:egg_lecithin",
     "default_category": "HALAL",
     "reason": "From eggs (halal source)",
@@ -2814,6 +2885,13 @@
       {
         "de": "Polyol",
         "en": "Polyol"
+      },
+      {
+        "de": "mehrwertige Alkohole",
+        "en": "Polyhydric alcohols"
+      },
+      {
+        "de": "mehrwertiger Alkohol"
       }
     ],
     "vegan": "yes",

@@ -81,7 +81,7 @@ object ExportBuilder {
         matchedId = a.ingredient?.id,
         matchedName = a.ingredient?.nameDe,
         status = a.status.name,
-        reason = a.reason?.let { it::class.simpleName },
+        reason = a.reason?.let(::reasonName),
         reasonDetail = when (val reason = a.reason) {
             is Reason.HaramQualifier -> reason.qualifier
             is Reason.AnimalQualifier -> reason.qualifier
@@ -90,6 +90,19 @@ object ExportBuilder {
         },
         inferred = a.inferred
     )
+
+    /** Written out by hand: R8 renames the classes in release builds ("m" instead of "Database"). */
+    private fun reasonName(reason: Reason): String = when (reason) {
+        is Reason.Database -> "Database"
+        is Reason.Inferred -> "Inferred"
+        is Reason.NotSpecified -> "NotSpecified"
+        is Reason.OffAdditive -> "OffAdditive"
+        is Reason.HaramQualifier -> "HaramQualifier"
+        is Reason.AnimalQualifier -> "AnimalQualifier"
+        is Reason.HalalSourceQualifier -> "HalalSourceQualifier"
+        Reason.VeganLabel -> "VeganLabel"
+        Reason.HalalLabel -> "HalalLabel"
+    }
 
     private fun iso(millis: Long): String = Instant.ofEpochMilli(millis).toString()
 }

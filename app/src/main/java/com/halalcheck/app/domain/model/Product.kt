@@ -33,6 +33,8 @@ data class Product(
     val vegetarianConflicts: List<String> = emptyList(),
     /** The ingredient text and Open Food Facts' own parse disagree about a doubtful or haram ingredient. */
     val sourceConflict: Boolean = false,
+    /** HARAM ingredients the product name mentions ("Vodka") that are not among the analyzed ingredients. */
+    val nameMentions: List<Ingredient> = emptyList(),
     /** Set when Open Food Facts could not be reached and a cached copy from this time is shown. */
     val offlineSince: Long? = null
 ) {

@@ -177,6 +177,61 @@ class IngredientAssetTest {
         assertEquals(result.describe(), 5, result.analyzedIngredients.size)
     }
 
+    @Test
+    fun `strawberry and raspberry compounds are not beer`() {
+        // Tester report: strawberry milk was HARAM because "Erdbeer" ended in the English "beer"
+        listOf(
+            "Vollmilch, Zucker, Erdbeer-Fruchtzubereitung (Erdbeeren, Zucker, Pektin), Rote-Bete-Saftkonzentrat",
+            "Joghurt, Himbeer-Joghurt, Erdbeer-Bananen-Smoothie, Heidelbeer-Saft, Erdbeerpüree"
+        ).forEach { text ->
+            val result = analyze(text)
+            assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+        }
+        // Without its composition the fruit preparation is doubtful (gelatine), never haram
+        val unlisted = analyze("Milch, Zucker, Erdbeer-Fruchtzubereitung")
+        assertEquals(unlisted.describe(), HalalStatus.MASHBOOH, unlisted.halalStatus)
+    }
+
+    @Test
+    fun `fruit flesh and sugar alcohols are halal`() {
+        val result = analyze("Zitronensaft mit Fruchtfleisch, Kokosfleisch, Kokosraspeln, mehrwertige Alkohole")
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+        assertEquals(result.describe(), 4, result.analyzedIngredients.size)
+    }
+
+    @Test
+    fun `alcohol in a German compound is still found`() {
+        listOf("Rum-Rosinen", "Rumrosinen", "Himbeerlikör", "Ethanol").forEach { text ->
+            assertEquals(text, HalalStatus.HARAM, analyze(text).halalStatus)
+        }
+    }
+
+    @Test
+    fun `text around a photographed ingredient list is ignored`() {
+        // From a tester's export: OFF's text of an elmex chewing gum, OCR'd from the whole package
+        val result = analyze(
+            "DOSE AUS 30% RECYCELTEM PLASTIK DE MARS GMBH, POSTFACH 1414, D-82004 UNTERHACHING. www.mar.de 089-130 130 60 " +
+                "ZUCKERFREIER KAUGUMMI MIT SÜSSUNGSMITTELN UND ERDBEERGESCHMACK. ZUTATEN: SÜSSUNGSMITTEL (SORBIT, XYLIT), " +
+                "VERDICKUNGSMITTEL (GUMMI ARABICUM), EMULGATOR (SOJALECITHIN). KANN BEI ÜBERMÄSSIGEM VERZEHR ABFÜHREND WIRKEN. " +
+                "ENT ALT EINE PHENYLALANINQUELLE. ABWECHSLUNGSREICHE AUSGEW ERNÄHRUNG UND GESUNDE LEBENSWEISE SIND WICHTIG. " +
+                "KUHL UND TROCK BEWAHREN. 50 STOCK 40592 12 AUSGE MEN DECKEL, FOLIE UND ETIKETT MAHR INFORMATION ENE FETT " +
+                "100 g 731 kJ/175 kcal DAVON ZUCKER 0g - MEHRWERTIGE ALKOHOLE 71 g"
+        )
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
+        assertEquals(result.describe(), listOf("e420", "e967", "e414", "soya_lecithin"), result.analyzedIngredients.map { it.ingredient?.id })
+    }
+
+    @Test
+    fun `quoted spring names, html entities and certification notes are not ingredients`() {
+        val water = analyze("Natürliches Mineralwasser &quot;Fonti di Crodo-Lisiel&quot;, Zucker")
+        assertEquals(water.describe(), HalalStatus.HALAL, water.halalStatus)
+        assertEquals(water.describe(), 2, water.analyzedIngredients.size)
+
+        val tea = analyze("Wasser, Zucker, Zitronensaft. **Rainforest Alliance-zertifiziert. www.ra.org")
+        assertEquals(tea.describe(), HalalStatus.HALAL, tea.halalStatus)
+        assertEquals(tea.describe(), 3, tea.analyzedIngredients.size)
+    }
+
     private fun analyze(text: String, labels: List<String> = emptyList(), additives: List<String> = emptyList()) =
         engine.analyzeProduct(
             Product(

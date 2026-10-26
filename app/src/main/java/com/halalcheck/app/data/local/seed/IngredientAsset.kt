@@ -18,6 +18,7 @@ data class IngredientAssetEntry(
     @Json(name = "name_ar") val nameAr: String? = null,
     @Json(name = "name_fr") val nameFr: String? = null,
     val synonyms: List<String>? = null,
+    @Json(name = "names_de") val namesDe: List<String>? = null,
     @Json(name = "default_category") val defaultCategory: String,
     @Json(name = "hanafi_ruling") val hanafiRuling: String? = null,
     @Json(name = "maliki_ruling") val malikiRuling: String? = null,
@@ -60,7 +61,8 @@ data class IngredientAssetEntry(
         vegan = vegan,
         vegetarian = vegetarian,
         rulingReferences = references?.takeIf { it.isNotEmpty() }?.let(::encodeReferences),
-        compositionResolves = compositionResolves == true
+        compositionResolves = compositionResolves == true,
+        namesDe = namesDe?.joinToString(SYNONYM_SEPARATOR)
     )
 
     companion object {

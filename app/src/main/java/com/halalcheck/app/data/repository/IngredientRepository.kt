@@ -62,6 +62,7 @@ fun IngredientEntity.toDomain(): Ingredient {
         nameAr = nameAr,
         nameFr = nameFr,
         synonyms = synonyms?.split(IngredientAssetEntry.SYNONYM_SEPARATOR)?.filter { it.isNotBlank() } ?: emptyList(),
+        germanNames = namesDe?.split(IngredientAssetEntry.SYNONYM_SEPARATOR)?.filter { it.isNotBlank() } ?: emptyList(),
         defaultCategory = HalalStatus.fromString(defaultCategory),
         hanafiRuling = hanafiRuling?.let { HalalStatus.fromString(it) },
         malikiRuling = malikiRuling?.let { HalalStatus.fromString(it) },

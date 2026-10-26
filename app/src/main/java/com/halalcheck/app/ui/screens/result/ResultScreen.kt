@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -80,6 +79,7 @@ import com.halalcheck.app.ui.components.IngredientDetailRow
 import com.halalcheck.app.ui.components.description
 import com.halalcheck.app.ui.components.displayName
 import com.halalcheck.app.ui.components.label
+import com.halalcheck.app.ui.components.localizedName
 import com.halalcheck.app.ui.theme.*
 import java.text.DateFormat
 import java.util.Date
@@ -293,6 +293,13 @@ private fun ProductContent(
             item { NoticeCard(stringResource(R.string.result_source_conflict)) }
         }
 
+        if (product.nameMentions.isNotEmpty()) {
+            item {
+                val names = product.nameMentions.map { it.localizedName() }.distinct().joinToString(", ")
+                NoticeCard(stringResource(R.string.result_name_mentions, names))
+            }
+        }
+
         // Madhab selector
         item {
             MadhabSelector(
@@ -407,7 +414,12 @@ private fun ProductContent(
                 shape = RoundedCornerShape(12.dp)
             ) {
                 Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(18.dp))
-                Text(stringResource(R.string.result_fix_on_off), modifier = Modifier.padding(start = 8.dp))
+                Text(
+                    stringResource(
+                        if (product.analyzedIngredients.isEmpty()) R.string.result_add_ingredients_on_off else R.string.result_fix_on_off
+                    ),
+                    modifier = Modifier.padding(start = 8.dp)
+                )
             }
         }
 
@@ -472,37 +484,29 @@ private fun StatusCard(product: Product) {
             // Large status display; a partly recognized list says how much was checked
             val total = product.analyzedIngredients.size
             val known = total - product.unknownIngredients.size
+            val partial = product.halalStatus == HalalStatus.UNKNOWN && known > 0
             HalalStatusLarge(
                 status = product.halalStatus,
-                description = if (product.halalStatus == HalalStatus.UNKNOWN && known > 0) {
-                    pluralStringResource(R.plurals.result_partial, total, known, total)
-                } else {
-                    product.halalStatus.description()
+                description = when {
+                    total == 0 -> stringResource(R.string.result_no_ingredients)
+                    partial -> pluralStringResource(R.plurals.result_partial, total, known, total)
+                    else -> product.halalStatus.description()
                 }
             )
 
-            // Confidence indicator
-            if (product.confidence > 0) {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    LinearProgressIndicator(
-                        progress = { product.confidence },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(8.dp)
-                            .clip(RoundedCornerShape(4.dp)),
-                        color = Emerald500,
-                        trackColor = Slate200
-                    )
-                    Text(
-                        text = stringResource(R.string.result_confidence, (product.confidence * 100).toInt()),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-                }
+            // How much of the list was recognized: a count, so it is not read as "92 % halal"
+            if (total > 0 && !partial) {
+                val inferred = product.analyzedIngredients.count { it.inferred && it.status != HalalStatus.UNKNOWN }
+                Text(
+                    text = if (inferred > 0) {
+                        pluralStringResource(R.plurals.result_recognized_inferred, total, known, total, inferred)
+                    } else {
+                        pluralStringResource(R.plurals.result_recognized, total, known, total)
+                    },
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
             }
         }
     }

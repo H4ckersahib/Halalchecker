@@ -10,7 +10,7 @@ HalalCheck is an Android app (Kotlin, Jetpack Compose, Material 3) that scans a 
 
 ## Commands
 
-Single Gradle module `:app`. Use `./gradlew` from Git Bash or `.\gradlew.bat` from PowerShell. Gradle uses the Android Studio JBR via `JAVA_HOME`. Configuration cache is on, and a cold build takes about 3 minutes.
+Single Gradle module `:app`. Use `./gradlew` from Git Bash or `.\gradlew.bat` from PowerShell. Gradle uses the Android Studio JBR via `JAVA_HOME`. Configuration cache is on, and a cold build takes about 3 minutes. Lint crashes under JBR 25 (`IllegalArgumentException: 25.0.3`, its Java version parser); run it with a JDK 17 instead (`JAVA_HOME=~/.jdks/corretto-17.0.13`).
 
 ```bash
 ./gradlew assembleDebug            # debug APK -> app/build/outputs/apk/debug/
@@ -64,8 +64,8 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 - **Two pipelines, merged.** The engine analyzes the ingredient text with `IngredientTextParser`, and separately OFF's own parsed `ingredients[]` (taxonomy ids, looked up via `IngredientIndex.byOffId`). It keeps whichever recognizes the larger share, then adds HARAM/MASHBOOH findings only the other one had (same ingredient = same E-number family or curated ancestor) and sets `Product.sourceConflict`. Finally it adds doubtful or haram additives from OFF's `additives_tags` that aren't already covered (compared by `Ingredient.eNumber` family, so soy lecithin covers E322).
 - **Parsing** (`IngredientTextParser`):
-  - Strips percentages, empty brackets, `*`/`_`, and a leading "Zutaten:".
-  - Drops note sentences (traces, origin, "mindestens") and note items ("Kann …").
+  - Decodes HTML entities (`&quot;`), drops quoted names (Mineralwasser "Fonti di Crodo"), strips percentages, empty brackets, `*`/`_`, and everything up to a top-level "Zutaten:" (photographed labels start with the address).
+  - Drops note sentences (traces, origin, "mindestens") and note items ("Kann …"), and sentences or items with label noise (`JUNK`: URLs, GmbH/Postfach, kcal/kJ, storage and use notes, certification).
   - `Class: X` yields X when the head is a functional class (`Ingredient.isClass`, e.g. Emulgator, Säuerungsmittel). Otherwise the head is a "list head" that only counts if HARAM.
   - A bare class directly followed by an additive ("Farbstoff, Zuckerkulör (E150d)") is treated as a typo for a colon; otherwise ("Farbstoff, Zucker") it stays as "not specified".
   - A class prefix is stripped ("Emulgator Lecithine (Soja)" → "Lecithine").
@@ -74,8 +74,8 @@ This is the core logic and the most likely place for behavior changes. It has no
 - **Matching** (`IngredientIndex.findAll`), hash based:
   1. Whole phrase on names/synonyms in all languages, ignoring spacing and simple plural endings.
   2. E/INS numbers as whole tokens (`e322i` falls back to `e322`), plus whatever the words around them contain ("Schweinefleisch mit E471" yields both).
-  3. Longest known word spans. A phrase can yield several matches; the most severe counts.
-  4. Compound heads ("Putenschinken" → "Schinken"), else the base product of a form word ("Kartoffelpulver" → "Kartoffel"; no "-extrakt"). Both are marked `inferred` and never match a class.
+  3. Longest known word spans. A hyphenated word ("Erdbeer-Joghurt") is one word. A phrase can yield several matches; the most severe counts.
+  4. German compounds no span covered, split with **German names only** (`Ingredient.germanNames`, asset field `names_de`): with all languages, "Erdbeer…" ended in English "beer" (HARAM). In order: the combining form ("erdbeer" → Erdbeere), the base product of a form word ("Kartoffelpulver", "Heidelbeer-Saft"; no "-extrakt"), else the head ("Putenschinken" → "Schinken", "Himbeer-Joghurt"). They are `inferred` (not a head named after a hyphen) and never match a class. A modifier that is HARAM on its own counts too ("Rum-Rosinen", "Rumrosinen"), except the ambiguous Wein/Blut/Bier ("Weintraubenkernöl", "Blutorange").
   - A functional class only counts when the phrase contains nothing more specific.
   - **There is no substring matching**; it produced false HARAM ("Weinbeeren" → Wein).
 - **Rules** (`HalalEngine.Analysis.evaluate`), applied the same way on every path:
@@ -91,7 +91,8 @@ This is the core logic and the most likely place for behavior changes. It has no
   - Otherwise any MASHBOOH makes it MASHBOOH.
   - Otherwise any unrecognized ingredient, or nothing to analyze, makes it UNKNOWN (the UI says "nicht vollständig geprüft").
   - Otherwise HALAL.
-  - Confidence is the recognized share, with inferred matches counting half. The UI calls it "Zutaten erkannt", not certainty.
+  - Confidence is the recognized share, with inferred matches counting half (stored, exported). The result screen shows counts instead ("6 von 6 Zutaten erkannt, 1 davon abgeleitet"): testers read "92 %" as "92 % halal".
+- **Product name**: `Product.nameMentions` lists HARAM ingredients the product name names as whole words ("Effekt Vodka Energie") that the list doesn't contain. The result screen shows a hint to check the package; it never changes the verdict.
 - **Madhab**: `Ingredient.getRulingForMadhab()` uses the per-madhab ruling if one is set, otherwise `defaultCategory`. Only a few curated entries have per-madhab rulings; the result screen says so.
 
 ### Ingredient database
@@ -102,16 +103,16 @@ This is the core logic and the most likely place for behavior changes. It has no
   - MASHBOOH rulings need a `doubt`.
   - Optional: `references` (list of `{url, title, title_de}`, shown as links under the ingredient: sources for context, not a ruling on the product), `composition_resolves`, and `vegan`/`vegetarian` for `local:` entries (OFF nodes get them from the taxonomy).
   - Descendants inherit the nearest curated ruling (`en:wine` → `en:alcohol`).
-  - Uncurated nodes are classified from OFF's vegan flags (`source: off_vegan` / `off_vegetarian` / `off_maybe` / `off_animal`).
+  - Uncurated nodes are classified from OFF's vegan flags (`source: off_vegan` / `off_vegetarian` / `off_maybe` / `off_animal`). A node without its own flag combines its parents': "no" wins, then a material's "yes" beats a form's "maybe" ("en:strawberry-puree" under strawberry and puree); mixtures (`-and-`/`-with-` ids) take the most doubtful parent.
   - The script prints conflicts between equally near ancestors, and entries classified HALAL only from OFF vegan flags whose names mention alcohol (this found "Himbeerlikör"); add a ruling for the node to override.
-- **Entry format.** The root is `{version, generated, license, ingredients}`. Ids are the OFF id without `en:` and with `-`→`_` (`soya_lecithin`, `e471`); other languages keep a prefix (`fr_…`). `synonyms` is an array in the JSON and a `|`-joined string in Room. `alternatives` is a comma-separated string.
+- **Entry format.** The root is `{version, generated, license, ingredients}`. Ids are the OFF id without `en:` and with `-`→`_` (`soya_lecithin`, `e471`); other languages keep a prefix (`fr_…`). `synonyms` (all languages) and `names_de` (real German names; `name_de` falls back to English) are arrays in the JSON and `|`-joined strings in Room. `alternatives` is a comma-separated string.
 - **Seeding.** `IngredientSeeder` replaces the `ingredients` table whenever the asset's `version` (a content hash) differs from the one stored in DataStore, so asset updates reach existing installs. Callers await it; the first start after an update takes a few seconds.
 
 ### Persistence details
 
 - Room stores enums as their `name` strings. Read them back with `HalalStatus.fromString()`, which is lenient and falls back to UNKNOWN. `DataSource` is read back with `valueOf`.
 - **Version and migration.**
-  - `HalalDatabase` is at **version 5**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`. `MIGRATION_4_5` adds the `feedback` table.
+  - `HalalDatabase` is at **version 6**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`. `MIGRATION_4_5` adds the `feedback` table. `MIGRATION_5_6` adds `ingredients.names_de`.
   - There is **no** `fallbackToDestructiveMigration()`: a missing migration must fail instead of silently wiping the history. Extend `ALL_MIGRATIONS` and `MigrationTest`.
   - Bumping the version needs a new `Migration`.
   - Schemas are exported to `app/schemas/`.
@@ -121,7 +122,7 @@ This is the core logic and the most likely place for behavior changes. It has no
 ### Test phase: feedback and export
 
 - Testers report wrong verdicts on the result screen ("Fehler melden": expected status or "don't know", comment). Stored in the `feedback` table (one per barcode), see `FeedbackRepository`.
-- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
+- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. Reason names are written out in `ExportBuilder.reasonName` because R8 renames the classes (exports from build 6 contain "m", "q", "r"). `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
 - Exports contain personal data. They stay on the phone until shared; put received files into `feedback/` (git-ignored) and run `tools/analyze_feedback.py`. Bump `ExportFile.EXPORT_VERSION` and the script together when fields change.
 
 ### UI language

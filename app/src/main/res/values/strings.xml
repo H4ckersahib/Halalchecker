@@ -37,7 +37,17 @@
     <string name="result_fix_on_off">Daten auf Open Food Facts korrigieren</string>
     <string name="result_error_network">Netzwerkfehler: Das Produkt konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.</string>
     <string name="result_error_unexpected">Beim Analysieren ist ein unerwarteter Fehler aufgetreten.</string>
-    <string name="result_confidence">Zutaten erkannt: %d%%</string>
+    <plurals name="result_recognized">
+        <item quantity="one">%1$d von %2$d Zutat erkannt</item>
+        <item quantity="other">%1$d von %2$d Zutaten erkannt</item>
+    </plurals>
+    <plurals name="result_recognized_inferred">
+        <item quantity="one">%1$d von %2$d Zutat erkannt, %3$d davon aus einem zusammengesetzten Wort abgeleitet</item>
+        <item quantity="other">%1$d von %2$d Zutaten erkannt, %3$d davon aus einem zusammengesetzten Wort abgeleitet</item>
+    </plurals>
+    <string name="result_no_ingredients">Keine Zutatenliste: Open Food Facts hat für dieses Produkt noch keine. Mit einem Foto der Zutatenliste kannst du sie dort ergänzen, dann kann HalalCheck das Produkt prüfen.</string>
+    <string name="result_add_ingredients_on_off">Zutatenliste auf Open Food Facts ergänzen</string>
+    <string name="result_name_mentions">Der Produktname nennt %s. Die erkannten Zutaten enthalten es nicht – bitte auf der Verpackung prüfen.</string>
     <plurals name="result_partial">
         <item quantity="one">Nicht vollständig geprüft: %1$d von %2$d Zutat erkannt, keine bedenklichen gefunden.</item>
         <item quantity="other">Nicht vollständig geprüft: %1$d von %2$d Zutaten erkannt, keine bedenklichen gefunden.</item>
