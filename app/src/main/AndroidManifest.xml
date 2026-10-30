@@ -56,6 +56,11 @@
                 android:value="true" />
         </service>
 
+        <!-- Google Play services downloads the text recognition model at install time, not on first use -->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+
     </application>
 
 </manifest>

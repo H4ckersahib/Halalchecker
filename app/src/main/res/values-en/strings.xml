@@ -32,7 +32,7 @@
     <string name="result_loading">Analyzing product…</string>
     <string name="result_unnamed_product">Unnamed product</string>
     <string name="result_not_found">Product not found</string>
-    <string name="result_not_found_hint">Open Food Facts doesn\'t know barcode %s yet. You can add the product there with photos of the ingredient list, then HalalCheck can check it.</string>
+    <string name="result_not_found_hint">Open Food Facts doesn\'t know barcode %s yet. Photograph the ingredient list and HalalCheck checks it right away. Adding the product to Open Food Facts as well helps everyone.</string>
     <string name="result_add_on_off">Add product on Open Food Facts</string>
     <string name="result_fix_on_off">Correct the data on Open Food Facts</string>
     <string name="result_error_network">Network error: the product could not be loaded. Please check your internet connection.</string>
@@ -45,7 +45,7 @@
         <item quantity="one">%1$d of %2$d ingredient recognized, %3$d of them inferred from a compound word</item>
         <item quantity="other">%1$d of %2$d ingredients recognized, %3$d of them inferred from a compound word</item>
     </plurals>
-    <string name="result_no_ingredients">No ingredient list: Open Food Facts doesn\'t have one for this product yet. Add it there with a photo of the ingredient list, then HalalCheck can check the product.</string>
+    <string name="result_no_ingredients">No ingredient list: Open Food Facts doesn\'t have one for this product yet. Photograph the ingredient list on the package and HalalCheck checks it right away.</string>
     <string name="result_add_ingredients_on_off">Add the ingredient list on Open Food Facts</string>
     <string name="result_name_mentions">The product name mentions %s. It is not among the recognized ingredients – please check the package.</string>
     <string name="ui_language">en</string>
@@ -174,4 +174,24 @@
     <string name="settings_export">Export test data</string>
     <string name="settings_export_failed">The export failed.</string>
     <string name="export_share_title">Share test data</string>
+
+    <!-- Photo of the ingredient list (text recognition on the device) -->
+    <string name="photo_title">Photograph ingredient list</string>
+    <string name="photo_hint">Photograph only the ingredient list: straight, sharp and well lit.</string>
+    <string name="photo_no_camera">Without camera access you can pick a photo of the ingredient list from your gallery.</string>
+    <string name="photo_nothing_recognized">No text was recognized on the photo. Try closer, sharper or with more light.</string>
+    <string name="photo_unavailable">Text recognition is not available right now. It needs Google Play services and downloads its model the first time; please try again shortly.</string>
+    <string name="photo_gallery">From gallery</string>
+    <string name="photo_take">Take photo</string>
+    <string name="photo_recognizing">Recognizing text…</string>
+    <string name="photo_edit_title">Recognized text</string>
+    <string name="photo_edit_hint">Check the text and fix recognition errors. Exactly what is written here gets checked.</string>
+    <string name="photo_retake">New photo</string>
+    <string name="photo_check">Check ingredients</string>
+    <string name="photo_privacy">The photo is analyzed on your phone only and is not uploaded.</string>
+    <string name="photo_take_list">Photograph ingredient list</string>
+    <string name="photo_take_own">Ingredient list wrong? Photograph it yourself</string>
+    <string name="photo_notice">Checked: the ingredients from your photo of %s, not the Open Food Facts data.</string>
+    <string name="photo_edit">Edit</string>
+    <string name="photo_delete">Delete photo text</string>
 </resources>

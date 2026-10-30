@@ -58,6 +58,7 @@ object ExportBuilder {
             ingredientsText = product?.ingredientsText,
             ingredientsLanguage = product?.ingredientsLanguage,
             offLanguage = product?.sourceIngredientsLanguage,
+            ingredientsFromPhoto = product?.ingredientsFromPhoto != null,
             offLabels = product?.labelsTags.orEmpty(),
             offAdditives = product?.additivesTags.orEmpty(),
             userClaims = product?.userClaims.orEmpty().map { it.name }.sorted(),

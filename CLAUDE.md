@@ -41,7 +41,7 @@ Release builds run R8. `app/proguard-rules.pro` keeps the `data.remote` (Moshi A
 
 ## Architecture
 
-The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (models + engine), `ui/` (Compose screens with `@HiltViewModel`s), and `di/` (Hilt modules for Room, Retrofit, Moshi). Repositories are provided through their `@Inject` constructors. Navigation uses string routes in `ui/navigation/NavGraph.kt`: `home`, `scanner`, `result/{barcode}?record={record}`, `history`, `settings`. List taps go through `ifResumed`, so tapping twice opens one screen.
+The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (models + engine), `ui/` (Compose screens with `@HiltViewModel`s), and `di/` (Hilt modules for Room, Retrofit, Moshi). Repositories are provided through their `@Inject` constructors. Navigation uses string routes in `ui/navigation/NavGraph.kt`: `home`, `scanner`, `result/{barcode}?record={record}`, `photo/{barcode}`, `history`, `settings`. List taps go through `ifResumed`, so tapping twice opens one screen.
 
 ### Scan → result flow
 
@@ -57,7 +57,14 @@ The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (mod
    - Spec tiers "own backend" and "community" are TODO.
 4. `IngredientRepository.getIndex()` returns an in-memory `IngredientIndex`, built once per process after `IngredientSeeder` has run.
 5. `HalalEngine.analyzeProduct(product, index, madhab)` always re-analyzes from the product's source data (text, OFF ingredients, labels, additives), also on a cache hit and on madhab change. It runs on `Dispatchers.Default`.
+   - A photo of the ingredient list the user saved for the barcode (`PhotoIngredientsRepository`) replaces the Open Food Facts text, parse and additives (`Product.withPhotoIngredients`), also for barcodes OFF doesn't know (`DataSource.LOCAL` then). `ResultViewModel` observes it and re-analyzes when it is saved or deleted.
 6. The status and confidence are written back to `products` (`ProductDao.updateAnalysis`). A real scan (`record=true`) inserts the `scan_history` row (one row per barcode; a rescan replaces it and moves it to the top); reopening only updates the stored status. `analyzedIngredients` is never persisted.
+
+### Photo of the ingredient list (`ui/screens/photo/`)
+
+- For products without a list (about a quarter of testers' scans) or with a wrong one. Camera (CameraX `ImageCapture`) or the system photo picker (no storage permission), then ML Kit text recognition on the device, then an editable text field: exactly the corrected text is saved and checked. The photo is never uploaded.
+- ML Kit comes through Google Play services (`play-services-mlkit-text-recognition`); the bundled variant added ~11 MB per ABI. The manifest asks Play services to download the model at install time; without it (no Play services, not downloaded yet) the screen says so instead of "no text".
+- `OcrText.join` (JVM-tested) turns ML Kit's blocks and lines into one text: lines are joined, words broken at the line end too ("Citro-" / "nensäure", not "Mono-" / "und"), blocks become sentences so the parser's note rules drop nutrition tables and addresses.
 
 ### HalalEngine (`domain/engine/`)
 
@@ -108,7 +115,8 @@ This is the core logic and the most likely place for behavior changes. It has no
   - Optional: `references` (list of `{url, title, title_de}`, shown as links under the ingredient: sources for context, not a ruling on the product), `composition_resolves`, and `vegan`/`vegetarian` for `local:` entries (OFF nodes get them from the taxonomy).
   - Descendants inherit the nearest curated ruling (`en:wine` → `en:alcohol`).
   - Uncurated nodes are classified from OFF's vegan flags (`source: off_vegan` / `off_vegetarian` / `off_maybe` / `off_animal`). A node without its own flag combines its parents': "no" wins, then a material's "yes" beats a form's "maybe" ("en:strawberry-puree" under strawberry and puree); mixtures (`-and-`/`-with-` ids) take the most doubtful parent.
-  - The script prints conflicts between equally near ancestors, and entries classified HALAL only from OFF vegan flags whose names mention alcohol (this found "Himbeerlikör"); add a ruling for the node to override.
+  - The script prints conflicts between equally near ancestors, entries classified HALAL only from OFF vegan flags whose names mention alcohol (this found "Himbeerlikör"), and entries where a nearer, milder curated ancestor hides a HARAM one further up (this found "Schweinebrust" under "Brustfleisch"); add a ruling for the node to override.
+  - Taxonomy nodes without vegan flags and without a curated ancestor are skipped (unknown in the app). Most common German ones have rulings now, grouped by kind (plant, mineral/synthetic, cultures, composite bakery/sweets with `composition_resolves`, meat, broth). Left open on purpose: kombucha, generic extracts, spice paste, French fries, Worcestershire sauce, wild animals other than deer/elk/reindeer.
 - **Entry format.** The root is `{version, generated, license, ingredients}`. Ids are the OFF id without `en:` and with `-`→`_` (`soya_lecithin`, `e471`); other languages keep a prefix (`fr_…`). `synonyms` (all languages) and `names_de` (real German names; `name_de` falls back to English) are arrays in the JSON and `|`-joined strings in Room. `alternatives` is a comma-separated string.
 - **Seeding.** `IngredientSeeder` replaces the `ingredients` table whenever the asset's `version` (a content hash) differs from the one stored in DataStore, so asset updates reach existing installs. Callers await it; the first start after an update takes a few seconds.
 
@@ -116,7 +124,7 @@ This is the core logic and the most likely place for behavior changes. It has no
 
 - Room stores enums as their `name` strings. Read them back with `HalalStatus.fromString()`, which is lenient and falls back to UNKNOWN. `DataSource` is read back with `valueOf`.
 - **Version and migration.**
-  - `HalalDatabase` is at **version 6**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`. `MIGRATION_4_5` adds the `feedback` table. `MIGRATION_5_6` adds `ingredients.names_de`.
+  - `HalalDatabase` is at **version 7**. `MIGRATION_1_2` adds the ingredient columns and `products.off_payload`, and keeps the scan history. `MIGRATION_2_3` removes duplicate history rows and adds a unique index on `scan_history.barcode`. `MIGRATION_3_4` adds `vegan`, `vegetarian`, `ruling_references` and `composition_resolves` to `ingredients`. `MIGRATION_4_5` adds the `feedback` table. `MIGRATION_5_6` adds `ingredients.names_de`. `MIGRATION_6_7` adds the `photo_ingredients` table.
   - There is **no** `fallbackToDestructiveMigration()`: a missing migration must fail instead of silently wiping the history. Extend `ALL_MIGRATIONS` and `MigrationTest`.
   - Bumping the version needs a new `Migration`.
   - Schemas are exported to `app/schemas/`.
@@ -126,7 +134,7 @@ This is the core logic and the most likely place for behavior changes. It has no
 ### Test phase: feedback and export
 
 - Testers report wrong verdicts on the result screen ("Fehler melden": expected status or "don't know", comment). Stored in the `feedback` table (one per barcode), see `FeedbackRepository`.
-- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. Reason names are written out in `ExportBuilder.reasonName` because R8 renames the classes (exports from build 6 contain "m", "q", "r"). Export version 2 adds `ingredients_language`, `off_language` and `ignored_text`; the script reads versions 1 and 2. `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
+- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. Reason names are written out in `ExportBuilder.reasonName` because R8 renames the classes (exports from build 6 contain "m", "q", "r"). Export version 2 adds `ingredients_language`, `off_language` and `ignored_text`, version 3 `ingredients_from_photo`; the script reads versions 1 to 3. `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
 - Exports contain personal data. They stay on the phone until shared; put received files into `feedback/` (git-ignored) and run `tools/analyze_feedback.py`. Bump `ExportFile.EXPORT_VERSION` and the script together when fields change.
 
 ### UI language
@@ -137,5 +145,6 @@ This is the core logic and the most likely place for behavior changes. It has no
 ### Known gaps
 
 - User package claims are not invalidated when the product's OFF data changes later.
+- Photographed ingredient lists stay on the phone; they are not sent to Open Food Facts (that needs an OFF account and the write API).
 - Rulings still use `defaultCategory` plus a few madhab fields; a model with separate product facts, sourced fiqh rules and assessments (see the external review) is not implemented.
 - `ProductEntity`'s `name`/`brand`/`image_url`/`ingredients_text` columns are still written, but a cache hit is rebuilt from `off_payload` only.

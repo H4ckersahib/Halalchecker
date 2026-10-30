@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.halalcheck.app.data.preferences.UserPreferencesRepository
 import com.halalcheck.app.data.repository.FeedbackRepository
 import com.halalcheck.app.data.repository.IngredientRepository
+import com.halalcheck.app.data.repository.PhotoIngredientsRepository
 import com.halalcheck.app.data.repository.ProductRepository
 import com.halalcheck.app.domain.engine.HalalEngine
 import com.halalcheck.app.domain.model.DataSource
@@ -14,6 +15,7 @@ import com.halalcheck.app.domain.model.Madhab
 import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.domain.model.ProductFeedback
+import com.halalcheck.app.domain.model.withPhotoIngredients
 import com.halalcheck.app.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
@@ -22,6 +24,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -53,6 +56,7 @@ class ResultViewModel @Inject constructor(
     private val productRepository: ProductRepository,
     private val feedbackRepository: FeedbackRepository,
     private val ingredientRepository: IngredientRepository,
+    private val photoRepository: PhotoIngredientsRepository,
     private val preferences: UserPreferencesRepository,
     private val halalEngine: HalalEngine
 ) : ViewModel() {
@@ -76,6 +80,10 @@ class ResultViewModel @Inject constructor(
             _uiState.update { it.copy(madhab = preferences.madhab.first()) }
             if (barcode.isNotEmpty()) load(forceRefresh = false)
         }
+        // A photo of the ingredient list was saved or deleted (photo screen, delete button)
+        viewModelScope.launch {
+            photoRepository.observe(barcode).drop(1).collect { launchExclusive { load(forceRefresh = false) } }
+        }
     }
 
     private fun launchExclusive(block: suspend () -> Unit) {
@@ -90,7 +98,9 @@ class ResultViewModel @Inject constructor(
         }
         try {
             productRepository.lookupProduct(barcode, forceRefresh).fold(
-                onSuccess = { product ->
+                onSuccess = { offProduct ->
+                    val photo = photoRepository.get(barcode)
+                    val product = photo?.let { offProduct.withPhotoIngredients(it.text, it.savedAt) } ?: offProduct
                     val withClaims = product.copy(userClaims = preferences.packageClaims(barcode))
                     val analyzed = analyze(withClaims, _uiState.value.madhab)
                     store(analyzed)
@@ -184,6 +194,11 @@ class ResultViewModel @Inject constructor(
         )
         _uiState.update { it.copy(feedback = feedback) }
         viewModelScope.launch { feedbackRepository.saveFeedback(feedback) }
+    }
+
+    /** Back to the Open Food Facts ingredients; the observer re-analyzes. */
+    fun deletePhotoIngredients() {
+        viewModelScope.launch { photoRepository.delete(barcode) }
     }
 
     fun deleteFeedback() {

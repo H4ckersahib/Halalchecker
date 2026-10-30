@@ -6,9 +6,13 @@ import com.halalcheck.app.data.local.dao.ScanHistoryDao
 import com.halalcheck.app.data.preferences.UserPreferencesRepository
 import com.halalcheck.app.data.repository.FeedbackRepository
 import com.halalcheck.app.data.repository.IngredientRepository
+import com.halalcheck.app.data.repository.PhotoIngredientsRepository
 import com.halalcheck.app.data.repository.ProductRepository
 import com.halalcheck.app.domain.engine.HalalEngine
+import com.halalcheck.app.domain.model.DataSource
 import com.halalcheck.app.domain.model.HalalStatus
+import com.halalcheck.app.domain.model.Product
+import com.halalcheck.app.domain.model.withPhotoIngredients
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +37,7 @@ class ExportRepository @Inject constructor(
     private val productRepository: ProductRepository,
     private val feedbackRepository: FeedbackRepository,
     private val ingredientRepository: IngredientRepository,
+    private val photoRepository: PhotoIngredientsRepository,
     private val preferences: UserPreferencesRepository,
     private val halalEngine: HalalEngine,
     private val moshi: Moshi
@@ -45,8 +50,13 @@ class ExportRepository @Inject constructor(
             val feedback = feedbackRepository.getAllFeedback().associateBy { it.barcode }
             val entries = (history.keys + feedback.keys).map { barcode ->
                 val scan = history[barcode]
-                val product = productRepository.cachedProduct(barcode)?.let {
-                    halalEngine.analyzeProduct(it.copy(userClaims = preferences.packageClaims(barcode)), index, madhab)
+                // Same data as the result screen: the user's photo replaces the Open Food Facts ingredients
+                val photo = photoRepository.get(barcode)
+                val cached = productRepository.cachedProduct(barcode)
+                    ?: photo?.let { Product(barcode = barcode, name = scan?.productName.orEmpty(), source = DataSource.UNKNOWN) }
+                val product = cached?.let { base ->
+                    val withPhoto = photo?.let { base.withPhotoIngredients(it.text, it.savedAt) } ?: base
+                    halalEngine.analyzeProduct(withPhoto.copy(userClaims = preferences.packageClaims(barcode)), index, madhab)
                 }
                 ExportBuilder.Entry(
                     barcode = barcode,

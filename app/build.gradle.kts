@@ -131,8 +131,9 @@ dependencies {
     implementation(libs.camerax.lifecycle)
     implementation(libs.camerax.view)
 
-    // ML Kit Barcode Scanning
+    // ML Kit: barcode scanning, text recognition for photos of ingredient lists
     implementation(libs.mlkit.barcode)
+    implementation(libs.mlkit.text)
 
     // Hilt
     implementation(libs.hilt.android)

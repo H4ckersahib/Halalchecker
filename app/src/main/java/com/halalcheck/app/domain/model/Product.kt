@@ -41,6 +41,8 @@ data class Product(
     val nameMentions: List<Ingredient> = emptyList(),
     /** Unrecognized label text that is no ingredient ("Weitere Informationen unter ra.org"); not counted. */
     val ignoredText: List<String> = emptyList(),
+    /** When the user saved a photo of the ingredient list that replaces Open Food Facts' data; null if none. */
+    val ingredientsFromPhoto: Long? = null,
     /** Set when Open Food Facts could not be reached and a cached copy from this time is shown. */
     val offlineSince: Long? = null
 ) {
@@ -55,6 +57,20 @@ data class Product(
     /** Only the user's confirmation counts for the verdict, never the Open Food Facts tag alone. */
     val halalConfirmed: Boolean get() = PackageClaim.HALAL in userClaims
 }
+
+/**
+ * The user's photo of the ingredient list replaces what Open Food Facts has (or lacks): its text,
+ * its own parse and its additive list. Labels stay, they are claims on the package.
+ */
+fun Product.withPhotoIngredients(text: String, savedAt: Long): Product = copy(
+    ingredientsText = text,
+    ingredientsLanguage = null,
+    sourceIngredients = emptyList(),
+    sourceIngredientsLanguage = null,
+    additivesTags = emptyList(),
+    ingredientsFromPhoto = savedAt,
+    source = if (source == DataSource.UNKNOWN) DataSource.LOCAL else source
+)
 
 enum class PackageClaim { VEGAN, VEGETARIAN, HALAL }
 

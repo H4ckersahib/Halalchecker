@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.halalcheck.app.data.local.HalalDatabase
 import com.halalcheck.app.data.local.dao.FeedbackDao
 import com.halalcheck.app.data.local.dao.IngredientDao
+import com.halalcheck.app.data.local.dao.PhotoIngredientsDao
 import com.halalcheck.app.data.local.dao.ProductDao
 import com.halalcheck.app.data.local.dao.ScanHistoryDao
 import dagger.Module
@@ -49,5 +50,10 @@ object DatabaseModule {
     @Provides
     fun provideFeedbackDao(database: HalalDatabase): FeedbackDao {
         return database.feedbackDao()
+    }
+
+    @Provides
+    fun providePhotoIngredientsDao(database: HalalDatabase): PhotoIngredientsDao {
+        return database.photoIngredientsDao()
     }
 }

@@ -25,6 +25,7 @@ moshi = "1.15.1"
 # CameraX & ML Kit
 camerax = "1.4.1"
 mlkit-barcode = "17.3.0"
+mlkit-text = "19.0.1"
 
 # Hilt
 hilt = "2.53.1"
@@ -84,6 +85,8 @@ camerax-view = { group = "androidx.camera", name = "camera-view", version.ref = 
 
 # ML Kit
 mlkit-barcode = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkit-barcode" }
+# Latin script text recognition through Google Play services: the bundled variant adds ~11 MB per ABI
+mlkit-text = { group = "com.google.android.gms", name = "play-services-mlkit-text-recognition", version.ref = "mlkit-text" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

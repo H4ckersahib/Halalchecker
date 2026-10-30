@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.AlertDialog
@@ -89,6 +90,7 @@ import java.util.Locale
 @Composable
 fun ResultScreen(
     onNavigateBack: () -> Unit,
+    onTakePhoto: (barcode: String) -> Unit,
     viewModel: ResultViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -125,7 +127,11 @@ fun ResultScreen(
         when {
             uiState.isLoading -> LoadingContent(contentModifier)
             uiState.error != null -> ErrorContent(uiState.error!!, onRetry = viewModel::retry, modifier = contentModifier)
-            product != null && product.source == DataSource.UNKNOWN -> NotFoundContent(uiState.barcode, contentModifier)
+            product != null && product.source == DataSource.UNKNOWN -> NotFoundContent(
+                barcode = uiState.barcode,
+                onTakePhoto = { onTakePhoto(uiState.barcode) },
+                modifier = contentModifier
+            )
             product != null -> ProductContent(
                 product = product,
                 madhab = uiState.madhab,
@@ -136,6 +142,8 @@ fun ResultScreen(
                 feedback = uiState.feedback,
                 onSaveFeedback = viewModel::saveFeedback,
                 onDeleteFeedback = viewModel::deleteFeedback,
+                onTakePhoto = { onTakePhoto(product.barcode) },
+                onDeletePhoto = viewModel::deletePhotoIngredients,
                 modifier = contentModifier
             )
         }
@@ -187,7 +195,7 @@ private fun ErrorContent(error: ResultError, onRetry: () -> Unit, modifier: Modi
 }
 
 @Composable
-private fun NotFoundContent(barcode: String, modifier: Modifier) {
+private fun NotFoundContent(barcode: String, onTakePhoto: () -> Unit, modifier: Modifier) {
     val uriHandler = LocalUriHandler.current
     CenteredMessage(
         emoji = "🔍",
@@ -195,10 +203,15 @@ private fun NotFoundContent(barcode: String, modifier: Modifier) {
         text = stringResource(R.string.result_not_found_hint, barcode),
         modifier = modifier
     ) {
+        // Checked right away from a photo; adding it to Open Food Facts helps everyone later
         Button(
-            onClick = { uriHandler.openUri(OpenFoodFactsApi.productPageUrl(barcode)) },
+            onClick = onTakePhoto,
             colors = ButtonDefaults.buttonColors(containerColor = Emerald500)
         ) {
+            Icon(Icons.Default.PhotoCamera, contentDescription = null, modifier = Modifier.size(18.dp))
+            Text(stringResource(R.string.photo_take_list), modifier = Modifier.padding(start = 8.dp))
+        }
+        OutlinedButton(onClick = { uriHandler.openUri(OpenFoodFactsApi.productPageUrl(barcode)) }) {
             Text(stringResource(R.string.result_add_on_off))
         }
     }
@@ -248,6 +261,8 @@ private fun ProductContent(
     feedback: ProductFeedback?,
     onSaveFeedback: (HalalStatus?, String) -> Unit,
     onDeleteFeedback: () -> Unit,
+    onTakePhoto: () -> Unit,
+    onDeletePhoto: () -> Unit,
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
@@ -276,6 +291,24 @@ private fun ProductContent(
         // Status hero
         item {
             StatusCard(product)
+        }
+
+        product.ingredientsFromPhoto?.let { savedAt ->
+            item { PhotoNoticeCard(savedAt = savedAt, onEdit = onTakePhoto, onDelete = onDeletePhoto) }
+        }
+        // Nothing to check: the list is on the package in the user's hand
+        if (product.analyzedIngredients.isEmpty()) {
+            item {
+                Button(
+                    onClick = onTakePhoto,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Emerald500)
+                ) {
+                    Icon(Icons.Default.PhotoCamera, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Text(stringResource(R.string.photo_take_list), modifier = Modifier.padding(start = 8.dp))
+                }
+            }
         }
 
         if (product.labelConflict) {
@@ -450,6 +483,20 @@ private fun ProductContent(
         // Testers report wrong verdicts; exported from Settings
         item {
             FeedbackCard(feedback = feedback, onSave = onSaveFeedback, onDelete = onDeleteFeedback)
+        }
+
+        // Open Food Facts has a wrong or outdated list
+        if (product.ingredientsFromPhoto == null && product.analyzedIngredients.isNotEmpty()) {
+            item {
+                OutlinedButton(
+                    onClick = onTakePhoto,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Icon(Icons.Default.PhotoCamera, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Text(stringResource(R.string.photo_take_own), modifier = Modifier.padding(start = 8.dp))
+                }
+            }
         }
 
         // Report a wrong result at the data source
@@ -766,6 +813,29 @@ private fun ConflictText(text: String) {
         fontWeight = FontWeight.SemiBold,
         color = MaterialTheme.colorScheme.error
     )
+}
+
+@Composable
+private fun PhotoNoticeCard(savedAt: Long, onEdit: () -> Unit, onDelete: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 16.dp, bottom = 4.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Default.PhotoCamera, contentDescription = null)
+                Text(
+                    text = stringResource(R.string.photo_notice, formatDateTime(savedAt)),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+            Row(modifier = Modifier.align(Alignment.End)) {
+                TextButton(onClick = onEdit) { Text(stringResource(R.string.photo_edit)) }
+                TextButton(onClick = onDelete) { Text(stringResource(R.string.photo_delete)) }
+            }
+        }
+    }
 }
 
 @Composable

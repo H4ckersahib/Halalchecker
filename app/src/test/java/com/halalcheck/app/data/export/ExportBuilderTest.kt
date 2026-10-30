@@ -51,7 +51,7 @@ class ExportBuilderTest {
             )
         )
         val json = ExportBuilder.toJson(moshi, export)
-        assertTrue(json.contains("\"export_version\": 2"))
+        assertTrue(json.contains("\"export_version\": 3"))
         assertTrue(json.contains("\"ingredients_db_version\": 42"))
 
         val parsed = moshi.adapter(ExportFile::class.java).fromJson(json)!!

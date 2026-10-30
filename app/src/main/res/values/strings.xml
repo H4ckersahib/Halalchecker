@@ -32,7 +32,7 @@
     <string name="result_loading">Produkt wird analysiert…</string>
     <string name="result_unnamed_product">Unbekanntes Produkt</string>
     <string name="result_not_found">Produkt nicht gefunden</string>
-    <string name="result_not_found_hint">Open Food Facts kennt den Barcode %s noch nicht. Du kannst das Produkt dort mit Fotos der Zutatenliste hinzufügen – danach kann HalalCheck es prüfen.</string>
+    <string name="result_not_found_hint">Open Food Facts kennt den Barcode %s noch nicht. Fotografiere die Zutatenliste, dann prüft HalalCheck sie sofort. Wenn du das Produkt auch bei Open Food Facts hinzufügst, profitieren alle davon.</string>
     <string name="result_add_on_off">Produkt bei Open Food Facts hinzufügen</string>
     <string name="result_fix_on_off">Daten auf Open Food Facts korrigieren</string>
     <string name="result_error_network">Netzwerkfehler: Das Produkt konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.</string>
@@ -45,7 +45,7 @@
         <item quantity="one">%1$d von %2$d Zutat erkannt, %3$d davon aus einem zusammengesetzten Wort abgeleitet</item>
         <item quantity="other">%1$d von %2$d Zutaten erkannt, %3$d davon aus einem zusammengesetzten Wort abgeleitet</item>
     </plurals>
-    <string name="result_no_ingredients">Keine Zutatenliste: Open Food Facts hat für dieses Produkt noch keine. Mit einem Foto der Zutatenliste kannst du sie dort ergänzen, dann kann HalalCheck das Produkt prüfen.</string>
+    <string name="result_no_ingredients">Keine Zutatenliste: Open Food Facts hat für dieses Produkt noch keine. Fotografiere die Zutatenliste auf der Packung, dann prüft HalalCheck sie sofort.</string>
     <string name="result_add_ingredients_on_off">Zutatenliste auf Open Food Facts ergänzen</string>
     <string name="result_name_mentions">Der Produktname nennt %s. Die erkannten Zutaten enthalten es nicht – bitte auf der Verpackung prüfen.</string>
     <!-- Language code of this resource folder; compared with the language of the ingredient list -->
@@ -175,4 +175,24 @@
     <string name="settings_export">Testdaten exportieren</string>
     <string name="settings_export_failed">Der Export ist fehlgeschlagen.</string>
     <string name="export_share_title">Testdaten teilen</string>
+
+    <!-- Photo of the ingredient list (text recognition on the device) -->
+    <string name="photo_title">Zutatenliste fotografieren</string>
+    <string name="photo_hint">Fotografiere nur die Zutatenliste: gerade, scharf und gut beleuchtet.</string>
+    <string name="photo_no_camera">Ohne Kamerazugriff kannst du ein Foto der Zutatenliste aus der Galerie wählen.</string>
+    <string name="photo_nothing_recognized">Auf dem Foto wurde kein Text erkannt. Versuch es näher, schärfer oder mit mehr Licht.</string>
+    <string name="photo_unavailable">Die Texterkennung ist gerade nicht verfügbar. Sie braucht die Google Play-Dienste und lädt beim ersten Mal ihr Modell; versuch es gleich noch einmal.</string>
+    <string name="photo_gallery">Aus Galerie</string>
+    <string name="photo_take">Foto aufnehmen</string>
+    <string name="photo_recognizing">Text wird erkannt…</string>
+    <string name="photo_edit_title">Erkannter Text</string>
+    <string name="photo_edit_hint">Prüfe den Text und korrigiere Erkennungsfehler. Geprüft wird genau das, was hier steht.</string>
+    <string name="photo_retake">Neues Foto</string>
+    <string name="photo_check">Zutaten prüfen</string>
+    <string name="photo_privacy">Das Foto wird nur auf deinem Handy ausgewertet und nicht hochgeladen.</string>
+    <string name="photo_take_list">Zutatenliste fotografieren</string>
+    <string name="photo_take_own">Zutatenliste stimmt nicht? Selbst fotografieren</string>
+    <string name="photo_notice">Geprüft wurden die Zutaten aus deinem Foto vom %s, nicht die Daten von Open Food Facts.</string>
+    <string name="photo_edit">Bearbeiten</string>
+    <string name="photo_delete">Foto-Text löschen</string>
 </resources>

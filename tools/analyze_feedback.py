@@ -10,14 +10,15 @@ The report lists, most useful first:
 3. the most frequent unknown ingredients (candidates for tools/halal_rulings.json or synonyms),
 4. the ingredients that most often make products doubtful or haram,
 5. contradicted vegan/vegetarian labels and disagreeing data sources,
-6. label text that was not counted as an ingredient, and lists not in German (export version 2).
+6. label text that was not counted as an ingredient, and lists not in German (export version 2),
+   and products whose list the tester photographed (version 3).
 """
 import collections
 import json
 import sys
 from pathlib import Path
 
-SUPPORTED_EXPORT_VERSIONS = {1, 2}
+SUPPORTED_EXPORT_VERSIONS = {1, 2, 3}
 
 
 def load_exports(folder):
@@ -81,6 +82,8 @@ def report(exports):
             out.append(f"- Kommentar: „{fb['comment']}“")
         if scan.get("user_claims"):
             out.append(f"- Bestätigte Kennzeichnung: {', '.join(scan['user_claims'])}")
+        if scan.get("ingredients_from_photo"):
+            out.append("- Zutaten aus dem eigenen Foto des Testers (nicht von Open Food Facts)")
         if scan.get("off_labels"):
             out.append(f"- OFF-Labels: {', '.join(scan['off_labels'])}")
         flagged = flagged_ingredients(scan)
@@ -137,6 +140,10 @@ def report(exports):
     out.append(f"## 6. Nicht als Zutat gewertet ({len(ignored)} Produkte)\n")
     for scan in ignored:
         out.append(f"- {product_label(scan)}: {' · '.join(scan['ignored_text'])}")
+    photographed = [s for _, _, s in scans if s.get("ingredients_from_photo")]
+    out.append(f"\nZutatenliste selbst fotografiert ({len(photographed)}):")
+    for scan in photographed:
+        out.append(f"- {product_label(scan)}: {scan.get('ingredients_text')}")
     foreign = [s for _, _, s in scans if s.get("ingredients_language") not in (None, "de")]
     out.append(f"\nZutatenliste nicht auf Deutsch ({len(foreign)}):")
     for scan in foreign:

@@ -1,5 +1,5 @@
 {
- "version": 44210385,
+ "version": 100160791,
  "generated": "2026-10-30",
  "license": "Open Database License (ODbL) 1.0. Ingredient names, synonyms and vegan/vegetarian flags: Open Food Facts taxonomies (https://world.openfoodfacts.org). Halal rulings: HalalCheck.",
  "ingredients": [
@@ -18,8 +18,13 @@
    "name_de": "50-63% unsalted vegetable fat",
    "name_en": "50-63% unsalted vegetable fat",
    "name_fr": "Matière grasse végétale allégée à 50-63%",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -28,8 +33,13 @@
    "name_de": "50-63% unsalted vegetable fat high in omega 3",
    "name_en": "50-63% unsalted vegetable fat high in omega 3",
    "name_fr": "Matière grasse végétale allégée à 50-63% riche en oméga 3",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -38,8 +48,13 @@
    "name_de": "50-63% unsalted vegetable fat with plant sterols esters",
    "name_en": "50-63% unsalted vegetable fat with plant sterols esters",
    "name_fr": "Matière grasse végétale allégée à 50-63% aux esters de stérol végétal",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -59,8 +74,13 @@
    "name_de": "70% unsalted vegetable fat",
    "name_en": "70% unsalted vegetable fat",
    "name_fr": "Matière grasse végétale à 70%",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -82,8 +102,13 @@
    "name_de": "80% unsalted vegetable fat",
    "name_en": "80% unsalted vegetable fat",
    "name_fr": "Matière grasse végétale à 80%",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -975,6 +1000,24 @@
    "vegetarian": "yes"
   },
   {
+   "id": "almond_milk",
+   "name_de": "almond milk",
+   "name_en": "almond milk",
+   "name_fr": "lait d'amande",
+   "synonyms": [
+    "Mandeldrink",
+    "Mandelmilch"
+   ],
+   "names_de": [
+    "Mandeldrink",
+    "Mandelmilch"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "almond_oil",
    "name_de": "Mandelöl",
    "name_en": "almond oil",
@@ -1616,6 +1659,23 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "aniseed_oil",
+   "name_de": "anisöl",
+   "name_en": "aniseed oil",
+   "name_fr": "huile d'anis",
+   "synonyms": [
+    "anise oil",
+    "huile essentielle d'anis"
+   ],
+   "names_de": [
+    "anisöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "aniseseed",
    "name_de": "aniseseed",
    "name_en": "aniseseed",
@@ -1625,15 +1685,25 @@
    "vegetarian": "yes"
   },
   {
+   "id": "antelope",
+   "name_de": "antelope",
+   "name_en": "antelope",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "antelope_meat",
    "name_de": "antelope meat",
    "name_en": "antelope meat",
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "meat",
+   "inferred_from": "antelope",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -1935,6 +2005,17 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "apple_preparation",
+   "name_de": "apple preparation",
+   "name_en": "apple preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "apple_pulp",
@@ -2715,6 +2796,26 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "aspic",
+   "name_de": "Sulz",
+   "name_en": "aspic",
+   "name_fr": "aspic",
+   "synonyms": [
+    "Aspik",
+    "meat jelly",
+    "gelée"
+   ],
+   "names_de": [
+    "Sulz",
+    "Aspik"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Jelly made from gelatine",
+   "reason_de": "Gelee aus Gelatine",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "atlantic_bay_scallop",
@@ -3962,6 +4063,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "bear",
+   "name_de": "bear",
+   "name_en": "bear",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
+  },
+  {
    "id": "bear_meat",
    "name_de": "bear meat",
    "name_en": "bear meat",
@@ -4034,6 +4146,17 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "beaver",
+   "name_de": "beaver",
+   "name_en": "beaver",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
   },
   {
    "id": "beaver_meat",
@@ -5491,13 +5614,56 @@
    "vegetarian": "yes"
   },
   {
+   "id": "biscuit",
+   "name_de": "Kekse",
+   "name_en": "biscuit",
+   "name_tr": "Bisküvi",
+   "name_ar": "بسكويت",
+   "name_fr": "biscuit",
+   "synonyms": [
+    "Biskuit",
+    "Keks",
+    "biscuits",
+    "biscuits sucrés",
+    "biscuit sucré"
+   ],
+   "names_de": [
+    "Kekse",
+    "Biskuit",
+    "Keks"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "biscuit_and_chocolate",
    "name_de": "biscuit and chocolate",
    "name_en": "biscuit and chocolate",
-   "default_category": "HALAL",
-   "source": "off_vegetarian",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit",
    "vegan": "maybe",
    "vegetarian": "yes"
+  },
+  {
+   "id": "biscuit_flavored_paste",
+   "name_de": "biscuit flavored paste",
+   "name_en": "biscuit flavored paste",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit"
   },
   {
    "id": "biscuit_flavouring",
@@ -5511,6 +5677,36 @@
    "inferred_from": "flavouring",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "biscuit_pieces",
+   "name_de": "Keksstücke",
+   "name_en": "Biscuit pieces",
+   "name_fr": "morceaux de biscuits",
+   "synonyms": [
+    "cookie pieces",
+    "morceaux de biscuit"
+   ],
+   "names_de": [
+    "Keksstücke"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "biscuit_preparation",
+   "name_de": "biscuit preparation",
+   "name_en": "biscuit preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "bitter_almond",
@@ -5798,6 +5994,17 @@
    "inferred_from": "spice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "black_currant_cinnamon_preparation",
+   "name_de": "black currant cinnamon preparation",
+   "name_en": "black currant cinnamon preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "black_eyed_pea",
@@ -6476,6 +6683,23 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "blackcurrant_juice_from_concentrate",
+   "name_de": "schwarzer Johannisbeersaft aus Konzentrat",
+   "name_en": "blackcurrant juice from concentrate",
+   "name_fr": "jus de cassis à base de concentré",
+   "synonyms": [
+    "schwarze Johannisbeere-Konzentrat"
+   ],
+   "names_de": [
+    "schwarzer Johannisbeersaft aus Konzentrat",
+    "schwarze Johannisbeere-Konzentrat"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "blackline_tilefish",
    "name_de": "blackline tilefish",
    "name_en": "blackline tilefish",
@@ -6812,6 +7036,19 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "blood_orange_essential_oil",
+   "name_de": "Blutorangenöl",
+   "name_en": "blood orange essential oil",
+   "name_fr": "huile essentielle d'orange sanguine",
+   "names_de": [
+    "Blutorangenöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "blood_orange_juice",
@@ -7167,6 +7404,21 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "blueberry_filling",
+   "name_de": "Heidelbeerfüllung",
+   "name_en": "blueberry filling",
+   "name_fr": "garniture aux myrtilles",
+   "names_de": [
+    "Heidelbeerfüllung"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "blueberry_flavouring",
@@ -8016,6 +8268,20 @@
    "vegetarian": "yes"
   },
   {
+   "id": "breast",
+   "name_de": "Brustfleisch",
+   "name_en": "breast",
+   "name_fr": "poitrine",
+   "names_de": [
+    "Brustfleisch"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "bresaola",
    "name_de": "Bresaola",
    "name_en": "bresaola",
@@ -8035,6 +8301,28 @@
    "inferred_from": "beef",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "bretzel",
+   "name_de": "bretzel",
+   "name_en": "bretzel",
+   "name_fr": "bretzel",
+   "synonyms": [
+    "Brezel",
+    "Breze",
+    "Laugenbrezel"
+   ],
+   "names_de": [
+    "Brezel",
+    "Breze",
+    "Laugenbrezel"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "brewer_s_yeast",
@@ -8158,6 +8446,41 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "brine",
+   "name_de": "Sole",
+   "name_en": "brine",
+   "name_tr": "Salamura",
+   "name_ar": "أجاج",
+   "name_fr": "saumure",
+   "synonyms": [
+    "Salzlake"
+   ],
+   "names_de": [
+    "Sole",
+    "Salzlake"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
+   "id": "brioche",
+   "name_de": "brioche",
+   "name_en": "brioche",
+   "name_ar": "بريوش",
+   "name_fr": "Brioches",
+   "names_de": [
+    "Brioche"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "british_beef",
@@ -8545,6 +8868,34 @@
    "vegetarian": "yes"
   },
   {
+   "id": "broth",
+   "name_de": "Brühe",
+   "name_en": "broth",
+   "name_tr": "Etsuyu",
+   "name_ar": "زومات",
+   "name_fr": "bouillon",
+   "synonyms": [
+    "Brühen",
+    "Bouillons",
+    "Fond",
+    "broths",
+    "stock",
+    "Stocks"
+   ],
+   "names_de": [
+    "Brühe",
+    "Brühen",
+    "Bouillons",
+    "Bouillon",
+    "Fond"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
+  },
+  {
    "id": "brown_basmati_rice",
    "name_de": "brauner Basmatireis",
    "name_en": "brown basmati rice",
@@ -8629,7 +8980,10 @@
     "brauner Leinsamen"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -8827,6 +9181,20 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "browning",
+   "name_de": "Bratensoße",
+   "name_en": "browning",
+   "name_fr": "dorure",
+   "names_de": [
+    "Bratensoße"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "brussels_sprouts",
@@ -9202,6 +9570,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "butter_biscuit",
+   "name_de": "butter biscuit",
+   "name_en": "butter biscuit",
+   "name_fr": "Biscuits au beurre",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "butter_flavouring",
    "name_de": "butteraroma",
    "name_en": "butter flavouring",
@@ -9463,6 +9843,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "cacao_glaze",
+   "name_de": "cacao glaze",
+   "name_en": "cacao glaze",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "cactus",
    "name_de": "cactus",
    "name_en": "cactus",
@@ -9578,6 +9969,29 @@
    "vegetarian": "yes"
   },
   {
+   "id": "cake",
+   "name_de": "Kuchen",
+   "name_en": "cake",
+   "name_tr": "Kek",
+   "name_ar": "كعك",
+   "name_fr": "gâteaux",
+   "synonyms": [
+    "Torte",
+    "cakes",
+    "Gâteau"
+   ],
+   "names_de": [
+    "Kuchen",
+    "Torte"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "calamansi",
    "name_de": "Calamansi",
    "name_en": "calamansi",
@@ -9607,6 +10021,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "calcium_beta_hydroxy_beta_methyl_butyrate",
+   "name_de": "calcium beta-hydroxy beta-methyl butyrate",
+   "name_en": "calcium beta-hydroxy beta-methyl butyrate",
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "calcium_bisglycinate",
@@ -10113,6 +10536,27 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "candied_orange_peel",
+   "name_de": "kandierte Orangenschalen",
+   "name_en": "candied orange peel",
+   "name_fr": "écorces d'orange confites",
+   "synonyms": [
+    "Orangeat",
+    "Orangenschalen confiert",
+    "candied orange zest",
+    "écorces d'oranges confites"
+   ],
+   "names_de": [
+    "kandierte Orangenschalen",
+    "Orangeat",
+    "Orangenschalen confiert"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "candied_papaya",
@@ -10701,6 +11145,26 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "caramel_syrup",
+   "name_de": "Karamellsirup",
+   "name_en": "caramel syrup",
+   "name_fr": "sirop de caramel",
+   "synonyms": [
+    "Caramelsirup",
+    "Karamell-Sirup",
+    "sirop caramel"
+   ],
+   "names_de": [
+    "Karamellsirup",
+    "Caramelsirup",
+    "Karamell-Sirup"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
+  },
+  {
    "id": "caramelised_peanut",
    "name_de": "karamellisierte erdnüsse",
    "name_en": "caramelised peanut",
@@ -10769,12 +11233,25 @@
     "karamellisierter Zuckersirup"
    ],
    "default_category": "HALAL",
-   "reason": "Plant-derived sweetener",
-   "reason_de": "Pflanzlicher Süßstoff",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
    "source": "consensus",
-   "inferred_from": "sugar",
+   "inferred_from": "caramel_syrup",
    "vegan": "maybe",
    "vegetarian": "yes"
+  },
+  {
+   "id": "caramelized_apple",
+   "name_de": "caramelized apple",
+   "name_en": "caramelized apple",
+   "name_fr": "pomme caramélisée",
+   "synonyms": [
+    "pommes caramélisées"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "caramelized_malted_wheat_flour",
@@ -10794,6 +11271,19 @@
    "inferred_from": "wheat_flour",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "caramelized_pecan_nuts",
+   "name_de": "karamellisierte Pekannüsse",
+   "name_en": "caramelized pecan nuts",
+   "name_fr": "noix de pécan caramélisées",
+   "names_de": [
+    "karamellisierte Pekannüsse"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "caraway",
@@ -11535,6 +12025,20 @@
    "vegetarian": "yes"
   },
   {
+   "id": "casing",
+   "name_de": "Hülle",
+   "name_en": "casing",
+   "name_fr": "enveloppe",
+   "names_de": [
+    "Hülle"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Natural casing from pig, sheep or cattle intestines, or collagen or cellulose",
+   "reason_de": "Naturdarm von Schwein, Schaf oder Rind, oder Kollagen bzw. Zellulose",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "cassava",
    "name_de": "Maniok",
    "name_en": "cassava",
@@ -12023,6 +12527,22 @@
    "vegetarian": "yes"
   },
   {
+   "id": "cereal_crispies",
+   "name_de": "Getreide Crispies",
+   "name_en": "cereal crispies",
+   "name_fr": "crispies de céréales",
+   "synonyms": [
+    "céréales croustillantes"
+   ],
+   "names_de": [
+    "Getreide Crispies"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "cereal_extrudate",
    "name_de": "Getreideextrudat",
    "name_en": "cereal extrudate",
@@ -12080,6 +12600,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "cereal_with_cocoa",
+   "name_de": "cereal with cocoa",
+   "name_en": "cereal with cocoa",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "cereals_containing_gluten",
@@ -12664,6 +13193,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "cherry_preparation",
+   "name_de": "cherry preparation",
+   "name_en": "cherry preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "cherry_puree",
    "name_de": "Kirschpüree",
    "name_en": "cherry purée",
@@ -13185,6 +13725,19 @@
    "vegetarian": "no"
   },
   {
+   "id": "chicken_flavour_taste",
+   "name_de": "Aroma mit Hühnerfleischgeschmack",
+   "name_en": "Chicken flavour taste",
+   "names_de": [
+    "Aroma mit Hühnerfleischgeschmack"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
+  },
+  {
    "id": "chicken_flavouring",
    "name_de": "Hühnergewürz",
    "name_en": "chicken flavouring",
@@ -13485,6 +14038,25 @@
    "vegetarian": "no"
   },
   {
+   "id": "chickend_fond",
+   "name_de": "chickend fond",
+   "name_en": "chickend fond",
+   "name_fr": "fond de poulet",
+   "synonyms": [
+    "Hühnerfond",
+    "Hühnerbrühe"
+   ],
+   "names_de": [
+    "Hühnerfond",
+    "Hühnerbrühe"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "chickpea",
    "name_de": "Kichererbse",
    "name_en": "chickpea",
@@ -13674,6 +14246,15 @@
    "inferred_from": "mussel",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "chili_hummus",
+   "name_de": "chili hummus",
+   "name_en": "chili hummus",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "chili_in_vinegar",
@@ -14136,6 +14717,42 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "chocolate_glaze",
+   "name_de": "Schokoladenglasur",
+   "name_en": "chocolate glaze",
+   "name_fr": "Glaçage au chocolat",
+   "names_de": [
+    "Schokoladenglasur"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "chocolate_ice_cream",
+   "name_de": "Schokoladen-Eiscreme",
+   "name_en": "chocolate ice cream",
+   "name_fr": "glace au chocolat",
+   "synonyms": [
+    "Schokoladen-Eis",
+    "Schokoladeneis"
+   ],
+   "names_de": [
+    "Schokoladen-Eiscreme",
+    "Schokoladen-Eis",
+    "Schokoladeneis"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "chocolate_liqueur",
    "name_de": "Schokoladenlikör",
    "name_en": "chocolate liqueur",
@@ -14280,6 +14897,19 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "choline_chloride",
+   "name_de": "Cholinchlorid",
+   "name_en": "Choline chloride",
+   "name_fr": "chlorure de choline",
+   "names_de": [
+    "Cholinchlorid"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "chop_grilled_lamb_rib",
@@ -15232,9 +15862,13 @@
    "id": "cocoa_biscuit",
    "name_de": "cocoa biscuit",
    "name_en": "cocoa biscuit",
-   "default_category": "HALAL",
-   "source": "consensus",
-   "inferred_from": "cocoa",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -17869,6 +18503,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "cooked_shortbread_dough",
+   "name_de": "Cooked shortbread dough",
+   "name_en": "Cooked shortbread dough",
+   "name_fr": "Pâte sablée cuite",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "shortbread"
+  },
+  {
    "id": "cooked_spelt",
    "name_de": "cooked spelt",
    "name_en": "cooked spelt",
@@ -17896,6 +18543,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "cooked_sweet_potato",
+   "name_de": "Cooked sweet potato",
+   "name_en": "Cooked sweet potato",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "cooked_tagliatelle",
@@ -18006,6 +18662,24 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "cooking_broth",
+   "name_de": "Suppenbrühe",
+   "name_en": "cooking broth",
+   "name_fr": "bouillon de cuisson",
+   "synonyms": [
+    "Gemüsebrühe oder Fleischbrühe"
+   ],
+   "names_de": [
+    "Suppenbrühe",
+    "Gemüsebrühe oder Fleischbrühe"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "cooking_enhancer",
@@ -19247,6 +19921,17 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "cream_filling",
+   "name_de": "cream filling",
+   "name_en": "cream filling",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "cream_flavouring",
    "name_de": "sahnearoma",
    "name_en": "cream flavouring",
@@ -19426,6 +20111,20 @@
    "is_class": true
   },
   {
+   "id": "creaming_powder",
+   "name_de": "creaming powder",
+   "name_en": "creaming powder",
+   "synonyms": [
+    "creamer"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "creamy_honey",
    "name_de": "Honig cremig",
    "name_en": "creamy honey",
@@ -19500,6 +20199,28 @@
    "vegetarian": "yes"
   },
   {
+   "id": "crepe",
+   "name_de": "Crêpe",
+   "name_en": "Crêpe",
+   "name_tr": "Akıtma",
+   "name_ar": "بان كيك",
+   "name_fr": "crepe",
+   "synonyms": [
+    "Crêpes",
+    "crepes"
+   ],
+   "names_de": [
+    "Crêpe",
+    "Crêpes"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "cress",
    "name_de": "Kresse",
    "name_en": "cress",
@@ -19543,6 +20264,24 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "crocant",
+   "name_de": "Krokant",
+   "name_en": "crocant",
+   "name_fr": "nougatine",
+   "synonyms": [
+    "brittle",
+    "Haselnusskrokant"
+   ],
+   "names_de": [
+    "Krokant",
+    "Haselnusskrokant"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
   },
   {
    "id": "crottin_cheese",
@@ -19607,6 +20346,27 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "crouton",
+   "name_de": "Croûton",
+   "name_en": "crouton",
+   "name_tr": "kruton",
+   "name_fr": "croûton",
+   "synonyms": [
+    "Croutons",
+    "croûtons"
+   ],
+   "names_de": [
+    "Croûton",
+    "Croutons"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "crucian_carp",
    "name_de": "Crucian carp",
    "name_en": "Crucian carp",
@@ -19638,6 +20398,18 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "crunchy_cereals",
+   "name_de": "knusprige Cerealien",
+   "name_en": "crunchy cereals",
+   "names_de": [
+    "knusprige Cerealien"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "crunchy_peanut_butter",
@@ -20030,6 +20802,22 @@
    "inferred_from": "meat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "curing_salt",
+   "name_de": "pökelsalz",
+   "name_en": "curing salt",
+   "name_ar": "ملح معالج",
+   "synonyms": [
+    "curing salts"
+   ],
+   "names_de": [
+    "pökelsalz"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "curly_endive",
@@ -20736,6 +21524,22 @@
    "vegetarian": "yes"
   },
   {
+   "id": "de_backoblate",
+   "name_de": "Backoblate",
+   "name_en": "Backoblate",
+   "synonyms": [
+    "Backoblaten"
+   ],
+   "names_de": [
+    "Backoblate",
+    "Backoblaten"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "de_bergkäse",
    "name_de": "Bergkäse",
    "name_en": "Bergkäse",
@@ -20915,6 +21719,43 @@
    "e_number": "e440a",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "de_färbende_frucht_und_pflanzenkonzentrate",
+   "name_de": "färbende Frucht- und Pflanzenkonzentrate",
+   "name_en": "färbende Frucht- und Pflanzenkonzentrate",
+   "names_de": [
+    "färbende Frucht- und Pflanzenkonzentrate"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "de_färbende_gemüsekonzentrate",
+   "name_de": "färbende Gemüsekonzentrate",
+   "name_en": "färbende Gemüsekonzentrate",
+   "names_de": [
+    "färbende Gemüsekonzentrate"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "de_färbende_konzentrate",
+   "name_de": "färbende Konzentrate",
+   "name_en": "färbende Konzentrate",
+   "name_fr": "concentré colorant",
+   "names_de": [
+    "färbende Konzentrate"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "de_gelbe_linsen",
@@ -21139,6 +21980,18 @@
    "vegetarian": "no"
   },
   {
+   "id": "de_jodiertes_nitritpökelsalz",
+   "name_de": "jodiertes Nitritpökelsalz",
+   "name_en": "jodiertes Nitritpökelsalz",
+   "names_de": [
+    "jodiertes Nitritpökelsalz"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "de_joghurt_mild_mit_magermilchpulverzusatz",
    "name_de": "Joghurt mild mit Magermilchpulverzusatz",
    "name_en": "Joghurt mild mit Magermilchpulverzusatz",
@@ -21191,6 +22044,18 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "de_kakaohaltiges_getränkepulver",
+   "name_de": "kakaohaltiges Getränkepulver",
+   "name_en": "kakaohaltiges Getränkepulver",
+   "names_de": [
+    "kakaohaltiges Getränkepulver"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "de_karottengranulat",
@@ -21251,7 +22116,10 @@
     "Leinsamen geschrotet"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -21299,6 +22167,19 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "de_markklößchen",
+   "name_de": "Markklößchen",
+   "name_en": "Markklößchen",
+   "names_de": [
+    "Markklößchen"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "de_mehrfruchtsaft_aus_mehrfruchtsaftkonzentrat",
@@ -21506,6 +22387,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "de_reisextrudat",
+   "name_de": "Reisextrudat",
+   "name_en": "Reisextrudat",
+   "names_de": [
+    "Reisextrudat"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "de_rindergehacktes",
    "name_de": "rindergehacktes",
    "name_en": "rindergehacktes",
@@ -21552,6 +22445,18 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "de_saatenmischung",
+   "name_de": "Saatenmischung",
+   "name_en": "Saatenmischung",
+   "names_de": [
+    "Saatenmischung"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "de_sauerkirschsaft_aus_sauerkirschsaftkonzentrat",
@@ -21638,6 +22543,51 @@
    "inferred_from": "cream",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "de_schokolierte_cornflakes",
+   "name_de": "Schokolierte Cornflakes",
+   "name_en": "Schokolierte Cornflakes",
+   "name_fr": "cornflakes au chocolat",
+   "names_de": [
+    "Schokolierte Cornflakes"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "de_schokolierter_puffreis",
+   "name_de": "schokolierter Puffreis",
+   "name_en": "schokolierter Puffreis",
+   "name_fr": "riz soufflé chocolaté",
+   "names_de": [
+    "schokolierter Puffreis"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "de_schokoliertes_reisextrudat",
+   "name_de": "schokoliertes Reisextrudat",
+   "name_en": "schokoliertes Reisextrudat",
+   "name_fr": "extrudat de riz chocolaté",
+   "names_de": [
+    "schokoliertes Reisextrudat"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "de_speisequarkzubereitung",
@@ -21914,6 +22864,24 @@
    "vegetarian": "no"
   },
   {
+   "id": "deer",
+   "name_de": "Hirsch",
+   "name_en": "deer",
+   "name_fr": "biche",
+   "synonyms": [
+    "Reh"
+   ],
+   "names_de": [
+    "Hirsch",
+    "Reh"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "defatted_peanut_flour",
    "name_de": "defatted peanut flour",
    "name_en": "defatted peanut flour",
@@ -21982,17 +22950,30 @@
     "dehydrated beef bouillon"
    ],
    "default_category": "MASHBOOH",
-   "hanafi_ruling": "MASHBOOH",
-   "maliki_ruling": "MASHBOOH",
-   "shafi_ruling": "MASHBOOH",
-   "hanbali_ruling": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
    "source": "scholarly_opinion",
-   "doubt": "other",
-   "inferred_from": "beef",
+   "doubt": "animal_source",
+   "inferred_from": "dehydrated_broth",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "dehydrated_broth",
+   "name_de": "Bouillon getrocknet",
+   "name_en": "dehydrated broth",
+   "name_fr": "bouillon déshydraté",
+   "synonyms": [
+    "dehydrated stock"
+   ],
+   "names_de": [
+    "Bouillon getrocknet"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "dehydrated_glucose_syrup",
@@ -22071,6 +23052,21 @@
    "vegetarian": "yes"
   },
   {
+   "id": "dehydrated_poultry_fond",
+   "name_de": "dehydrated poultry fond",
+   "name_en": "dehydrated poultry fond",
+   "name_fr": "fond de volaille déshydraté",
+   "synonyms": [
+    "Poultry stock for sauce and cooking dehydrated",
+    "Fond de volaille pour sauces et cuisson déshydraté"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "dehydrated_poultry_stock",
    "name_de": "dehydrated poultry stock",
    "name_en": "dehydrated poultry stock",
@@ -22079,11 +23075,11 @@
     "dehydrated poultry bouillon"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal",
-   "reason_de": "Halal nur wenn halal-geschlachtet",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
    "source": "scholarly_opinion",
-   "doubt": "other",
-   "inferred_from": "poultry",
+   "doubt": "animal_source",
+   "inferred_from": "broth",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -22151,15 +23147,11 @@
     "Fond de veau pour sauces et cuisson déshydraté"
    ],
    "default_category": "MASHBOOH",
-   "hanafi_ruling": "MASHBOOH",
-   "maliki_ruling": "MASHBOOH",
-   "shafi_ruling": "MASHBOOH",
-   "hanbali_ruling": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "beef",
+   "inferred_from": "fond",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -22538,6 +23530,22 @@
    "inferred_from": "herb",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "dill_butter",
+   "name_de": "Dillbutter",
+   "name_en": "dill butter",
+   "synonyms": [
+    "Dill-Butter"
+   ],
+   "names_de": [
+    "Dillbutter",
+    "Dill-Butter"
+   ],
+   "default_category": "HALAL",
+   "reason": "Milk, egg and plant ingredients",
+   "reason_de": "Aus Milch, Ei und pflanzlichen Zutaten",
+   "source": "consensus"
   },
   {
    "id": "dill_flavouring",
@@ -23769,6 +24777,23 @@
    "vegetarian": "no"
   },
   {
+   "id": "duck_fond",
+   "name_de": "duck fond",
+   "name_en": "duck fond",
+   "name_fr": "fond de canard",
+   "synonyms": [
+    "Entenfond"
+   ],
+   "names_de": [
+    "Entenfond"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "duck_gizzard",
    "name_de": "Enten-Kaumagen",
    "name_en": "duck gizzard",
@@ -24263,6 +25288,30 @@
    "e_number": "e101",
    "vegan": "maybe",
    "vegetarian": "yes"
+  },
+  {
+   "id": "e101a",
+   "name_de": "5'-Phosphat Natriumsalz der Riboflavin",
+   "name_en": "E101a food additive",
+   "name_fr": "5'-phosphate sodique de riboflavine",
+   "synonyms": [
+    "E101a",
+    "Riboflavin-5'-phosphat-Natriumsalz",
+    "phosphate-5' de riboflavine de sodium",
+    "sel monosodique de l'ester du phosphate-5' de riboflavine",
+    "sel monosodique de l'ester de phosphate de la vitamine B2",
+    "sel de l'ester monosodique de la riboflavine 5-monophosphatée"
+   ],
+   "names_de": [
+    "5'-Phosphat Natriumsalz der Riboflavin",
+    "E101a",
+    "Riboflavin-5'-phosphat-Natriumsalz"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e101a"
   },
   {
    "id": "e101i",
@@ -25067,6 +26116,62 @@
    "vegetarian": "yes"
   },
   {
+   "id": "e1206",
+   "name_de": "Neutral methacrylate copolymer",
+   "name_en": "Neutral methacrylate copolymer",
+   "name_fr": "Copolymère de méthacrylate neutre",
+   "synonyms": [
+    "E1206"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e1206"
+  },
+  {
+   "id": "e1207",
+   "name_de": "Anionic methacrylate copolymer",
+   "name_en": "Anionic methacrylate copolymer",
+   "name_fr": "Copolymère de méthacrylate anionique",
+   "synonyms": [
+    "E1207"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e1207"
+  },
+  {
+   "id": "e1208",
+   "name_de": "Polyvinylpyrrolidone-vinyl acetate copolymer",
+   "name_en": "Polyvinylpyrrolidone-vinyl acetate copolymer",
+   "name_fr": "Copolymère d'acétate de vinyle et de polyvinylpyrrolidone",
+   "synonyms": [
+    "E1208"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e1208"
+  },
+  {
+   "id": "e1209",
+   "name_de": "Polyvinyl alcohol-polyethylene glycol-graft-co-polymer",
+   "name_en": "Polyvinyl alcohol-polyethylene glycol-graft-co-polymer",
+   "name_fr": "Copolymère greffé d'alcool polyvinylique et de polyéthylèneglycol",
+   "synonyms": [
+    "E1209"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e1209"
+  },
+  {
    "id": "e121",
    "name_de": "Zitrusrot 2",
    "name_en": "Citrus Red 2",
@@ -25085,6 +26190,26 @@
    "e_number": "e121",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "e1210",
+   "name_de": "Carbomer",
+   "name_en": "Carbomer",
+   "name_tr": "Karbomer",
+   "name_ar": "كاربومير",
+   "name_fr": "Carbomère",
+   "synonyms": [
+    "E1210"
+   ],
+   "names_de": [
+    "Carbomer",
+    "E1210"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e1210"
   },
   {
    "id": "e122",
@@ -29265,6 +30390,26 @@
    "vegetarian": "yes"
   },
   {
+   "id": "e246",
+   "name_de": "Glykolipide",
+   "name_en": "Glycolipids",
+   "name_tr": "Glikolipitler",
+   "name_ar": "غليكوليبيد",
+   "name_fr": "Glycolipides",
+   "synonyms": [
+    "E246"
+   ],
+   "names_de": [
+    "Glykolipide",
+    "E246"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus",
+   "e_number": "e246"
+  },
+  {
    "id": "e249",
    "name_de": "Kaliumnitrit",
    "name_en": "Potassium nitrite",
@@ -31426,6 +32571,32 @@
    "e_number": "e339i",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "e339ii",
+   "name_de": "Dinatriumphosphat",
+   "name_en": "Disodium phosphate",
+   "name_fr": "Phosphate disodique",
+   "synonyms": [
+    "E339ii",
+    "Dinatriummonophosphat",
+    "sekundäres Natriumphosphat",
+    "Disodium monophosphate",
+    "Secondary sodium phosphate",
+    "Monophosphate disodique",
+    "phosphate de sodium secondaire"
+   ],
+   "names_de": [
+    "Dinatriumphosphat",
+    "E339ii",
+    "Dinatriummonophosphat",
+    "sekundäres Natriumphosphat"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e339ii"
   },
   {
    "id": "e339iii",
@@ -38267,6 +39438,28 @@
    "vegetarian": "yes"
   },
   {
+   "id": "e586",
+   "name_de": "4-hexylresorcin",
+   "name_en": "4-hexylresorcinol",
+   "name_fr": "Héxylresorcinol",
+   "synonyms": [
+    "E586",
+    "4-Hexylbenzen-1‚3-diol",
+    "4-Hexyl-1‚3-benzenediol",
+    "4-hexylrésorcinol"
+   ],
+   "names_de": [
+    "4-hexylresorcin",
+    "E586",
+    "4-Hexylbenzen-1‚3-diol"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e586"
+  },
+  {
    "id": "e620",
    "name_de": "Glutaminsäure",
    "name_en": "Glutamic acid",
@@ -40836,6 +42029,61 @@
    "vegetarian": "yes"
   },
   {
+   "id": "e960b",
+   "name_de": "Rebaudioside from multiple gene donors expressed in Yarrowia lipolityca",
+   "name_en": "Rebaudioside from multiple gene donors expressed in Yarrowia lipolityca",
+   "synonyms": [
+    "E960b",
+    "Steviolglycoside"
+   ],
+   "names_de": [
+    "Steviolglycoside"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus",
+   "e_number": "e960b"
+  },
+  {
+   "id": "e960c",
+   "name_de": "Enzymatisch hergestellte Steviolglycoside",
+   "name_en": "Enzymatically produced steviol glycosides",
+   "name_fr": "Glycosides de stéviol produits par voie enzymatique",
+   "synonyms": [
+    "E960c"
+   ],
+   "names_de": [
+    "Enzymatisch hergestellte Steviolglycoside",
+    "E960c"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus",
+   "e_number": "e960c"
+  },
+  {
+   "id": "e960d",
+   "name_de": "Glycosylierte Steviolglycoside",
+   "name_en": "Glucosylated steviol glycosides",
+   "name_tr": "Glikosillenmiş steviol glikozitler",
+   "name_ar": "جليكوسيدات ستيفيول جلوكوزيل",
+   "name_fr": "Glycosides de stéviol glucosylés",
+   "synonyms": [
+    "E960d"
+   ],
+   "names_de": [
+    "Glycosylierte Steviolglycoside",
+    "E960d"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus",
+   "e_number": "e960d"
+  },
+  {
    "id": "e961",
    "name_de": "Neotam",
    "name_en": "Neotame",
@@ -41078,6 +42326,23 @@
    "e_number": "e968",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "e969",
+   "name_de": "Advantame",
+   "name_en": "Advantame",
+   "synonyms": [
+    "E969",
+    "Advantam"
+   ],
+   "names_de": [
+    "Advantam"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus",
+   "e_number": "e969"
   },
   {
    "id": "e999",
@@ -41810,6 +43075,26 @@
    "vegetarian": "yes"
   },
   {
+   "id": "elk",
+   "name_de": "elk",
+   "name_en": "elk",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
+   "id": "elk_meat",
+   "name_de": "elk meat",
+   "name_en": "elk meat",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "emmental",
    "name_de": "Emmentaler",
    "name_en": "emmental",
@@ -42245,6 +43530,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "es_fume_de_perdiz",
+   "name_de": "es fume de perdiz",
+   "name_en": "es fume de perdiz",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "partridge"
+  },
+  {
    "id": "es_granada_variedada_mollar_de_elche",
    "name_de": "es granada variedada mollar de elche",
    "name_en": "es granada variedada mollar de elche",
@@ -42282,8 +43578,12 @@
    "name_de": "es oleomargarina bovina",
    "name_en": "es oleomargarina bovina",
    "default_category": "MASHBOOH",
-   "source": "off_animal",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
    "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -42421,6 +43721,25 @@
    "vegetarian": "yes"
   },
   {
+   "id": "essential_oil",
+   "name_de": "Ätherisches Öl",
+   "name_en": "essential oil",
+   "name_tr": "Organik hidrosol",
+   "name_ar": "زيت عطري",
+   "name_fr": "huile essentielle",
+   "synonyms": [
+    "Ätherische Öle"
+   ],
+   "names_de": [
+    "Ätherisches Öl",
+    "Ätherische Öle"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "essential_orange_oil_flavour",
    "name_de": "essential orange oil flavour",
    "name_en": "essential orange oil flavour",
@@ -42485,6 +43804,19 @@
    "inferred_from": "honey",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "eucalyptus_oil",
+   "name_de": "eukalyptusöl",
+   "name_en": "eucalyptus oil",
+   "name_fr": "huile essentielle d'eucalyptus",
+   "names_de": [
+    "eukalyptusöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "eureka_lemon",
@@ -43132,6 +44464,15 @@
    "vegetarian": "no"
   },
   {
+   "id": "faba_bean_preparation",
+   "name_de": "faba bean preparation",
+   "name_en": "faba bean preparation",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "fairy_ring_mushroom",
    "name_de": "Nelken-Schwindling",
    "name_en": "fairy ring mushroom",
@@ -43176,6 +44517,18 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "falafel",
+   "name_de": "Falafel",
+   "name_en": "falafel",
+   "names_de": [
+    "Falafel"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "farmed_rainbow_trout",
@@ -43925,7 +45278,10 @@
    "name_de": "fi omena päärynä ja rypäletäysmehu tiivisteestä",
    "name_en": "fi omena päärynä ja rypäletäysmehu tiivisteestä",
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -44470,14 +45826,17 @@
    "name_de": "fischbrühe",
    "name_en": "fish stock",
    "name_fr": "bouillon de poisson",
+   "synonyms": [
+    "Fischfond"
+   ],
    "names_de": [
-    "fischbrühe"
+    "fischbrühe",
+    "Fischfond"
    ],
    "default_category": "HALAL",
-   "reason": "Fish is halal without slaughter requirement",
-   "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
+   "reason": "Stock made from fish",
+   "reason_de": "Brühe aus Fisch",
    "source": "consensus",
-   "inferred_from": "fish",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -44659,6 +46018,29 @@
    "vegetarian": "yes"
   },
   {
+   "id": "flavored_cake_with_cheese_paste",
+   "name_de": "flavored cake with cheese paste",
+   "name_en": "flavored cake with cheese paste",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "cake"
+  },
+  {
+   "id": "flavored_poultry_fond",
+   "name_de": "flavored poultry fond",
+   "name_en": "flavored poultry fond",
+   "name_fr": "fond de volaille aromatisé",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "flavour_enhancer",
    "name_de": "Geschmacksverstärker",
    "name_en": "Flavour enhancer",
@@ -44739,6 +46121,19 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "flax",
+   "name_de": "Flachs",
+   "name_en": "flax",
+   "name_fr": "lin",
+   "names_de": [
+    "Flachs"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "flax_flour",
    "name_de": "Flachsmehl",
    "name_en": "flax flour",
@@ -44753,7 +46148,10 @@
     "Leinmehl"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -44779,7 +46177,10 @@
     "Leinsaaten"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -45061,6 +46462,41 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "fond",
+   "name_de": "fond",
+   "name_en": "fond",
+   "name_fr": "fond",
+   "synonyms": [
+    "stock for sauce",
+    "stocks for sauce",
+    "fond for sauce",
+    "fond de sauce",
+    "fonds de sauce"
+   ],
+   "names_de": [
+    "Fond"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
+   "id": "fondant",
+   "name_de": "Fondant",
+   "name_en": "fondant",
+   "name_tr": "şeker hamuru",
+   "name_ar": "فندان",
+   "names_de": [
+    "Fondant"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
   },
   {
    "id": "fontal",
@@ -46508,17 +47944,25 @@
     "Hummerbouillon"
    ],
    "default_category": "MASHBOOH",
-   "hanafi_ruling": "HARAM",
-   "maliki_ruling": "HALAL",
-   "shafi_ruling": "HALAL",
-   "hanbali_ruling": "HALAL",
-   "reason": "Disputed - Hanafi school considers non-fish sea creatures impermissible",
-   "reason_de": "Umstritten – Hanafitische Schule betrachtet Nicht-Fisch-Meerestiere als nicht erlaubt",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
    "source": "scholarly_opinion",
-   "doubt": "other",
-   "inferred_from": "lobster",
+   "doubt": "animal_source",
+   "inferred_from": "broth",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "fr_bouillon_de_veau",
+   "name_de": "bouillon de veau",
+   "name_en": "bouillon de veau",
+   "name_fr": "bouillon de veau",
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "inferred_from": "broth"
   },
   {
    "id": "fr_boyau_collagenique",
@@ -47247,6 +48691,19 @@
    "is_class": true
   },
   {
+   "id": "fr_cornet_biscuit",
+   "name_de": "cornet biscuit",
+   "name_en": "cornet biscuit",
+   "name_fr": "cornet biscuit",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit"
+  },
+  {
    "id": "fr_couenne_de_porc",
    "name_de": "couenne de porc",
    "name_en": "couenne de porc",
@@ -47556,6 +49013,25 @@
    "inferred_from": "cocoa",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "fr_eclats_de_gaufrettes",
+   "name_de": "Hüppenflocken",
+   "name_en": "Hüppenflocken",
+   "name_fr": "éclats de gaufrettes",
+   "synonyms": [
+    "éclats de gaufrette"
+   ],
+   "names_de": [
+    "Hüppenflocken"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "neapolitan_wafer"
   },
   {
    "id": "fr_eclats_de_noisettes",
@@ -49417,6 +50893,39 @@
    "vegetarian": "yes"
   },
   {
+   "id": "fr_huile_essentielle_de_coriandre",
+   "name_de": "huile essentielle de coriandre",
+   "name_en": "huile essentielle de coriandre",
+   "name_fr": "huile essentielle de coriandre",
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus",
+   "inferred_from": "essential_oil"
+  },
+  {
+   "id": "fr_huile_essentielle_de_menthe",
+   "name_de": "huile essentielle de menthe",
+   "name_en": "huile essentielle de menthe",
+   "name_fr": "huile essentielle de menthe",
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus",
+   "inferred_from": "essential_oil"
+  },
+  {
+   "id": "fr_huile_essentielle_de_poivre",
+   "name_de": "huile essentielle de poivre",
+   "name_en": "huile essentielle de poivre",
+   "name_fr": "huile essentielle de poivre",
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus",
+   "inferred_from": "essential_oil"
+  },
+  {
    "id": "fr_huile_vegetale_raffinee",
    "name_de": "huile végétale raffinée",
    "name_en": "huile végétale raffinée",
@@ -49752,6 +51261,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "fr_jus_concentre_de_fruits_rouges",
+   "name_de": "jus concentré de fruits rouges",
+   "name_en": "jus concentré de fruits rouges",
+   "name_fr": "jus concentré de fruits rouges",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_concentrate"
+  },
+  {
    "id": "fr_jus_concentre_de_tomate",
    "name_de": "jus concentré de tomate",
    "name_en": "jus concentré de tomate",
@@ -49872,6 +51392,17 @@
    "inferred_from": "poultry",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "fr_jus_de_fruits_rouges_a_base_de_concentres",
+   "name_de": "jus de fruits rouges à base de concentrés",
+   "name_en": "jus de fruits rouges à base de concentrés",
+   "name_fr": "jus de fruits rouges à base de concentrés",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate"
   },
   {
    "id": "fr_jus_de_legumes_concentres",
@@ -50179,7 +51710,10 @@
    "name_en": "lin brun et lin jaune",
    "name_fr": "lin brun et lin jaune",
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -51092,6 +52626,30 @@
    "vegetarian": "no"
   },
   {
+   "id": "fr_morceaux_de_nougat",
+   "name_de": "morceaux de nougat",
+   "name_en": "morceaux de nougat",
+   "name_fr": "morceaux de nougat",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "nougat"
+  },
+  {
+   "id": "fr_morceaux_de_nougatine_aux_amandes",
+   "name_de": "Morceaux de nougatine aux amandes",
+   "name_en": "Morceaux de nougatine aux amandes",
+   "name_fr": "Morceaux de nougatine aux amandes",
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus",
+   "inferred_from": "crocant"
+  },
+  {
    "id": "fr_morilles_sechees",
    "name_de": "Morcheln getrocknet",
    "name_en": "Morcheln getrocknet",
@@ -51553,6 +53111,17 @@
    "inferred_from": "garlic",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "fr_oignon_prefrit_a_l_huile_de_tournesol",
+   "name_de": "oignon préfrit à l'huile de tournesol",
+   "name_en": "oignon préfrit à l'huile de tournesol",
+   "name_fr": "oignon préfrit à l'huile de tournesol",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "pre_fried_onions"
   },
   {
    "id": "fr_oleisol",
@@ -52584,6 +54153,20 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "fr_puree_de_framboise_concentree",
+   "name_de": "konzentriertes Himbeerpuree",
+   "name_en": "konzentriertes Himbeerpuree",
+   "name_fr": "purée de framboise concentrée",
+   "names_de": [
+    "konzentriertes Himbeerpuree"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "raspberry_puree"
   },
   {
    "id": "fr_puree_de_fruits",
@@ -54608,6 +56191,28 @@
    "vegetarian": "yes"
   },
   {
+   "id": "french_custard",
+   "name_de": "French custard",
+   "name_en": "French custard",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "french_custard_base",
+   "name_de": "French custard base",
+   "name_en": "French custard base",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "french_pomelo_juice_from_concentrate",
    "name_de": "french pomelo juice from concentrate",
    "name_en": "french pomelo juice from concentrate",
@@ -55114,6 +56719,22 @@
    "vegetarian": "no"
   },
   {
+   "id": "fried_onion",
+   "name_de": "röstzwiebeln",
+   "name_en": "fried onion",
+   "synonyms": [
+    "Röstzwiebel"
+   ],
+   "names_de": [
+    "röstzwiebeln",
+    "Röstzwiebel"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "fried_tofu",
    "name_de": "fried tofu",
    "name_en": "fried tofu",
@@ -55221,6 +56842,24 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "fructooligosaccharide",
+   "name_de": "Fructooligosaccharid",
+   "name_en": "Fructooligosaccharide",
+   "name_ar": "قليل السكاريد الفركتوزي",
+   "name_fr": "fructooligosaccharides",
+   "synonyms": [
+    "fructo-oligosaccharide"
+   ],
+   "names_de": [
+    "Fructooligosaccharid",
+    "Fructooligosaccharide"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
   },
   {
    "id": "fructose",
@@ -55426,6 +57065,48 @@
    "vegetarian": "yes"
   },
   {
+   "id": "fruit_juice_concentrate",
+   "name_de": "Fruchtsaftkonzentrat",
+   "name_en": "fruit juice concentrate",
+   "name_fr": "jus concentré de fruits",
+   "synonyms": [
+    "Fruchtsäfte Konzentrat",
+    "jus de fruits concentrés"
+   ],
+   "names_de": [
+    "Fruchtsaftkonzentrat",
+    "Fruchtsäfte Konzentrat"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "fruit_juice_from_concentrate",
+   "name_de": "Fruchtsaft auf Konzentrat Basis",
+   "name_en": "fruit juice from concentrate",
+   "name_fr": "jus de fruits à base de concentré",
+   "synonyms": [
+    "Fruchtsaft aus Fruchtsaftkonzentrat",
+    "Fruchtsaft aus Fruchtsaftkonzentraten",
+    "Fruchtsäfte aus Konzentraten",
+    "fruit juices from concentrate",
+    "jus de fruits à base de concentrés",
+    "jus de fruits à base de jus concentrés"
+   ],
+   "names_de": [
+    "Fruchtsaft auf Konzentrat Basis",
+    "Fruchtsaft aus Fruchtsaftkonzentrat",
+    "Fruchtsaft aus Fruchtsaftkonzentraten",
+    "Fruchtsäfte aus Konzentraten"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "fruit_juices_and_purees_from_concentrate",
    "name_de": "Fruchtsaft und Püree aus Konzentrat",
    "name_en": "fruit juices and purees from concentrate",
@@ -55434,7 +57115,10 @@
     "Fruchtsaft und Püree aus Konzentrat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -55822,6 +57506,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "galacto_oligosaccharides",
+   "name_de": "Galacto-oligosaccharides",
+   "name_en": "galacto-oligosaccharides",
+   "name_fr": "galacto-oligosaccharides",
+   "names_de": [
+    "Galacto-oligosaccharides"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
+  },
+  {
    "id": "galangal",
    "name_de": "Galgant",
    "name_en": "Galangal",
@@ -55866,6 +57563,20 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "game_animal",
+   "name_de": "Wildtier",
+   "name_en": "game animal",
+   "name_fr": "Gibier",
+   "names_de": [
+    "Wildtier"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "garam_masala",
@@ -56574,6 +58285,25 @@
    "vegetarian": "yes"
   },
   {
+   "id": "gingerbread",
+   "name_de": "Lebkuchen",
+   "name_en": "gingerbread",
+   "name_fr": "pain d'épices",
+   "synonyms": [
+    "Pfefferkuchen"
+   ],
+   "names_de": [
+    "Lebkuchen",
+    "Pfefferkuchen"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "ginkgo_leaf",
    "name_de": "Ginkgoblätter",
    "name_en": "ginkgo leaf",
@@ -56636,6 +58366,24 @@
    "vegetarian": "yes"
   },
   {
+   "id": "glace_cherry",
+   "name_de": "kandierte Kirsche",
+   "name_en": "glacé cherry",
+   "name_fr": "cerises confites",
+   "synonyms": [
+    "kandierte Kirschen",
+    "glacé cherries"
+   ],
+   "names_de": [
+    "kandierte Kirsche",
+    "kandierte Kirschen"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "glass_noodle",
    "name_de": "Glasnudeln",
    "name_en": "glass noodle",
@@ -56670,6 +58418,21 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "glaze",
+   "name_de": "Glasur",
+   "name_en": "glaze",
+   "name_fr": "glaçage",
+   "names_de": [
+    "Glasur"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "glazing_agent",
@@ -56820,6 +58583,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "glucuronolactone",
+   "name_de": "Glucuronolacton",
+   "name_en": "glucuronolactone",
+   "name_fr": "glucuronolactone",
+   "names_de": [
+    "Glucuronolacton"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "gluten",
    "name_de": "Gluten",
    "name_en": "gluten",
@@ -56915,6 +58691,25 @@
    "inferred_from": "rice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "glycerol_monostearate",
+   "name_de": "Glycerinmonostearat",
+   "name_en": "Glycerol monostearate",
+   "name_ar": "أحادي ستيرات الغليسرول",
+   "name_fr": "monostéarate de glycérol",
+   "synonyms": [
+    "Monoglycerid"
+   ],
+   "names_de": [
+    "Glycerinmonostearat",
+    "Monoglycerid"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Fatty acid glyceride, plant or animal",
+   "reason_de": "Fettsäure-Glycerid, pflanzlich oder tierisch",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "gmo_free_hulled_soya_bean",
@@ -57138,7 +58933,10 @@
     "Gold-Leinsaat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "flax",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -57643,7 +59441,10 @@
     "Traubensaft aus Traubensaftkonzentrat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -58311,6 +60112,15 @@
    "vegetarian": "yes"
   },
   {
+   "id": "green_endive",
+   "name_de": "Green endive",
+   "name_en": "Green endive",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "green_flageolets",
    "name_de": "Grüne Bohnenkerne",
    "name_en": "green flageolets",
@@ -58847,6 +60657,18 @@
    "vegetarian": "no"
   },
   {
+   "id": "griffonia",
+   "name_de": "griffonia",
+   "name_en": "griffonia",
+   "synonyms": [
+    "griffonia simplicifolia"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "grilled_and_salted_cashew_nut",
    "name_de": "grilled and salted cashew nut",
    "name_en": "grilled and salted cashew nut",
@@ -59338,6 +61160,15 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "guacamole",
+   "name_de": "Guacamole",
+   "name_en": "Guacamole",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "guajillo_chili",
@@ -60022,6 +61853,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "hazelnut_praline",
+   "name_de": "Haselnuss-Praline",
+   "name_en": "hazelnut praline",
+   "name_fr": "praliné noisettes",
+   "names_de": [
+    "Haselnuss-Praline"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
+  },
+  {
    "id": "hazelnut_spread",
    "name_de": "hazelnut spread",
    "name_en": "hazelnut spread",
@@ -60575,6 +62419,16 @@
    "inferred_from": "rice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "home_preparedfalafel",
+   "name_de": "home-preparedfalafel",
+   "name_en": "home-preparedfalafel",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "falafel"
   },
   {
    "id": "honey",
@@ -61213,6 +63067,21 @@
    "is_class": true
   },
   {
+   "id": "hummus",
+   "name_de": "Hummus",
+   "name_en": "hummus",
+   "name_tr": "humus",
+   "name_ar": "حمص بطحينة",
+   "name_fr": "houmous",
+   "names_de": [
+    "Hummus"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "hungarian_peppers",
    "name_de": "hungarian peppers",
    "name_en": "hungarian peppers",
@@ -61747,6 +63616,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "hydroxymethylbutyrate",
+   "name_de": "HMB",
+   "name_en": "HMB",
+   "synonyms": [
+    "hydroxymethylbutyrate"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "ice",
    "name_de": "Eis",
    "name_en": "ice",
@@ -61763,6 +63644,28 @@
    "inferred_from": "water",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "ice_cream",
+   "name_de": "Speiseeis",
+   "name_en": "ice cream",
+   "name_tr": "Dondurma",
+   "name_ar": "مثلجات",
+   "name_fr": "crème glacée",
+   "synonyms": [
+    "Eiscreme",
+    "ice creams"
+   ],
+   "names_de": [
+    "Speiseeis",
+    "Eiscreme"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "iceberg_lettuce",
@@ -61846,6 +63749,18 @@
    "inferred_from": "vegetable_fat",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "imazalil",
+   "name_de": "Imazalil",
+   "name_en": "imazalil",
+   "names_de": [
+    "Imazalil"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "imleria",
@@ -62049,6 +63964,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "inorganic_salts",
+   "name_de": "Inorganic salts",
+   "name_en": "Inorganic salts",
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "inosine_monophosphate",
@@ -62372,6 +64296,37 @@
    "vegetarian": "yes"
   },
   {
+   "id": "isomalto_oligosaccharide",
+   "name_de": "isomalto-oligosaccharid",
+   "name_en": "isomalto-oligosaccharide",
+   "name_fr": "isomalto-oligosaccharide",
+   "synonyms": [
+    "isomaltooligosaccharide"
+   ],
+   "names_de": [
+    "isomalto-oligosaccharid"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
+  },
+  {
+   "id": "isomaltose",
+   "name_de": "Isomaltose",
+   "name_en": "isomaltose",
+   "name_tr": "İzomaltoz",
+   "name_ar": "أيزومالتوز",
+   "name_fr": "Isomaltose",
+   "names_de": [
+    "Isomaltose"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
+  },
+  {
    "id": "isomaltulose",
    "name_de": "Isomaltulose",
    "name_en": "isomaltulose",
@@ -62389,15 +64344,11 @@
    "name_de": "it brodo di vongole",
    "name_en": "it brodo di vongole",
    "default_category": "MASHBOOH",
-   "hanafi_ruling": "HARAM",
-   "maliki_ruling": "HALAL",
-   "shafi_ruling": "HALAL",
-   "hanbali_ruling": "HALAL",
-   "reason": "Disputed - Hanafi school considers non-fish sea creatures impermissible",
-   "reason_de": "Umstritten – Hanafitische Schule betrachtet Nicht-Fisch-Meerestiere als nicht erlaubt",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
    "source": "scholarly_opinion",
-   "doubt": "other",
-   "inferred_from": "shellfish",
+   "doubt": "animal_source",
+   "inferred_from": "broth",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -62682,6 +64633,21 @@
    "inferred_from": "inulin",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "jodenkoeken",
+   "name_de": "Jodenkoek",
+   "name_en": "Jodenkoeken",
+   "names_de": [
+    "Jodenkoek"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "shortbread"
   },
   {
    "id": "juice",
@@ -63317,6 +65283,31 @@
    "vegetarian": "yes"
   },
   {
+   "id": "koji",
+   "name_de": "Koji",
+   "name_en": "koji",
+   "name_ar": "رشاشية أوريزه",
+   "name_fr": "koji",
+   "synonyms": [
+    "Koji-Ferment",
+    "Koji-Pilzkultur",
+    "kōji",
+    "koji culture",
+    "koji spores",
+    "koji starter",
+    "ferment Koji"
+   ],
+   "names_de": [
+    "Koji",
+    "Koji-Ferment",
+    "Koji-Pilzkultur"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
    "id": "kombu",
    "name_de": "Kombu",
    "name_en": "kombu",
@@ -63562,6 +65553,24 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "la_aspergillus_oryzae",
+   "name_de": "la aspergillus oryzae",
+   "name_en": "la aspergillus oryzae",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
+   "id": "la_aspergillus_sojae",
+   "name_de": "la aspergillus sojae",
+   "name_en": "la aspergillus sojae",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
    "id": "la_cynoglossus_bilineatus",
    "name_de": "la cynoglossus bilineatus",
    "name_en": "la cynoglossus bilineatus",
@@ -63697,6 +65706,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "la_mortierella_alpina",
+   "name_de": "la mortierella alpina",
+   "name_en": "la mortierella alpina",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
   },
   {
    "id": "la_passiflora_edulis",
@@ -64095,6 +66113,19 @@
    "inferred_from": "lactose",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "lactose_containing_galacto_oligosaccharides",
+   "name_de": "Galactooligosaccharide aus Lactose",
+   "name_en": "lactose-containing Galacto-oligosaccharides",
+   "name_fr": "Galacto-oligosaccharides - issus du lactose",
+   "names_de": [
+    "Galactooligosaccharide aus Lactose"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
   },
   {
    "id": "lactose_free_cream",
@@ -65235,6 +67266,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "lemon_preparation",
+   "name_de": "lemon preparation",
+   "name_en": "lemon preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "lemon_pulp",
    "name_de": "Zitronenpulpe",
    "name_en": "lemon pulp",
@@ -65330,6 +67372,29 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "lemonade",
+   "name_de": "limonade",
+   "name_en": "lemonade",
+   "name_tr": "Limonata",
+   "name_ar": "شراب الليمون",
+   "name_fr": "limonade",
+   "synonyms": [
+    "Limonaden",
+    "Zitronenlimonade",
+    "Lemonades",
+    "Limonades"
+   ],
+   "names_de": [
+    "limonade",
+    "Limonaden",
+    "Zitronenlimonade"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "lemongrass",
@@ -65498,6 +67563,22 @@
    "inferred_from": "cream",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "light_custard_cream_with_vanilla",
+   "name_de": "Englische Creme",
+   "name_en": "light custard cream with vanilla",
+   "name_fr": "crème anglaise",
+   "synonyms": [
+    "creme anglaise"
+   ],
+   "names_de": [
+    "Englische Creme"
+   ],
+   "default_category": "HALAL",
+   "reason": "Milk, egg and plant ingredients",
+   "reason_de": "Aus Milch, Ei und pflanzlichen Zutaten",
+   "source": "consensus"
   },
   {
    "id": "light_soy_sauce",
@@ -65693,6 +67774,19 @@
    "inferred_from": "spice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "lime_oil",
+   "name_de": "Limettenöl",
+   "name_en": "lime oil",
+   "name_fr": "Huile de citron vert",
+   "names_de": [
+    "Limettenöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "lime_pulp",
@@ -66142,6 +68236,26 @@
    "inferred_from": "plant",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "liquorice_dragees",
+   "name_de": "Lakritzdragees",
+   "name_en": "liquorice dragées",
+   "synonyms": [
+    "Lakritzdragées",
+    "Süßholzdragees"
+   ],
+   "names_de": [
+    "Lakritzdragees",
+    "Lakritzdragées",
+    "Süßholzdragees"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "liquorice_extract",
@@ -68003,6 +70117,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "mango_mix",
+   "name_de": "Mangomischung",
+   "name_en": "Mango mix",
+   "name_fr": "préparation à base de mangue",
+   "names_de": [
+    "Mangomischung"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "mango_puree",
    "name_de": "Mangopüree",
    "name_en": "mango puree",
@@ -68042,6 +70169,18 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "mannan_oligosaccharides",
+   "name_de": "Mannan-Oligosaccharid",
+   "name_en": "mannan oligosaccharides",
+   "names_de": [
+    "Mannan-Oligosaccharid"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
   },
   {
    "id": "mantis_shrimp",
@@ -68231,6 +70370,22 @@
    "vegetarian": "yes"
   },
   {
+   "id": "margarine",
+   "name_de": "Margarine",
+   "name_en": "Margarine",
+   "name_ar": "سمن نباتي",
+   "name_fr": "margarine",
+   "names_de": [
+    "Margarine"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "marigold",
    "name_de": "Ringelblume",
    "name_en": "marigold",
@@ -68381,6 +70536,52 @@
    "inferred_from": "plant",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "marshmallow",
+   "name_de": "Marshmallow",
+   "name_en": "marshmallow",
+   "name_fr": "guimauve",
+   "synonyms": [
+    "mini marshmallow",
+    "Marshmallows"
+   ],
+   "names_de": [
+    "Marshmallow",
+    "Marshmallows"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "marshmallow_paste",
+   "name_de": "marshmallow paste",
+   "name_en": "marshmallow paste",
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "marzipan",
+   "name_de": "marzipan",
+   "name_en": "marzipan",
+   "name_tr": "Badem ezmesi",
+   "name_ar": "مرصبان",
+   "name_fr": "massepain",
+   "names_de": [
+    "marzipan"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
   },
   {
    "id": "mascarpone",
@@ -68720,6 +70921,23 @@
    "inferred_from": "meat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "meat_stock",
+   "name_de": "Fleischbrühe",
+   "name_en": "meat stock",
+   "name_fr": "bouillon de viande",
+   "synonyms": [
+    "meat broth"
+   ],
+   "names_de": [
+    "Fleischbrühe"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "meatball",
@@ -69353,6 +71571,20 @@
    "vegetarian": "no"
   },
   {
+   "id": "menthol",
+   "name_de": "Menthol",
+   "name_en": "menthol",
+   "name_ar": "منثول",
+   "name_fr": "menthol",
+   "names_de": [
+    "Menthol"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "merguez",
    "name_de": "merguez",
    "name_en": "merguez",
@@ -69398,6 +71630,19 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "methylsulfonylmethane",
+   "name_de": "dimethyl sulfone",
+   "name_en": "dimethyl sulfone",
+   "synonyms": [
+    "methylsulfonylmethane",
+    "methyl sulfone"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "microbial_coagulating_enzyme",
@@ -69853,6 +72098,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "milk_preparation",
+   "name_de": "milk preparation",
+   "name_en": "milk preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "milk_protein_concentrate",
    "name_de": "Milcheiweißkonzentrat",
    "name_en": "milk protein concentrate",
@@ -69953,6 +72209,20 @@
    "source": "off_vegetarian",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "milk_substitute",
+   "name_de": "Pflanzliche Milch",
+   "name_en": "milk substitute",
+   "name_tr": "Süt ikamesi",
+   "name_ar": "بديل حليب",
+   "names_de": [
+    "Pflanzliche Milch"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "milkcap",
@@ -70313,6 +72583,16 @@
    "vegetarian": "yes"
   },
   {
+   "id": "mirepoix",
+   "name_de": "mirepoix",
+   "name_en": "mirepoix",
+   "name_tr": "mirpua",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "mirin",
    "name_de": "mirin",
    "name_en": "mirin",
@@ -70590,6 +72870,15 @@
    "inferred_from": "plant",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "mocha",
+   "name_de": "mocha",
+   "name_en": "mocha",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "mocha_flavouring",
@@ -71059,6 +73348,26 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "moose",
+   "name_de": "moose",
+   "name_en": "moose",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
+   "id": "moose_meat",
+   "name_de": "moose meat",
+   "name_en": "moose meat",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "morbier",
    "name_de": "morbier",
    "name_en": "morbier",
@@ -71135,6 +73444,16 @@
    "inferred_from": "meat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "mortierella_alpina_oil",
+   "name_de": "Mortierella alpina oil",
+   "name_en": "Mortierella alpina oil",
+   "name_fr": "Huile de Mortierella alpina",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
   },
   {
    "id": "moth_bean",
@@ -71314,6 +73633,29 @@
    "inferred_from": "cheese",
    "vegan": "no",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "muesli",
+   "name_de": "Müesli",
+   "name_en": "müesli",
+   "name_tr": "Müsli",
+   "name_fr": "muesli",
+   "synonyms": [
+    "Müslis",
+    "Mueslis",
+    "Granola",
+    "Mueslis croustillants",
+    "Granolas"
+   ],
+   "names_de": [
+    "Müesli",
+    "Müslis",
+    "Müsli"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "mukimame",
@@ -71689,6 +74031,28 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "muskrat",
+   "name_de": "muskrat",
+   "name_en": "muskrat",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
+  },
+  {
+   "id": "muskrat_meat",
+   "name_de": "muskrat meat",
+   "name_en": "muskrat meat",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
   },
   {
    "id": "musky_octopus",
@@ -72389,11 +74753,11 @@
     "Naturdarm"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Usually from bovine or porcine source",
-   "reason_de": "Meist aus Rinder- oder Schweinequelle",
+   "reason": "Natural casing from pig, sheep or cattle intestines, or collagen or cellulose",
+   "reason_de": "Naturdarm von Schwein, Schaf oder Rind, oder Kollagen bzw. Zellulose",
    "source": "scholarly_opinion",
-   "doubt": "animal_source",
-   "inferred_from": "collagen",
+   "doubt": "other",
+   "inferred_from": "casing",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -72627,6 +74991,22 @@
    "inferred_from": "natural_flavouring",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "natural_colorings",
+   "name_de": "natural colorings",
+   "name_en": "natural colorings",
+   "synonyms": [
+    "natürliche Farbstoffe"
+   ],
+   "names_de": [
+    "natürliche Farbstoffe"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Natural colours include carmine (from insects)",
+   "reason_de": "Natürliche Farbstoffe umfassen auch Karmin (aus Läusen)",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
   },
   {
    "id": "natural_colours",
@@ -73871,6 +76251,17 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "natural_sheep_casing",
+   "name_de": "natural sheep casing",
+   "name_en": "natural sheep casing",
+   "name_fr": "boyau naturel de mouton",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "natural_smoke_flavouring",
    "name_de": "natürliches Raucharoma",
    "name_en": "natural smoke flavouring",
@@ -74350,6 +76741,22 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "neapolitan_wafer",
+   "name_de": "Neapolitaner-Waffeln",
+   "name_en": "Neapolitan wafer",
+   "name_tr": "Gofret",
+   "name_fr": "gaufrette",
+   "names_de": [
+    "Neapolitaner-Waffeln"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "nectarine",
    "name_de": "Nektarine",
    "name_en": "nectarine",
@@ -74587,6 +76994,22 @@
    "inferred_from": "fish",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "nitrite_curing_salt",
+   "name_de": "Nitritpökelsalz",
+   "name_en": "nitrite curing salt",
+   "name_fr": "Sel de nitrite",
+   "synonyms": [
+    "nitrite salt"
+   ],
+   "names_de": [
+    "Nitritpökelsalz"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "nl_appels_van_biologisch_dynamische_teelt",
@@ -75160,6 +77583,25 @@
    "vegetarian": "yes"
   },
   {
+   "id": "nonpareils",
+   "name_de": "liebesperlen",
+   "name_en": "nonpareils",
+   "name_fr": "nonpareille",
+   "synonyms": [
+    "nonpareilles"
+   ],
+   "names_de": [
+    "liebesperlen",
+    "nonpareille"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "noodle",
    "name_de": "Nudel",
    "name_en": "noodle",
@@ -75297,14 +77739,63 @@
    "vegetarian": "no"
   },
   {
+   "id": "nougat",
+   "name_de": "Nougat",
+   "name_en": "nougat",
+   "name_tr": "Nuga",
+   "name_ar": "نوغة",
+   "name_fr": "nougat",
+   "synonyms": [
+    "nougats",
+    "türkischer Honig"
+   ],
+   "names_de": [
+    "Nougat",
+    "nougats"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "nougat_coating",
    "name_de": "nougat coating",
    "name_en": "nougat coating",
    "default_category": "MASHBOOH",
-   "source": "off_maybe",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
    "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "nougat",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "nougat_filling",
+   "name_de": "nougat filling",
+   "name_en": "nougat filling",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "nougat_flavor_paste",
+   "name_de": "nougat flavor paste",
+   "name_en": "nougat flavor paste",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "nougat"
   },
   {
    "id": "nougat_spread",
@@ -75692,6 +78183,24 @@
    "vegetarian": "yes"
   },
   {
+   "id": "oat_milk",
+   "name_de": "Haferdrink",
+   "name_en": "oat milk",
+   "name_ar": "حليب الشوفان",
+   "name_fr": "Lait d'avoine",
+   "synonyms": [
+    "Hafermilch"
+   ],
+   "names_de": [
+    "Haferdrink",
+    "Hafermilch"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "oat_oil",
    "name_de": "Haferöl",
    "name_en": "oat oil",
@@ -75993,6 +78502,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "oligosaccharides",
+   "name_de": "Oligosaccharide",
+   "name_en": "oligosaccharides",
+   "names_de": [
+    "Oligosaccharide"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
+  },
+  {
    "id": "olive",
    "name_de": "Oliven",
    "name_en": "olive",
@@ -76097,6 +78618,24 @@
    "source": "consensus",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "omelette",
+   "name_de": "Omelett",
+   "name_en": "omelette",
+   "name_tr": "Omlet",
+   "name_ar": "العجة",
+   "name_fr": "omelette",
+   "synonyms": [
+    "omelet"
+   ],
+   "names_de": [
+    "Omelett"
+   ],
+   "default_category": "HALAL",
+   "reason": "Milk, egg and plant ingredients",
+   "reason_de": "Aus Milch, Ei und pflanzlichen Zutaten",
+   "source": "consensus"
   },
   {
    "id": "onion",
@@ -76372,6 +78911,23 @@
    "vegetarian": "yes"
   },
   {
+   "id": "orange_essential_oil",
+   "name_de": "Orangenöl",
+   "name_en": "orange essential oil",
+   "name_fr": "huile essentielle d'orange",
+   "synonyms": [
+    "orange oil",
+    "huile d'orange"
+   ],
+   "names_de": [
+    "Orangenöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "orange_extract",
    "name_de": "Orangenextrakt",
    "name_en": "orange extract",
@@ -76387,6 +78943,17 @@
    "inferred_from": "natural_flavouring",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "orange_filling",
+   "name_de": "orange filling",
+   "name_en": "orange filling",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "orange_flavouring",
@@ -76524,6 +79091,17 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "orange_preparation",
+   "name_de": "orange preparation",
+   "name_en": "orange preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "orange_pulp",
    "name_de": "Orangenfruchtfleisch",
    "name_en": "orange pulp",
@@ -76602,6 +79180,15 @@
    "inferred_from": "herb",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "organic_acids",
+   "name_de": "Organic acids",
+   "name_en": "Organic acids",
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
   },
   {
    "id": "organic_agave_syrup",
@@ -77882,6 +80469,23 @@
    "vegetarian": "yes"
   },
   {
+   "id": "pale_leaf_woodland_sunflower",
+   "name_de": "pale-leaf woodland sunflower",
+   "name_en": "pale-leaf woodland sunflower",
+   "name_fr": "hélianthi",
+   "synonyms": [
+    "hélianthe scrofuleux",
+    "hélianti",
+    "héliantis",
+    "salsifis d'Amérique",
+    "racine d'hélianthi"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "palm",
    "name_de": "Palm",
    "name_en": "palm",
@@ -78314,6 +80918,32 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "panna_cotta",
+   "name_de": "panna cotta",
+   "name_en": "panna cotta",
+   "name_ar": "باناكوتا",
+   "names_de": [
+    "Panna Cotta"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "panna_cotta_flavor_preparation",
+   "name_de": "panna cotta flavor preparation",
+   "name_en": "panna cotta flavor preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "pantothenic_acid",
@@ -78928,6 +81558,23 @@
    "vegetarian": "yes"
   },
   {
+   "id": "partridge",
+   "name_de": "Rebhuhn",
+   "name_en": "partridge",
+   "name_fr": "perdrix",
+   "synonyms": [
+    "perdreaux"
+   ],
+   "names_de": [
+    "Rebhuhn"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "pasilla_peppers",
    "name_de": "pasilla peppers",
    "name_en": "pasilla peppers",
@@ -79362,6 +82009,20 @@
    "vegetarian": "no"
   },
   {
+   "id": "patty",
+   "name_de": "patty",
+   "name_en": "patty",
+   "name_fr": "steak",
+   "synonyms": [
+    "patties"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source"
+  },
+  {
    "id": "pea",
    "name_de": "Erbse",
    "name_en": "pea",
@@ -79777,7 +82438,10 @@
     "Birnendicksaft"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -79793,7 +82457,10 @@
     "Birnensaft aus Birnensaftkonzentrat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -80091,6 +82758,50 @@
    "inferred_from": "shrimp",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "pencillium_roqueforti",
+   "name_de": "pencillium roqueforti (Edelschimmel)",
+   "name_en": "pencillium roqueforti",
+   "names_de": [
+    "pencillium roqueforti (Edelschimmel)"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
+   "id": "penicillium",
+   "name_de": "Pinselschimmel (Penicillium)",
+   "name_en": "Penicillium",
+   "name_ar": "بنيسيليوم",
+   "name_fr": "pénicillium",
+   "names_de": [
+    "Pinselschimmel (Penicillium)"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
+   "id": "penicillium_candidum",
+   "name_de": "penicillium candidum",
+   "name_en": "penicillium candidum",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
+   "id": "penicillium_glaucum",
+   "name_de": "penicillium glaucum",
+   "name_en": "penicillium glaucum",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
   },
   {
    "id": "penne",
@@ -80447,6 +83158,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "persipan",
+   "name_de": "Persipan",
+   "name_en": "persipan",
+   "names_de": [
+    "Persipan"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
+  },
+  {
    "id": "peruvian_scallop",
    "name_de": "Peruanische Jakobsmuscheln",
    "name_en": "Peruvian scallop",
@@ -80508,6 +83231,27 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "petit_beurre",
+   "name_de": "Butterkekse",
+   "name_en": "Petit-Beurre",
+   "name_tr": "Petibör",
+   "name_fr": "petit beurre",
+   "synonyms": [
+    "Butterkeks",
+    "Petits beurres"
+   ],
+   "names_de": [
+    "Butterkekse",
+    "Butterkeks"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "petit_manseng",
@@ -80682,6 +83426,16 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "phytosterol_esters",
+   "name_de": "phytosterol esters",
+   "name_en": "phytosterol esters",
+   "name_fr": "esters de phytostérols",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "pickled_cucumber",
@@ -81953,6 +84707,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "plazma_biscuit",
+   "name_de": "plazma biscuit",
+   "name_en": "plazma biscuit",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit"
+  },
+  {
    "id": "pleurotus",
    "name_de": "Seitlinge",
    "name_en": "Pleurotus",
@@ -82100,6 +84866,21 @@
    "inferred_from": "fish",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "pollen",
+   "name_de": "Pollen",
+   "name_en": "pollen",
+   "name_tr": "polen",
+   "name_ar": "حبوب اللقاح",
+   "name_fr": "Pollen de fleurs",
+   "names_de": [
+    "Pollen"
+   ],
+   "default_category": "HALAL",
+   "reason": "Bee product, like honey",
+   "reason_de": "Bienenprodukt, wie Honig",
+   "source": "consensus"
   },
   {
    "id": "pomace_brandy",
@@ -82408,7 +85189,6 @@
    "reason": "Explicitly prohibited in Quran (2:173, 5:3, 6:145, 16:115)",
    "reason_de": "Im Quran ausdrücklich verboten (2:173, 5:3, 6:145, 16:115)",
    "source": "quran",
-   "inferred_from": "pork",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -83255,11 +86035,11 @@
     "Geflügelbouillon"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal",
-   "reason_de": "Halal nur wenn halal-geschlachtet",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
    "source": "scholarly_opinion",
-   "doubt": "other",
-   "inferred_from": "poultry",
+   "doubt": "animal_source",
+   "inferred_from": "broth",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -83296,6 +86076,23 @@
    "inferred_from": "animal_fat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "poultry_fond",
+   "name_de": "poultry fond",
+   "name_en": "poultry fond",
+   "name_fr": "fond de volaille",
+   "synonyms": [
+    "Geflügelfond"
+   ],
+   "names_de": [
+    "Geflügelfond"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "poultry_liver",
@@ -83461,6 +86258,28 @@
    "vegetarian": "yes"
   },
   {
+   "id": "powdered_preparation",
+   "name_de": "powdered preparation",
+   "name_en": "powdered preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "powdered_preparation_with_palm_fat",
+   "name_de": "powdered preparation with palm fat",
+   "name_en": "powdered preparation with palm fat",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "pošip",
    "name_de": "Pošip",
    "name_en": "pošip",
@@ -83471,6 +86290,19 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "praline",
+   "name_de": "Praliné",
+   "name_en": "Praliné",
+   "name_fr": "praliné",
+   "names_de": [
+    "Praliné"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
   },
   {
    "id": "pre_cooked_durum_wheat",
@@ -83484,6 +86316,22 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "pre_fried_onions",
+   "name_de": "vorgebratene Zwiebeln",
+   "name_en": "pre fried onions",
+   "name_fr": "oignons préfrits",
+   "synonyms": [
+    "oignon préfrit"
+   ],
+   "names_de": [
+    "vorgebratene Zwiebeln"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "pre_gelatinized_wheat_flour",
@@ -83503,6 +86351,19 @@
    "inferred_from": "wheat_flour",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "prebiotics",
+   "name_de": "Präbiotikum",
+   "name_en": "prebiotics",
+   "name_fr": "Prébiotiques",
+   "names_de": [
+    "Präbiotikum"
+   ],
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
   },
   {
    "id": "precooked_chicken_meat",
@@ -83706,6 +86567,16 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "prepacked_marzipan",
+   "name_de": "prepacked marzipan",
+   "name_en": "prepacked marzipan",
+   "name_fr": "massepain préemballée",
+   "default_category": "HALAL",
+   "reason": "Sugar, nuts or cocoa; no animal ingredients by recipe",
+   "reason_de": "Zucker, Nüsse oder Kakao; nach Rezeptur ohne tierische Zutaten",
+   "source": "consensus"
   },
   {
    "id": "prepacked_mustard_sauce",
@@ -83914,6 +86785,18 @@
    "source": "off_vegetarian",
    "vegan": "no",
    "vegetarian": "yes"
+  },
+  {
+   "id": "proteic_extruded_soy",
+   "name_de": "proteic extruded soy",
+   "name_en": "proteic extruded soy",
+   "synonyms": [
+    "proteic extrusion of soy"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "protein",
@@ -85463,6 +88346,24 @@
    "vegetarian": "yes"
   },
   {
+   "id": "raspberry_puree",
+   "name_de": "raspberry puree",
+   "name_en": "raspberry puree",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "raspberry_puree_with_seeds",
+   "name_de": "raspberry puree with seeds",
+   "name_en": "raspberry puree with seeds",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "raspberry_sauce",
    "name_de": "Himbeersauce de:Himbeersoße",
    "name_en": "raspberry sauce",
@@ -86384,6 +89285,28 @@
    "vegetarian": "no"
   },
   {
+   "id": "raw_minced_beef_steak_with_10_fat",
+   "name_de": "Raw minced beef steak with 10% fat",
+   "name_en": "Raw minced beef steak with 10% fat",
+   "name_fr": "Steak haché de bœuf cru à 10% de matières grasses",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
+   "id": "raw_minced_beef_steak_with_15_fat",
+   "name_de": "Raw minced beef steak with 15% fat",
+   "name_en": "Raw minced beef steak with 15% fat",
+   "name_fr": "Steak haché de bœuf cru à 15% de matières grasses",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "raw_minced_beef_steak_with_5_fat",
    "name_de": "Raw minced beef steak with 5% fat",
    "name_en": "Raw minced beef steak with 5% fat",
@@ -86976,11 +89899,11 @@
    "name_de": "raw venison",
    "name_en": "raw venison",
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "meat",
+   "inferred_from": "deer",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -87588,6 +90511,15 @@
    "vegetarian": "yes"
   },
   {
+   "id": "red_endive",
+   "name_de": "Red endive",
+   "name_en": "Red endive",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "red_fruit",
    "name_de": "rote Früchte",
    "name_en": "red fruit",
@@ -87635,7 +90567,10 @@
     "rote Trauben aus Traubenkonzentrat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -88407,6 +91342,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "refrigerated_panna_cotta",
+   "name_de": "Refrigerated panna cotta",
+   "name_en": "Refrigerated panna cotta",
+   "name_fr": "Panna cotta rayon frais",
+   "default_category": "MASHBOOH",
+   "reason": "Usually made with gelatine; a listed composition answers it",
+   "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "regato",
    "name_de": "regato",
    "name_en": "regato",
@@ -88576,6 +91523,20 @@
    "vegetarian": "yes"
   },
   {
+   "id": "reindeer",
+   "name_de": "ren",
+   "name_en": "reindeer",
+   "name_fr": "renne",
+   "names_de": [
+    "ren"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "reindeer_meat",
    "name_de": "Rentierfleisch",
    "name_en": "reindeer meat",
@@ -88584,11 +91545,11 @@
     "Rentierfleisch"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "meat",
+   "inferred_from": "reindeer",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -88601,11 +91562,11 @@
     "Rentierschulter"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "meat",
+   "inferred_from": "reindeer",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -88739,15 +91700,29 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "rhizopus",
+   "name_de": "Rhizopus",
+   "name_en": "rhizopus",
+   "names_de": [
+    "Rhizopus"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
    "id": "rhizopus_culture",
    "name_de": "Rhizopuskultur",
    "name_en": "rhizopus culture",
    "names_de": [
     "Rhizopuskultur"
    ],
-   "default_category": "MASHBOOH",
-   "source": "off_maybe",
-   "doubt": "animal_source",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus",
+   "inferred_from": "rhizopus",
    "vegan": "maybe",
    "vegetarian": "maybe"
   },
@@ -88995,6 +91970,33 @@
    "inferred_from": "rice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "rice_koji",
+   "name_de": "rice koji",
+   "name_en": "rice koji",
+   "name_fr": "koji de riz",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
+  },
+  {
+   "id": "rice_milk",
+   "name_de": "rice milk",
+   "name_en": "rice milk",
+   "synonyms": [
+    "Reisdrink",
+    "Reismilch"
+   ],
+   "names_de": [
+    "Reisdrink",
+    "Reismilch"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "rice_noodles",
@@ -90509,6 +93511,23 @@
    "vegetarian": "yes"
   },
   {
+   "id": "sable",
+   "name_de": "sablé",
+   "name_en": "sablé",
+   "name_fr": "sablé",
+   "synonyms": [
+    "sablés",
+    "sablé biscuit",
+    "sablé cookie"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "sablefish",
    "name_de": "sablefish",
    "name_en": "sablefish",
@@ -91326,6 +94345,23 @@
    "vegetarian": "yes"
   },
   {
+   "id": "salted_butter_caramel",
+   "name_de": "gesalzene Karamellbutter",
+   "name_en": "salted butter caramel",
+   "name_fr": "caramel au beurre salé",
+   "synonyms": [
+    "gesalzenes Butter-Karamell"
+   ],
+   "names_de": [
+    "gesalzene Karamellbutter",
+    "gesalzenes Butter-Karamell"
+   ],
+   "default_category": "HALAL",
+   "reason": "Milk, egg and plant ingredients",
+   "reason_de": "Aus Milch, Ei und pflanzlichen Zutaten",
+   "source": "consensus"
+  },
+  {
    "id": "salted_butter_caramel_sauce",
    "name_de": "gesalzebe Karamellbuttersauce",
    "name_en": "salted butter caramel sauce",
@@ -91811,6 +94847,16 @@
    "vegetarian": "no"
   },
   {
+   "id": "sea_belt",
+   "name_de": "Sea belt",
+   "name_en": "Sea belt",
+   "name_fr": "Kombu royal",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "sea_buckthorn",
    "name_de": "sanddorn",
    "name_en": "sea-buckthorn",
@@ -92055,6 +95101,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "seed_and_berry_mix",
+   "name_de": "Samen und Beeren Mix",
+   "name_en": "seed and berry mix",
+   "name_fr": "Mélange de graines et de baies",
+   "names_de": [
+    "Samen und Beeren Mix"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "seeded_raisin",
    "name_de": "seeded raisin",
    "name_en": "seeded raisin",
@@ -92103,6 +95162,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "seedless_raspberry_puree",
+   "name_de": "seedless raspberry puree",
+   "name_en": "seedless raspberry puree",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "seitan",
@@ -92381,6 +95449,23 @@
    "inferred_from": "rice",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "semi_wholemeal",
+   "name_de": "semi-wholemeal",
+   "name_en": "semi-wholemeal",
+   "synonyms": [
+    "semi-whole",
+    "semi-whole grain",
+    "semi-wholegrain",
+    "semi-complete",
+    "semiwhole",
+    "semiwholemeal"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "semi_wholemeal_flour",
@@ -92862,6 +95947,26 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "sheeps_casing",
+   "name_de": "Schafsdarm",
+   "name_en": "sheeps casing",
+   "name_fr": "boyau de mouton",
+   "synonyms": [
+    "Schafsaitling",
+    "Sheep gut",
+    "mutton casing"
+   ],
+   "names_de": [
+    "Schafsdarm",
+    "Schafsaitling"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
+  },
+  {
    "id": "sheeps_cream",
    "name_de": "sheeps cream",
    "name_en": "sheeps cream",
@@ -93025,6 +96130,18 @@
    "vegetarian": "no"
   },
   {
+   "id": "shellfish_fond",
+   "name_de": "shellfish fond",
+   "name_en": "shellfish fond",
+   "name_fr": "fond de crustacés",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "fond"
+  },
+  {
    "id": "sherry",
    "name_de": "sherry",
    "name_en": "sherry",
@@ -93149,6 +96266,41 @@
    "inferred_from": "vegetable_oil",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "shortbread",
+   "name_de": "shortbread",
+   "name_en": "shortbread",
+   "name_ar": "مخبوز هش",
+   "synonyms": [
+    "shortbread cookie",
+    "shortbread cookies"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "shortbread_cookies_from_brittany",
+   "name_de": "Shortbread cookies from Brittany",
+   "name_en": "Shortbread cookies from Brittany",
+   "name_fr": "Galettes bretonnes",
+   "synonyms": [
+    "galette bretonne",
+    "Galettes bretonnes au beurre",
+    "sablé breton",
+    "sablés bretons"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "shortbread"
   },
   {
    "id": "shortcrust_dough",
@@ -93897,6 +97049,20 @@
    "inferred_from": "bacon",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "smoked_breast",
+   "name_de": "Geräuchertes Brustfleisch",
+   "name_en": "smoked breast",
+   "name_fr": "poitrine fumée",
+   "names_de": [
+    "Geräuchertes Brustfleisch"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "smoked_cod_roe",
@@ -94691,8 +97857,13 @@
    "name_de": "Solid vegetable fat for frying",
    "name_en": "Solid vegetable fat for frying",
    "name_fr": "Matière grasse ou graisse végétale solide pour friture",
-   "default_category": "HALAL",
-   "source": "off_vegan",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "margarine",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -95074,6 +98245,50 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "soy_milk",
+   "name_de": "Sojamilch",
+   "name_en": "soy milk",
+   "name_tr": "Soya sütü",
+   "name_ar": "حليب الصويا",
+   "name_fr": "lait de soja",
+   "synonyms": [
+    "Sojadrink",
+    "soy drink",
+    "tonyu"
+   ],
+   "names_de": [
+    "Sojamilch",
+    "Sojadrink"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "soy_preparation",
+   "name_de": "Sojabereitung",
+   "name_en": "soy preparation",
+   "name_fr": "préparation à base de soja",
+   "synonyms": [
+    "Soja-Produkt",
+    "Sojaprodukt",
+    "Sojamittel",
+    "Sojaerzeugnis"
+   ],
+   "names_de": [
+    "Sojabereitung",
+    "Soja-Produkt",
+    "Sojaprodukt",
+    "Sojamittel",
+    "Sojaerzeugnis"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "soy_protein",
    "name_de": "Sojaprotein",
    "name_en": "Soy Protein",
@@ -95156,6 +98371,19 @@
    "inferred_from": "soy_protein",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "soy_protein_product",
+   "name_de": "Sojaeiweißerzeugnis",
+   "name_en": "soy protein product",
+   "name_fr": "produit à base de protéines de soja",
+   "names_de": [
+    "Sojaeiweißerzeugnis"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "soy_sauce",
@@ -95579,6 +98807,40 @@
    "inferred_from": "shellfish",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "speculaas",
+   "name_de": "Spekulatius",
+   "name_en": "speculaas",
+   "name_ar": "سبيكولوس",
+   "name_fr": "Spéculos",
+   "names_de": [
+    "Spekulatius"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "speculoos",
+   "name_de": "speculoos",
+   "name_en": "speculoos",
+   "name_fr": "spéculoos",
+   "synonyms": [
+    "Spekulatius"
+   ],
+   "names_de": [
+    "Spekulatius"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "spelled_krispies",
@@ -96014,6 +99276,20 @@
    "vegetarian": "yes"
   },
   {
+   "id": "sponge_cake",
+   "name_de": "Biskuitkuchen",
+   "name_en": "sponge cake",
+   "names_de": [
+    "Biskuitkuchen"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "spot",
    "name_de": "spot",
    "name_en": "spot",
@@ -96405,6 +99681,28 @@
    "vegetarian": "no"
   },
   {
+   "id": "squirrel",
+   "name_de": "squirrel",
+   "name_en": "squirrel",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
+  },
+  {
+   "id": "squirrel_meat",
+   "name_de": "squirrel meat",
+   "name_en": "squirrel meat",
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal"
+  },
+  {
    "id": "stabiliser",
    "name_de": "Stabilisator",
    "name_en": "Stabilizer",
@@ -96542,6 +99840,15 @@
    "vegetarian": "yes"
   },
   {
+   "id": "starch_wafer",
+   "name_de": "starch wafer",
+   "name_en": "starch wafer",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "starchy_root_vegetable",
    "name_de": "starchy root vegetable",
    "name_en": "starchy root vegetable",
@@ -96660,6 +99967,18 @@
    "vegetarian": "maybe"
   },
   {
+   "id": "stir_fry",
+   "name_de": "Sofrito",
+   "name_en": "stir-fry",
+   "names_de": [
+    "Sofrito"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "straw_mushroom",
    "name_de": "Dunkelstreifiger Scheidling",
    "name_en": "straw mushroom",
@@ -96706,6 +100025,20 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "strawberry_filling",
+   "name_de": "Erdbeerfüllung",
+   "name_en": "strawberry filling",
+   "names_de": [
+    "Erdbeerfüllung"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "strawberry_flavoured_cream",
@@ -96826,6 +100159,18 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "strawberry_preparation",
+   "name_de": "strawberry preparation",
+   "name_en": "strawberry preparation",
+   "name_fr": "préparation de fraise",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "strawberry_puree",
@@ -97316,6 +100661,33 @@
    "vegetarian": "yes"
   },
   {
+   "id": "sulfite",
+   "name_de": "Sulfit",
+   "name_en": "sulfite",
+   "name_tr": "Sülfit",
+   "name_fr": "sulfite",
+   "synonyms": [
+    "Sulfiten",
+    "Sulphite",
+    "Sulphites",
+    "sulfites",
+    "bisulfite",
+    "metabisulfite",
+    "metabisulphite",
+    "disulfites"
+   ],
+   "names_de": [
+    "Sulfit",
+    "Sulfite",
+    "Sulfiten",
+    "Sulphite"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral or made synthetically",
+   "reason_de": "Mineralisch oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "sultana",
    "name_de": "Sultana",
    "name_en": "sultana",
@@ -97425,6 +100797,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "sundried_tomato_hummus",
+   "name_de": "sundried tomato hummus",
+   "name_en": "sundried tomato hummus",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "sundried_tomatoes",
@@ -97926,6 +101307,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "sweet_cherry_preparation",
+   "name_de": "sweet cherry preparation",
+   "name_en": "sweet cherry preparation",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "sweet_chili_pepper_flavouring",
    "name_de": "sweet chili pepper flavouring",
    "name_en": "sweet chili pepper flavouring",
@@ -98040,6 +101432,15 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "sweet_potato_puree_cooked_with_cream",
+   "name_de": "Sweet potato puree cooked with cream",
+   "name_en": "Sweet potato puree cooked with cream",
+   "default_category": "HALAL",
+   "reason": "Milk, egg and plant ingredients",
+   "reason_de": "Aus Milch, Ei und pflanzlichen Zutaten",
+   "source": "consensus"
   },
   {
    "id": "sweet_potato_starch",
@@ -99046,6 +102447,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "tempeh",
+   "name_de": "Tempeh",
+   "name_en": "tempeh",
+   "names_de": [
+    "Tempeh"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "tempeh_culture",
    "name_de": "Tempeh-Kultur",
    "name_en": "tempeh culture",
@@ -99543,6 +102956,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "thyme_oil",
+   "name_de": "Thymianöl",
+   "name_en": "thyme oil",
+   "names_de": [
+    "Thymianöl"
+   ],
+   "default_category": "HALAL",
+   "reason": "Distilled from plants, or made synthetically",
+   "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt",
+   "source": "consensus"
+  },
+  {
    "id": "thyme_sprig",
    "name_de": "thyme sprig",
    "name_en": "thyme sprig",
@@ -100011,6 +103436,26 @@
    "inferred_from": "fish",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "tonka_bean",
+   "name_de": "Tonkabohne",
+   "name_en": "tonka bean",
+   "name_fr": "fève de tonka",
+   "synonyms": [
+    "Tonkabohnen",
+    "fèves de tonka",
+    "fève tonka",
+    "fèves tonka"
+   ],
+   "names_de": [
+    "Tonkabohne",
+    "Tonkabohnen"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "top_round_roast_beef",
@@ -100553,6 +103998,23 @@
    "inferred_from": "animal_fat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "turkey_fond",
+   "name_de": "turkey fond",
+   "name_en": "turkey fond",
+   "name_fr": "fond de dine",
+   "synonyms": [
+    "Putenfond"
+   ],
+   "names_de": [
+    "Putenfond"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other"
   },
   {
    "id": "turkey_heart",
@@ -101267,6 +104729,18 @@
    "vegetarian": "yes"
   },
   {
+   "id": "vanilla_flavored_pudding_powder",
+   "name_de": "vanilla flavored pudding powder",
+   "name_en": "vanilla flavored pudding powder",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true,
+   "inferred_from": "biscuit"
+  },
+  {
    "id": "vanilla_flavouring",
    "name_de": "VanilleAroma",
    "name_en": "vanilla flavouring",
@@ -101285,6 +104759,26 @@
    "inferred_from": "flavouring",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "vanilla_ice_cream",
+   "name_de": "Vanille-Eis",
+   "name_en": "vanilla ice cream",
+   "name_tr": "Vanilyalı dondurma",
+   "name_fr": "glace à la vanille",
+   "synonyms": [
+    "Vanilleeis"
+   ],
+   "names_de": [
+    "Vanille-Eis",
+    "Vanilleeis"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
   },
   {
    "id": "vanilla_pod",
@@ -101508,15 +105002,11 @@
    "name_en": "veal fond",
    "name_fr": "fond de veau",
    "default_category": "MASHBOOH",
-   "hanafi_ruling": "MASHBOOH",
-   "maliki_ruling": "MASHBOOH",
-   "shafi_ruling": "MASHBOOH",
-   "hanbali_ruling": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "beef",
+   "inferred_from": "fond",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -101540,6 +105030,15 @@
    "inferred_from": "meat",
    "vegan": "no",
    "vegetarian": "no"
+  },
+  {
+   "id": "vegan_bacon",
+   "name_de": "vegan bacon",
+   "name_en": "vegan bacon",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "vegan_lactic_ferments",
@@ -101819,6 +105318,19 @@
    "vegetarian": "yes"
   },
   {
+   "id": "vegetable_pigment",
+   "name_de": "vegetable pigment",
+   "name_en": "vegetable pigment",
+   "name_fr": "colorant végétal",
+   "synonyms": [
+    "vegetable colour"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "vegetable_shortening",
    "name_de": "vegetable shortening",
    "name_en": "vegetable shortening",
@@ -101930,11 +105442,11 @@
     "Hirschfleisch"
    ],
    "default_category": "MASHBOOH",
-   "reason": "Halal only if from halal-slaughtered animal (zabiha). In non-Muslim countries, default source is not halal.",
-   "reason_de": "Halal nur wenn halal-geschlachtet (zabiha). In nicht-muslimischen Ländern ist die Standardquelle nicht halal.",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
    "source": "scholarly_opinion",
    "doubt": "other",
-   "inferred_from": "meat",
+   "inferred_from": "deer",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -102623,6 +106135,57 @@
    "vegetarian": "yes"
   },
   {
+   "id": "wafer",
+   "name_de": "oblaten",
+   "name_en": "wafer",
+   "name_fr": "pain azyme",
+   "synonyms": [
+    "wafers",
+    "Oblate"
+   ],
+   "names_de": [
+    "oblaten",
+    "Oblate"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
+   "id": "waffle",
+   "name_de": "Waffel",
+   "name_en": "waffle",
+   "name_tr": "Waffle",
+   "name_ar": "وافل",
+   "name_fr": "gaufre",
+   "synonyms": [
+    "Waffeln"
+   ],
+   "names_de": [
+    "Waffel",
+    "Waffeln"
+   ],
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
+   "id": "waffle_with_cocoa",
+   "name_de": "waffle with cocoa",
+   "name_en": "waffle with cocoa",
+   "name_fr": "gaufre au cacao",
+   "default_category": "MASHBOOH",
+   "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
+   "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "composition_resolves": true
+  },
+  {
    "id": "wagyu_fat",
    "name_de": "Wagyu-fat",
    "name_en": "Wagyu-fat",
@@ -103116,6 +106679,19 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "wheat_cakes",
+   "name_de": "Weizenfladen",
+   "name_en": "wheat cakes",
+   "name_fr": "galette de blé",
+   "names_de": [
+    "Weizenfladen"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "wheat_crispbread",
@@ -104428,6 +108004,17 @@
    "vegetarian": "yes"
   },
   {
+   "id": "white_dashi",
+   "name_de": "white dashi",
+   "name_en": "white dashi",
+   "default_category": "MASHBOOH",
+   "reason": "May be made from meat or vegetables",
+   "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+   "source": "scholarly_opinion",
+   "doubt": "animal_source",
+   "inferred_from": "broth"
+  },
+  {
    "id": "white_distilled_vinegar",
    "name_de": "weißer destillierter Essig",
    "name_en": "white distilled vinegar",
@@ -104548,7 +108135,10 @@
     "Weißer Traubensaft aus Konzentrat"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus",
+   "inferred_from": "fruit_juice_from_concentrate",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -104746,6 +108336,15 @@
    "inferred_from": "rice_flour",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "white_rice_koji",
+   "name_de": "white rice koji",
+   "name_en": "white rice koji",
+   "default_category": "HALAL",
+   "reason": "Mould, fungal or bacterial culture",
+   "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
+   "source": "consensus"
   },
   {
    "id": "white_round_rice",
@@ -105462,6 +109061,15 @@
    "source": "off_vegan",
    "vegan": "yes",
    "vegetarian": "yes"
+  },
+  {
+   "id": "whole_grain_cereal_products",
+   "name_de": "whole grain cereal products",
+   "name_en": "whole grain cereal products",
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
   },
   {
    "id": "whole_grain_corn_flour",
@@ -106227,6 +109835,21 @@
    "vegetarian": "yes"
   },
   {
+   "id": "wholemeal",
+   "name_de": "wholemeal",
+   "name_en": "wholemeal",
+   "synonyms": [
+    "whole",
+    "whole grain",
+    "wholegrain",
+    "complete"
+   ],
+   "default_category": "HALAL",
+   "reason": "Plant-based",
+   "reason_de": "Pflanzlich",
+   "source": "consensus"
+  },
+  {
    "id": "wholemeal_barley",
    "name_de": "Vollkorngerste",
    "name_en": "wholemeal barley",
@@ -106504,8 +110127,11 @@
     "Wildschwein"
    ],
    "default_category": "MASHBOOH",
-   "source": "off_animal",
-   "doubt": "animal_source",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -106515,8 +110141,11 @@
    "name_en": "wild boar meat",
    "name_fr": "viande de sanglier",
    "default_category": "MASHBOOH",
-   "source": "off_animal",
-   "doubt": "animal_source",
+   "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
+   "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+   "source": "scholarly_opinion",
+   "doubt": "other",
+   "inferred_from": "game_animal",
    "vegan": "no",
    "vegetarian": "no"
   },
@@ -106970,6 +110599,15 @@
    "doubt": "animal_source",
    "vegan": "maybe",
    "vegetarian": "maybe"
+  },
+  {
+   "id": "xylose",
+   "name_de": "xylose",
+   "name_en": "xylose",
+   "default_category": "HALAL",
+   "reason": "Sugar or dietary fibre from plants, starch or milk sugar",
+   "reason_de": "Zucker oder Ballaststoff aus Pflanzen, Stärke oder Milchzucker",
+   "source": "consensus"
   },
   {
    "id": "yacon",

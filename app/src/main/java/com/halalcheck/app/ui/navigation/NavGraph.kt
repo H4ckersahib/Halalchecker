@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.halalcheck.app.ui.screens.history.HistoryScreen
 import com.halalcheck.app.ui.screens.home.HomeScreen
+import com.halalcheck.app.ui.screens.photo.PhotoIngredientsScreen
 import com.halalcheck.app.ui.screens.result.ResultScreen
 import com.halalcheck.app.ui.screens.scanner.ScannerScreen
 import com.halalcheck.app.ui.screens.settings.SettingsScreen
@@ -26,9 +27,13 @@ object Routes {
     const val RESULT = "result/{$ARG_BARCODE}?$ARG_RECORD={$ARG_RECORD}"
     const val HISTORY = "history"
     const val SETTINGS = "settings"
+    const val PHOTO = "photo/{$ARG_BARCODE}"
 
     /** [record]: a new scan that goes into the history; false when reopening a product from the history. */
     fun result(barcode: String, record: Boolean = false) = "result/${Uri.encode(barcode)}?$ARG_RECORD=$record"
+
+    /** Photograph the ingredient list of [barcode]. */
+    fun photo(barcode: String) = "photo/${Uri.encode(barcode)}"
 }
 
 @Composable
@@ -84,7 +89,23 @@ fun HalalCheckNavGraph(
             ResultScreen(
                 onNavigateBack = {
                     entry.ifResumed { navController.popBackStack() }
+                },
+                onTakePhoto = { barcode ->
+                    entry.ifResumed { navController.navigate(Routes.photo(barcode)) }
                 }
+            )
+        }
+
+        // Back to the result, which re-analyzes when the photo text is saved
+        composable(
+            route = Routes.PHOTO,
+            arguments = listOf(navArgument(Routes.ARG_BARCODE) { type = NavType.StringType })
+        ) { entry ->
+            PhotoIngredientsScreen(
+                onNavigateBack = {
+                    entry.ifResumed { navController.popBackStack() }
+                },
+                onSaved = { navController.popBackStack() }
             )
         }
 

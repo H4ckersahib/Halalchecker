@@ -6,10 +6,12 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.halalcheck.app.data.local.dao.FeedbackDao
 import com.halalcheck.app.data.local.dao.IngredientDao
+import com.halalcheck.app.data.local.dao.PhotoIngredientsDao
 import com.halalcheck.app.data.local.dao.ProductDao
 import com.halalcheck.app.data.local.dao.ScanHistoryDao
 import com.halalcheck.app.data.local.entity.FeedbackEntity
 import com.halalcheck.app.data.local.entity.IngredientEntity
+import com.halalcheck.app.data.local.entity.PhotoIngredientsEntity
 import com.halalcheck.app.data.local.entity.ProductEntity
 import com.halalcheck.app.data.local.entity.ScanHistoryEntity
 
@@ -21,9 +23,10 @@ import com.halalcheck.app.data.local.entity.ScanHistoryEntity
         IngredientEntity::class,
         ProductEntity::class,
         ScanHistoryEntity::class,
-        FeedbackEntity::class
+        FeedbackEntity::class,
+        PhotoIngredientsEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = true
 )
 abstract class HalalDatabase : RoomDatabase() {
@@ -32,6 +35,7 @@ abstract class HalalDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
     abstract fun scanHistoryDao(): ScanHistoryDao
     abstract fun feedbackDao(): FeedbackDao
+    abstract fun photoIngredientsDao(): PhotoIngredientsDao
 
     companion object {
         const val DATABASE_NAME = "halalcheck_db"
@@ -85,6 +89,16 @@ abstract class HalalDatabase : RoomDatabase() {
             }
         }
 
-        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+        /** v7: ingredient lists the user photographed. */
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS photo_ingredients (barcode TEXT NOT NULL, text TEXT NOT NULL, " +
+                        "created_at INTEGER NOT NULL, PRIMARY KEY(barcode))"
+                )
+            }
+        }
+
+        val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
     }
 }

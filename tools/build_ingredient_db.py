@@ -320,6 +320,20 @@ def main():
         print(f"\n{len(suspicious)} inherited HARAM entries that OFF flags as vegan/vegetarian (review):")
         for e in suspicious:
             print(f"  {e['id']} <- {e['inferred_from']}")
+    # A nearer, milder ruling hides a HARAM one further up ("en:pork-breast" under "en:breast" and "en:pork")
+    hidden_haram = []
+    for e in ingredient_list:
+        node_id = origin.get(e["id"])
+        if not node_id or node_id in rulings or e["default_category"] == "HARAM":
+            continue
+        haram = [a for _, a in ancestors_by_depth(tax, node_id) if rulings.get(a, {}).get("default_category") == "HARAM"]
+        if haram:
+            hidden_haram.append((e["id"], e["default_category"], e.get("inferred_from"), haram[0]))
+    if hidden_haram:
+        print(f"\n{len(hidden_haram)} entries with a HARAM ancestor that a nearer ruling overrides "
+              f"(review; add a ruling for the node):")
+        for eid, category, inferred, haram in hidden_haram:
+            print(f"  {eid}: {category} <- {inferred}, but {haram} is HARAM")
 
 
 if __name__ == "__main__":

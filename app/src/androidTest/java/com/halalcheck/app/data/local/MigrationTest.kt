@@ -28,7 +28,7 @@ class MigrationTest {
             close()
         }
 
-        val db = helper.runMigrationsAndValidate(DB_NAME, 6, true, *HalalDatabase.ALL_MIGRATIONS)
+        val db = helper.runMigrationsAndValidate(DB_NAME, 7, true, *HalalDatabase.ALL_MIGRATIONS)
 
         db.query("SELECT id, halal_status FROM scan_history WHERE barcode = '111'").use { cursor ->
             assertEquals(1, cursor.count)
@@ -52,6 +52,10 @@ class MigrationTest {
             assertEquals(true, cursor.isNull(2))
         }
         db.query("SELECT COUNT(*) FROM feedback").use { cursor ->
+            cursor.moveToFirst()
+            assertEquals(0, cursor.getInt(0))
+        }
+        db.query("SELECT COUNT(*) FROM photo_ingredients").use { cursor ->
             cursor.moveToFirst()
             assertEquals(0, cursor.getInt(0))
         }
