@@ -45,25 +45,40 @@ class IngredientTextParser(
         var t = decodeEntities(text)
             // Spring or brand names: Mineralwasser "Fonti di Crodo"
             .replace(QUOTED, " ")
-            .replace(Regex("[\"„“”«»]"), "")
             .replace('[', '(').replace('{', '(').replace(']', ')').replace('}', ')')
-            .replace(Regex("[*_†°]"), "")
             .replace(PERCENTAGE, "")
             .replace(Regex("\\(\\s*\\)"), "")
             .replace(Regex("[;•·]"), ",")
+            .replace(DIGIT_BREAK, "$1-")
+            .let(::joinBrokenWords)
             .replace(LIST_DASH, ", ")
             .replace(Regex("\\s+"), " ")
             .trim()
         // "Mars GmbH, Postfach … Zutaten: Süßungsmittel …": photographed labels often start before the list
         LABEL.findAll(t).firstOrNull { depthAt(t, it.range.first) == 0 }?.let { t = t.substring(it.range.last + 1).trim() }
-        // Keep sentences that are not notes ("Kann Spuren von ... enthalten.", "Mandeln aus Spanien.")
+        // Keep sentences that are not notes ("Kann Spuren von ... enthalten.", "Mandeln aus Spanien.",
+        // footnotes "*aus Fruchtsaftkonzentrat"); then drop footnote marks, allergen markup ("_Weizenmehl_") and stray quotes
         val sentences = splitTopLevel(t, '.')
-        return sentences.filterIndexed { i, s -> i == 0 || !isNoteSentence(s) }.joinToString(", ")
+        return sentences.filterIndexed { i, s -> i == 0 || !isNoteSentence(s) }
+            .joinToString(", ")
+            .replace(Regex("[*_†°\"„“”«»]"), "")
     }
 
     private fun isNoteSentence(sentence: String): Boolean =
         NOTE_SENTENCE.containsMatchIn(sentence) || ORIGIN_SENTENCE.containsMatchIn(sentence.trim()) ||
-            JUNK.containsMatchIn(sentence)
+            JUNK.containsMatchIn(sentence) || FOOTNOTE.containsMatchIn(sentence.trim())
+
+    /**
+     * "Natri - umcyclamat", "fett - armer Kakao": a word broken at the end of a line (OFF writes the hyphen
+     * with spaces). Joined when the first part is no word on its own or the joined word is known, so
+     * "Gewürze - natürliches Aroma" and "Mono - und Diglyceride" stay apart.
+     */
+    private fun joinBrokenWords(text: String): String =
+        BROKEN_WORD.replace(text) { m ->
+            val (first, second, next) = m.destructured
+            val joined = first + second
+            if (!isKnown(first) || isKnown(joined) || isKnown(joined + next)) joined else m.value
+        }
 
     private fun isNoteItem(item: String): Boolean = NOTE_ITEM.containsMatchIn(item) || JUNK.containsMatchIn(item)
 
@@ -188,8 +203,8 @@ class IngredientTextParser(
     }
 
     /**
-     * Splits at [separator] outside parentheses. A comma between digits ("2,5") and a period
-     * not followed by a space or the end ("ca.5", "2.5") do not split.
+     * Splits at [separator] outside parentheses. A comma between digits ("2,5"), a period not followed
+     * by a space or the end ("ca.5", "2.5") and the period of an abbreviation ("bei max. 7 °C") do not split.
      */
     private fun splitTopLevel(text: String, separator: Char): List<String> {
         val parts = mutableListOf<String>()
@@ -200,7 +215,7 @@ class IngredientTextParser(
             val next = text.getOrNull(i + 1)
             val splits = c == separator && depth == 0 && when (separator) {
                 ',' -> !(prev?.isDigit() == true && next?.isDigit() == true)
-                '.' -> next == null || next == ' '
+                '.' -> (next == null || next == ' ') && current.takeLastWhile { it.isLetter() }.toString().lowercase() !in ABBREVIATIONS
                 else -> true
             }
             when {
@@ -230,13 +245,26 @@ class IngredientTextParser(
         val ORIGIN_SENTENCE = Regex("\\b(aus|from)\\s+\\p{Lu}\\p{L}+$")
         val NOTE_ITEM = Regex("^(mindestens|min\\b|at least|kann\\b|may contain|spuren|traces?\\b)", RegexOption.IGNORE_CASE)
 
-        /** Text around the list on photographed labels: address, web links, nutrition table, storage, use. */
+        /**
+         * Text around the list on photographed labels: address, web links ("ra.org"), nutrition table,
+         * certification ("zertifziert" is a common typo), storage and use.
+         */
         val JUNK = Regex(
-            "www\\.|https?://|\\S@\\S|\\bpostfach\\b|\\bgmbh\\b|\\bkcal\\b|\\bkj\\b|brennwert|nährwert|nutrition|" +
-                "zertifiziert|certified|verzehr|phenylalanin|lebensweise|ernährung|\\bk[üu]hl\\b|\\blagern\\b|" +
-                "aufbewahren|\\bbewahren\\b|recycel",
+            "www\\.|https?://|\\S@\\S|\\b[\\p{L}\\d-]+\\.(?:org|de|com|net|eu|at|ch|info)\\b|\\bpostfach\\b|\\bgmbh\\b|" +
+                "\\bkcal\\b|\\bkj\\b|brennwert|nährwert|nutrition|zertif|certified|informationen|verzehr|phenylalanin|" +
+                "lebensweise|ernährung|\\bk[üu]hl\\b|\\blagern\\b|lagerung|aufbewahr|\\bbewahren\\b|geöffnet|öffnen|" +
+                "\\bschützen\\b|verbrauchen|\\d\\s*°\\s*c\\b|recycel",
             RegexOption.IGNORE_CASE
         )
+
+        /** A sentence that starts with a footnote mark ("* Rainforest Alliance-zertifiziert"); OCR turns "**" into a quote. */
+        val FOOTNOTE = Regex("^[*\"'„“”«»†¹²³]")
+        val BROKEN_WORD = Regex("(\\p{L}+) - (?!(?:und|oder|bzw|sowie|and|or)\\b)(\\p{Ll}+)(?=((?: \\p{L}+)?))")
+
+        val ABBREVIATIONS = setOf("max", "min", "mind", "ca", "inkl", "bzw", "ggf", "evtl", "vgl", "zzgl", "gem", "nr", "std", "approx")
+
+        /** "Natriumstearoyl - 2-lactylat" */
+        val DIGIT_BREAK = Regex("(\\p{L}) - (?=\\d+-\\p{L})")
         val QUOTED = Regex("[\"„“”«»][^\"„“”«»,()]{1,60}[\"„“”«»]")
         val HTML_ENTITY = Regex("&(#\\d{1,7}|#x[0-9a-f]{1,6}|[a-z]{2,8});", RegexOption.IGNORE_CASE)
         val NAMED_ENTITIES = mapOf(

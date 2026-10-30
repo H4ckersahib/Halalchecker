@@ -1,6 +1,6 @@
 {
- "version": 106923139,
- "generated": "2026-10-26",
+ "version": 44210385,
+ "generated": "2026-10-30",
  "license": "Open Database License (ODbL) 1.0. Ingredient names, synonyms and vegan/vegetarian flags: Open Food Facts taxonomies (https://world.openfoodfacts.org). Halal rulings: HalalCheck.",
  "ingredients": [
   {
@@ -13918,7 +13918,10 @@
     "Chipotle Chilischoten"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Chili pepper, plant-based",
+   "reason_de": "Chilischote, pflanzlich",
+   "source": "consensus",
+   "inferred_from": "jalapeno_pepper",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -13968,6 +13971,21 @@
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
+   "vegan": "yes",
+   "vegetarian": "yes"
+  },
+  {
+   "id": "chloride",
+   "name_de": "Chlorid",
+   "name_en": "Chloride",
+   "name_fr": "Chlorure",
+   "names_de": [
+    "Chlorid"
+   ],
+   "default_category": "HALAL",
+   "reason": "Mineral (salt of hydrochloric acid)",
+   "reason_de": "Mineralstoff (Salz der Salzsäure)",
+   "source": "consensus",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -28382,7 +28400,8 @@
     "Benzoat",
     "Benzencarbonsäure",
     "65-85-0",
-    "C6H5COOH"
+    "C6H5COOH",
+    "Benzosäure"
    ],
    "names_de": [
     "Benzoesäure",
@@ -28391,7 +28410,8 @@
     "Phenylameisensäure",
     "E 210",
     "Benzoat",
-    "Benzencarbonsäure"
+    "Benzencarbonsäure",
+    "Benzosäure"
    ],
    "default_category": "HALAL",
    "reason": "Synthetic preservative",
@@ -32371,9 +32391,10 @@
     "Vitamin B3",
     "Nicotinsäure"
    ],
-   "default_category": "MASHBOOH",
-   "source": "off_maybe",
-   "doubt": "animal_source",
+   "default_category": "HALAL",
+   "reason": "Niacin (vitamin B3) for food is produced synthetically",
+   "reason_de": "Niacin (Vitamin B3) für Lebensmittel wird synthetisch hergestellt",
+   "source": "consensus",
    "e_number": "e375",
    "vegan": "maybe",
    "vegetarian": "maybe"
@@ -58323,7 +58344,10 @@
     "grüne jalapenos"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Chili pepper, plant-based",
+   "reason_de": "Chilischote, pflanzlich",
+   "source": "consensus",
+   "inferred_from": "jalapeno_pepper",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -61004,7 +61028,10 @@
     "hot jalapeno"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Chili pepper, plant-based",
+   "reason_de": "Chilischote, pflanzlich",
+   "source": "consensus",
+   "inferred_from": "jalapeno_pepper",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -62490,14 +62517,22 @@
     "jalapeño pepper",
     "jalapeño chilli",
     "jalapeño chillies",
-    "piment jalapeño"
+    "piment jalapeño",
+    "Jalapeño",
+    "Jalapeños",
+    "Jalapenos"
    ],
    "names_de": [
     "Jalapeno-Chilis",
-    "Jalapenopfeffer"
+    "Jalapenopfeffer",
+    "Jalapeño",
+    "Jalapeños",
+    "Jalapenos"
    ],
    "default_category": "HALAL",
-   "source": "off_vegan",
+   "reason": "Chili pepper, plant-based",
+   "reason_de": "Chilischote, pflanzlich",
+   "source": "consensus",
    "vegan": "yes",
    "vegetarian": "yes"
   },
@@ -98881,9 +98916,10 @@
    "names_de": [
     "Taurin"
    ],
-   "default_category": "MASHBOOH",
-   "source": "off_maybe",
-   "doubt": "animal_source",
+   "default_category": "HALAL",
+   "reason": "Taurine in drinks and foods is produced synthetically",
+   "reason_de": "Taurin in Getränken und Lebensmitteln wird synthetisch hergestellt",
+   "source": "consensus",
    "vegan": "maybe",
    "vegetarian": "maybe"
   },

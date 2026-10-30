@@ -669,7 +669,12 @@
       "en": "Benzoic Acid",
       "tr": "Benzoik Asit",
       "ar": "حمض البنزويك"
-    }
+    },
+    "extra_names": [
+      {
+        "de": "Benzosäure"
+      }
+    ]
   },
   {
     "id": "en:e211",
@@ -855,6 +860,19 @@
       "tr": "Potasyum Fosfat",
       "ar": "فوسفات البوتاسيوم"
     }
+  },
+  {
+    "id": "en:e375",
+    "default_category": "HALAL",
+    "reason": "Niacin (vitamin B3) for food is produced synthetically",
+    "reason_de": "Niacin (Vitamin B3) für Lebensmittel wird synthetisch hergestellt",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Vitamin B3",
+        "en": "Vitamin B3"
+      }
+    ]
   },
   {
     "id": "en:e385",
@@ -1705,6 +1723,26 @@
     }
   },
   {
+    "id": "en:jalapeno-pepper",
+    "default_category": "HALAL",
+    "reason": "Chili pepper, plant-based",
+    "reason_de": "Chilischote, pflanzlich",
+    "source": "consensus",
+    "extra_names": [
+      {
+        "de": "Jalapeño",
+        "en": "Jalapeño"
+      },
+      {
+        "de": "Jalapeños",
+        "en": "Jalapeños"
+      },
+      {
+        "de": "Jalapenos"
+      }
+    ]
+  },
+  {
     "id": "en:lactose",
     "default_category": "HALAL",
     "reason": "Milk sugar",
@@ -2410,6 +2448,13 @@
     }
   },
   {
+    "id": "en:taurine",
+    "default_category": "HALAL",
+    "reason": "Taurine in drinks and foods is produced synthetically",
+    "reason_de": "Taurin in Getränken und Lebensmitteln wird synthetisch hergestellt",
+    "source": "consensus"
+  },
+  {
     "id": "en:thickener",
     "default_category": "HALAL",
     "reason": "Most thickeners are plant-derived (pectin, starch, guar gum, etc.)",
@@ -2746,6 +2791,20 @@
     },
     "vegan": "no",
     "vegetarian": "no"
+  },
+  {
+    "id": "local:chloride",
+    "default_category": "HALAL",
+    "reason": "Mineral (salt of hydrochloric acid)",
+    "reason_de": "Mineralstoff (Salz der Salzsäure)",
+    "source": "consensus",
+    "names": {
+      "de": "Chlorid",
+      "en": "Chloride",
+      "fr": "Chlorure"
+    },
+    "vegan": "yes",
+    "vegetarian": "yes"
   },
   {
     "id": "local:coconut_flesh",

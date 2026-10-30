@@ -9,14 +9,15 @@ The report lists, most useful first:
 2. verdicts that changed since the tester saw them (rule updates),
 3. the most frequent unknown ingredients (candidates for tools/halal_rulings.json or synonyms),
 4. the ingredients that most often make products doubtful or haram,
-5. contradicted vegan/vegetarian labels and disagreeing data sources.
+5. contradicted vegan/vegetarian labels and disagreeing data sources,
+6. label text that was not counted as an ingredient, and lists not in German (export version 2).
 """
 import collections
 import json
 import sys
 from pathlib import Path
 
-SUPPORTED_EXPORT_VERSION = 1
+SUPPORTED_EXPORT_VERSIONS = {1, 2}
 
 
 def load_exports(folder):
@@ -27,7 +28,7 @@ def load_exports(folder):
         except (OSError, json.JSONDecodeError) as e:
             print(f"skipping {path.name}: {e}", file=sys.stderr)
             continue
-        if data.get("export_version") != SUPPORTED_EXPORT_VERSION or "scans" not in data:
+        if data.get("export_version") not in SUPPORTED_EXPORT_VERSIONS or "scans" not in data:
             print(f"skipping {path.name}: not a HalalCheck export (version {data.get('export_version')})", file=sys.stderr)
             continue
         data["_file"] = path.name
@@ -130,6 +131,16 @@ def report(exports):
         if scan.get("source_conflict"):
             parts.append("Zutatenliste und OFF-Daten weichen ab")
         out.append(f"- {product_label(scan)}: {'; '.join(parts)} ({tester})")
+    out.append("")
+
+    ignored = [s for _, _, s in scans if s.get("ignored_text")]
+    out.append(f"## 6. Nicht als Zutat gewertet ({len(ignored)} Produkte)\n")
+    for scan in ignored:
+        out.append(f"- {product_label(scan)}: {' · '.join(scan['ignored_text'])}")
+    foreign = [s for _, _, s in scans if s.get("ingredients_language") not in (None, "de")]
+    out.append(f"\nZutatenliste nicht auf Deutsch ({len(foreign)}):")
+    for scan in foreign:
+        out.append(f"- {product_label(scan)}: {scan['ingredients_language']} (OFF-Zerlegung: {scan.get('off_language')})")
     out.append("")
     return "\n".join(out)
 

@@ -24,4 +24,28 @@ class ProductMappingTest {
         val product = OpenFoodFactsProduct(ingredientsTextDe = "", ingredientsText = "Zucker, Salz").toDomain("1", "de")
         assertEquals("Zucker, Salz", product.ingredientsText)
     }
+
+    @Test
+    fun `English comes before the product's main language`() {
+        // Hoisin sauce: main language Norwegian, English text available
+        val product = OpenFoodFactsProduct(
+            ingredientsText = "Vann, sukker",
+            ingredientsTextEn = "water, sugar",
+            lang = "nb"
+        ).toDomain("1", "de")
+        assertEquals("water, sugar", product.ingredientsText)
+        assertEquals("en", product.ingredientsLanguage)
+        assertEquals("nb", product.sourceIngredientsLanguage)
+
+        val mainOnly = OpenFoodFactsProduct(ingredientsText = "Vann, sukker", lang = "nb").toDomain("1", "de")
+        assertEquals("nb", mainOnly.ingredientsLanguage)
+    }
+
+    @Test
+    fun `the hyphen OFF leaves after cutting out Bio is removed`() {
+        val product = OpenFoodFactsProduct(
+            ingredients = listOf(OpenFoodFactsIngredient(id = "en:lemon-juice", text = "-Zitronensaft"))
+        ).toDomain("1", "de")
+        assertEquals("Zitronensaft", product.sourceIngredients.single().text)
+    }
 }

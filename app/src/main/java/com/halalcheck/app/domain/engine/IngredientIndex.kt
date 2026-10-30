@@ -2,6 +2,7 @@ package com.halalcheck.app.domain.engine
 
 import com.halalcheck.app.domain.model.HalalStatus
 import com.halalcheck.app.domain.model.Ingredient
+import java.text.Normalizer
 import java.util.Locale
 
 /** [modifier] is the first part of a compound that was matched by its last part ("puten" in "Putenschinken"). */
@@ -13,7 +14,8 @@ data class IngredientMatch(
 
 /**
  * In-memory lookup over all ingredient ids, names and synonyms (all languages). German compounds are
- * split with German names only, so that "Erdbeer…" does not end in English "beer".
+ * split with German names only, so that "Erdbeer…" does not end in English "beer". German names also
+ * match without umlauts and accents, which OCR often loses or adds ("CITRONENSAURE", "natríum").
  * Build it once per ingredient list; lookups are hash based.
  */
 class IngredientIndex(ingredients: List<Ingredient>) {
@@ -25,7 +27,10 @@ class IngredientIndex(ingredients: List<Ingredient>) {
     private val synonyms = HashMap<String, Ingredient>()
     private val compactNames = HashMap<String, Ingredient>()
     private val germanNames = HashMap<String, Ingredient>()
+    private val foldedGermanNames = HashMap<String, Ingredient>()
+    private val foldedNames = HashMap<String, Ingredient>()
     private val classNames = HashSet<String>()
+    private val foldedClassNames = HashSet<String>()
 
     init {
         // Hand-curated entries win name collisions over entries derived from the OFF taxonomy.
@@ -41,12 +46,26 @@ class IngredientIndex(ingredients: List<Ingredient>) {
             for (name in ingredient.synonyms) synonyms.putIfAbsent(normalize(name), ingredient)
             for (name in ingredient.allNames()) {
                 compactNames.putIfAbsent(normalize(name).replace(" ", ""), ingredient)
-                if (ingredient.isClass) classNames.add(normalize(name))
+                if (ingredient.isClass) {
+                    classNames.add(normalize(name))
+                    foldedClassNames.add(fold(normalize(name)))
+                }
             }
             for (name in ingredient.germanNames) {
                 val normalized = normalize(name)
                 germanNames.putIfAbsent(normalized, ingredient)
                 germanNames.putIfAbsent(normalized.replace(" ", ""), ingredient)
+                foldedGermanNames.putIfAbsent(fold(normalized), ingredient)
+                foldedGermanNames.putIfAbsent(fold(normalized).replace(" ", ""), ingredient)
+            }
+        }
+        // All names without accents ("Jalapeños", "Creme fraiche"); German forms win collisions
+        foldedNames.putAll(foldedGermanNames)
+        for (ingredient in ordered) {
+            for (name in ingredient.allNames()) {
+                val folded = fold(normalize(name))
+                foldedNames.putIfAbsent(folded, ingredient)
+                foldedNames.putIfAbsent(folded.replace(" ", ""), ingredient)
             }
         }
     }
@@ -60,7 +79,7 @@ class IngredientIndex(ingredients: List<Ingredient>) {
         return byId[if (lang == "en") id else "${lang}_$id"]
     }
 
-    fun isClassName(text: String): Boolean = normalize(text) in classNames
+    fun isClassName(text: String): Boolean = normalize(text).let { it in classNames || fold(it) in foldedClassNames }
 
     /** Whole-text match on a name or synonym, tolerating spacing and simple plural endings. */
     fun exact(text: String): Ingredient? = lookupNormalized(normalize(text))
@@ -177,22 +196,22 @@ class IngredientIndex(ingredients: List<Ingredient>) {
     /** German names only, with plural endings and the combining form ("erdbeer" -> "Erdbeere"). */
     private fun lookupGerman(normalized: String): Ingredient? {
         if (normalized.isEmpty()) return null
-        germanNames[normalized]?.let { return it }
-        for (ending in PLURAL_ENDINGS) {
-            if (normalized.endsWith(ending) && normalized.length - ending.length >= 4) {
-                germanNames[normalized.dropLast(ending.length)]?.let { return it }
-            }
-        }
-        if (normalized.length >= 5) germanNames[normalized + "e"]?.let { return it }
-        return null
+        return germanForms(normalized) { germanNames[it] } ?: germanForms(fold(normalized)) { foldedGermanNames[it] }
     }
+
+    private fun germanForms(normalized: String, lookup: (String) -> Ingredient?): Ingredient? =
+        withPlural(normalized, lookup) ?: if (normalized.length >= 5) lookup(normalized + "e") else null
 
     private fun lookupNormalized(normalized: String): Ingredient? {
         if (normalized.isEmpty()) return null
-        direct(normalized)?.let { return it }
+        return withPlural(normalized, ::direct) ?: withPlural(fold(normalized)) { foldedNames[it] }
+    }
+
+    private fun withPlural(normalized: String, lookup: (String) -> Ingredient?): Ingredient? {
+        lookup(normalized)?.let { return it }
         for (ending in PLURAL_ENDINGS) {
             if (normalized.endsWith(ending) && normalized.length - ending.length >= 4) {
-                direct(normalized.dropLast(ending.length))?.let { return it }
+                lookup(normalized.dropLast(ending.length))?.let { return it }
             }
         }
         return null
@@ -212,6 +231,7 @@ class IngredientIndex(ingredients: List<Ingredient>) {
         /** Weintraube, Weinstein, Blutorange, Bierschinken: no wine, blood or beer in them. */
         private val AMBIGUOUS_MODIFIERS = setOf("wein", "rotwein", "weißwein", "blut", "bier")
         private val NON_ALPHANUMERIC = Regex("[^\\p{L}\\p{N}]+")
+        private val COMBINING_MARKS = Regex("\\p{Mn}+")
         private val COMPOUND_HYPHEN = Regex("(?<=\\p{L})[-\u2010\u2011](?=\\p{L})")
 
         /** A letter, so that [NON_ALPHANUMERIC] keeps it; never part of an ingredient name. */
@@ -229,6 +249,10 @@ class IngredientIndex(ingredients: List<Ingredient>) {
 
         fun normalize(text: String): String =
             text.lowercase(Locale.ROOT).replace(NON_ALPHANUMERIC, " ").trim()
+
+        /** "citronensäure" -> "citronensaure", "natríum" -> "natrium". */
+        private fun fold(normalized: String): String =
+            COMBINING_MARKS.replace(Normalizer.normalize(normalized, Normalizer.Form.NFD), "")
 
         /** Like [normalize], but "Erdbeer-Joghurt" keeps its hyphen ("Mono- und", "E-471" don't). */
         private fun normalizeKeepingHyphens(text: String): String =

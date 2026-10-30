@@ -22,7 +22,7 @@ interface OpenFoodFactsApi {
         const val BASE_URL = "https://world.openfoodfacts.org/"
         const val PRODUCT_FIELDS = "product_name,product_name_de,product_name_en,brands," +
             "ingredients_text,ingredients_text_de,ingredients_text_en,image_url,image_front_url," +
-            "labels_tags,additives_tags,ingredients"
+            "labels_tags,additives_tags,ingredients,lang"
 
         fun productPageUrl(barcode: String) = "https://world.openfoodfacts.org/product/$barcode"
     }

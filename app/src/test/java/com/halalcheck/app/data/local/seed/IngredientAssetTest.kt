@@ -74,7 +74,9 @@ class IngredientAssetTest {
             "spirit_vinegar" to HalalStatus.HALAL,
             "raisin" to HalalStatus.HALAL,
             "hazelnut" to HalalStatus.HALAL,
-            "e150d" to HalalStatus.HALAL
+            "e150d" to HalalStatus.HALAL,
+            "e375" to HalalStatus.HALAL, // niacin, synthetic
+            "taurine" to HalalStatus.HALAL // synthetic
         ).forEach { (id, expected) ->
             assertEquals(id, expected, index.byId(id)?.defaultCategory)
         }
@@ -230,6 +232,60 @@ class IngredientAssetTest {
         val tea = analyze("Wasser, Zucker, Zitronensaft. **Rainforest Alliance-zertifiziert. www.ra.org")
         assertEquals(tea.describe(), HalalStatus.HALAL, tea.halalStatus)
         assertEquals(tea.describe(), 3, tea.analyzedIngredients.size)
+    }
+
+    @Test
+    fun `OCR errors from the second tester export are recognized`() {
+        mapOf(
+            // Krombacher Spezi: words broken at the line end
+            "Süßungsmittel (Natri - umcyclamat, Acesulfam-K, Sucralose und Natriumsaccharin), " +
+                "Säureregulator Tri - natríumcitrat" to null,
+            // Active O2: lost umlaut, footnote
+            "Natürliches Mineralwasser, Apfelsaft* (42%), Orangensaft (5%), Glukose-Fruktose-Sirup, Zitronensaft&quot; (2,2%), " +
+                "Zucker, Sternfruchtsaft' (0,5%), Kohlensäure, Maracujasaft* (0,3%), Antioxidationsmittel Ascorbinsaure, " +
+                "Provitamin A. *aus Fruchtsaftkonzentrat" to HalalStatus.HALAL,
+            // Effect: upper case OCR without umlauts
+            "WASSER, ZUCKER, SAUERUNGSMITTEL: CITRONENSAURE, PANTOTHENSAURE, NATURLICHES AROMA" to null,
+            // Monster: spelling variant
+            "Konservierungsstoffe (Sorbinsäure, Benzosäure)" to HalalStatus.HALAL,
+            // Accent in a borrowed name, Latin name in parentheses
+            "Jalapeños, Wasser, 100% Chiasamen (Salvia hispanica)" to HalalStatus.HALAL
+        ).forEach { (text, expected) ->
+            val result = analyze(text)
+            assertTrue(result.describe(), result.unknownIngredients.isEmpty())
+            if (expected != null) assertEquals(result.describe(), expected, result.halalStatus)
+        }
+    }
+
+    @Test
+    fun `notes after the list of a photographed label are dropped`() {
+        // Tester export: Rainforest Alliance footnote, web address, storage notes; OFF filed the German text as French
+        val result = analyze(
+            "Weizenmehl. pflanzliche Fette (palm), Wasser Zucker. pflanzliche Öle (Raps. Kokos. Sonnenblume). Hefe, " +
+                "1.7% fettarmes Kakaopulver Dextrose, Sojamehl, Speisesal Backtriebmittel: Diphosphate. Natriumcarbonate: " +
+                "Magermilchpulver. Emulgatoren: Mono - und Diglyceride von Speisefettsäuren** Natriumstearoyl - 2-lactylat: " +
+                "natürliches Aroma. * Rainforest Alliance-zertifziert. Weitere Informationen unter ra.org. &quot;auf " +
+                "pflanzlicher Basis. Kann Spuren von Ei und Schalenfrüchten enthalten. Aufbewahrung: Vor Wärme schützen " +
+                "und trocken lagern. Nach dem Öffnen innerhalb von 1 Tag verzehren. Ungeöffnet zu"
+        )
+        val names = result.analyzedIngredients.map { it.name.lowercase() }
+        listOf("rainforest", "ra.org", "pflanzlicher basis", "ungeöffnet").forEach { junk ->
+            assertTrue(result.describe(), names.none { junk in it })
+        }
+        assertTrue(result.describe(), result.unknownIngredients.isEmpty())
+    }
+
+    @Test
+    fun `Yfood with its German list and vegan label is halal`() {
+        val result = analyze(
+            "Wasser, Sojaprotein, pflanzliche Öle (Raps, Sonnenblume), lösliche Maisfaser, Maltodextrin, glutenfreie " +
+                "Haferfaser, Tapiokastärke, Reispulver (Reismehl, Reisstärke, Reissirup), fett - armer Kakao 1,9%, Vitamine " +
+                "(A, C, K, B1, B3, B5, B6, Folsäure, B12), Mineralstoffe (Chlorid, Calcium, Magnesium, Zink, Mangan, Selen, " +
+                "Chrom, Molybdän, Jod), Emulgator: Lecithine (Soja); Maisstärke, Süßungsmittel: Sucralose; Stabilisatoren: " +
+                "Johannisbrotkernmehl, Gellan; Salz, natürliche Aromen.",
+            labels = listOf("en:vegan", "en:vegetarian")
+        )
+        assertEquals(result.describe(), HalalStatus.HALAL, result.halalStatus)
     }
 
     private fun analyze(text: String, labels: List<String> = emptyList(), additives: List<String> = emptyList()) =

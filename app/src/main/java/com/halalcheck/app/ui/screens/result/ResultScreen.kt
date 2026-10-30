@@ -83,6 +83,7 @@ import com.halalcheck.app.ui.components.localizedName
 import com.halalcheck.app.ui.theme.*
 import java.text.DateFormat
 import java.util.Date
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -250,6 +251,8 @@ private fun ProductContent(
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
+    // The language the screen is shown in (German as the fallback for untranslated system languages)
+    val uiLocale = Locale.forLanguageTag(stringResource(R.string.ui_language))
     val notice = when {
         refreshError == ResultError.RATE_LIMITED -> stringResource(R.string.result_error_rate_limited)
         refreshError != null -> stringResource(R.string.result_refresh_failed)
@@ -297,6 +300,15 @@ private fun ProductContent(
             item {
                 val names = product.nameMentions.map { it.localizedName() }.distinct().joinToString(", ")
                 NoticeCard(stringResource(R.string.result_name_mentions, names))
+            }
+        }
+
+        // OFF has no list in the app language ("Vann, sukker, ...")
+        val listLanguage = product.ingredientsLanguage
+        if (product.ingredientsText.isNotEmpty() && listLanguage != null && listLanguage != uiLocale.language) {
+            item {
+                val languageName = Locale.forLanguageTag(listLanguage).getDisplayLanguage(uiLocale).ifBlank { listLanguage }
+                NoticeCard(stringResource(R.string.result_other_language, languageName))
             }
         }
 
@@ -366,6 +378,40 @@ private fun ProductContent(
                             text = stringResource(R.string.result_unknown_hint),
                             style = MaterialTheme.typography.bodySmall,
                             color = Amber600
+                        )
+                    }
+                }
+            }
+        }
+
+        // Label text the parser could not tell from ingredients; listed so nothing disappears silently
+        if (product.ignoredText.isNotEmpty()) {
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.result_ignored_title),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = product.ignoredText.joinToString(" · "),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = stringResource(R.string.result_ignored_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }

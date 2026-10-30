@@ -366,6 +366,39 @@ class HalalEngineTest {
     }
 
     @Test
+    fun `OFF's parse of another language does not replace the German list`() {
+        // Yfood: German text, but OFF's main language is French and it parses only that one
+        fun product(offLanguage: String) = Product(
+            barcode = "1",
+            name = "Test",
+            ingredientsText = "Wasser, Zucker, Salz, Chlorx",
+            ingredientsLanguage = "de",
+            sourceIngredients = listOf(
+                SourceIngredient("en:water", "Eau"),
+                SourceIngredient("en:sugar", "sucre"),
+                SourceIngredient("en:salt", "sel")
+            ),
+            sourceIngredientsLanguage = offLanguage,
+            source = DataSource.OPEN_FOOD_FACTS
+        )
+        val foreign = engine.analyzeProduct(product("fr"), index, Madhab.HANAFI)
+        assertEquals(listOf("Wasser", "Zucker", "Salz", "Chlorx"), foreign.analyzedIngredients.map { it.name })
+        // Same language: the parse that recognizes more still wins
+        val german = engine.analyzeProduct(product("de"), index, Madhab.HANAFI)
+        assertEquals(listOf("water", "sugar", "salt"), german.ids())
+    }
+
+    @Test
+    fun `long unrecognized label text is listed apart and does not count`() {
+        val result = analyze("Zucker, Salz, Bitte beachten Sie die Hinweise auf der Rückseite")
+        assertEquals(HALAL, result.halalStatus)
+        assertEquals(listOf("sugar", "salt"), result.ids())
+        assertEquals(listOf("Bitte beachten Sie die Hinweise auf der Rückseite"), result.ignoredText)
+        // Short unknown words stay unknown ingredients
+        assertEquals(UNKNOWN, analyze("Zucker, Purin").halalStatus)
+    }
+
+    @Test
     fun `haram found in the text survives when the OFF parse wins (REG-05)`() {
         val result = analyze(
             "Schweinefleisch, Quinoaflocken",
@@ -408,6 +441,36 @@ class HalalEngineTest {
                 "KÜHL UND TROCKEN LAGERN. Nährwerte: Brennwert 731 kJ/175 kcal, mehrwertige Alkohole 71 g"
         )
         assertEquals(listOf("sugar", "salt"), result.ids())
+    }
+
+    @Test
+    fun `footnotes, web addresses and storage notes are no ingredients`() {
+        val result = analyze(
+            "Zucker*, Salz**. *aus Fruchtsaftkonzentrat. ** Rainforest Alliance-zertifziert. Weitere Infos unter ra.org. " +
+                "&quot;auf pflanzlicher Basis. Nach dem Öffnen gekühlt aufbewahren. Bei max. 7 °C lagern"
+        )
+        assertEquals(listOf("sugar", "salt"), result.ids())
+        assertTrue(result.ignoredText.isEmpty())
+    }
+
+    @Test
+    fun `an unrecognized single annotation like a Latin name is not listed`() {
+        val result = analyze("Mandeln (Prunus dulcis), Zucker")
+        assertEquals(listOf("almond", "sugar"), result.ids())
+        assertEquals(HALAL, result.halalStatus)
+    }
+
+    @Test
+    fun `a word broken at the line end is joined`() {
+        assertEquals(listOf("sugar", "salt"), analyze("Zuc - ker, Salz").ids())
+        // Two words that are known on their own stay apart
+        assertEquals(listOf("water", "natural_flavouring"), analyze("Wasser - natürliche Aromen").ids())
+    }
+
+    @Test
+    fun `umlauts lost by OCR still match`() {
+        assertEquals(listOf("e330", "natural_flavouring"), analyze("SAUERUNGSMITTEL: CITRONENSAURE, NATURLICHE AROMEN").ids())
+        assertEquals(listOf("e330"), analyze("Zítronensäure").ids())
     }
 
     @Test

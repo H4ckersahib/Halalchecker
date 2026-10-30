@@ -20,7 +20,8 @@ data class ExportFile(
     val scans: List<ExportScan>
 ) {
     companion object {
-        const val EXPORT_VERSION = 1
+        /** 2: ingredients_language, off_language, ignored_text. */
+        const val EXPORT_VERSION = 2
     }
 }
 
@@ -36,6 +37,9 @@ data class ExportScan(
     val verdict: String?,
     @Json(name = "ingredients_recognized") val ingredientsRecognized: Float?,
     @Json(name = "ingredients_text") val ingredientsText: String?,
+    /** Language of ingredients_text; off_language is the one Open Food Facts parsed its ingredients in. */
+    @Json(name = "ingredients_language") val ingredientsLanguage: String?,
+    @Json(name = "off_language") val offLanguage: String?,
     @Json(name = "off_labels") val offLabels: List<String>,
     @Json(name = "off_additives") val offAdditives: List<String>,
     @Json(name = "user_claims") val userClaims: List<String>,
@@ -44,6 +48,8 @@ data class ExportScan(
     @Json(name = "source_conflict") val sourceConflict: Boolean,
     val ingredients: List<ExportIngredient>,
     val unknown: List<String>,
+    /** Unrecognized label text that was not counted as an ingredient. */
+    @Json(name = "ignored_text") val ignoredText: List<String>,
     val feedback: ExportFeedback?
 )
 

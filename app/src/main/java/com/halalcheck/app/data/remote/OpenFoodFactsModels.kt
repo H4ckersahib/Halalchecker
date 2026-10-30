@@ -52,17 +52,27 @@ data class OpenFoodFactsProduct(
     val additivesTags: List<String>? = null,
 
     @Json(name = "ingredients")
-    val ingredients: List<OpenFoodFactsIngredient>? = null
+    val ingredients: List<OpenFoodFactsIngredient>? = null,
+
+    /** The product's main language; [ingredientsText] and OFF's parse [ingredients] are in it. */
+    @Json(name = "lang")
+    val lang: String? = null
 ) {
     /**
-     * Best non-blank ingredients text: the app language first, then German, then the product's main
-     * language, then English. OFF often sends "" for languages it has no text for.
+     * Best non-blank ingredients text: the app language first, then German, then English, then the
+     * product's main language (Norwegian, French ... for imported goods). OFF often sends "" for
+     * languages it has no text for.
      */
-    fun getBestIngredientsText(language: String): String {
+    fun getBestIngredientsText(language: String): String = bestIngredientsText(language)?.second.orEmpty()
+
+    /** Language of [getBestIngredientsText]; null if unknown (no main language in old cached data). */
+    fun getBestIngredientsLanguage(language: String): String? = bestIngredientsText(language)?.first
+
+    private fun bestIngredientsText(language: String): Pair<String?, String>? {
         val byLanguage = mapOf("de" to ingredientsTextDe, "en" to ingredientsTextEn)
-        return listOf(byLanguage[language], ingredientsTextDe, ingredientsText, ingredientsTextEn)
-            .firstOrNull { !it.isNullOrBlank() }
-            .orEmpty()
+        return listOf(language to byLanguage[language], "de" to ingredientsTextDe, "en" to ingredientsTextEn, lang to ingredientsText)
+            .firstOrNull { !it.second.isNullOrBlank() }
+            ?.let { (textLanguage, text) -> textLanguage to text.orEmpty() }
     }
 
     fun getBestName(language: String): String {

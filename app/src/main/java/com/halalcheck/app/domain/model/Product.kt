@@ -10,12 +10,16 @@ data class Product(
     val brand: String? = null,
     val imageUrl: String? = null,
     val ingredientsText: String = "",
+    /** Language of [ingredientsText] ("de", "nb" ...); null if unknown. */
+    val ingredientsLanguage: String? = null,
     /** Open Food Facts label tags, e.g. "en:vegan", "en:halal". */
     val labelsTags: List<String> = emptyList(),
     /** Open Food Facts additive tags, e.g. "en:e471". */
     val additivesTags: List<String> = emptyList(),
     /** Ingredients as parsed by Open Food Facts, with taxonomy ids. */
     val sourceIngredients: List<SourceIngredient> = emptyList(),
+    /** OFF parses only the product's main language, which may differ from [ingredientsLanguage]. */
+    val sourceIngredientsLanguage: String? = null,
     val halalStatus: HalalStatus = HalalStatus.UNKNOWN,
     val confidence: Float = 0f,
     val source: DataSource = DataSource.UNKNOWN,
@@ -35,6 +39,8 @@ data class Product(
     val sourceConflict: Boolean = false,
     /** HARAM ingredients the product name mentions ("Vodka") that are not among the analyzed ingredients. */
     val nameMentions: List<Ingredient> = emptyList(),
+    /** Unrecognized label text that is no ingredient ("Weitere Informationen unter ra.org"); not counted. */
+    val ignoredText: List<String> = emptyList(),
     /** Set when Open Food Facts could not be reached and a cached copy from this time is shown. */
     val offlineSince: Long? = null
 ) {

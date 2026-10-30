@@ -56,6 +56,8 @@ object ExportBuilder {
             verdict = product?.halalStatus?.name,
             ingredientsRecognized = product?.confidence,
             ingredientsText = product?.ingredientsText,
+            ingredientsLanguage = product?.ingredientsLanguage,
+            offLanguage = product?.sourceIngredientsLanguage,
             offLabels = product?.labelsTags.orEmpty(),
             offAdditives = product?.additivesTags.orEmpty(),
             userClaims = product?.userClaims.orEmpty().map { it.name }.sorted(),
@@ -64,6 +66,7 @@ object ExportBuilder {
             sourceConflict = product?.sourceConflict == true,
             ingredients = product?.analyzedIngredients.orEmpty().map(::ingredient),
             unknown = product?.unknownIngredients.orEmpty(),
+            ignoredText = product?.ignoredText.orEmpty(),
             feedback = entry.feedback?.let {
                 ExportFeedback(
                     expected = it.expectedStatus?.name,

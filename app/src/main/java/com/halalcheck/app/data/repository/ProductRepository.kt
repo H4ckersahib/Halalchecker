@@ -204,17 +204,22 @@ fun OpenFoodFactsProduct.toDomain(barcode: String, language: String): Product {
         brand = brands?.takeIf { it.isNotBlank() },
         imageUrl = getBestImageUrl(),
         ingredientsText = getBestIngredientsText(language),
+        ingredientsLanguage = getBestIngredientsLanguage(language),
         labelsTags = labelsTags.orEmpty(),
         additivesTags = additivesTags.orEmpty(),
         sourceIngredients = ingredients.orEmpty().mapNotNull { it.toDomain() },
+        sourceIngredientsLanguage = lang?.takeIf { it.isNotBlank() },
         source = DataSource.OPEN_FOOD_FACTS
     )
 }
 
-/** Keeps nodes without text if they have a taxonomy id or children ("en:pork" must not get lost). */
+/**
+ * Keeps nodes without text if they have a taxonomy id or children ("en:pork" must not get lost).
+ * OFF cuts "Bio" out of "Bio-Zitronensaft" and leaves "-Zitronensaft".
+ */
 private fun OpenFoodFactsIngredient.toDomain(): SourceIngredient? {
     val children = ingredients.orEmpty().mapNotNull { it.toDomain() }
-    val displayText = text?.takeIf { it.isNotBlank() }
+    val displayText = text?.trim(' ', '-')?.takeIf { it.isNotBlank() }
         ?: id?.substringAfter(':')?.replace('-', ' ')
         ?: if (children.isNotEmpty()) "" else return null
     return SourceIngredient(id = id, text = displayText, children = children)

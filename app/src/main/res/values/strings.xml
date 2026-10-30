@@ -48,6 +48,11 @@
     <string name="result_no_ingredients">Keine Zutatenliste: Open Food Facts hat für dieses Produkt noch keine. Mit einem Foto der Zutatenliste kannst du sie dort ergänzen, dann kann HalalCheck das Produkt prüfen.</string>
     <string name="result_add_ingredients_on_off">Zutatenliste auf Open Food Facts ergänzen</string>
     <string name="result_name_mentions">Der Produktname nennt %s. Die erkannten Zutaten enthalten es nicht – bitte auf der Verpackung prüfen.</string>
+    <!-- Language code of this resource folder; compared with the language of the ingredient list -->
+    <string name="ui_language">de</string>
+    <string name="result_other_language">Open Food Facts hat die Zutatenliste nur auf %s.</string>
+    <string name="result_ignored_title">Nicht als Zutat gewertet</string>
+    <string name="result_ignored_hint">Sieht nach Hinweistext auf der Packung aus (Lagerung, Zertifizierung, Adresse) und zählt nicht zur Bewertung.</string>
     <plurals name="result_partial">
         <item quantity="one">Nicht vollständig geprüft: %1$d von %2$d Zutat erkannt, keine bedenklichen gefunden.</item>
         <item quantity="other">Nicht vollständig geprüft: %1$d von %2$d Zutaten erkannt, keine bedenklichen gefunden.</item>

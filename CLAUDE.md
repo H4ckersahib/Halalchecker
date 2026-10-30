@@ -50,6 +50,7 @@ The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (mod
 3. `ProductRepository.lookupProduct()`:
    - A cached product younger than 7 days is used directly.
    - Otherwise it asks the Open Food Facts v2 API.
+   - Ingredient text: app language, German, English, then the generic `ingredients_text`, which is in the product's main `lang` (often Norwegian or French for imports, and sometimes mislabeled: German text filed as French). `Product.ingredientsLanguage` is the text's language, `sourceIngredientsLanguage` the one OFF parsed `ingredients[]` in.
    - On a network error it falls back to a stale cache.
    - OFF answers unknown barcodes with **HTTP 404**; that becomes a placeholder product with `DataSource.UNKNOWN`, not an error. Placeholders are never cached or saved to history.
    - The refresh button (`ResultViewModel.refresh`) skips the cache, e.g. after the user corrected the product on OFF.
@@ -62,10 +63,11 @@ The layers are `data/` (Room, Retrofit, DataStore, repositories), `domain/` (mod
 
 This is the core logic and the most likely place for behavior changes. It has no Android dependencies.
 
-- **Two pipelines, merged.** The engine analyzes the ingredient text with `IngredientTextParser`, and separately OFF's own parsed `ingredients[]` (taxonomy ids, looked up via `IngredientIndex.byOffId`). It keeps whichever recognizes the larger share, then adds HARAM/MASHBOOH findings only the other one had (same ingredient = same E-number family or curated ancestor) and sets `Product.sourceConflict`. Finally it adds doubtful or haram additives from OFF's `additives_tags` that aren't already covered (compared by `Ingredient.eNumber` family, so soy lecithin covers E322).
+- **Two pipelines, merged.** The engine analyzes the ingredient text with `IngredientTextParser`, and separately OFF's own parsed `ingredients[]` (taxonomy ids, looked up via `IngredientIndex.byOffId`). It keeps whichever recognizes the larger share, but OFF's parse only if it is in the text's language (otherwise the list showed "Eau, protéines de soja" next to a German text), then adds HARAM/MASHBOOH findings only the other one had (same ingredient = same E-number family or curated ancestor) and sets `Product.sourceConflict`. Finally it adds doubtful or haram additives from OFF's `additives_tags` that aren't already covered (compared by `Ingredient.eNumber` family, so soy lecithin covers E322).
 - **Parsing** (`IngredientTextParser`):
   - Decodes HTML entities (`&quot;`), drops quoted names (Mineralwasser "Fonti di Crodo"), strips percentages, empty brackets, `*`/`_`, and everything up to a top-level "Zutaten:" (photographed labels start with the address).
-  - Drops note sentences (traces, origin, "mindestens") and note items ("Kann …"), and sentences or items with label noise (`JUNK`: URLs, GmbH/Postfach, kcal/kJ, storage and use notes, certification).
+  - Drops note sentences (traces, origin, "mindestens"), footnotes (a sentence starting with `*` or a quote, which OCR makes of `**`) and note items ("Kann …"), and sentences or items with label noise (`JUNK`: URLs and bare domains like "ra.org", GmbH/Postfach, kcal/kJ, storage and use notes, certification incl. the typo "zertifziert"). Abbreviations ("max.", "ca.", "inkl.") don't end a sentence.
+  - Joins words broken at the line end ("Natri - umcyclamat", "fett - armer Kakao") when the first part is no word of its own or the joined word is known.
   - `Class: X` yields X when the head is a functional class (`Ingredient.isClass`, e.g. Emulgator, Säuerungsmittel). Otherwise the head is a "list head" that only counts if HARAM.
   - A bare class directly followed by an additive ("Farbstoff, Zuckerkulör (E150d)") is treated as a typo for a colon; otherwise ("Farbstoff, Zucker") it stays as "not specified".
   - A class prefix is stripped ("Emulgator Lecithine (Soja)" → "Lecithine").
@@ -76,8 +78,10 @@ This is the core logic and the most likely place for behavior changes. It has no
   2. E/INS numbers as whole tokens (`e322i` falls back to `e322`), plus whatever the words around them contain ("Schweinefleisch mit E471" yields both).
   3. Longest known word spans. A hyphenated word ("Erdbeer-Joghurt") is one word. A phrase can yield several matches; the most severe counts.
   4. German compounds no span covered, split with **German names only** (`Ingredient.germanNames`, asset field `names_de`): with all languages, "Erdbeer…" ended in English "beer" (HARAM). In order: the combining form ("erdbeer" → Erdbeere), the base product of a form word ("Kartoffelpulver", "Heidelbeer-Saft"; no "-extrakt"), else the head ("Putenschinken" → "Schinken", "Himbeer-Joghurt"). They are `inferred` (not a head named after a hyphen) and never match a class. A modifier that is HARAM on its own counts too ("Rum-Rosinen", "Rumrosinen"), except the ambiguous Wein/Blut/Bier ("Weintraubenkernöl", "Blutorange").
+  - All lookups fall back to names without umlauts and accents (`fold`): OCR writes "CITRONENSAURE", "natríum". German names win collisions of the folded forms.
   - A functional class only counts when the phrase contains nothing more specific.
   - **There is no substring matching**; it produced false HARAM ("Weinbeeren" → Wein).
+- **Label text.** An unrecognized phrase of five or more words with a German/English function word ("Weitere Informationen unter …") goes to `Product.ignoredText` instead of the ingredients: listed on the result screen, not counted. A recognized parent's single unrecognized child is an annotation and is dropped ("Chiasamen (Salvia hispanica)").
 - **Rules** (`HalalEngine.Analysis.evaluate`), applied the same way on every path:
   - A haram qualifier or compound modifier (`Qualifiers`, token based) makes the ingredient HARAM.
   - An animal word turns a pork-by-default HARAM ("Speck", "Schinken") into MASHBOOH.
@@ -122,7 +126,7 @@ This is the core logic and the most likely place for behavior changes. It has no
 ### Test phase: feedback and export
 
 - Testers report wrong verdicts on the result screen ("Fehler melden": expected status or "don't know", comment). Stored in the `feedback` table (one per barcode), see `FeedbackRepository`.
-- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. Reason names are written out in `ExportBuilder.reasonName` because R8 renames the classes (exports from build 6 contain "m", "q", "r"). `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
+- Settings → Testphase exports a JSON file (`data/export`): every history product plus every feedback, re-analyzed with the current rules from the cached OFF data, with app build and ingredient DB version, the optional tester name, per-ingredient match and reason. Reason names are written out in `ExportBuilder.reasonName` because R8 renames the classes (exports from build 6 contain "m", "q", "r"). Export version 2 adds `ingredients_language`, `off_language` and `ignored_text`; the script reads versions 1 and 2. `ExportBuilder` is Android-free (tested by `ExportBuilderTest`); `ExportRepository` writes to `cacheDir/exports/` and the settings screen shares it through the `FileProvider` (`res/xml/file_paths.xml`).
 - Exports contain personal data. They stay on the phone until shared; put received files into `feedback/` (git-ignored) and run `tools/analyze_feedback.py`. Bump `ExportFile.EXPORT_VERSION` and the script together when fields change.
 
 ### UI language
