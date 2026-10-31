@@ -91,6 +91,13 @@
     "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es"
   },
   {
+    "id": "en:absinthe",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:acidity-regulator",
     "default_category": "HALAL",
     "reason": "Chemical compounds, mineral or plant-derived",
@@ -105,10 +112,10 @@
   },
   {
     "id": "en:alcohol",
-    "default_category": "HARAM",
-    "reason": "Intoxicant - prohibited as ingredient",
-    "reason_de": "Rauschmittel – als Zutat verboten",
-    "source": "quran_hadith",
+    "default_category": "MASHBOOH",
+    "reason": "Alcohol as an ingredient: forbidden if made from grapes or dates; from other sources permissible in food if it does not intoxicate (askimam). The package does not say which. Alcoholic drinks are haram.",
+    "reason_de": "Alkohol als Zutat: verboten, wenn aus Trauben oder Datteln; aus anderen Quellen in Lebensmitteln erlaubt, wenn nicht berauschend (askimam). Die Packung sagt nicht, woraus. Alkoholische Getränke sind haram.",
+    "source": "scholarly_opinion",
     "names": {
       "de": "Alkohol",
       "en": "Alcohol",
@@ -131,7 +138,8 @@
         "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
         "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
       }
-    ]
+    ],
+    "doubt": "alcohol"
   },
   {
     "id": "en:almond-milk",
@@ -227,6 +235,13 @@
     "composition_resolves": true,
     "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
     "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es"
+  },
+  {
+    "id": "en:armagnac",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:artificial-flavouring",
@@ -612,6 +627,20 @@
     "reason_de": "Mineralisch oder synthetisch hergestellt"
   },
   {
+    "id": "en:calvados",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
+    "id": "en:campari",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:candied-orange-peel",
     "default_category": "HALAL",
     "source": "consensus",
@@ -676,6 +705,13 @@
     ]
   },
   {
+    "id": "en:cava",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:cereal-crispies",
     "default_category": "HALAL",
     "source": "consensus",
@@ -688,6 +724,20 @@
     "source": "consensus",
     "reason": "Plant-based",
     "reason_de": "Pflanzlich"
+  },
+  {
+    "id": "en:champagne",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
+    "id": "en:chartreuse-liqueur",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:cheese",
@@ -824,6 +874,13 @@
     "reason_de": "Mineralisch oder synthetisch hergestellt"
   },
   {
+    "id": "en:cider",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:cocoa",
     "default_category": "HALAL",
     "source": "consensus",
@@ -873,6 +930,20 @@
       "tr": "Hindistan Cevizi Yağı",
       "ar": "زيت جوز الهند"
     }
+  },
+  {
+    "id": "en:cognac",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
+    "id": "en:cointreau",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:collagen",
@@ -2542,6 +2613,13 @@
     ]
   },
   {
+    "id": "en:eau-de-vie",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:egg",
     "default_category": "HALAL",
     "reason": "From halal animal",
@@ -2869,6 +2947,13 @@
     }
   },
   {
+    "id": "en:gin",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:gingerbread",
     "default_category": "MASHBOOH",
     "source": "scholarly_opinion",
@@ -3146,6 +3231,13 @@
     ]
   },
   {
+    "id": "en:kirsch",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:koji",
     "default_category": "HALAL",
     "source": "consensus",
@@ -3236,6 +3328,13 @@
     "source": "consensus",
     "reason": "Distilled from plants, or made synthetically",
     "reason_de": "Aus Pflanzen destilliert oder synthetisch hergestellt"
+  },
+  {
+    "id": "en:liqueur",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:liquorice-dragees",
@@ -3951,6 +4050,13 @@
     "reason_de": "Bienenprodukt, wie Honig"
   },
   {
+    "id": "en:pomace-brandy",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:pork",
     "default_category": "HARAM",
     "reason": "Explicitly prohibited in Quran (2:173, 5:3, 6:145, 16:115)",
@@ -4141,6 +4247,13 @@
       "de": "Backtriebmittel",
       "en": "Raising Agent"
     }
+  },
+  {
+    "id": "en:rakia",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:rapeseed-lecithin",
@@ -4344,6 +4457,13 @@
     ]
   },
   {
+    "id": "en:rice-wine",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:rum",
     "default_category": "HARAM",
     "reason": "Alcoholic spirit",
@@ -4381,6 +4501,13 @@
     "composition_resolves": true,
     "reason": "Composite product: fats, emulsifiers or gelatine may be of animal origin; a listed composition answers it",
     "reason_de": "Zusammengesetztes Produkt: Fette, Emulgatoren oder Gelatine können tierisch sein; die angegebene Zusammensetzung klärt es"
+  },
+  {
+    "id": "en:sake",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:salt",
@@ -4832,6 +4959,13 @@
     "reason_de": "Pflanzlich"
   },
   {
+    "id": "en:tequila",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:thickener",
     "default_category": "HALAL",
     "reason": "Most thickeners are plant-derived (pectin, starch, guar gum, etc.)",
@@ -4978,6 +5112,13 @@
     "reason_de": "Pflanzlich"
   },
   {
+    "id": "en:vermouth",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
     "id": "en:vinegar",
     "default_category": "HALAL",
     "hanafi_ruling": "HALAL",
@@ -5037,6 +5178,13 @@
       "de": "Vitamin D",
       "en": "Vitamin D"
     }
+  },
+  {
+    "id": "en:vodka",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:wafer",
@@ -5179,6 +5327,20 @@
         "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
       }
     ]
+  },
+  {
+    "id": "en:whiskey",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
+  },
+  {
+    "id": "en:whisky",
+    "default_category": "HARAM",
+    "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+    "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
+    "source": "quran_hadith"
   },
   {
     "id": "en:white-rice-koji",

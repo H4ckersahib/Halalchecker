@@ -97,18 +97,21 @@ class ResultViewModel @Inject constructor(
             if (previous == null) it.copy(isLoading = true, error = null) else it.copy(isRefreshing = true, refreshError = null)
         }
         try {
-            productRepository.lookupProduct(barcode, forceRefresh).fold(
-                onSuccess = { offProduct ->
-                    val photo = photoRepository.get(barcode)
-                    val product = photo?.let { offProduct.withPhotoIngredients(it.text, it.savedAt) } ?: offProduct
-                    val withClaims = product.copy(userClaims = preferences.packageClaims(barcode))
-                    val analyzed = analyze(withClaims, _uiState.value.madhab)
-                    store(analyzed)
-                    val feedback = feedbackRepository.getFeedback(barcode)
-                    _uiState.update { it.copy(isLoading = false, isRefreshing = false, product = analyzed, feedback = feedback) }
-                },
-                onFailure = { error -> fail(errorType(error)) }
-            )
+            val photo = photoRepository.get(barcode)
+            val lookup = productRepository.lookupProduct(barcode, forceRefresh)
+            // Offline, a barcode Open Food Facts doesn't know can still be checked from the user's photo
+            val offProduct = lookup.getOrNull()
+                ?: photo?.let { Product(barcode = barcode, name = "", source = DataSource.UNKNOWN) }
+                ?: return fail(errorType(lookup.exceptionOrNull() ?: IllegalStateException()))
+            val product = photo?.let {
+                offProduct.withPhotoIngredients(it.text, it.savedAt)
+                    .copy(photoConfirmedComplete = preferences.isPhotoComplete(barcode))
+            } ?: offProduct
+            val withClaims = product.copy(userClaims = preferences.packageClaims(barcode))
+            val analyzed = analyze(withClaims, _uiState.value.madhab)
+            store(analyzed)
+            val feedback = feedbackRepository.getFeedback(barcode)
+            _uiState.update { it.copy(isLoading = false, isRefreshing = false, product = analyzed, feedback = feedback) }
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -198,7 +201,18 @@ class ResultViewModel @Inject constructor(
 
     /** Back to the Open Food Facts ingredients; the observer re-analyzes. */
     fun deletePhotoIngredients() {
-        viewModelScope.launch { photoRepository.delete(barcode) }
+        viewModelScope.launch {
+            preferences.setPhotoComplete(barcode, false)
+            photoRepository.delete(barcode)
+        }
+    }
+
+    /** The photo shows the whole, current list: what only Open Food Facts lists no longer counts. */
+    fun confirmPhotoComplete() {
+        val product = _uiState.value.product ?: return
+        _uiState.update { it.copy(product = product.copy(photoConfirmedComplete = true)) }
+        viewModelScope.launch { preferences.setPhotoComplete(barcode, true) }
+        reanalyze(store = true)
     }
 
     fun deleteFeedback() {

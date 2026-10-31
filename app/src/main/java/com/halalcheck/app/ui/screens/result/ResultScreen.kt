@@ -144,6 +144,7 @@ fun ResultScreen(
                 onDeleteFeedback = viewModel::deleteFeedback,
                 onTakePhoto = { onTakePhoto(product.barcode) },
                 onDeletePhoto = viewModel::deletePhotoIngredients,
+                onConfirmPhotoComplete = viewModel::confirmPhotoComplete,
                 modifier = contentModifier
             )
         }
@@ -263,6 +264,7 @@ private fun ProductContent(
     onDeleteFeedback: () -> Unit,
     onTakePhoto: () -> Unit,
     onDeletePhoto: () -> Unit,
+    onConfirmPhotoComplete: () -> Unit,
     modifier: Modifier
 ) {
     val uriHandler = LocalUriHandler.current
@@ -295,6 +297,15 @@ private fun ProductContent(
 
         product.ingredientsFromPhoto?.let { savedAt ->
             item { PhotoNoticeCard(savedAt = savedAt, onEdit = onTakePhoto, onDelete = onDeletePhoto) }
+        }
+        if (product.photoMissing.isNotEmpty()) {
+            item {
+                PhotoGapCard(
+                    names = product.photoMissing.map { it.name }.distinct().joinToString(", "),
+                    onConfirm = onConfirmPhotoComplete,
+                    onRetake = onTakePhoto
+                )
+            }
         }
         // Nothing to check: the list is on the package in the user's hand
         if (product.analyzedIngredients.isEmpty()) {
@@ -833,6 +844,28 @@ private fun PhotoNoticeCard(savedAt: Long, onEdit: () -> Unit, onDelete: () -> U
             Row(modifier = Modifier.align(Alignment.End)) {
                 TextButton(onClick = onEdit) { Text(stringResource(R.string.photo_edit)) }
                 TextButton(onClick = onDelete) { Text(stringResource(R.string.photo_delete)) }
+            }
+        }
+    }
+}
+
+/** The photo lacks doubtful or haram ingredients Open Food Facts lists; they count until the user confirms. */
+@Composable
+private fun PhotoGapCard(names: String, onConfirm: () -> Unit, onRetake: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer)
+    ) {
+        Column(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 16.dp, bottom = 4.dp)) {
+            Text(
+                text = stringResource(R.string.photo_missing, names),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onErrorContainer
+            )
+            Row(modifier = Modifier.align(Alignment.End)) {
+                TextButton(onClick = onRetake) { Text(stringResource(R.string.photo_retake)) }
+                TextButton(onClick = onConfirm) { Text(stringResource(R.string.photo_confirm_complete)) }
             }
         }
     }

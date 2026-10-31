@@ -72,6 +72,16 @@ class UserPreferencesRepository @Inject constructor(
         PackageClaim.HALAL -> KEY_HALAL_CONFIRMED
     }
 
+    /** The user confirmed that the photographed ingredient list is complete and current (Open Food Facts is outdated). */
+    suspend fun isPhotoComplete(barcode: String): Boolean = barcode in context.dataStore.data.first()[KEY_PHOTO_COMPLETE].orEmpty()
+
+    suspend fun setPhotoComplete(barcode: String, complete: Boolean) {
+        context.dataStore.edit { prefs ->
+            val current = prefs[KEY_PHOTO_COMPLETE].orEmpty()
+            prefs[KEY_PHOTO_COMPLETE] = if (complete) current + barcode else current - barcode
+        }
+    }
+
     /** Optional name a tester enters so exports can be told apart. */
     val testerName: Flow<String> = context.dataStore.data.map { it[KEY_TESTER_NAME].orEmpty() }
 
@@ -93,5 +103,6 @@ class UserPreferencesRepository @Inject constructor(
         val KEY_VEGETARIAN_CONFIRMED = stringSetPreferencesKey("vegetarian_confirmed_barcodes")
         val KEY_HALAL_CONFIRMED = stringSetPreferencesKey("halal_confirmed_barcodes")
         val KEY_TESTER_NAME = stringPreferencesKey("tester_name")
+        val KEY_PHOTO_COMPLETE = stringSetPreferencesKey("photo_complete_barcodes")
     }
 }

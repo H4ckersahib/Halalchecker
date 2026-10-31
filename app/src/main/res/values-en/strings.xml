@@ -192,6 +192,8 @@
     <string name="photo_take_list">Photograph ingredient list</string>
     <string name="photo_take_own">Ingredient list wrong? Photograph it yourself</string>
     <string name="photo_notice">Checked: the ingredients from your photo of %s, not the Open Food Facts data.</string>
+    <string name="photo_missing">Open Food Facts also lists %s. Your photo lacks it, so it still counts. If the list was cut off, photograph it again. If your photo shows the whole, current list, confirm it.</string>
+    <string name="photo_confirm_complete">Photo is complete</string>
     <string name="photo_edit">Edit</string>
     <string name="photo_delete">Delete photo text</string>
 </resources>

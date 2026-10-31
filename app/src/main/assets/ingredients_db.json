@@ -1,5 +1,5 @@
 {
- "version": 138592840,
+ "version": 68561704,
  "generated": "2026-10-31",
  "license": "Open Database License (ODbL) 1.0. Ingredient names, synonyms and vegan/vegetarian flags: Open Food Facts taxonomies (https://world.openfoodfacts.org). Halal rulings: HalalCheck.",
  "ingredients": [
@@ -212,27 +212,9 @@
     "Absinth"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -303,7 +285,8 @@
     "Acai",
     "Açai",
     "açaí berries",
-    "Baie d'açaï"
+    "Baie d'açaï",
+    "Euterpe oleraceae"
    ],
    "names_de": [
     "Acai-Beeren",
@@ -565,7 +548,8 @@
    "name_fr": "sucre ajouté",
    "synonyms": [
     "various sugars",
-    "sucres ajoutés"
+    "sucres ajoutés",
+    "saccharum additum"
    ],
    "names_de": [
     "zugesetzter Zucker"
@@ -607,27 +591,10 @@
     "Eierlikör"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -639,7 +606,8 @@
    "name_fr": "haricot azuki",
    "synonyms": [
     "azuki bean",
-    "haricots azuki"
+    "haricots azuki",
+    "vigna angularis"
    ],
    "names_de": [
     "Adzukibohne"
@@ -653,6 +621,9 @@
    "id": "agathi_leaves",
    "name_de": "agathi leaves",
    "name_en": "agathi leaves",
+   "synonyms": [
+    "Sesbania grandiflora"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -731,7 +702,8 @@
     "ackee apple",
     "akee",
     "ackee",
-    "aki"
+    "aki",
+    "blighia sapida"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -747,7 +719,8 @@
     "Alaska-Pollack",
     "Alaska-Seelachs",
     "Alaskan pollock",
-    "Theragra chalcogramma"
+    "Theragra chalcogramma",
+    "Theragra chalcogmaquereauramma"
    ],
    "names_de": [
     "Alaska Seelachs",
@@ -797,7 +770,8 @@
     "albacore tuna",
     "white tuna",
     "solid white tuna",
-    "thon blanc germon"
+    "thon blanc germon",
+    "Thunnus alalonga"
    ],
    "names_de": [
     "Weisse Thunfisch",
@@ -826,10 +800,11 @@
    "names_de": [
     "Alkohol"
    ],
-   "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
-   "source": "quran_hadith",
+   "default_category": "MASHBOOH",
+   "reason": "Alcohol as an ingredient: forbidden if made from grapes or dates; from other sources permissible in food if it does not intoxicate (askimam). The package does not say which. Alcoholic drinks are haram.",
+   "reason_de": "Alkohol als Zutat: verboten, wenn aus Trauben oder Datteln; aus anderen Quellen in Lebensmitteln erlaubt, wenn nicht berauschend (askimam). Die Packung sagt nicht, woraus. Alkoholische Getränke sind haram.",
+   "source": "scholarly_opinion",
+   "doubt": "alcohol",
    "references": [
     {
      "url": "https://askimam.org/public/question_detail/43624",
@@ -948,7 +923,8 @@
    "name_ar": "طحالب",
    "name_fr": "algue",
    "synonyms": [
-    "algues"
+    "algues",
+    "Alga"
    ],
    "names_de": [
     "Alge"
@@ -1008,7 +984,8 @@
     "all spice",
     "Jamaica pepper",
     "myrtle pepper",
-    "piment de Jamaïque"
+    "piment de Jamaïque",
+    "Pimenta dioica"
    ],
    "names_de": [
     "Jamaikapfeffer",
@@ -1038,7 +1015,8 @@
     "mamra giri",
     "badaam giri",
     "Raw almond kernels",
-    "amandes"
+    "amandes",
+    "Prunis dulcis"
    ],
    "names_de": [
     "Mandel",
@@ -1220,7 +1198,8 @@
    "name_tr": "Tıbbi sarısabır",
    "name_ar": "صبر حقيقي",
    "synonyms": [
-    "Echte Aloe"
+    "Echte Aloe",
+    "Aloe barbadensis"
    ],
    "names_de": [
     "Aloe vera",
@@ -1262,6 +1241,9 @@
    "id": "amaranth_leaves",
    "name_de": "amaranth leaves",
    "name_en": "amaranth leaves",
+   "synonyms": [
+    "Amaranthus gangeticus"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -1285,34 +1267,18 @@
    "name_de": "Amaretto",
    "name_en": "amaretto",
    "synonyms": [
-    "Amarettolikor"
+    "Amarettolikor",
+    "amarettus"
    ],
    "names_de": [
     "Amaretto",
     "Amarettolikor"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -1320,6 +1286,9 @@
    "id": "american_anglerfish",
    "name_de": "American anglerfish",
    "name_en": "American anglerfish",
+   "synonyms": [
+    "Lophius piscatorius"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -1332,6 +1301,9 @@
    "id": "american_butterfish",
    "name_de": "American butterfish",
    "name_en": "American butterfish",
+   "synonyms": [
+    "Peprilus triacanthus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -1375,6 +1347,9 @@
    "name_de": "großfrüchtige moosbeere",
    "name_en": "american cranberry",
    "name_fr": "airelle à gros fruits",
+   "synonyms": [
+    "vaccinium macrocarpon"
+   ],
    "names_de": [
     "großfrüchtige moosbeere"
    ],
@@ -1387,6 +1362,9 @@
    "id": "american_ginseng",
    "name_de": "American ginseng",
    "name_en": "American ginseng",
+   "synonyms": [
+    "Panax quinquefolius"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -1438,7 +1416,8 @@
     "Canadian sea scallop",
     "Peigne du Canada",
     "pétoncle géant",
-    "peigne hauturier"
+    "peigne hauturier",
+    "Placopecten magellanicus"
    ],
    "default_category": "MASHBOOH",
    "hanafi_ruling": "HARAM",
@@ -1550,7 +1529,8 @@
    "synonyms": [
     "Serdellen",
     "Anchovis",
-    "anchovies"
+    "anchovies",
+    "Engraulidae"
    ],
    "names_de": [
     "Sardellen",
@@ -1601,6 +1581,9 @@
    "id": "angelica",
    "name_de": "Angelica",
    "name_en": "Angelica",
+   "synonyms": [
+    "Angelica archangelica"
+   ],
    "default_category": "HALAL",
    "reason": "Plant-based",
    "reason_de": "Pflanzlich",
@@ -1962,7 +1945,8 @@
     "apples",
     "raw",
     "without skin",
-    "pommes"
+    "pommes",
+    "Malum"
    ],
    "names_de": [
     "Apfel",
@@ -2283,7 +2267,8 @@
    "synonyms": [
     "Aprikosen",
     "Marille",
-    "Abricots de Haute Ardèche"
+    "Abricots de Haute Ardèche",
+    "Armeniacum"
    ],
    "names_de": [
     "Aprikose",
@@ -2530,6 +2515,9 @@
    "name_en": "arctic char",
    "name_ar": "شار قطبي شمالي",
    "name_fr": "Omble chevalier",
+   "synonyms": [
+    "Salvelinus alpinus"
+   ],
    "names_de": [
     "Seesaibling"
    ],
@@ -2575,7 +2563,8 @@
    "name_en": "Argentine hake",
    "name_fr": "Merlu Argentin",
    "synonyms": [
-    "Merlu austral"
+    "Merlu austral",
+    "Merluccius hubbsi"
    ],
    "names_de": [
     "Argentinische Seehecht"
@@ -2621,27 +2610,9 @@
     "Armagnac"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -2697,6 +2668,9 @@
    "id": "arrowhead",
    "name_de": "arrowhead",
    "name_en": "arrowhead",
+   "synonyms": [
+    "Sagittaria"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -2709,7 +2683,8 @@
    "name_fr": "Arrow-root",
    "synonyms": [
     "Marante",
-    "Herbe aux flèches"
+    "Herbe aux flèches",
+    "Maranta arundinacea"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -2741,6 +2716,9 @@
    "id": "arrowtooth_flounder",
    "name_de": "Arrowtooth flounder",
    "name_en": "Arrowtooth flounder",
+   "synonyms": [
+    "Atheresthes stomas"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -2758,7 +2736,8 @@
    "name_fr": "artichaut",
    "synonyms": [
     "Artichoken",
-    "artichauts"
+    "artichauts",
+    "Cynara scolymus"
    ],
    "names_de": [
     "Artischocke",
@@ -3056,7 +3035,8 @@
    "name_fr": "Pétoncle",
    "synonyms": [
     "bay scallop",
-    "pétoncles"
+    "pétoncles",
+    "Argopecten irradians"
    ],
    "names_de": [
     "Jakobsmuscheln der atlantischen Küste"
@@ -3079,6 +3059,9 @@
    "name_de": "Atlantische Kattunmuschels",
    "name_en": "Atlantic calico scallop",
    "name_fr": "Pétoncle calicot",
+   "synonyms": [
+    "Argopecten Gibbus"
+   ],
    "names_de": [
     "Atlantische Kattunmuschels"
    ],
@@ -3122,6 +3105,9 @@
    "name_en": "Atlantic herring",
    "name_tr": "Baltık ringası",
    "name_ar": "رنكة أطلسية",
+   "synonyms": [
+    "Clupea harengus"
+   ],
    "names_de": [
     "Atlantischer Hering"
    ],
@@ -3154,6 +3140,9 @@
    "name_en": "Atlantic mackerel",
    "name_ar": "اسقمري معروف",
    "name_fr": "Maquereau de l'Atlantique",
+   "synonyms": [
+    "scomber scombrus"
+   ],
    "names_de": [
     "atlantische Makrele"
    ],
@@ -3174,7 +3163,8 @@
    "name_fr": "saumon atlantique",
    "synonyms": [
     "salmo salar salmon",
-    "saumon salmo salar"
+    "saumon salmo salar",
+    "Salmo salar"
    ],
    "names_de": [
     "Atlantischer Lachs"
@@ -3205,6 +3195,9 @@
    "name_en": "Atlantic wolffish",
    "name_ar": "عريك أطلسي",
    "name_fr": "loup d'atlantique",
+   "synonyms": [
+    "Anarhichas lupus"
+   ],
    "names_de": [
     "Gestreifter Seewolf"
    ],
@@ -3225,7 +3218,8 @@
    "name_fr": "aubergine",
    "synonyms": [
     "Auberginen",
-    "eggplant"
+    "eggplant",
+    "Solanum melongena"
    ],
    "names_de": [
     "Aubergine",
@@ -3665,6 +3659,9 @@
    "id": "baltic_herring",
    "name_de": "Baltic herring",
    "name_en": "Baltic herring",
+   "synonyms": [
+    "Clupea harengus membras"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -3678,6 +3675,9 @@
    "name_de": "Baltic sprat",
    "name_en": "Baltic sprat",
    "name_fr": "Sprats de la mer Baltique",
+   "synonyms": [
+    "Sprattus sprattus balticus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -3693,6 +3693,9 @@
    "name_tr": "Bambu",
    "name_ar": "خيزران",
    "name_fr": "bambou",
+   "synonyms": [
+    "Bambuseae"
+   ],
    "names_de": [
     "Bambus"
    ],
@@ -3759,7 +3762,8 @@
    "name_ar": "موز",
    "name_fr": "banane",
    "synonyms": [
-    "bananes"
+    "bananes",
+    "Musa"
    ],
    "names_de": [
     "Bananen",
@@ -4152,7 +4156,9 @@
     "Malabar spinach",
     "vine spinach",
     "vinespinach",
-    "basella"
+    "basella",
+    "Basella alba",
+    "Basella rubra"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -4166,6 +4172,9 @@
    "name_tr": "Fesleğen",
    "name_ar": "ريحان",
    "name_fr": "basilic",
+   "synonyms": [
+    "Ocimum basilicum"
+   ],
    "names_de": [
     "Basilikum"
    ],
@@ -4293,7 +4302,8 @@
     "bay",
     "laurel",
     "bayleaf",
-    "laurier"
+    "laurier",
+    "laurus nobilis"
    ],
    "names_de": [
     "lorbeer",
@@ -4360,7 +4370,8 @@
     "Rajma",
     "Rajmah",
     "haricots",
-    "haricot commun"
+    "haricot commun",
+    "Phaseolus vulgaris"
    ],
    "names_de": [
     "Bohnen",
@@ -4415,7 +4426,8 @@
    "name_de": "bearberry",
    "name_en": "bearberry",
    "synonyms": [
-    "bearberries"
+    "bearberries",
+    "Arctostaphylos uva-ursi"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -5505,7 +5517,8 @@
    "name_en": "belgian endive",
    "name_fr": "endive",
    "synonyms": [
-    "endives"
+    "endives",
+    "Cichorium intybus var. foliosum"
    ],
    "names_de": [
     "Chicorée"
@@ -5773,6 +5786,9 @@
    "id": "betel_leaves",
    "name_de": "betel leaves",
    "name_en": "betel leaves",
+   "synonyms": [
+    "Piper betle"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -6003,7 +6019,8 @@
     "culture de bifidus",
     "bifidobactérium",
     "bifidobactéries",
-    "bifidobacteries"
+    "bifidobacteries",
+    "Bifidobacterium"
    ],
    "names_de": [
     "Bifidus"
@@ -6046,6 +6063,9 @@
    "name_de": "bigeye scad",
    "name_en": "bigeye scad",
    "name_fr": "coulirou",
+   "synonyms": [
+    "Selar crumenophthalmus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -6058,6 +6078,9 @@
    "id": "bigeye_tuna",
    "name_de": "Großaugenthun",
    "name_en": "bigeye tuna",
+   "synonyms": [
+    "Thunnus obesus"
+   ],
    "names_de": [
     "Großaugenthun"
    ],
@@ -6073,6 +6096,9 @@
    "id": "bighead_carp",
    "name_de": "bighead carp",
    "name_en": "bighead carp",
+   "synonyms": [
+    "Hypophthalmichthys nobilis"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -6090,7 +6116,8 @@
     "huckleberry",
     "huckleberries",
     "whortleberry",
-    "whortleberries"
+    "whortleberries",
+    "Vaccinium myrtillus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -6308,7 +6335,8 @@
     "Seville Orangen",
     "Seville orange",
     "Seville oranges",
-    "Oranges de Séville"
+    "Oranges de Séville",
+    "aurantium"
    ],
    "names_de": [
     "bitterorange",
@@ -6440,7 +6468,8 @@
    "name_ar": "هيل أسود",
    "name_fr": "cardamome noire",
    "synonyms": [
-    "schwarzer Cardamom"
+    "schwarzer Cardamom",
+    "Amomum subulatum"
    ],
    "names_de": [
     "Schwarzer Kardamom",
@@ -6535,7 +6564,8 @@
     "kalonji seeds",
     "black onion seed",
     "black onion seeds",
-    "graine de Nigelle"
+    "graine de Nigelle",
+    "nigella sativa"
    ],
    "names_de": [
     "Schwarzkümmel"
@@ -6568,7 +6598,8 @@
     "blackeye peas",
     "black eye beans",
     "black eyed beans",
-    "cornille"
+    "cornille",
+    "Vigna unguiculata subsp. unguiculata"
    ],
    "names_de": [
     "Augenbohnen"
@@ -6620,7 +6651,9 @@
     "Black matpe bean",
     "Urad Dal",
     "haricots urd",
-    "haricot mungio à grain noir"
+    "haricot mungio à grain noir",
+    "vigna mungo",
+    "Phaseolus mungo"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -6941,7 +6974,8 @@
    "synonyms": [
     "Canthère",
     "Griset",
-    "Tanude"
+    "Tanude",
+    "Spondyliosoma cantharus"
    ],
    "names_de": [
     "Streifenbrasse"
@@ -7091,7 +7125,8 @@
     "Perigord-Trüffel",
     "truffes noires",
     "truffe noire du Périgord",
-    "truffe du Périgord"
+    "truffe du Périgord",
+    "Tuber melanosporium"
    ],
    "names_de": [
     "Schwarze Trüffel",
@@ -7282,6 +7317,9 @@
    "id": "blackline_tilefish",
    "name_de": "blackline tilefish",
    "name_en": "blackline tilefish",
+   "synonyms": [
+    "Caulolatilus cyanops"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -7432,27 +7470,10 @@
     "Blended Scotch Whisky"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "whisky",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -7542,6 +7563,9 @@
    "name_de": "blond psyllium",
    "name_en": "blond psyllium",
    "name_fr": "psyllium blond",
+   "synonyms": [
+    "Plantago ovata"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -7786,7 +7810,9 @@
    "name_fr": "trèfle mélilot",
    "synonyms": [
     "fenugrec bleu",
-    "trèfle bleu"
+    "trèfle bleu",
+    "trigonella caerulea",
+    "trigonella melilotus-caerulea"
    ],
    "names_de": [
     "Schabzigerklee"
@@ -7806,7 +7832,9 @@
    "name_fr": "Hoki de Nouvelle-Zélande",
    "synonyms": [
     "Grenadier bleu",
-    "Merlu à longue queue"
+    "Merlu à longue queue",
+    "Macruronus novaezelandiae",
+    "macruronus spp"
    ],
    "names_de": [
     "Blauer Seehecht"
@@ -7824,6 +7852,9 @@
    "name_de": "blue ling",
    "name_en": "blue ling",
    "name_fr": "lingue bleue",
+   "synonyms": [
+    "Molva dypterygia"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -7839,7 +7870,8 @@
    "name_fr": "lupin bleu",
    "synonyms": [
     "blue lupine",
-    "lupin bleu doux"
+    "lupin bleu doux",
+    "lupinus angustifolius"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -7940,6 +7972,9 @@
    "id": "blue_tilapia",
    "name_de": "blue tilapia",
    "name_en": "blue tilapia",
+   "synonyms": [
+    "Oreochromis aureus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -7954,7 +7989,8 @@
    "name_en": "blue whiting",
    "name_fr": "merlan bleu",
    "synonyms": [
-    "Micromesistius poutassou"
+    "Micromesistius poutassou",
+    "Micromesistius spp"
    ],
    "names_de": [
     "Blauer Wittling",
@@ -7978,7 +8014,8 @@
     "Blaubeeren",
     "Heidelbeere",
     "Heidelbeer",
-    "blueberries"
+    "blueberries",
+    "Vaccinium"
    ],
    "names_de": [
     "Heidelbeeren",
@@ -8075,6 +8112,9 @@
    "id": "bluefish",
    "name_de": "bluefish",
    "name_en": "bluefish",
+   "synonyms": [
+    "Pomatomus saltatrix"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -8087,6 +8127,9 @@
    "id": "blueline_tilefish",
    "name_de": "blueline tilefish",
    "name_en": "blueline tilefish",
+   "synonyms": [
+    "Caulolatilus microps"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -8126,6 +8169,9 @@
    "name_tr": "kupes",
    "name_ar": "سمكة موزة",
    "name_fr": "bogue",
+   "synonyms": [
+    "Boops boops"
+   ],
    "names_de": [
     "Gelbstriemenbrasse"
    ],
@@ -8288,6 +8334,9 @@
    "name_tr": "Hodan",
    "name_ar": "حمحم مخزني",
    "name_fr": "Bourrache",
+   "synonyms": [
+    "Borago officinalis"
+   ],
    "names_de": [
     "Borretsch"
    ],
@@ -8338,7 +8387,8 @@
    "name_en": "Bosc pear",
    "name_fr": "poire Beurré Bosc",
    "synonyms": [
-    "Beurré Bosc pear"
+    "Beurré Bosc pear",
+    "Pyrus communis ‘Calebasse Bosc'"
    ],
    "names_de": [
     "Boscs Flaschenbirne"
@@ -8867,6 +8917,9 @@
    "name_tr": "ekmek",
    "name_ar": "خبز",
    "name_fr": "pain",
+   "synonyms": [
+    "panis"
+   ],
    "names_de": [
     "Brot"
    ],
@@ -8933,6 +8986,9 @@
    "name_de": "Brotfrucht",
    "name_en": "breadfruit",
    "name_fr": "fruit à pain",
+   "synonyms": [
+    "Artocarpus Altilis"
+   ],
    "names_de": [
     "Brotfrucht"
    ],
@@ -9035,6 +9091,9 @@
    "name_de": "Bierhefe",
    "name_en": "brewer's yeast",
    "name_fr": "levure de bière",
+   "synonyms": [
+    "Saccharomyces cerevisiae"
+   ],
    "names_de": [
     "Bierhefe"
    ],
@@ -9434,7 +9493,8 @@
     "broadbean",
     "fèves",
     "féverole",
-    "féverolle"
+    "féverolle",
+    "Vicia faba"
    ],
    "names_de": [
     "Ackerbohne",
@@ -9496,7 +9556,8 @@
     "Ganzblättrige Endivie",
     "Batavian endive",
     "escarole",
-    "flat endive"
+    "flat endive",
+    "Cichorium endivia var latifolium"
    ],
    "names_de": [
     "glatte Endivie",
@@ -9519,7 +9580,8 @@
    "name_ar": "أولفا خسية",
    "name_fr": "laitue de mer",
    "synonyms": [
-    "laitue de mers"
+    "laitue de mers",
+    "ulva lactuca"
    ],
    "names_de": [
     "Meersalat"
@@ -9539,7 +9601,8 @@
    "synonyms": [
     "broccoli cuts",
     "Brocolis",
-    "choux brocolis"
+    "choux brocolis",
+    "Brassica oleracea italica"
    ],
    "names_de": [
     "Brokkoli",
@@ -9945,7 +10008,8 @@
    "name_ar": "كرنب بروكسل",
    "name_fr": "chou de Bruxelles",
    "synonyms": [
-    "choux de bruxelles"
+    "choux de bruxelles",
+    "Cauliculus Bruxellanus"
    ],
    "names_de": [
     "Rosenkohl"
@@ -9988,6 +10052,9 @@
    "name_tr": "karabuğday",
    "name_ar": "حنطة سوداء",
    "name_fr": "sarrasin",
+   "synonyms": [
+    "fagopyrum esculentum"
+   ],
    "names_de": [
     "Buchweizen"
    ],
@@ -10144,7 +10211,8 @@
     "Bulgurweizen",
     "bulgur wheat",
     "bulgar",
-    "boulgour"
+    "boulgour",
+    "purgurium"
    ],
    "names_de": [
     "Bulgur",
@@ -10218,6 +10286,9 @@
    "id": "bullocks_heart",
    "name_de": "bullocks heart",
    "name_en": "bullocks heart",
+   "synonyms": [
+    "Annona reticulata"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -10230,6 +10301,9 @@
    "name_tr": "Tatlı su gelinciği",
    "name_ar": "بربوط",
    "name_fr": "lotte",
+   "synonyms": [
+    "lota lota"
+   ],
    "names_de": [
     "Quappe"
    ],
@@ -10311,7 +10385,8 @@
    "name_ar": "زبدة",
    "name_fr": "beurre",
    "synonyms": [
-    "Butterfett"
+    "Butterfett",
+    "butyrum"
    ],
    "names_de": [
     "Butter",
@@ -10489,7 +10564,8 @@
     "butternut",
     "courge musquée",
     "courges butternut",
-    "courges musquées"
+    "courges musquées",
+    "cucurbita moschata"
    ],
    "names_de": [
     "Butternusskürbis",
@@ -10627,6 +10703,9 @@
    "name_de": "cactus",
    "name_en": "cactus",
    "name_ar": "صبار",
+   "synonyms": [
+    "cactaceae"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -10754,7 +10833,8 @@
    "synonyms": [
     "Torte",
     "cakes",
-    "Gâteau"
+    "Gâteau",
+    "Scriblita"
    ],
    "names_de": [
     "Kuchen",
@@ -11082,27 +11162,9 @@
     "Calvados"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -11325,27 +11387,9 @@
     "Campari"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -11784,7 +11828,9 @@
     "golden berries",
     "Peruvian groundcherry",
     "groundcherries",
-    "poha"
+    "poha",
+    "Physalis peruviana",
+    "physalis"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -11799,7 +11845,8 @@
    "name_fr": "capelan",
    "synonyms": [
     "Kapelan",
-    "caplin"
+    "caplin",
+    "Mallotus villosus"
    ],
    "names_de": [
     "Lodde",
@@ -11905,7 +11952,8 @@
    "name_fr": "carambole",
    "synonyms": [
     "Baumstachelbeere",
-    "star fruit"
+    "star fruit",
+    "averrhoa carambola"
    ],
    "names_de": [
     "Karambole",
@@ -12136,6 +12184,10 @@
    "name_en": "caraway",
    "name_ar": "كروياء",
    "name_fr": "carvi",
+   "synonyms": [
+    "Carum carvi",
+    "Careum"
+   ],
    "names_de": [
     "Kümmel"
    ],
@@ -12165,7 +12217,8 @@
    "name_en": "caraway seed",
    "name_fr": "graine de carvi",
    "synonyms": [
-    "graines de carvi"
+    "graines de carvi",
+    "Carvi fructus"
    ],
    "names_de": [
     "Kümmelsamen"
@@ -12378,7 +12431,8 @@
     "Kardone",
     "Spanische Artischocke",
     "artichoke thistle",
-    "cardoons"
+    "cardoons",
+    "Cynara cardunculus"
    ],
    "names_de": [
     "Cardy",
@@ -12396,7 +12450,8 @@
    "name_en": "Caribbean spiny lobster",
    "name_fr": "Langouste blanche",
    "synonyms": [
-    "Panulirus argus"
+    "Panulirus argus",
+    "Panulirue argus"
    ],
    "names_de": [
     "Karibik-Languste",
@@ -12419,6 +12474,9 @@
    "id": "caribou",
    "name_de": "caribou",
    "name_en": "caribou",
+   "synonyms": [
+    "Rangifer tarandus"
+   ],
    "default_category": "MASHBOOH",
    "reason": "Source animal and slaughter method unknown",
    "reason_de": "Herkunftstier und Schlachtmethode unbekannt",
@@ -12470,7 +12528,8 @@
    "name_de": "carissa",
    "name_en": "carissa",
    "synonyms": [
-    "natal plum"
+    "natal plum",
+    "Carissa macrocarpa"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -12571,6 +12630,9 @@
    "name_de": "Karpfen",
    "name_en": "carp",
    "name_fr": "carpe",
+   "synonyms": [
+    "Cyprinus carpio"
+   ],
    "names_de": [
     "Karpfen"
    ],
@@ -12917,7 +12979,9 @@
     "manioc root",
     "yuca",
     "yuca root",
-    "racine de manioc"
+    "racine de manioc",
+    "manihot esculenta",
+    "mandioca"
    ],
    "names_de": [
     "Maniok",
@@ -12949,7 +13013,9 @@
    "name_fr": "cannelle de Chine",
    "synonyms": [
     "chinese cinnamon",
-    "cannelier de Chine"
+    "cannelier de Chine",
+    "cinnamomum cassia",
+    "cinnamomum aromaticum"
    ],
    "names_de": [
     "Zimtkassie"
@@ -13052,27 +13118,9 @@
     "Cava"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -13098,7 +13146,8 @@
    "synonyms": [
     "Cayenne-pfeffer",
     "cayenne",
-    "poivre de cayenne"
+    "poivre de cayenne",
+    "capsicum annuum ‘cayenne'"
    ],
    "names_de": [
     "cayennepfeffer",
@@ -13119,7 +13168,8 @@
    "name_ar": "الكرفس اللفتي",
    "name_fr": "céleri-rave",
    "synonyms": [
-    "céleri rave"
+    "céleri rave",
+    "Apium graveolens var. rapaceum"
    ],
    "names_de": [
     "Knollensellerie"
@@ -13137,7 +13187,8 @@
    "name_ar": "كرفس",
    "name_fr": "céleri",
    "synonyms": [
-    "Staudensellerie"
+    "Staudensellerie",
+    "Apium graveolens"
    ],
    "names_de": [
     "Sellerie",
@@ -13323,7 +13374,8 @@
    "synonyms": [
     "stem lettuce",
     "celery lettuce",
-    "Chinese lettuce"
+    "Chinese lettuce",
+    "Lactuca sativa var. angustana"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -13342,7 +13394,8 @@
     "porcini mushrooms",
     "cèpes",
     "bolets",
-    "cèpe de Bordeaux"
+    "cèpe de Bordeaux",
+    "Boletus edulis"
    ],
    "names_de": [
     "Steinpilze"
@@ -13542,6 +13595,9 @@
    "name_de": "Ceylon-Zimt",
    "name_en": "ceylon cinnamon",
    "name_fr": "cannelle de ceylan",
+   "synonyms": [
+    "cinnamomum verum"
+   ],
    "names_de": [
     "Ceylon-Zimt"
    ],
@@ -13580,27 +13636,9 @@
     "Champagner"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -13657,7 +13695,8 @@
     "Blettes",
     "bette",
     "bettes",
-    "côtes de blettes"
+    "côtes de blettes",
+    "Beta vulgaris var. cicla"
    ],
    "names_de": [
     "Mangold"
@@ -13749,27 +13788,9 @@
     "Chartreuse Likör"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -13911,6 +13932,9 @@
    "name_tr": "Peynir",
    "name_ar": "جبن",
    "name_fr": "fromage",
+   "synonyms": [
+    "Caseus"
+   ],
    "names_de": [
     "Käse"
    ],
@@ -14060,7 +14084,8 @@
     "Kirsche",
     "Kirschen",
     "cherries",
-    "cerises"
+    "cerises",
+    "Cerasus"
    ],
    "names_de": [
     "Kirsch",
@@ -14204,6 +14229,9 @@
    "name_de": "Kerbel",
    "name_en": "chervil",
    "name_fr": "cerfeuil",
+   "synonyms": [
+    "Anthriscus cerefolium"
+   ],
    "names_de": [
     "Kerbel"
    ],
@@ -14267,7 +14295,8 @@
    "synonyms": [
     "pholiota",
     "chestnut mushrooms",
-    "pholiotes"
+    "pholiotes",
+    "Pholiota adiposa"
    ],
    "names_de": [
     "Schüpplinge"
@@ -14291,6 +14320,9 @@
    "id": "chia",
    "name_de": "chia",
    "name_en": "chia",
+   "synonyms": [
+    "Salvia hispanica"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -14370,6 +14402,9 @@
    "id": "chickasaw_plum",
    "name_de": "chickasaw plum",
    "name_en": "chickasaw plum",
+   "synonyms": [
+    "prunus angustifolia"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -14391,7 +14426,8 @@
     "poulets",
     "poule",
     "Tavuk",
-    "دجاج"
+    "دجاج",
+    "Gallus"
    ],
    "names_de": [
     "Hähnchenfleisch",
@@ -15204,7 +15240,8 @@
     "garbanzo beans",
     "chick pea",
     "chick peas",
-    "pois chiches"
+    "pois chiches",
+    "cicer arietinum"
    ],
    "names_de": [
     "Kichererbse",
@@ -15526,7 +15563,8 @@
     "kimchi cabbage",
     "wombok",
     "pe-tsaï",
-    "chou de Chine"
+    "chou de Chine",
+    "brassica rapa subsp. pekinensis"
    ],
    "names_de": [
     "Chinakohl"
@@ -15580,7 +15618,8 @@
     "satsuma imo",
     "yamaimo",
     "onagaimo",
-    "hawaii mountain yam"
+    "hawaii mountain yam",
+    "Dioscorea polystachya"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -15667,7 +15706,8 @@
    "name_ar": "ثوم معمر",
    "name_fr": "ciboulette",
    "synonyms": [
-    "chive"
+    "chive",
+    "allium schoenoprasum"
    ],
    "names_de": [
     "Schnittlauch"
@@ -15718,6 +15758,9 @@
    "name_tr": "Çikolata",
    "name_ar": "شوكولاتة",
    "name_fr": "chocolat",
+   "synonyms": [
+    "Socolata"
+   ],
    "names_de": [
     "Schokolade"
    ],
@@ -15909,27 +15952,10 @@
     "Schokoladenlikör"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -16257,7 +16283,9 @@
    "synonyms": [
     "pacific mackerel",
     "pacific chub mackerel",
-    "maquereaux espagnols"
+    "maquereaux espagnols",
+    "Scomber japonicus",
+    "Scomber colias"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -16343,7 +16371,8 @@
    "synonyms": [
     "Apfelschaumwein",
     "Apfelwein",
-    "apple cider"
+    "apple cider",
+    "sicera"
    ],
    "names_de": [
     "Apfelmost",
@@ -16351,27 +16380,9 @@
     "Apfelwein"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -16436,7 +16447,8 @@
    "name_ar": "قرفة",
    "name_fr": "cannelle",
    "synonyms": [
-    "canelle"
+    "canelle",
+    "cinnamum"
    ],
    "names_de": [
     "zimt"
@@ -16512,7 +16524,8 @@
    "name_de": "cisco",
    "name_en": "cisco",
    "synonyms": [
-    "lake herring"
+    "lake herring",
+    "Coregonus artedi"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -16555,6 +16568,9 @@
    "name_en": "citron",
    "name_ar": "أترجة",
    "name_fr": "cédrat",
+   "synonyms": [
+    "Citrus medica"
+   ],
    "names_de": [
     "Zitronatzitrone"
    ],
@@ -16888,7 +16904,8 @@
     "Gewürznelke",
     "Gewürznelken",
     "clou de girofle",
-    "clous de girofle"
+    "clous de girofle",
+    "syzygium aromaticum"
    ],
    "names_de": [
     "Nelke",
@@ -17032,7 +17049,8 @@
    "name_en": "cockles",
    "name_fr": "coque",
    "synonyms": [
-    "coques"
+    "coques",
+    "Cardiidae"
    ],
    "names_de": [
     "Herzmuscheln"
@@ -17828,6 +17846,9 @@
    "name_tr": "kahve",
    "name_ar": "قهوة",
    "name_fr": "café",
+   "synonyms": [
+    "Coffeum"
+   ],
    "names_de": [
     "Kaffee"
    ],
@@ -17908,27 +17929,9 @@
     "Kognak"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -17955,27 +17958,9 @@
     "Cointreau"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -18081,7 +18066,8 @@
    "name_ar": "كولاجين",
    "name_fr": "collagène",
    "synonyms": [
-    "Kollajen"
+    "Kollajen",
+    "Collagenum"
    ],
    "names_de": [
     "Kollagen"
@@ -18326,6 +18312,9 @@
    "name_tr": "Çapak balığı",
    "name_ar": "أبراميس شائع",
    "name_fr": "Brème commune",
+   "synonyms": [
+    "Abramis brama"
+   ],
    "names_de": [
     "Brachse"
    ],
@@ -18401,7 +18390,8 @@
    "name_ar": "عضاض شائع",
    "name_fr": "Denté commun",
    "synonyms": [
-    "dorade rose gv"
+    "dorade rose gv",
+    "Dentex dentex"
    ],
    "names_de": [
     "Zahnbrasse"
@@ -18418,6 +18408,9 @@
    "id": "common_ling",
    "name_de": "common ling",
    "name_en": "common ling",
+   "synonyms": [
+    "Molva molva"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -18430,6 +18423,9 @@
    "id": "common_mallow",
    "name_de": "common mallow",
    "name_en": "common mallow",
+   "synonyms": [
+    "malva sylvestris"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -18487,6 +18483,9 @@
    "name_tr": "Bayağı dil balığı",
    "name_ar": "سمكة موسى",
    "name_fr": "Sole commune",
+   "synonyms": [
+    "Solea Solea"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -19327,6 +19326,9 @@
    "name_de": "Conference-Birne",
    "name_en": "Conference pear",
    "name_fr": "poire conférence",
+   "synonyms": [
+    "pyrus communis ‘Conference'"
+   ],
    "names_de": [
     "Conference-Birne"
    ],
@@ -20164,7 +20166,8 @@
    "name_ar": "نحاس",
    "name_fr": "cuivre",
    "synonyms": [
-    "cupric"
+    "cupric",
+    "cuprum"
    ],
    "names_de": [
     "Kupfer"
@@ -20243,6 +20246,9 @@
    "name_tr": "Kişniş",
    "name_ar": "كزبرة",
    "name_fr": "coriandre",
+   "synonyms": [
+    "Coriandrum sativum"
+   ],
    "names_de": [
     "Koriander"
    ],
@@ -20368,7 +20374,8 @@
     "mais à pop-corn",
     "mais à pop corn",
     "grains de maïs à éclater",
-    "maïs à éclater"
+    "maïs à éclater",
+    "zea mays"
    ],
    "names_de": [
     "Mais",
@@ -20614,7 +20621,8 @@
     "doucette",
     "raiponce",
     "Nusslisalat",
-    "rampon"
+    "rampon",
+    "valerianella locusta"
    ],
    "names_de": [
     "Feldsalat",
@@ -20745,7 +20753,8 @@
    "name_ar": "قنطريون عنبري",
    "name_fr": "bleuet des champs",
    "synonyms": [
-    "Kornblumen"
+    "Kornblumen",
+    "Centaurea cyanus"
    ],
    "names_de": [
     "Kornblume",
@@ -20797,6 +20806,9 @@
    "id": "corvina",
    "name_de": "Corvina",
    "name_en": "corvina",
+   "synonyms": [
+    "Cilus gilberti"
+   ],
    "names_de": [
     "Corvina"
    ],
@@ -21109,7 +21121,9 @@
    "name_fr": "niébé",
    "synonyms": [
     "cowpeas",
-    "voème"
+    "voème",
+    "vigna unguiculata",
+    "Vigna catjang"
    ],
    "names_de": [
     "Augenbohne"
@@ -21131,7 +21145,9 @@
     "crab meat",
     "crabmeat",
     "crabes",
-    "سرطان"
+    "سرطان",
+    "Brachyura",
+    "Cancer"
    ],
    "names_de": [
     "Krabbe",
@@ -21296,7 +21312,8 @@
    "name_ar": "جراد البحر",
    "name_fr": "écrevisse",
    "synonyms": [
-    "écrevisses"
+    "écrevisses",
+    "Astacologia"
    ],
    "names_de": [
     "Krebs"
@@ -21345,7 +21362,8 @@
     "Creme",
     "milk cream",
     "crème de lait",
-    "قشدة"
+    "قشدة",
+    "Cramum"
    ],
    "names_de": [
     "Sahne",
@@ -21681,7 +21699,8 @@
    "name_fr": "crepe",
    "synonyms": [
     "Crêpes",
-    "crepes"
+    "crepes",
+    "Crispa"
    ],
    "names_de": [
     "Crêpe",
@@ -21844,6 +21863,9 @@
    "id": "crucian_carp",
    "name_de": "Crucian carp",
    "name_en": "Crucian carp",
+   "synonyms": [
+    "Carassius carassius"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -21964,7 +21986,8 @@
     "Krebstieren",
     "Krustentier",
     "crustaceans",
-    "crustacé"
+    "crustacé",
+    "Crustacea"
    ],
    "names_de": [
     "Krebstiere",
@@ -22135,7 +22158,8 @@
     "champignons cultivés",
     "champignon de Paris",
     "champignons de Paris",
-    "Agaricus bisporus"
+    "Agaricus bisporus",
+    "agaricus brunnescens"
    ],
    "names_de": [
     "Zuchtchampignons",
@@ -22318,7 +22342,8 @@
     "Frisée",
     "frisée lettuce",
     "salade frisée",
-    "endive frisée"
+    "endive frisée",
+    "Cichorium endivia var. crispum"
    ],
    "names_de": [
     "krauser Salat",
@@ -22335,6 +22360,9 @@
    "id": "curly_parsley",
    "name_de": "Krause Petersilie",
    "name_en": "curly parsley",
+   "synonyms": [
+    "Petroselinum crispum var. crispum"
+   ],
    "names_de": [
     "Krause Petersilie"
    ],
@@ -22419,6 +22447,9 @@
    "id": "cusk",
    "name_de": "cusk",
    "name_en": "cusk",
+   "synonyms": [
+    "Brosme brosme"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -22459,7 +22490,8 @@
    "name_ar": "حبار",
    "name_fr": "seiche",
    "synonyms": [
-    "seiches"
+    "seiches",
+    "Sepiida"
    ],
    "names_de": [
     "Sepien"
@@ -22682,7 +22714,8 @@
    "synonyms": [
     "damson plum",
     "quetsches",
-    "prune bleue"
+    "prune bleue",
+    "prunus domestica var institia"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -22701,7 +22734,8 @@
     "dandelion leaf",
     "dandelion leaves",
     "feuille de pissenlit",
-    "feuilles de pissenlit"
+    "feuilles de pissenlit",
+    "Taraxacum officinale"
    ],
    "names_de": [
     "Löwenzahn"
@@ -22717,7 +22751,8 @@
    "name_en": "darf everlast",
    "name_tr": "altın otu",
    "synonyms": [
-    "immortelle"
+    "immortelle",
+    "Helichrysum arenarium"
    ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
@@ -22759,7 +22794,9 @@
    "name_en": "dark cep",
    "name_fr": "Cèpe bronzé",
    "synonyms": [
-    "bronze bolete"
+    "bronze bolete",
+    "Boletus aereus",
+    "aereus"
    ],
    "names_de": [
     "dunkler Steinpilz"
@@ -24373,7 +24410,8 @@
    "synonyms": [
     "Riesengarnelen",
     "gamba prawns",
-    "gamba shrimps"
+    "gamba shrimps",
+    "Aristeidae"
    ],
    "names_de": [
     "Gambas",
@@ -24398,7 +24436,8 @@
    "name_fr": "merlu noir du Cap",
    "synonyms": [
     "Tiefenwasser Kap Seehecht",
-    "Cape black hake"
+    "Cape black hake",
+    "Merluccius paradoxus"
    ],
    "names_de": [
     "Tiefwasserkaphecht",
@@ -24418,7 +24457,8 @@
    "name_en": "deepwater redfish",
    "name_fr": "dorade sébaste",
    "synonyms": [
-    "Dorade-sébaste"
+    "Dorade-sébaste",
+    "Sebastes mentella"
    ],
    "names_de": [
     "Tiefenrotbarsch"
@@ -24912,7 +24952,8 @@
    "synonyms": [
     "dewberries",
     "youngberry",
-    "youngberries"
+    "youngberries",
+    "Rubus caesius"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -25130,6 +25171,9 @@
    "name_tr": "dereotu",
    "name_ar": "شبت",
    "name_fr": "aneth",
+   "synonyms": [
+    "anethum graveolens"
+   ],
    "names_de": [
     "dill"
    ],
@@ -25306,7 +25350,8 @@
    "synonyms": [
     "towelgourd",
     "sponge gourd",
-    "luffa"
+    "luffa",
+    "Luffa aegyptiaca"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -25464,6 +25509,9 @@
    "id": "dock",
    "name_de": "dock",
    "name_en": "dock",
+   "synonyms": [
+    "Rumex"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -25474,6 +25522,9 @@
    "name_de": "Hundsrose",
    "name_en": "dog rose",
    "name_fr": "églantier",
+   "synonyms": [
+    "Rosa canina"
+   ],
    "names_de": [
     "Hundsrose"
    ],
@@ -26700,7 +26751,9 @@
    "name_fr": "blé dur",
    "synonyms": [
     "Durumweizen",
-    "hard wheat"
+    "hard wheat",
+    "Triticum durum",
+    "Triticum turgidum subsp. durum"
    ],
    "names_de": [
     "Hartweizen",
@@ -28017,7 +28070,10 @@
    "synonyms": [
     "E123",
     "Amarant",
-    "FD&C Red 2"
+    "FD&C Red 2",
+    "Amaranthus caudatus",
+    "Amaranthus cruentus",
+    "Amaranthus hypochondriacus"
    ],
    "names_de": [
     "Amaranth",
@@ -28533,7 +28589,8 @@
     "chlorophylle au magnésium",
     "Complexes cuivriques de chlorophylles",
     "chlorophylle cuivrique",
-    "complexes cuivre-chlorophylles"
+    "complexes cuivre-chlorophylles",
+    "Chlorophyllum"
    ],
    "names_de": [
     "Chlorophylle",
@@ -30734,7 +30791,8 @@
    "synonyms": [
     "E164",
     "Gardenia Yellow",
-    "Jaune de gardénia"
+    "Jaune de gardénia",
+    "safranum"
    ],
    "names_de": [
     "Safran",
@@ -30826,7 +30884,8 @@
     "Kalziumkarbonat",
     "CI Pigment White 18",
     "Chalk",
-    "Pigment blanc C. I. no 18"
+    "Pigment blanc C. I. no 18",
+    "Carbonatum calcii"
    ],
    "names_de": [
     "Calciumcarbonat",
@@ -32806,7 +32865,8 @@
     "neige carbonique",
     "gaz carbonique naturel",
     "CO²",
-    "CO2"
+    "CO2",
+    "Carbonii dioxidum"
    ],
    "names_de": [
     "Kohlendioxid",
@@ -34333,7 +34393,8 @@
     "Dihydrogénophosphate",
     "Acide phophorique",
     "Hydrogénophosphate",
-    "acidifiant phosphorique"
+    "acidifiant phosphorique",
+    "Ортофосфор кислотасы"
    ],
    "names_de": [
     "Phosphorsäure",
@@ -36502,7 +36563,8 @@
     "Speisegelatine",
     "Gelatinpulver",
     "Gelatinieren",
-    "gélatine alimentaire"
+    "gélatine alimentaire",
+    "Gelatinum"
    ],
    "names_de": [
     "Gelatine",
@@ -39342,7 +39404,8 @@
    "synonyms": [
     "E501i",
     "Pottasche",
-    "Kaliumkarbonat"
+    "Kaliumkarbonat",
+    "Potassa"
    ],
    "names_de": [
     "Kaliumcarbonat",
@@ -40129,7 +40192,8 @@
     "Kaustisches Soda",
     "Caustic soda",
     "Soude caustique",
-    "Lessive de soude"
+    "Lessive de soude",
+    "Natrii hydroxidum"
    ],
    "names_de": [
     "Natriumhydroxid",
@@ -40160,7 +40224,8 @@
     "Kaliumhydrat",
     "Ätzkali",
     "Kalihydrat",
-    "E 525"
+    "E 525",
+    "Hydroxidum kalii"
    ],
    "names_de": [
     "Kaliumhydroxid",
@@ -40198,7 +40263,8 @@
     "E-526",
     "E 526",
     "Chaux éteinte",
-    "chaux hydratée"
+    "chaux hydratée",
+    "Calx exstincta"
    ],
    "names_de": [
     "Calciumhydroxid",
@@ -42461,7 +42527,8 @@
     "E905cii",
     "Paraffine",
     "Paraffines",
-    "Paraffine synthétique"
+    "Paraffine synthétique",
+    "Paraffinum"
    ],
    "names_de": [
     "Paraffin",
@@ -43156,7 +43223,8 @@
     "Urea",
     "Kohlensäurediamid",
     "Urée",
-    "Perlurée"
+    "Perlurée",
+    "Ureum"
    ],
    "names_de": [
     "Carbamid",
@@ -43270,7 +43338,8 @@
     "nitrogen E941",
     "Azote",
     "Azot",
-    "نيتروجين"
+    "نيتروجين",
+    "nitrogenium"
    ],
    "names_de": [
     "Nitrogen",
@@ -43385,7 +43454,8 @@
    "synonyms": [
     "E941",
     "Stickstoff zum Aufschlagen",
-    "nitrogen E941"
+    "nitrogen E941",
+    "nitrogenium"
    ],
    "names_de": [
     "Stickstoff",
@@ -44486,27 +44556,9 @@
     "Obstbrand"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -44608,7 +44660,8 @@
     "Crabe-de-lune",
     "Poing-clos",
     "Clos-poing",
-    "Ouvet"
+    "Ouvet",
+    "Cancer pagurus"
    ],
    "names_de": [
     "Taschenkrebs"
@@ -44835,7 +44888,8 @@
     "jaune d'oeuf",
     "jaunes d'oeuf",
     "jaune d'oeufs",
-    "jaunes d'oeufs"
+    "jaunes d'oeufs",
+    "Vitellus"
    ],
    "names_de": [
     "Eigelb"
@@ -44957,7 +45011,8 @@
    "name_en": "einkorn wheat",
    "name_fr": "petit épeautre",
    "synonyms": [
-    "engrain"
+    "engrain",
+    "Triticum monococcum"
    ],
    "names_de": [
     "Einkorn"
@@ -44972,6 +45027,9 @@
    "name_de": "Holunder",
    "name_en": "elder",
    "name_fr": "sureau",
+   "synonyms": [
+    "sambuca nigra"
+   ],
    "names_de": [
     "Holunder"
    ],
@@ -45123,7 +45181,8 @@
    "synonyms": [
     "Holunderblüten",
     "elderflowers",
-    "fleurs de sureau"
+    "fleurs de sureau",
+    "sambuci flos"
    ],
    "names_de": [
     "Holunderblüte",
@@ -45288,7 +45347,8 @@
    "name_fr": "blé amidonnier",
    "synonyms": [
     "emmer wheat",
-    "amidonnier"
+    "amidonnier",
+    "Triticum dicoccum"
    ],
    "names_de": [
     "Emmer"
@@ -45414,7 +45474,8 @@
    "synonyms": [
     "Endivien",
     "Endives",
-    "chicorée endive"
+    "chicorée endive",
+    "Cichorium Endivia"
    ],
    "names_de": [
     "Endivie",
@@ -45457,7 +45518,8 @@
    "synonyms": [
     "enokitake",
     "golden needle mushrooms",
-    "velvet shank"
+    "velvet shank",
+    "Flammulina velutipes"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -45492,6 +45554,9 @@
    "name_tr": "enzim",
    "name_ar": "ئەنزیم",
    "name_fr": "Enzyme",
+   "synonyms": [
+    "enzymum"
+   ],
    "names_de": [
     "Enzym"
    ],
@@ -45532,6 +45597,9 @@
    "id": "eppaw",
    "name_de": "eppaw",
    "name_en": "eppaw",
+   "synonyms": [
+    "Sagittaria latifolia"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -45837,6 +45905,9 @@
    "id": "escolar",
    "name_de": "escolar",
    "name_en": "escolar",
+   "synonyms": [
+    "Lepidocybium flavobrunneum"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -46003,7 +46074,8 @@
    "synonyms": [
     "Anchois européen",
     "Anchois de l'Afrique australe",
-    "Anchois italien"
+    "Anchois italien",
+    "Engraulis encrasicolus"
    ],
    "names_de": [
     "Europäische Sardelle"
@@ -46020,6 +46092,9 @@
    "id": "european_anglerfish_monkfish",
    "name_de": "European anglerfish monkfish",
    "name_en": "European anglerfish monkfish",
+   "synonyms": [
+    "Lophius americanus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -46035,6 +46110,9 @@
    "name_tr": "Mığrı",
    "name_ar": "قنجر أوروبي",
    "name_fr": "congre",
+   "synonyms": [
+    "Conger conger"
+   ],
    "names_de": [
     "Meeraal"
    ],
@@ -46050,6 +46128,9 @@
    "id": "european_flying_squid",
    "name_de": "european flying squid",
    "name_en": "european flying squid",
+   "synonyms": [
+    "todarodes sagittatus"
+   ],
    "default_category": "MASHBOOH",
    "hanafi_ruling": "HARAM",
    "maliki_ruling": "HALAL",
@@ -46073,7 +46154,8 @@
     "merlu européen",
     "merlu blanc",
     "filets de merlu blanc",
-    "lieu"
+    "lieu",
+    "Merluccius merluccius"
    ],
    "names_de": [
     "Hechtdorsch",
@@ -46136,6 +46218,9 @@
    "name_de": "Flussbarsch",
    "name_en": "European perch",
    "name_fr": "perche commune",
+   "synonyms": [
+    "Perca fluviatilis"
+   ],
    "names_de": [
     "Flussbarsch"
    ],
@@ -46151,6 +46236,9 @@
    "id": "european_pine",
    "name_de": "European pine",
    "name_en": "European pine",
+   "synonyms": [
+    "Pinus Pinea"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -46169,7 +46257,8 @@
     "Filet de plie",
     "filets de carrelet",
     "Plie commune",
-    "Plie d'europe"
+    "Plie d'europe",
+    "Pleuronectes platessa"
    ],
    "names_de": [
     "Goldbutt",
@@ -46191,6 +46280,9 @@
    "name_tr": "Bayağı levrek",
    "name_ar": "شبص أوروبي",
    "name_fr": "bar commun",
+   "synonyms": [
+    "Dicentrarchus Labrax"
+   ],
    "names_de": [
     "Europäischer Wolfsbarsch"
    ],
@@ -46211,7 +46303,8 @@
    "name_fr": "sprat",
    "synonyms": [
     "Sprott",
-    "sprats"
+    "sprats",
+    "Sprattus Sprattus"
    ],
    "names_de": [
     "europäische Sprotte",
@@ -46656,7 +46749,8 @@
     "Scotch bonnet mushroom",
     "Marasme des Oréades",
     "Faux mousseron",
-    "Cariolette"
+    "Cariolette",
+    "Marasmius Oreades"
    ],
    "names_de": [
     "Nelken-Schwindling"
@@ -46836,7 +46930,8 @@
     "matières grasses",
     "graisse",
     "graisse alimentaire",
-    "graisses alimentaires"
+    "graisses alimentaires",
+    "pingue"
    ],
    "names_de": [
     "Fett",
@@ -46947,7 +47042,8 @@
    "name_fr": "fenouil",
    "synonyms": [
     "fenouils",
-    "fenouil commun"
+    "fenouil commun",
+    "foeniculum vulgare"
    ],
    "names_de": [
     "Fenchel"
@@ -46964,7 +47060,8 @@
    "name_fr": "graine de fenouil",
    "synonyms": [
     "Fenchelsaat",
-    "graines de fenouil"
+    "graines de fenouil",
+    "Foeniculi Fructus"
    ],
    "names_de": [
     "Fenchelsamen",
@@ -46982,6 +47079,9 @@
    "name_tr": "çemen otu",
    "name_ar": "حلبة",
    "name_fr": "fenugrec",
+   "synonyms": [
+    "trigonella foenum-graecum"
+   ],
    "names_de": [
     "bockshornklee"
    ],
@@ -47022,7 +47122,8 @@
    "synonyms": [
     "Bockshornkleesaat",
     "fenugreek seeds",
-    "graines de fenugrec"
+    "graines de fenugrec",
+    "Trigonellae foenugraeci semen"
    ],
    "names_de": [
     "Bockshornkleesamen",
@@ -47336,7 +47437,8 @@
    "name_fr": "feta",
    "synonyms": [
     "feta cheese",
-    "fromage feta"
+    "fromage feta",
+    "Pheta"
    ],
    "names_de": [
     "Feta-Käse"
@@ -47646,6 +47748,9 @@
    "id": "fiddlehead_fern",
    "name_de": "fiddlehead fern",
    "name_en": "fiddlehead fern",
+   "synonyms": [
+    "Matteuccia struthiopteris"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -47655,6 +47760,9 @@
    "id": "field_mushroom",
    "name_de": "field mushroom",
    "name_en": "field mushroom",
+   "synonyms": [
+    "agaricus spp."
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -47667,7 +47775,8 @@
    "name_tr": "incir",
    "name_fr": "figue",
    "synonyms": [
-    "figs"
+    "figs",
+    "Higo"
    ],
    "names_de": [
     "Feigen"
@@ -47872,7 +47981,9 @@
    "name_de": "firewood leaf",
    "name_en": "firewood leaf",
    "synonyms": [
-    "firewoord leaves"
+    "firewoord leaves",
+    "Chamaenerion angustifolium",
+    "Epilobium angustifolium"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -47931,7 +48042,8 @@
    "name_fr": "poisson",
    "synonyms": [
     "Fische",
-    "السمك كغداء"
+    "السمك كغداء",
+    "Piscis"
    ],
    "names_de": [
     "Fisch",
@@ -48157,7 +48269,8 @@
     "haricots plats",
     "haricot d'espagne",
     "haricot écarlate",
-    "haricot-fleur"
+    "haricot-fleur",
+    "phaseolus coccineus"
    ],
    "names_de": [
     "flache Bohne",
@@ -48219,6 +48332,9 @@
    "id": "flatleaf_parsley",
    "name_de": "flatleaf parsley",
    "name_en": "flatleaf parsley",
+   "synonyms": [
+    "Petroselinum crispum var. neapolitanum"
+   ],
    "default_category": "HALAL",
    "reason": "Plant-based",
    "reason_de": "Pflanzlich",
@@ -48519,7 +48635,8 @@
    "name_ar": "طحين",
    "name_fr": "farine",
    "synonyms": [
-    "farines"
+    "farines",
+    "Farina"
    ],
    "names_de": [
     "Mehl"
@@ -49091,10 +49208,11 @@
     "alcool de canne",
     "alcool de canne à sucre"
    ],
-   "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
-   "source": "quran_hadith",
+   "default_category": "MASHBOOH",
+   "reason": "Alcohol as an ingredient: forbidden if made from grapes or dates; from other sources permissible in food if it does not intoxicate (askimam). The package does not say which. Alcoholic drinks are haram.",
+   "reason_de": "Alkohol als Zutat: verboten, wenn aus Trauben oder Datteln; aus anderen Quellen in Lebensmitteln erlaubt, wenn nicht berauschend (askimam). Die Packung sagt nicht, woraus. Alkoholische Getränke sind haram.",
+   "source": "scholarly_opinion",
+   "doubt": "alcohol",
    "references": [
     {
      "url": "https://askimam.org/public/question_detail/43624",
@@ -50876,27 +50994,10 @@
    "name_en": "champagne brut",
    "name_fr": "champagne brut",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "champagne",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -51500,27 +51601,10 @@
    "name_en": "eau de vie de vin",
    "name_fr": "eau de vie de vin",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "eau_de_vie",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -56393,6 +56477,9 @@
    "name_de": "pin sylvestre",
    "name_en": "pin sylvestre",
    "name_fr": "pin sylvestre",
+   "synonyms": [
+    "Pinus sylvestris"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -59997,7 +60084,8 @@
    "name_fr": "fructose",
    "synonyms": [
     "Fruchtzucker",
-    "fruktoz"
+    "fruktoz",
+    "fructosum"
    ],
    "names_de": [
     "Fruktose",
@@ -60438,6 +60526,9 @@
    "id": "fuki",
    "name_de": "fuki",
    "name_en": "fuki",
+   "synonyms": [
+    "Petasites japonicus"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -60760,6 +60851,9 @@
    "name_tr": "tere",
    "name_ar": "رشاد مزروع",
    "name_fr": "cresson alénois",
+   "synonyms": [
+    "Lepidium Sativum"
+   ],
    "names_de": [
     "Gartenkresse"
    ],
@@ -60789,7 +60883,8 @@
     "Gartenerbsen",
     "Markerbsenschoten",
     "English peas",
-    "petit pois"
+    "petit pois",
+    "Pisum sativum L. subsp. sativum var. sativum"
    ],
    "names_de": [
     "Markerbsen",
@@ -60842,7 +60937,8 @@
    "name_de": "garland chrysanthemum",
    "name_en": "garland chrysanthemum",
    "synonyms": [
-    "chrysanthemum leaves"
+    "chrysanthemum leaves",
+    "Glebionis coronaria"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -60856,6 +60952,9 @@
    "name_tr": "Sarımsak",
    "name_ar": "ثوم",
    "name_fr": "ail",
+   "synonyms": [
+    "Allium sativum"
+   ],
    "names_de": [
     "Knoblauch"
    ],
@@ -61192,7 +61291,9 @@
    "name_fr": "camomille sauvage",
    "synonyms": [
     "Hungarian camomile",
-    "matricaire camomille"
+    "matricaire camomille",
+    "Matricaria chamomilla",
+    "Matricaria recutita"
    ],
    "names_de": [
     "Echte Kamille"
@@ -61316,6 +61417,9 @@
    "name_tr": "helvacı kabağı",
    "name_ar": "قرع كبير",
    "name_fr": "potiron",
+   "synonyms": [
+    "Cucurbita maxima"
+   ],
    "names_de": [
     "Riesen-Kürbis"
    ],
@@ -61380,27 +61484,9 @@
     "Gin"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -61414,7 +61500,9 @@
    "synonyms": [
     "stem ginger",
     "ginger root",
-    "racine de gingembre"
+    "racine de gingembre",
+    "Zingiber officinale",
+    "Gingiber"
    ],
    "names_de": [
     "Ingwer"
@@ -61617,7 +61705,8 @@
    "name_en": "glasswort",
    "name_fr": "salicorne",
    "synonyms": [
-    "marsh samphire"
+    "marsh samphire",
+    "salicornia europaea"
    ],
    "names_de": [
     "Queller"
@@ -61692,7 +61781,8 @@
    "name_ar": "جلوكوز",
    "name_fr": "glucose",
    "synonyms": [
-    "Glukoz"
+    "Glukoz",
+    "Glucosum"
    ],
    "names_de": [
     "Glukose",
@@ -62042,6 +62132,9 @@
    "name_en": "goat meat",
    "name_ar": "لحم الماعز",
    "name_fr": "viande de chèvre",
+   "synonyms": [
+    "Haedina"
+   ],
    "names_de": [
     "Ziegenfleisch"
    ],
@@ -62103,7 +62196,8 @@
    "name_fr": "baies de goji",
    "synonyms": [
     "goji berries",
-    "baie de goji"
+    "baie de goji",
+    "Lycium barbarum"
    ],
    "names_de": [
     "Gemeiner Bocksdorn"
@@ -62207,6 +62301,9 @@
    "id": "golden_tilefish",
    "name_de": "golden tilefish",
    "name_en": "golden tilefish",
+   "synonyms": [
+    "Lopholatilus chamaeleonticeps"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -62323,7 +62420,8 @@
     "gooseberries",
     "groseilles à maquereaux",
     "groseille verte",
-    "groseilles vertes"
+    "groseilles vertes",
+    "Ribes uva-crispa"
    ],
    "names_de": [
     "Stachelbeere",
@@ -62674,7 +62772,8 @@
    "synonyms": [
     "Trauben",
     "vine fruit",
-    "mixed vine fruit"
+    "mixed vine fruit",
+    "uva"
    ],
    "names_de": [
     "Traube",
@@ -62693,7 +62792,8 @@
    "name_ar": "عصير العنب",
    "name_fr": "jus de raisin",
    "synonyms": [
-    "raisin juice"
+    "raisin juice",
+    "mustum conditum"
    ],
    "names_de": [
     "Traubensaft"
@@ -62821,7 +62921,8 @@
    "name_ar": "ليمون فردوسي",
    "name_fr": "pamplemousse",
    "synonyms": [
-    "Grapefruits"
+    "Grapefruits",
+    "malum paradisi"
    ],
    "names_de": [
     "Grapefruit",
@@ -62975,6 +63076,9 @@
    "id": "grass_carp",
    "name_de": "grass carp",
    "name_en": "grass carp",
+   "synonyms": [
+    "Ctenopharyngodon idella"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -63023,7 +63127,8 @@
     "blue sweet pea",
     "chickling pea",
     "pois carrés",
-    "gesse"
+    "gesse",
+    "lathyrus sativus"
    ],
    "names_de": [
     "Saat-Platterbse"
@@ -63109,7 +63214,8 @@
    "synonyms": [
     "king scallop",
     "St James shell",
-    "escallop"
+    "escallop",
+    "Pecten maximus"
    ],
    "names_de": [
     "Große Pilgermuschel"
@@ -63131,6 +63237,10 @@
    "id": "greater_argentine",
    "name_de": "goldlachs",
    "name_en": "greater argentine",
+   "synonyms": [
+    "argentina silus",
+    "salmo silus"
+   ],
    "names_de": [
     "goldlachs"
    ],
@@ -63525,6 +63635,9 @@
    "name_de": "grüne Erbsen",
    "name_en": "green peas",
    "name_fr": "pois vert",
+   "synonyms": [
+    "Pisum sativum L. subsp. sativum"
+   ],
    "names_de": [
     "grüne Erbsen"
    ],
@@ -63616,7 +63729,8 @@
     "Grüntee",
     "Aufguss aus grünem Tee",
     "Gebrühter Grüntee",
-    "Aufguss aus Grüntee"
+    "Aufguss aus Grüntee",
+    "thea viridis"
    ],
    "names_de": [
     "Grüner Tee",
@@ -63796,7 +63910,8 @@
    "name_ar": "جنارك",
    "name_fr": "Reine-Claude",
    "synonyms": [
-    "reines-claudes"
+    "reines-claudes",
+    "Prunus domestica subsp. italica"
    ],
    "names_de": [
     "Edel-Pflaume"
@@ -63811,6 +63926,9 @@
    "name_de": "Schwarzer Heilbutt",
    "name_en": "Greenland halibut",
    "name_fr": "flétan du Groenland",
+   "synonyms": [
+    "Reinhardtius hippoglossoides"
+   ],
    "names_de": [
     "Schwarzer Heilbutt"
    ],
@@ -63866,7 +63984,8 @@
    "name_en": "grey pea",
    "name_fr": "pois gris",
    "synonyms": [
-    "grey peas"
+    "grey peas",
+    "pisum sativum subsp. arvense"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -64537,6 +64656,9 @@
    "name_tr": "Guarana",
    "name_ar": "غوارانا",
    "name_fr": "guarana",
+   "synonyms": [
+    "Paullinia cupana"
+   ],
    "names_de": [
     "Guarana"
    ],
@@ -64587,7 +64709,8 @@
    "name_fr": "goyave",
    "synonyms": [
     "guavas",
-    "goyaves"
+    "goyaves",
+    "psidium guajava"
    ],
    "names_de": [
     "Guaven"
@@ -64659,7 +64782,8 @@
    "name_tr": "Kırlangıç",
    "name_fr": "grondin",
    "synonyms": [
-    "Red gurnard"
+    "Red gurnard",
+    "Triglidae"
    ],
    "names_de": [
     "Knurrhähne"
@@ -64704,7 +64828,8 @@
    "name_fr": "églefin",
    "synonyms": [
     "aiglefin",
-    "Ânon"
+    "Ânon",
+    "Melanogrammus aeglefinus"
    ],
    "names_de": [
     "Schellfisch"
@@ -64839,7 +64964,8 @@
    "name_ar": "حلوم",
    "name_fr": "halloumi",
    "synonyms": [
-    "halloumi cheese"
+    "halloumi cheese",
+    "chalumium"
    ],
    "names_de": [
     "halloumi"
@@ -65002,7 +65128,8 @@
    "name_en": "harissa",
    "name_ar": "هريسة",
    "synonyms": [
-    "harissa paste"
+    "harissa paste",
+    "Erise"
    ],
    "default_category": "MASHBOOH",
    "source": "off_maybe",
@@ -65031,7 +65158,8 @@
    "synonyms": [
     "Hass-Avocados",
     "hass avocadoes",
-    "avocats Hass"
+    "avocats Hass",
+    "persea americana ‘Hass'"
    ],
    "names_de": [
     "Hass-Avocado",
@@ -65100,6 +65228,9 @@
    "id": "hayward_kiwifruit",
    "name_de": "Hayward kiwifruit",
    "name_en": "Hayward kiwifruit",
+   "synonyms": [
+    "actinidia chinensis var. deliciosa ‘Hayward'"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -65263,7 +65394,8 @@
     "coeurs de palmiers",
     "coeurs de palmier",
     "choux palmistes",
-    "chou palmiste"
+    "chou palmiste",
+    "Cerebrum palmae"
    ],
    "names_de": [
     "Palmherzen",
@@ -65579,6 +65711,9 @@
    "name_de": "Tiefseegarnelen",
    "name_en": "Heterocarpus",
    "name_fr": "Heterocarpus",
+   "synonyms": [
+    "Heterocarpus spp"
+   ],
    "names_de": [
     "Tiefseegarnelen",
     "Heterocarpus"
@@ -65810,7 +65945,8 @@
    "name_ar": "عسل",
    "name_fr": "miel",
    "synonyms": [
-    "عسل النحل"
+    "عسل النحل",
+    "Mel"
    ],
    "names_de": [
     "Honig"
@@ -65943,6 +66079,9 @@
    "id": "honey_mushroom",
    "name_de": "honey mushroom",
    "name_en": "honey mushroom",
+   "synonyms": [
+    "armillaria mellea"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -65969,6 +66108,9 @@
    "name_en": "honeydew melon",
    "name_ar": "شمام كوز العسل",
    "name_fr": "melon miel",
+   "synonyms": [
+    "Cucumis melo var. Inodorus"
+   ],
    "names_de": [
     "Honigmelone"
    ],
@@ -66090,6 +66232,9 @@
    "name_de": "Totentrompete",
    "name_en": "horn of plenty",
    "name_fr": "Trompettes de la mort",
+   "synonyms": [
+    "Craterellus cornucopioides"
+   ],
    "names_de": [
     "Totentrompete"
    ],
@@ -66117,6 +66262,9 @@
    "name_tr": "at",
    "name_ar": "خيل",
    "name_fr": "cheval",
+   "synonyms": [
+    "equus ferus caballus"
+   ],
    "names_de": [
     "hauspferd"
    ],
@@ -66139,7 +66287,8 @@
    "name_de": "horse gram",
    "name_en": "horse gram",
    "synonyms": [
-    "kulthi"
+    "kulthi",
+    "Macrotyloma uniflorum"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -66193,7 +66342,8 @@
    "name_fr": "raifort",
    "synonyms": [
     "horseradish root",
-    "chrain"
+    "chrain",
+    "armoracia rusticana"
    ],
    "names_de": [
     "Meerrettich"
@@ -66529,7 +66679,8 @@
     "dolichos beans",
     "Egyptian beans",
     "safed val",
-    "sem"
+    "sem",
+    "Lablab purpureus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -67053,6 +67204,9 @@
    "name_tr": "Buz",
    "name_ar": "جليد",
    "name_fr": "glace",
+   "synonyms": [
+    "glacies"
+   ],
    "names_de": [
     "Eis"
    ],
@@ -67073,7 +67227,8 @@
    "name_fr": "crème glacée",
    "synonyms": [
     "Eiscreme",
-    "ice creams"
+    "ice creams",
+    "Glacies edibilis"
    ],
    "names_de": [
     "Speiseeis",
@@ -67092,7 +67247,8 @@
    "name_en": "iceberg lettuce",
    "name_fr": "laitue iceberg",
    "synonyms": [
-    "iceberg"
+    "iceberg",
+    "Lactuca sativa var. capitata"
    ],
    "names_de": [
     "Eisbergsalat"
@@ -67267,7 +67423,8 @@
    "name_en": "indian squid",
    "name_fr": "calmar indien",
    "synonyms": [
-    "Uroteuthis duvaucelii"
+    "Uroteuthis duvaucelii",
+    "Loligo duvauceli"
    ],
    "names_de": [
     "indischer Tintenfisch",
@@ -67557,7 +67714,8 @@
    "name_ar": "يود",
    "name_fr": "Iode",
    "synonyms": [
-    "Iodid"
+    "Iodid",
+    "Iodum"
    ],
    "names_de": [
     "Jod",
@@ -67636,7 +67794,8 @@
    "synonyms": [
     "Carrageen moss",
     "irishmoss",
-    "sea moss"
+    "sea moss",
+    "Chondrus crispus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -67652,27 +67811,10 @@
     "Irischer Whiskey"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "whiskey",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -67685,7 +67827,8 @@
    "name_fr": "Fer",
    "synonyms": [
     "ferric",
-    "ferrous"
+    "ferrous",
+    "ferrum"
    ],
    "names_de": [
     "Eisen"
@@ -67855,6 +67998,9 @@
    "name_tr": "İstavrit",
    "name_ar": "طرخورة",
    "name_fr": "chinchard",
+   "synonyms": [
+    "Trachurus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -67960,6 +68106,9 @@
    "id": "japanese_pepper",
    "name_de": "Japanese pepper",
    "name_en": "Japanese pepper",
+   "synonyms": [
+    "Zanthoxylum piperitum"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -67971,7 +68120,8 @@
    "name_en": "Japanese plum",
    "synonyms": [
     "Chinese plum",
-    "Susina"
+    "Susina",
+    "prunus salicina"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -68059,7 +68209,8 @@
    "name_ar": "دوار الشمس الدرني",
    "name_fr": "topinambour",
    "synonyms": [
-    "root artichoke"
+    "root artichoke",
+    "Helianthus tuberosus"
    ],
    "names_de": [
     "Topinambur"
@@ -68141,7 +68292,8 @@
    "synonyms": [
     "Wachholder",
     "Gemeiner Wacholder",
-    "genévrier commun"
+    "genévrier commun",
+    "Juniperus communis"
    ],
    "names_de": [
     "Wacholder",
@@ -68165,7 +68317,8 @@
    "synonyms": [
     "Wacholderbeeren",
     "juniper berries",
-    "baies de genévrier"
+    "baies de genévrier",
+    "Juniperi pseudo-fructus"
    ],
    "names_de": [
     "Wacholderbeere",
@@ -68210,7 +68363,8 @@
    "synonyms": [
     "Kaffernlimetten",
     "Kaffirlimette",
-    "lime kaffir"
+    "lime kaffir",
+    "Citrus hystrix"
    ],
    "names_de": [
     "Kaffernlimette",
@@ -68301,7 +68455,8 @@
    "name_fr": "chou frisé",
    "synonyms": [
     "curly cale",
-    "curly kale"
+    "curly kale",
+    "brassica oleracea convar. acephala var. sabellica"
    ],
    "names_de": [
     "Grünkohl"
@@ -68541,6 +68696,9 @@
    "name_de": "kelp",
    "name_en": "kelp",
    "name_fr": "varech",
+   "synonyms": [
+    "Laminariales"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -68567,7 +68725,8 @@
    "name_ar": "كتشب",
    "name_fr": "ketchup",
    "synonyms": [
-    "catsup"
+    "catsup",
+    "lycopersici liquamen"
    ],
    "names_de": [
     "Ketchup"
@@ -68608,6 +68767,10 @@
    "name_de": "Kamut",
    "name_en": "khorasan wheat",
    "name_fr": "blé khorasan",
+   "synonyms": [
+    "Triticum turgidum subsp. turanicum",
+    "Triticum turanicum"
+   ],
    "names_de": [
     "Kamut"
    ],
@@ -68707,27 +68870,9 @@
     "Kirschwasser"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -68741,7 +68886,8 @@
    "synonyms": [
     "Kiwifrucht",
     "kiwi fruit",
-    "Chinese gooseberry"
+    "Chinese gooseberry",
+    "actinidiae fructus"
    ],
    "names_de": [
     "Kiwi",
@@ -68757,7 +68903,8 @@
    "name_de": "Kodo millet",
    "name_en": "Kodo millet",
    "synonyms": [
-    "varagu"
+    "varagu",
+    "Paspalum scrobiculatum"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -68825,7 +68972,9 @@
    "name_fr": "culture de kombucha",
    "synonyms": [
     "kombuncha cultures",
-    "symbiotic culture"
+    "symbiotic culture",
+    "Medusomyces gisevii",
+    "Medusomyces gisevi"
    ],
    "default_category": "MASHBOOH",
    "source": "off_maybe",
@@ -68874,7 +69023,8 @@
    "name_de": "Korean ginseng",
    "name_en": "Korean ginseng",
    "synonyms": [
-    "Asian ginseng"
+    "Asian ginseng",
+    "Panax ginseng"
    ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
@@ -68904,6 +69054,9 @@
    "id": "korean_pine",
    "name_de": "Korean pine",
    "name_en": "Korean pine",
+   "synonyms": [
+    "Pinus koraiensis"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -68977,7 +69130,8 @@
    "name_ar": "كمكوات",
    "name_fr": "kumquat",
    "synonyms": [
-    "kumquats"
+    "kumquats",
+    "citrus japonica"
    ],
    "names_de": [
     "Kumquat"
@@ -69063,6 +69217,10 @@
    "id": "la_aspergillus_oryzae",
    "name_de": "la aspergillus oryzae",
    "name_en": "la aspergillus oryzae",
+   "synonyms": [
+    "Aspergillus oryzae",
+    "a. oryzae"
+   ],
    "default_category": "HALAL",
    "reason": "Mould, fungal or bacterial culture",
    "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
@@ -69072,6 +69230,9 @@
    "id": "la_aspergillus_sojae",
    "name_de": "la aspergillus sojae",
    "name_en": "la aspergillus sojae",
+   "synonyms": [
+    "Aspergillus sojae"
+   ],
    "default_category": "HALAL",
    "reason": "Mould, fungal or bacterial culture",
    "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
@@ -69081,6 +69242,9 @@
    "id": "la_cynoglossus_bilineatus",
    "name_de": "la cynoglossus bilineatus",
    "name_en": "la cynoglossus bilineatus",
+   "synonyms": [
+    "cynoglossus bilineatus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -69093,6 +69257,9 @@
    "id": "la_cynoglossus_itinus",
    "name_de": "la cynoglossus itinus",
    "name_en": "la cynoglossus itinus",
+   "synonyms": [
+    "cynoglossus itinus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -69105,6 +69272,9 @@
    "id": "la_cynoglossus_oligolepis",
    "name_de": "la cynoglossus oligolepis",
    "name_en": "la cynoglossus oligolepis",
+   "synonyms": [
+    "cynoglossus oligolepis"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -69117,6 +69287,9 @@
    "id": "la_cynoglossus_robustus",
    "name_de": "la cynoglossus robustus",
    "name_en": "la cynoglossus robustus",
+   "synonyms": [
+    "cynoglossus robustus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -69129,6 +69302,10 @@
    "id": "la_helix_aspersa",
    "name_de": "la helix aspersa",
    "name_en": "la helix aspersa",
+   "synonyms": [
+    "Helix aspersa",
+    "Cornu aspersum"
+   ],
    "default_category": "MASHBOOH",
    "hanafi_ruling": "HARAM",
    "maliki_ruling": "HALAL",
@@ -69146,6 +69323,9 @@
    "id": "la_helix_lucorum",
    "name_de": "la helix lucorum",
    "name_en": "la helix lucorum",
+   "synonyms": [
+    "Helix lucorum"
+   ],
    "default_category": "MASHBOOH",
    "hanafi_ruling": "HARAM",
    "maliki_ruling": "HALAL",
@@ -69163,6 +69343,9 @@
    "id": "la_helix_pomatia",
    "name_de": "la helix pomatia",
    "name_en": "la helix pomatia",
+   "synonyms": [
+    "Helix pomatia"
+   ],
    "default_category": "MASHBOOH",
    "hanafi_ruling": "HARAM",
    "maliki_ruling": "HALAL",
@@ -69180,6 +69363,10 @@
    "id": "la_metapenaeus_affinis",
    "name_de": "la metapenaeus affinis",
    "name_en": "la metapenaeus affinis",
+   "synonyms": [
+    "Metapenaeus affinis",
+    "Metapaneus affinis"
+   ],
    "default_category": "HALAL",
    "hanafi_ruling": "MASHBOOH",
    "maliki_ruling": "HALAL",
@@ -69197,6 +69384,9 @@
    "name_de": "Spitz-Morchel",
    "name_en": "Spitz-Morchel",
    "name_ar": "غوشنة مخروطية",
+   "synonyms": [
+    "Morchella conica"
+   ],
    "names_de": [
     "Spitz-Morchel"
    ],
@@ -69209,6 +69399,9 @@
    "id": "la_morchella_esculenta",
    "name_de": "la morchella esculenta",
    "name_en": "la morchella esculenta",
+   "synonyms": [
+    "Morchella esculenta"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -69218,6 +69411,9 @@
    "id": "la_mortierella_alpina",
    "name_de": "la mortierella alpina",
    "name_en": "la mortierella alpina",
+   "synonyms": [
+    "Mortierella alpina"
+   ],
    "default_category": "HALAL",
    "reason": "Mould, fungal or bacterial culture",
    "reason_de": "Schimmel-, Pilz- oder Bakterienkultur",
@@ -69227,6 +69423,10 @@
    "id": "la_passiflora_edulis",
    "name_de": "la passiflora edulis",
    "name_en": "la passiflora edulis",
+   "synonyms": [
+    "Passiflora edulis",
+    "Passiflora edulis sims"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -69236,6 +69436,9 @@
    "id": "la_passiflora_incarnata",
    "name_de": "la passiflora incarnata",
    "name_en": "la passiflora incarnata",
+   "synonyms": [
+    "Passiflora incarnata"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -69245,6 +69448,9 @@
    "id": "la_porphyra_yezoensis",
    "name_de": "la porphyra yezoensis",
    "name_en": "la porphyra yezoensis",
+   "synonyms": [
+    "Porphyra yezoensis"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -69254,6 +69460,9 @@
    "id": "la_solenocera_crassicornis",
    "name_de": "la solenocera crassicornis",
    "name_en": "la solenocera crassicornis",
+   "synonyms": [
+    "Solenocera Crassicornis"
+   ],
    "default_category": "HALAL",
    "hanafi_ruling": "MASHBOOH",
    "maliki_ruling": "HALAL",
@@ -69270,6 +69479,9 @@
    "id": "la_solenocera_spp",
    "name_de": "la solenocera spp",
    "name_en": "la solenocera spp",
+   "synonyms": [
+    "Solenocera spp"
+   ],
    "default_category": "HALAL",
    "hanafi_ruling": "MASHBOOH",
    "maliki_ruling": "HALAL",
@@ -69286,6 +69498,9 @@
    "id": "la_stolephorus_spp",
    "name_de": "la stolephorus spp",
    "name_en": "la stolephorus spp",
+   "synonyms": [
+    "Stolephorus spp"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -69584,7 +69799,8 @@
     "Milchzucker",
     "milk sugar",
     "milk lactose",
-    "sucre du lait"
+    "sucre du lait",
+    "Lactosum"
    ],
    "names_de": [
     "Laktose",
@@ -70098,7 +70314,8 @@
    "name_en": "land cress",
    "synonyms": [
     "American cress",
-    "winter cress"
+    "winter cress",
+    "barbarea verna"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -70290,7 +70507,8 @@
     "pâtes à lasagnes",
     "pâte à lasagne sèche",
     "Pâte de lasagne",
-    "pâte à lasagne cuite"
+    "pâte à lasagne cuite",
+    "laganum"
    ],
    "names_de": [
     "lasagne",
@@ -70389,6 +70607,9 @@
    "name_tr": "Lavanta",
    "name_ar": "ضرم",
    "name_fr": "lavande",
+   "synonyms": [
+    "Lavandula"
+   ],
    "names_de": [
     "Lavendel"
    ],
@@ -70423,6 +70644,9 @@
    "id": "laver",
    "name_de": "Laver",
    "name_en": "laver",
+   "synonyms": [
+    "Porphyra"
+   ],
    "names_de": [
     "Laver"
    ],
@@ -70560,7 +70784,8 @@
     "Lauche",
     "Porrees",
     "Porree",
-    "poireaux"
+    "poireaux",
+    "allium ampeloprasum var. porrum"
    ],
    "names_de": [
     "Lauch",
@@ -70589,6 +70814,9 @@
    "name_tr": "baklagiller",
    "name_ar": "بقول",
    "name_fr": "légumineuse",
+   "synonyms": [
+    "Legumen"
+   ],
    "names_de": [
     "Hülsenfrucht"
    ],
@@ -70608,7 +70836,8 @@
     "Zitronen",
     "citrons",
     "citron jaune",
-    "citrons jaunes"
+    "citrons jaunes",
+    "citrus × limon"
    ],
    "names_de": [
     "Zitrone",
@@ -70626,7 +70855,8 @@
    "name_ar": "ترنجان مخزني",
    "name_fr": "mélisse",
    "synonyms": [
-    "Melisse"
+    "Melisse",
+    "Melissa officinalis"
    ],
    "names_de": [
     "Zitronenmelisse",
@@ -70968,7 +71198,9 @@
    "name_fr": "verveine citronnee",
    "synonyms": [
     "lemon beebrush",
-    "verveine citronelle"
+    "verveine citronelle",
+    "Aloysia citrodora",
+    "lippia citriodora"
    ],
    "names_de": [
     "Zitronenverbene"
@@ -71044,7 +71276,8 @@
    "name_fr": "citronnelle",
    "synonyms": [
     "lemon grass",
-    "citronelle"
+    "citronelle",
+    "Cymbopogon citratus"
    ],
    "names_de": [
     "Zitronengras"
@@ -71113,7 +71346,8 @@
     "lentil",
     "Masoor dal",
     "Masur dal",
-    "lentille"
+    "lentille",
+    "Lens culinaris"
    ],
    "names_de": [
     "Linse",
@@ -71162,7 +71396,9 @@
     "Gartensalat",
     "Kopfsalat",
     "Lettuces",
-    "Laitues"
+    "Laitues",
+    "Lactuca",
+    "Lactuca sativa"
    ],
    "names_de": [
     "Lattich",
@@ -71315,7 +71551,8 @@
     "Mondbohne",
     "lima beans",
     "butter bean",
-    "haricots de Lima"
+    "haricots de Lima",
+    "Phaseolus lunatus"
    ],
    "names_de": [
     "Limabohne",
@@ -71335,7 +71572,8 @@
    "name_fr": "citron vert",
    "synonyms": [
     "Limetten",
-    "Limone"
+    "Limone",
+    "Lumia"
    ],
    "names_de": [
     "Limette",
@@ -71460,27 +71698,10 @@
     "Limoncello"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -71525,7 +71746,8 @@
    "name_en": "ling",
    "name_fr": "lingue",
    "synonyms": [
-    "julienne"
+    "julienne",
+    "Molva"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -71539,6 +71761,9 @@
    "id": "lingcod",
    "name_de": "lingcod",
    "name_en": "lingcod",
+   "synonyms": [
+    "Ophiodon elongatus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -71565,7 +71790,8 @@
     "red whortleberries",
     "airelles",
     "airelle rouge",
-    "airelles rouges"
+    "airelles rouges",
+    "Vaccinium vitis-idaea"
    ],
    "names_de": [
     "Preiselbeere",
@@ -71692,31 +71918,16 @@
    "name_tr": "likör",
    "name_ar": "ليكير",
    "name_fr": "liqueur",
+   "synonyms": [
+    "anisatum"
+   ],
    "names_de": [
     "Likör"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -71726,7 +71937,8 @@
    "name_en": "liqueur wine",
    "name_fr": "vin de liqueur",
    "synonyms": [
-    "fortified wine"
+    "fortified wine",
+    "Mixtella"
    ],
    "names_de": [
     "Likörwein"
@@ -71921,7 +72133,8 @@
     "Süßholz",
     "Echtes Süßholz",
     "licorice",
-    "Infusions de Réglisse"
+    "Infusions de Réglisse",
+    "Glycyrrhiza glabra"
    ],
    "names_de": [
     "Lakritz",
@@ -72073,7 +72286,9 @@
    "name_de": "little millet",
    "name_en": "little millet",
    "synonyms": [
-    "samai"
+    "samai",
+    "Panicum sumatrense",
+    "Panicum miliare"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -72142,7 +72357,9 @@
    "synonyms": [
     "lobster meat",
     "homards",
-    "همار"
+    "همار",
+    "Nephropidae",
+    "Homarus"
    ],
    "names_de": [
     "Hummer"
@@ -72197,7 +72414,8 @@
    "name_en": "loganberry",
    "name_fr": "mûroise",
    "synonyms": [
-    "loganberries"
+    "loganberries",
+    "Rubus loganobaccus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -72356,6 +72574,9 @@
    "name_en": "lovage",
    "name_ar": "كاشم رومي",
    "name_fr": "livèche",
+   "synonyms": [
+    "Levisticum officinale"
+   ],
    "names_de": [
     "Liebstöckel"
    ],
@@ -72695,7 +72916,8 @@
     "lupini beans",
     "lupins",
     "lupin doux",
-    "lupins doux"
+    "lupins doux",
+    "lupinus"
    ],
    "names_de": [
     "Lupinensamen",
@@ -72761,7 +72983,8 @@
    "name_fr": "litchi",
    "synonyms": [
     "lychees",
-    "Litchis"
+    "Litchis",
+    "Litchi chinensis"
    ],
    "names_de": [
     "Litschi",
@@ -72946,7 +73169,8 @@
    "name_ar": "الإسقمري",
    "name_fr": "maquereau",
    "synonyms": [
-    "maquereaux"
+    "maquereaux",
+    "Scomber"
    ],
    "names_de": [
     "Makrele"
@@ -73178,7 +73402,8 @@
    "name_de": "maitake mushroom",
    "name_en": "maitake mushroom",
    "synonyms": [
-    "maitake mushrooms"
+    "maitake mushrooms",
+    "Grifola frondosa"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -73530,6 +73755,9 @@
    "name_tr": "Maltoz",
    "name_ar": "مالتوز",
    "name_fr": "maltose",
+   "synonyms": [
+    "Maltosum"
+   ],
    "names_de": [
     "Maltose"
    ],
@@ -73574,6 +73802,9 @@
    "id": "mamey_sapote",
    "name_de": "mamey sapote",
    "name_en": "mamey sapote",
+   "synonyms": [
+    "Pouteria sapota"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -73584,7 +73815,8 @@
    "name_de": "mammy apple",
    "name_en": "mammy apple",
    "synonyms": [
-    "mamey"
+    "mamey",
+    "Mammea americana"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -73657,6 +73889,9 @@
    "name_tr": "mangan",
    "name_ar": "منغنيز",
    "name_fr": "Manganèse",
+   "synonyms": [
+    "manganum"
+   ],
    "names_de": [
     "Mangan"
    ],
@@ -74056,27 +74291,10 @@
     "Maraschino"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -74109,27 +74327,10 @@
     "Marc de Bourgogne"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "pomace_brandy",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -74199,7 +74400,8 @@
     "Ringelblumen",
     "soucis",
     "fleurs de calendula",
-    "calendula"
+    "calendula",
+    "Calendula officinalis"
    ],
    "names_de": [
     "Ringelblume",
@@ -74256,6 +74458,9 @@
    "name_en": "marjoram",
    "name_tr": "mercanköşk",
    "name_fr": "marjolaine",
+   "synonyms": [
+    "amaracum"
+   ],
    "names_de": [
     "Majoran"
    ],
@@ -74344,7 +74549,8 @@
    "name_tr": "hatmi çiçeği",
    "name_fr": "guimauve officinale",
    "synonyms": [
-    "mauve blanche"
+    "mauve blanche",
+    "althaea officinalis"
    ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
@@ -74416,6 +74622,9 @@
    "name_tr": "Badem ezmesi",
    "name_ar": "مرصبان",
    "name_fr": "massepain",
+   "synonyms": [
+    "Martius panis"
+   ],
    "names_de": [
     "marzipan"
    ],
@@ -74471,7 +74680,8 @@
    "name_fr": "purée de pomme de terre",
    "synonyms": [
     "mashed potatoes",
-    "purée de pommes de terre"
+    "purée de pommes de terre",
+    "pulticula ex pomis terrestribus"
    ],
    "names_de": [
     "kartoffelpüree"
@@ -74652,6 +74862,9 @@
    "name_en": "meadowsweet",
    "name_ar": "إكليلية المروج",
    "name_fr": "reine des prés",
+   "synonyms": [
+    "Filipendula ulmaria"
+   ],
    "names_de": [
     "Echtes Mädesüß"
    ],
@@ -75779,7 +75992,8 @@
     "Milchbestandteile",
     "milk ingredients",
     "substances laitières",
-    "الحليب"
+    "الحليب",
+    "Lac"
    ],
    "names_de": [
     "Milch",
@@ -76176,7 +76390,8 @@
    "name_en": "milkcap",
    "name_fr": "lactaire",
    "synonyms": [
-    "lactaires"
+    "lactaires",
+    "Lactarius"
    ],
    "names_de": [
     "Milchlinge"
@@ -76211,6 +76426,9 @@
    "id": "milkfish",
    "name_de": "milkfish",
    "name_en": "milkfish",
+   "synonyms": [
+    "Chanos chanos"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -76249,6 +76467,9 @@
    "name_tr": "darı",
    "name_ar": "دخن",
    "name_fr": "millet",
+   "synonyms": [
+    "panicum miliaceum"
+   ],
    "names_de": [
     "Hirse"
    ],
@@ -76440,7 +76661,8 @@
    "name_fr": "menthe",
    "synonyms": [
     "Minzen",
-    "Pudina"
+    "Pudina",
+    "mentha"
    ],
    "names_de": [
     "Minze",
@@ -76532,7 +76754,8 @@
    "name_en": "mirabelle plum",
    "name_fr": "mirabelle",
    "synonyms": [
-    "mirabelles"
+    "mirabelles",
+    "Prunus domestica var. syriaca"
    ],
    "names_de": [
     "Mirabelle"
@@ -76869,27 +77092,10 @@
     "modifizierter Cognac"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "cognac",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -77173,7 +77379,8 @@
     "mollusks",
     "mollusk",
     "mollusques",
-    "بلح البحر"
+    "بلح البحر",
+    "Mollusca"
    ],
    "names_de": [
     "Weichtiere",
@@ -77433,7 +77640,8 @@
    "name_fr": "morille",
    "synonyms": [
     "morels",
-    "morilles"
+    "morilles",
+    "Morchella"
    ],
    "names_de": [
     "Morcheln"
@@ -77506,7 +77714,8 @@
     "matki",
     "mothbean",
     "turkish gram",
-    "dew bean"
+    "dew bean",
+    "Vigna aconitifolia"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -77568,6 +77777,9 @@
    "id": "mozambique_tilapia",
    "name_de": "Buntbarsch aus Mosambik",
    "name_en": "Mozambique tilapia",
+   "synonyms": [
+    "Oreochromis mossambicus"
+   ],
    "names_de": [
     "Buntbarsch aus Mosambik"
    ],
@@ -77752,7 +77964,9 @@
     "Mungbohnen",
     "mungbean",
     "green gram",
-    "haricots mungo"
+    "haricots mungo",
+    "vigna radiata",
+    "Phaseolus aureus"
    ],
    "names_de": [
     "Mungbohne",
@@ -78001,7 +78215,8 @@
     "Speisepilz",
     "Speisepilze",
     "edible fungi",
-    "champignons"
+    "champignons",
+    "Fungus"
    ],
    "names_de": [
     "Pilz",
@@ -78189,6 +78404,9 @@
    "name_de": "Most",
    "name_en": "must",
    "name_fr": "moût",
+   "synonyms": [
+    "Mustum"
+   ],
    "names_de": [
     "Most"
    ],
@@ -78204,6 +78422,9 @@
    "name_tr": "hardal",
    "name_ar": "صلصة الخردل",
    "name_fr": "moutarde",
+   "synonyms": [
+    "sinapi"
+   ],
    "names_de": [
     "Senf"
    ],
@@ -78218,7 +78439,8 @@
    "name_en": "mustard cabbage",
    "synonyms": [
     "gai choy",
-    "Chinese mustard"
+    "Chinese mustard",
+    "Brassica juncea"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -78343,7 +78565,8 @@
    "name_de": "mustard spinach",
    "name_en": "mustard spinach",
    "synonyms": [
-    "komatsuna"
+    "komatsuna",
+    "Brassica rapa var. perviridis"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -78359,7 +78582,8 @@
    "synonyms": [
     "sheeps meat",
     "viande d'ovin",
-    "viande ovine"
+    "viande ovine",
+    "Vervecina"
    ],
    "names_de": [
     "Schaffleisch"
@@ -78449,7 +78673,8 @@
    "name_en": "nance",
    "synonyms": [
     "hogberry",
-    "golden spoon"
+    "golden spoon",
+    "Byrsonima crassifolia"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -78461,7 +78686,8 @@
    "name_de": "naranjilla",
    "name_en": "naranjilla",
    "synonyms": [
-    "lulo"
+    "lulo",
+    "Solanum quitoense"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -81596,6 +81822,9 @@
    "name_tr": "nektarin",
    "name_ar": "زليقة",
    "name_fr": "nectarine",
+   "synonyms": [
+    "prunus persica var. nucipersica"
+   ],
    "names_de": [
     "Nektarine"
    ],
@@ -81650,7 +81879,9 @@
     "stinging nettle",
     "perrenial nettle",
     "orties",
-    "herbes d'ortie"
+    "herbes d'ortie",
+    "Urtica",
+    "Urtica dioica"
    ],
    "names_de": [
     "Brennnessel",
@@ -81718,6 +81949,9 @@
    "id": "new_zealand_spinach",
    "name_de": "new zealand spinach",
    "name_en": "new zealand spinach",
+   "synonyms": [
+    "Tetragonia tetragonioides"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -81802,7 +82036,8 @@
    "name_ar": "بياض نيلي",
    "name_fr": "Perche du Nil",
    "synonyms": [
-    "Viktoriabarsch"
+    "Viktoriabarsch",
+    "Lates Niloticus"
    ],
    "names_de": [
     "Nilbarsch",
@@ -81820,6 +82055,9 @@
    "id": "nile_tilapia",
    "name_de": "Nile tilapia",
    "name_en": "Nile tilapia",
+   "synonyms": [
+    "Oreochromis niloticus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -82165,6 +82403,10 @@
    "id": "noble_scallop",
    "name_de": "Feine Kammmuschel",
    "name_en": "noble scallop",
+   "synonyms": [
+    "Chlamys nobilis",
+    "Mimachlamys nobilis"
+   ],
    "names_de": [
     "Feine Kammmuschel"
    ],
@@ -82455,7 +82697,8 @@
    "synonyms": [
     "Nudeln",
     "noodles",
-    "nouille"
+    "nouille",
+    "collyra"
    ],
    "names_de": [
     "Nudel",
@@ -82486,7 +82729,9 @@
    "synonyms": [
     "Nabel-Purpurtang",
     "nori seaweed",
-    "algue Yaki Nori"
+    "algue Yaki Nori",
+    "Porphyra umbilicalis",
+    "porphyra umbilical"
    ],
    "names_de": [
     "Nori",
@@ -82504,7 +82749,9 @@
    "name_fr": "merlu du Pacifique",
    "synonyms": [
     "Nordpazifischer Seehecht",
-    "Merlu du Pacifique nord"
+    "Merlu du Pacifique nord",
+    "Merluccius productus",
+    "Merlusccius productus"
    ],
    "names_de": [
     "Pazifische Seehecht",
@@ -82522,6 +82769,9 @@
    "id": "northern_highbush_blueberry",
    "name_de": "northern highbush blueberry",
    "name_en": "northern highbush blueberry",
+   "synonyms": [
+    "Vaccinium corymbosum"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -82592,7 +82842,8 @@
    "name_fr": "nougat",
    "synonyms": [
     "nougats",
-    "türkischer Honig"
+    "türkischer Honig",
+    "Nucatum"
    ],
    "names_de": [
     "Nougat",
@@ -82673,7 +82924,8 @@
    "synonyms": [
     "Nucleotide",
     "Nucleotid",
-    "nucléotide"
+    "nucléotide",
+    "Nucleotidum"
    ],
    "names_de": [
     "Nukleotide",
@@ -82734,7 +82986,8 @@
     "fruits à coques",
     "autres fruits à coque",
     "fruits secs à coque",
-    "fruits à coque dure"
+    "fruits à coque dure",
+    "Nux"
    ],
    "names_de": [
     "Nüssen",
@@ -82765,6 +83018,9 @@
    "name_en": "nutmeg",
    "name_tr": "muskat",
    "name_fr": "muscade",
+   "synonyms": [
+    "myristica fragrans"
+   ],
    "names_de": [
     "Muskat"
    ],
@@ -82850,6 +83106,9 @@
    "name_tr": "Kürek balığı",
    "name_ar": "سمك مجدافي",
    "name_fr": "ruban",
+   "synonyms": [
+    "Regalecidae"
+   ],
    "names_de": [
     "Riemenfische"
    ],
@@ -82868,6 +83127,9 @@
    "name_tr": "beyaz yulaf",
    "name_ar": "شوفان",
    "name_fr": "avoine",
+   "synonyms": [
+    "avena sativa"
+   ],
    "names_de": [
     "hafer"
    ],
@@ -83428,7 +83690,8 @@
    "synonyms": [
     "olive vegetable oil",
     "huiles végétales d'olive",
-    "زيت زيتون"
+    "زيت زيتون",
+    "Oleum"
    ],
    "names_de": [
     "Olivenöl"
@@ -83654,7 +83917,8 @@
    "name_fr": "orange",
    "synonyms": [
     "Orangen",
-    "Apfelsine"
+    "Apfelsine",
+    "Citrus sinensis"
    ],
    "names_de": [
     "Orange",
@@ -85219,7 +85483,8 @@
    "synonyms": [
     "oysters",
     "huitre",
-    "huitres"
+    "huitres",
+    "Ostrea"
    ],
    "names_de": [
     "Austern"
@@ -85276,7 +85541,8 @@
     "pleurote en huitre",
     "Pleurote en huître",
     "Champignons pleurote",
-    "Pleurote en forme d'huître"
+    "Pleurote en forme d'huître",
+    "pleurotus ostreatus"
    ],
    "names_de": [
     "Austern-Seitling",
@@ -85293,6 +85559,9 @@
    "name_de": "Pazifischer Kabeljau",
    "name_en": "pacific cod",
    "name_fr": "Morue du Pacifique",
+   "synonyms": [
+    "Gadus macrocephalus"
+   ],
    "names_de": [
     "Pazifischer Kabeljau"
    ],
@@ -85367,7 +85636,8 @@
    "synonyms": [
     "Chinesischer Senfkohl",
     "pok choi",
-    "pak choï"
+    "pak choï",
+    "Brassica rapa subsp. chinensis"
    ],
    "names_de": [
     "Pak Choi",
@@ -85398,7 +85668,8 @@
     "hélianti",
     "héliantis",
     "salsifis d'Amérique",
-    "racine d'hélianthi"
+    "racine d'hélianthi",
+    "helianthus strumosus"
    ],
    "default_category": "HALAL",
    "reason": "Plant-based",
@@ -85834,6 +86105,9 @@
    "name_de": "pangasius",
    "name_en": "pangas",
    "name_fr": "pangasius",
+   "synonyms": [
+    "Pangasius hypophtalmus"
+   ],
    "names_de": [
     "pangasius"
    ],
@@ -85932,7 +86206,8 @@
    "synonyms": [
     "papaw",
     "pawpaw",
-    "papayes"
+    "papayes",
+    "Carica papaya"
    ],
    "names_de": [
     "Papaya"
@@ -86139,7 +86414,8 @@
     "Parmesan cheese from cow's milk",
     "fromage parmigiano reggiano",
     "fromage parmigiano reggiano aop",
-    "fromage parmigiano reggiano dop"
+    "fromage parmigiano reggiano dop",
+    "Parmensis"
    ],
    "names_de": [
     "Parmesan",
@@ -86176,7 +86452,8 @@
    "name_ar": "بقدونس",
    "name_fr": "persil",
    "synonyms": [
-    "persilie"
+    "persilie",
+    "petroselinum crispum"
    ],
    "names_de": [
     "petersilie",
@@ -86196,7 +86473,9 @@
    "name_en": "parsley root",
    "name_fr": "racine de persil",
    "synonyms": [
-    "Wurzelpetersilie"
+    "Wurzelpetersilie",
+    "Petroselinum crispum subsp. tuberosum",
+    "Petroselinum crispum var. tuberosum"
    ],
    "names_de": [
     "Petersilienwurzel",
@@ -86231,7 +86510,8 @@
    "name_ar": "جزر أبيض",
    "name_fr": "panais",
    "synonyms": [
-    "Pastinaken"
+    "Pastinaken",
+    "Pastinaca sativa"
    ],
    "names_de": [
     "Pastinake",
@@ -86611,7 +86891,8 @@
     "Passionsfrüchten",
     "passion fruit",
     "passion",
-    "fruits de la passion"
+    "fruits de la passion",
+    "Passiflora"
    ],
    "names_de": [
     "Passionsfrucht",
@@ -86929,7 +87210,8 @@
    "name_fr": "grenadier patagonien",
    "synonyms": [
     "merluche patagonienne",
-    "Hoku argentin"
+    "Hoku argentin",
+    "Macruronus magellanicus"
    ],
    "names_de": [
     "Patagonischer Grenadier (Fisch)"
@@ -86947,6 +87229,10 @@
    "name_de": "Kammmuschel",
    "name_en": "Patagonian scallop",
    "name_fr": "Pétoncle de Patagonie",
+   "synonyms": [
+    "Zygochlamys patagonica",
+    "Chlamys zygopatagonica"
+   ],
    "names_de": [
     "Kammmuschel"
    ],
@@ -86968,6 +87254,10 @@
    "name_de": "Patagonien-Tintenfisch",
    "name_en": "Patagonian squid",
    "name_fr": "calmar de Patagonie",
+   "synonyms": [
+    "Doryteuthis gahi",
+    "Loligo Gahi"
+   ],
    "names_de": [
     "Patagonien-Tintenfisch"
    ],
@@ -87015,7 +87305,8 @@
    "synonyms": [
     "Erbsen",
     "junge Erbsen",
-    "peas"
+    "peas",
+    "pisum sativum"
    ],
    "names_de": [
     "Erbse",
@@ -87244,7 +87535,8 @@
     "cacahuète",
     "cacahouètes",
     "cacahouète",
-    "yerfıstığı"
+    "yerfıstığı",
+    "arachis hypogaea"
    ],
    "names_de": [
     "Erdnuss",
@@ -87367,7 +87659,8 @@
     "Birnen",
     "pears",
     "poires",
-    "إجاص"
+    "إجاص",
+    "pirum"
    ],
    "names_de": [
     "Birne",
@@ -87526,7 +87819,10 @@
    "name_de": "pearl millet",
    "name_en": "pearl millet",
    "synonyms": [
-    "bajra"
+    "bajra",
+    "Pennisetum glaucum",
+    "Cenchrus americanus",
+    "Pennisetum typhoideum"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -87610,7 +87906,8 @@
    "synonyms": [
     "Pecorino Romano Käse g.U.",
     "Pecorino cheese",
-    "fromage pecorino"
+    "fromage pecorino",
+    "Pecorinus"
    ],
    "names_de": [
     "Pecorino",
@@ -87734,27 +88031,10 @@
    "name_de": "Pelinkovac",
    "name_en": "Pelinkovac",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "liqueur",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -87766,7 +88046,8 @@
    "name_fr": "Penaeidae",
    "synonyms": [
     "Garnelen (Penaeidae)",
-    "penaeid shrimp"
+    "penaeid shrimp",
+    "Penaeus spp"
    ],
    "names_de": [
     "Shrimps (Penaeidae)",
@@ -87853,7 +88134,9 @@
    "name_en": "pepeao",
    "synonyms": [
     "pepeiao",
-    "wood ear mushroom"
+    "wood ear mushroom",
+    "Auricularia polytricha",
+    "Auricularia cornea"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -87989,7 +88272,8 @@
    "name_ar": "نعناع فلفلي",
    "name_fr": "menthe poivrée",
    "synonyms": [
-    "Pfefferminze"
+    "Pfefferminze",
+    "mentha piperita"
    ],
    "names_de": [
     "Pfefferminz",
@@ -88223,7 +88507,8 @@
    "name_fr": "Pétoncle chilien",
    "synonyms": [
     "Pétoncle du Pérou",
-    "Peigne du Pérou"
+    "Peigne du Pérou",
+    "Argopecten purpuratus"
    ],
    "names_de": [
     "Peruanische Jakobsmuscheln"
@@ -88361,7 +88646,8 @@
    "name_ar": "ماهی مرکب ببری",
    "name_fr": "seiche pharaon",
    "synonyms": [
-    "Sépia Pharaonis"
+    "Sépia Pharaonis",
+    "Sepia pharaonica"
    ],
    "names_de": [
     "Pharao-Sepie",
@@ -88635,7 +88921,8 @@
     "gandules",
     "toor",
     "arhar",
-    "gungo peas"
+    "gungo peas",
+    "Cajanus cajan"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -88718,6 +89005,11 @@
    "name_de": "Steinpilz",
    "name_en": "pine bolete",
    "name_fr": "Bolet pinicole",
+   "synonyms": [
+    "Boletus pinophilus",
+    "Boletus pinicola",
+    "pinicola"
+   ],
    "names_de": [
     "Steinpilz"
    ],
@@ -88763,7 +89055,8 @@
     "Pignons de pin décortiqués - pelés et brossés",
     "noix de pin",
     "Pignons de pin épluchés",
-    "Pignons de pin décortiqués pelés et brossés"
+    "Pignons de pin décortiqués pelés et brossés",
+    "Nucleus pineus"
    ],
    "names_de": [
     "Pinienkerne"
@@ -88779,6 +89072,9 @@
    "name_en": "pineapple",
    "name_tr": "ananas",
    "name_fr": "ananas",
+   "synonyms": [
+    "Ananas comosus"
+   ],
    "names_de": [
     "Ananas"
    ],
@@ -89039,7 +89335,8 @@
     "pink berries",
     "pink pepper",
     "rose pepper",
-    "baies roses"
+    "baies roses",
+    "Granum piperis roseum"
    ],
    "names_de": [
     "Rosa Pfeffer",
@@ -89058,7 +89355,8 @@
    "name_en": "pink salmon",
    "name_fr": "saumon rose du pacifique",
    "synonyms": [
-    "Saumon rose à bosse"
+    "Saumon rose à bosse",
+    "Oncorhynchus gorbuscha"
    ],
    "names_de": [
     "Buckellachs"
@@ -89158,7 +89456,8 @@
    "name_fr": "poivron du piquillo",
    "synonyms": [
     "Piquillo Paprika",
-    "poivrons du piquillo"
+    "poivrons du piquillo",
+    "Capsicum annuum ‘Piquillo'"
    ],
    "names_de": [
     "Paprika Piquillo",
@@ -89296,7 +89595,8 @@
    "name_en": "pitanga",
    "synonyms": [
     "Surinam cherry",
-    "Brazilian cherry"
+    "Brazilian cherry",
+    "Eugenia uniflora"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -89741,7 +90041,8 @@
    "name_en": "plantain banana",
    "name_fr": "banane plantain",
    "synonyms": [
-    "bananes plantain"
+    "bananes plantain",
+    "musa paradisiaca"
    ],
    "names_de": [
     "Plantainbanane"
@@ -89821,7 +90122,8 @@
    "name_fr": "prune",
    "synonyms": [
     "Pflaumen",
-    "prunes"
+    "prunes",
+    "prunus"
    ],
    "names_de": [
     "Pflaume",
@@ -89917,6 +90219,9 @@
    "id": "pointed_cabbage",
    "name_de": "Spitzkohl",
    "name_en": "pointed cabbage",
+   "synonyms": [
+    "Brassica oleracea var. capitata f. acuta"
+   ],
    "names_de": [
     "Spitzkohl"
    ],
@@ -89980,27 +90285,9 @@
     "Tresterbrand"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -90009,6 +90296,9 @@
    "name_de": "Granatapfel",
    "name_en": "pomegranate",
    "name_fr": "grenade",
+   "synonyms": [
+    "Punica granatum"
+   ],
    "names_de": [
     "Granatapfel"
    ],
@@ -90080,7 +90370,8 @@
    "name_fr": "pomelo",
    "synonyms": [
     "pummelo",
-    "pomelos"
+    "pomelos",
+    "Citrus ×paradisi × Citrus maxima"
    ],
    "names_de": [
     "Pomelo"
@@ -90164,6 +90455,9 @@
    "name_de": "Mohn",
    "name_en": "poppy",
    "name_fr": "pavot",
+   "synonyms": [
+    "Papaver somniferum"
+   ],
    "names_de": [
     "Mohn"
    ],
@@ -90217,6 +90511,9 @@
    "name_en": "porgies",
    "name_ar": "فريدي",
    "name_fr": "pageot",
+   "synonyms": [
+    "Pagellus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -90650,7 +90947,8 @@
     "Schwarten",
     "Schweineschwarte",
     "Schweineschwarten",
-    "couennes"
+    "couennes",
+    "Tergilla"
    ],
    "names_de": [
     "Schwarte",
@@ -90959,7 +91257,8 @@
     "Kartoffeln",
     "potatoes",
     "pommes de terre",
-    "pommes de terre de consommation"
+    "pommes de terre de consommation",
+    "Patata"
    ],
    "names_de": [
     "Kartoffel",
@@ -91377,7 +91676,8 @@
    "synonyms": [
     "bib",
     "pout",
-    "Tacaud commun"
+    "Tacaud commun",
+    "Trisopterus luscus"
    ],
    "names_de": [
     "Franzosendorsch"
@@ -92027,7 +92327,8 @@
     "Eiweiss",
     "proteins",
     "proteine",
-    "Protéine brute"
+    "Protéine brute",
+    "Proteinum"
    ],
    "names_de": [
     "Protein",
@@ -92347,7 +92648,8 @@
    "name_fr": "courge",
    "synonyms": [
     "Kürbisse",
-    "citrouille"
+    "citrouille",
+    "Cucurbita"
    ],
    "names_de": [
     "Kürbis",
@@ -92417,7 +92719,8 @@
     "seeds of squash",
     "graines de courge",
     "graines de potiron",
-    "graines de citrouille"
+    "graines de citrouille",
+    "Cucurbitae semen"
    ],
    "names_de": [
     "Kürbiskern",
@@ -92667,6 +92970,9 @@
    "id": "purslane",
    "name_de": "purslane",
    "name_en": "purslane",
+   "synonyms": [
+    "portulaca oleracea"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -92678,7 +92984,8 @@
    "name_en": "Puy lentils",
    "name_fr": "lentilles vertes du Puy",
    "synonyms": [
-    "lentilles vertes du Puy AOP"
+    "lentilles vertes du Puy AOP",
+    "lens culinaris puyensis"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -92854,7 +93161,9 @@
    "name_fr": "petit pétoncle",
    "synonyms": [
     "Vanneau",
-    "peigne"
+    "peigne",
+    "Chlamys opercularis",
+    "Aequipecten opercularis"
    ],
    "names_de": [
     "Kleine Pilgermuschel"
@@ -92932,6 +93241,9 @@
    "name_tr": "Kinin",
    "name_ar": "كينين",
    "name_fr": "quinine",
+   "synonyms": [
+    "Quinina"
+   ],
    "names_de": [
     "Chinin"
    ],
@@ -92952,7 +93264,8 @@
    "name_fr": "quinoa",
    "synonyms": [
     "Reismelde",
-    "peruanischer Reis"
+    "peruanischer Reis",
+    "chenopodium quinoa"
    ],
    "names_de": [
     "Quinoa",
@@ -93032,6 +93345,9 @@
    "name_tr": "Ada tavşanı",
    "name_ar": "أرنب",
    "name_fr": "lapin",
+   "synonyms": [
+    "Cuniculus"
+   ],
    "names_de": [
     "Kaninchen"
    ],
@@ -93154,7 +93470,8 @@
    "name_fr": "radis",
    "synonyms": [
     "Radieschen",
-    "Radishes"
+    "Radishes",
+    "Raphanus sativus"
    ],
    "names_de": [
     "rettich",
@@ -93182,6 +93499,10 @@
    "name_de": "Parapenaeopsis sculptilis",
    "name_en": "rainbow shrimp",
    "name_fr": "Crevette arc-en-ciel",
+   "synonyms": [
+    "Parapenaeopsis",
+    "Parapenaeopsis spp"
+   ],
    "names_de": [
     "Parapenaeopsis sculptilis"
    ],
@@ -93205,7 +93526,8 @@
    "name_fr": "truite arc-en-ciel",
    "synonyms": [
     "Lachsforellen",
-    "truite saumonée"
+    "truite saumonée",
+    "Oncorhynchus mykiss"
    ],
    "names_de": [
     "Regenbogenforelle",
@@ -93306,27 +93628,9 @@
    "name_de": "rakia",
    "name_en": "rakia",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -93335,27 +93639,10 @@
    "name_de": "rakia sugar",
    "name_en": "rakia sugar",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "rakia",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -93383,7 +93670,8 @@
    "synonyms": [
     "rape",
     "oilseed rape",
-    "rape seed"
+    "rape seed",
+    "Brassica napus"
    ],
    "names_de": [
     "Raps"
@@ -95699,10 +95987,11 @@
    "id": "rectified_spirit",
    "name_de": "rectified spirit",
    "name_en": "rectified spirit",
-   "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
-   "source": "quran_hadith",
+   "default_category": "MASHBOOH",
+   "reason": "Alcohol as an ingredient: forbidden if made from grapes or dates; from other sources permissible in food if it does not intoxicate (askimam). The package does not say which. Alcoholic drinks are haram.",
+   "reason_de": "Alkohol als Zutat: verboten, wenn aus Trauben oder Datteln; aus anderen Quellen in Lebensmitteln erlaubt, wenn nicht berauschend (askimam). Die Packung sagt nicht, woraus. Alkoholische Getränke sind haram.",
+   "source": "scholarly_opinion",
+   "doubt": "alcohol",
    "references": [
     {
      "url": "https://askimam.org/public/question_detail/43624",
@@ -96195,6 +96484,9 @@
    "name_de": "Hokkaidokürbis",
    "name_en": "red kuri squash",
    "name_fr": "potimarron",
+   "synonyms": [
+    "Cucurbita maxima var. hubbaridianna"
+   ],
    "names_de": [
     "Hokkaidokürbis"
    ],
@@ -97172,6 +97464,9 @@
    "name_de": "ren",
    "name_en": "reindeer",
    "name_fr": "renne",
+   "synonyms": [
+    "Rangifer tarandus (Reindeer)"
+   ],
    "names_de": [
     "ren"
    ],
@@ -97270,6 +97565,9 @@
    "name_tr": "Peynir Mayası",
    "name_ar": "منفحة",
    "name_fr": "présure",
+   "synonyms": [
+    "Coagulum"
+   ],
    "names_de": [
     "Lab"
    ],
@@ -97417,7 +97715,9 @@
    "name_fr": "rhubarbe",
    "synonyms": [
     "rhubarbs",
-    "rhubarbes"
+    "rhubarbes",
+    "rheum",
+    "rheum rhabarbarum"
    ],
    "names_de": [
     "Rhabarber"
@@ -97447,6 +97747,9 @@
    "name_tr": "Dar yapraklı sinirli ot",
    "name_ar": "لسان الحمل السهمي",
    "name_fr": "Plantain lancéolé",
+   "synonyms": [
+    "Plantago lanceolata"
+   ],
    "names_de": [
     "Spitzwegerich"
    ],
@@ -97466,7 +97769,8 @@
    "name_ar": "أرز",
    "name_fr": "riz",
    "synonyms": [
-    "riz cru"
+    "riz cru",
+    "Oryza"
    ],
    "names_de": [
     "Reis"
@@ -97494,6 +97798,9 @@
    "id": "rice_bean",
    "name_de": "Rice bean",
    "name_en": "Rice bean",
+   "synonyms": [
+    "Vigna umbellata"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -97808,27 +98115,9 @@
    "name_en": "rice wine",
    "name_fr": "Alcool de riz",
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -97911,7 +98200,8 @@
    "name_fr": "blé poulard",
    "synonyms": [
     "poulard wheat",
-    "cone wheat"
+    "cone wheat",
+    "Triticum turgidum L. subsp. turgidum"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -98287,7 +98577,11 @@
     "rugula",
     "colewort",
     "salad rocket",
-    "riquette"
+    "riquette",
+    "eruca vesicaria",
+    "eruca sativa mill",
+    "eruca vesicaria subsp. sativa",
+    "brassica eruca l."
    ],
    "names_de": [
     "Rucola",
@@ -98345,7 +98639,8 @@
     "römischer Salat",
     "Bindesalat",
     "Romanasalat",
-    "cos"
+    "cos",
+    "Lactuca sativa var. longifolia"
    ],
    "names_de": [
     "Römersalat",
@@ -98367,7 +98662,11 @@
    "synonyms": [
     "English camomile",
     "garden camomile",
-    "بابونج روماني"
+    "بابونج روماني",
+    "Chamaemelum nobile",
+    "Camaemelum nobile",
+    "C. nobile",
+    "Anthemis nobilis"
    ],
    "names_de": [
     "Römische Kamille"
@@ -98391,7 +98690,8 @@
     "Romanesque cauliflower",
     "chou romanesco",
     "choux romanesco en fleurettes",
-    "fleurettes de chou romanesco"
+    "fleurettes de chou romanesco",
+    "brassica oleracea convar. botrytis var. botrytis"
    ],
    "names_de": [
     "Romanesco"
@@ -98443,7 +98743,8 @@
    "name_ar": "رويبوس",
    "name_fr": "rooibos",
    "synonyms": [
-    "Rotbusch"
+    "Rotbusch",
+    "Aspalathus linearis"
    ],
    "names_de": [
     "Rooibos",
@@ -98464,6 +98765,9 @@
    "name_tr": "kök sebze",
    "name_ar": "قائمة الخضراوات الجذرية",
    "name_fr": "légume-racine",
+   "synonyms": [
+    "vegetable radix"
+   ],
    "names_de": [
     "Wurzelgemüse"
    ],
@@ -98592,7 +98896,8 @@
    "name_fr": "eau de rose",
    "synonyms": [
     "rosewater",
-    "ماء ورد"
+    "ماء ورد",
+    "aqua rosacea"
    ],
    "names_de": [
     "Rosenwasser"
@@ -98661,7 +98966,8 @@
     "hibiscus flowers",
     "hibiscus",
     "fleurs d'hibiscus",
-    "kerkede"
+    "kerkede",
+    "Hibiscus sabdariffa"
    ],
    "names_de": [
     "Karkadeblüten",
@@ -98684,6 +98990,9 @@
    "name_en": "rosemary",
    "name_tr": "biberiye",
    "name_fr": "romarin",
+   "synonyms": [
+    "rosmarinus officinalis"
+   ],
    "names_de": [
     "rosmarin"
    ],
@@ -98778,6 +99087,9 @@
    "id": "rowal",
    "name_de": "rowal",
    "name_en": "rowal",
+   "synonyms": [
+    "Pangium edule"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -98790,7 +99102,8 @@
    "name_fr": "sorbe",
    "synonyms": [
     "rowanberries",
-    "sorbes"
+    "sorbes",
+    "sorbus aucaparia"
    ],
    "names_de": [
     "Vogelbeeren"
@@ -98995,6 +99308,9 @@
    "name_en": "Russell's snapper",
    "name_ar": "نهاش روسيلي",
    "name_fr": "Vivaneau hublot",
+   "synonyms": [
+    "Lutjanus russellii"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -99039,6 +99355,9 @@
    "name_tr": "çavdar",
    "name_ar": "شيلم مزروع",
    "name_fr": "seigle",
+   "synonyms": [
+    "secale cereale"
+   ],
    "names_de": [
     "Roggen"
    ],
@@ -99331,7 +99650,8 @@
    "name_de": "sablefish",
    "name_en": "sablefish",
    "synonyms": [
-    "black cod"
+    "black cod",
+    "Anoplopoma fimbria"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -99345,6 +99665,9 @@
    "id": "saccharina_japonica",
    "name_de": "Japanischer Blatttang",
    "name_en": "Saccharina japonica",
+   "synonyms": [
+    "Laminaria Japonica"
+   ],
    "names_de": [
     "Japanischer Blatttang"
    ],
@@ -99363,7 +99686,8 @@
    "synonyms": [
     "Färberdistel",
     "Saflor",
-    "carthamus"
+    "carthamus",
+    "Carthamus tinctorius"
    ],
    "names_de": [
     "Safflor",
@@ -99474,7 +99798,8 @@
    "name_ar": "فطر زعفراني حليبي الغطاء",
    "name_fr": "Lactaire délicieux",
    "synonyms": [
-    "red pine mushroom"
+    "red pine mushroom",
+    "Lactarius deliciosus"
    ],
    "names_de": [
     "Edel-Reizker"
@@ -99491,6 +99816,9 @@
    "name_tr": "ada çayı",
    "name_ar": "مريمية",
    "name_fr": "sauge",
+   "synonyms": [
+    "salvia officinalis"
+   ],
    "names_de": [
     "Salbei"
    ],
@@ -99523,6 +99851,9 @@
    "name_en": "Sago",
    "name_ar": "ساغو",
    "name_fr": "Sagou",
+   "synonyms": [
+    "Sagum"
+   ],
    "names_de": [
     "Sago"
    ],
@@ -99681,7 +100012,8 @@
    "synonyms": [
     "Köhlerfisch",
     "pollock",
-    "colin lieu"
+    "colin lieu",
+    "Pollachius virens"
    ],
    "names_de": [
     "Köhler",
@@ -99707,27 +100039,9 @@
     "Reiswein"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -99869,7 +100183,8 @@
    "name_ar": "سلمون",
    "name_fr": "saumon",
    "synonyms": [
-    "Lachse"
+    "Lachse",
+    "Salmoninae"
    ],
    "names_de": [
     "Lachs",
@@ -100282,7 +100597,9 @@
    "synonyms": [
     "sardinen",
     "sardines",
-    "European pilchard"
+    "European pilchard",
+    "sardina pilchardus walbaum",
+    "sardina pilchardus"
    ],
    "names_de": [
     "sardine",
@@ -100339,7 +100656,8 @@
    "name_ar": "صلصة",
    "name_fr": "sauce",
    "synonyms": [
-    "Soße"
+    "Soße",
+    "sūcus"
    ],
    "names_de": [
     "Sauce",
@@ -100455,7 +100773,8 @@
     "green cabbage",
     "choux verts",
     "chou de milan",
-    "chou de savoie"
+    "chou de savoie",
+    "brassica oleracea sabauda"
    ],
    "names_de": [
     "Wirsing",
@@ -100529,7 +100848,8 @@
     "coquille Saint-Jacques",
     "coquille st jacques",
     "coquille saint jacques",
-    "st-jacques"
+    "st-jacques",
+    "Pectinidae"
    ],
    "names_de": [
     "Kammmuscheln",
@@ -100632,6 +100952,9 @@
    "name_de": "Skorpionfische",
    "name_en": "scorpion fish",
    "name_ar": "عقارب البحر",
+   "synonyms": [
+    "Scorpaenidae"
+   ],
    "names_de": [
     "Skorpionfische"
    ],
@@ -100656,27 +100979,10 @@
     "Schottischer Whisky"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
+   "inferred_from": "whisky",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -100702,7 +101008,8 @@
    "name_en": "scup",
    "synonyms": [
     "porgy",
-    "scuppaug"
+    "scuppaug",
+    "Stenotomus chrysops"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -100761,7 +101068,8 @@
     "seakale",
     "crambe",
     "chourbe",
-    "crambe maritime"
+    "crambe maritime",
+    "crambe maritima"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -100774,7 +101082,8 @@
    "name_en": "sea lettuce",
    "name_ar": "أولفاويات",
    "synonyms": [
-    "green laver"
+    "green laver",
+    "Ulva sp."
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -100816,6 +101125,9 @@
    "name_en": "sea squirt",
    "name_ar": "كيسيات",
    "name_fr": "Ascidie",
+   "synonyms": [
+    "Ascidiacea"
+   ],
    "names_de": [
     "Seescheiden"
    ],
@@ -100852,7 +101164,8 @@
    "name_ar": "فصيلة الأسبور",
    "name_fr": "dorade",
    "synonyms": [
-    "seabreams"
+    "seabreams",
+    "Sparidae"
    ],
    "names_de": [
     "Meerbrassen"
@@ -100962,7 +101275,8 @@
     "seed mix",
     "mixed seeds",
     "graines",
-    "mélange de graines"
+    "mélange de graines",
+    "Semen"
    ],
    "names_de": [
     "Kernen",
@@ -101606,7 +101920,8 @@
    "name_fr": "échalote",
    "synonyms": [
     "Schalotten",
-    "shallots"
+    "shallots",
+    "allium ascalonicum"
    ],
    "names_de": [
     "Schalotte",
@@ -101674,7 +101989,9 @@
    "name_fr": "Pholiote changeante",
    "synonyms": [
     "Souchette",
-    "Agaric à soupe"
+    "Agaric à soupe",
+    "Pholiota mutabilis",
+    "Kuehneromyces mutabilis"
    ],
    "names_de": [
     "Gemeines Stockschwämmchen"
@@ -101693,7 +102010,8 @@
    "name_fr": "mouton",
    "synonyms": [
     "Hausschaf",
-    "brebis"
+    "brebis",
+    "ovis aries"
    ],
    "names_de": [
     "Schaf",
@@ -101937,6 +102255,9 @@
    "id": "sheepshead",
    "name_de": "sheepshead",
    "name_en": "sheepshead",
+   "synonyms": [
+    "Archosargus probatocephalus"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -102261,7 +102582,8 @@
     "Garnele",
     "Crevetten",
     "prawn",
-    "crevettes"
+    "crevettes",
+    "Squilla"
    ],
    "names_de": [
     "Garnelen",
@@ -102352,6 +102674,9 @@
    "id": "siberian_ginseng",
    "name_de": "Siberian ginseng",
    "name_en": "Siberian ginseng",
+   "synonyms": [
+    "Eleutherococcus senticosus"
+   ],
    "default_category": "HALAL",
    "reason": "Of plant origin",
    "reason_de": "Pflanzlichen Ursprungs",
@@ -102365,6 +102690,9 @@
    "name_de": "Siberian pine",
    "name_en": "Siberian pine",
    "name_fr": "pignons de pin de sibérie",
+   "synonyms": [
+    "Pinus sibirica"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -102420,6 +102748,9 @@
    "id": "silver_carp",
    "name_de": "silver carp",
    "name_en": "silver carp",
+   "synonyms": [
+    "Hypophthalmichthys molitrix"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -102757,7 +103088,11 @@
     "skip jack tuna",
     "bonite à ventre rayé",
     "Thon rose",
-    "Thon rosé"
+    "Thon rosé",
+    "Katsuwonus pelamis",
+    "Euthynnus palamis",
+    "Euthynnus",
+    "katsuwonus"
    ],
    "names_de": [
     "Echter Bonito"
@@ -102834,7 +103169,8 @@
     "sloe plum",
     "blackthorn",
     "épine noire",
-    "épines noires"
+    "épines noires",
+    "prunus spinosa"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -102912,6 +103248,9 @@
    "name_tr": "Duman",
    "name_ar": "دخان",
    "name_fr": "fumée",
+   "synonyms": [
+    "Fumus"
+   ],
    "names_de": [
     "Rauch"
    ],
@@ -103270,7 +103609,8 @@
    "name_ar": "حلزون",
    "name_fr": "escargot",
    "synonyms": [
-    "escargots"
+    "escargots",
+    "Cochlea"
    ],
    "names_de": [
     "Schnecke"
@@ -103419,7 +103759,8 @@
    "name_fr": "saumon rouge",
    "synonyms": [
     "Rotlachs",
-    "red salmon"
+    "red salmon",
+    "Oncorhynchus nerka"
    ],
    "names_de": [
     "Roter Lachs",
@@ -103468,7 +103809,8 @@
    "name_ar": "كلوريد الصوديوم",
    "name_fr": "chlorure de sodium",
    "synonyms": [
-    "sodium chlorure"
+    "sodium chlorure",
+    "Natrii chloridum"
    ],
    "names_de": [
     "Natriumchlorid"
@@ -103885,7 +104227,9 @@
    "name_en": "sorghum",
    "name_fr": "sorgho",
    "synonyms": [
-    "jowar"
+    "jowar",
+    "Sorghum bicolor",
+    "Sorghum vulgare"
    ],
    "names_de": [
     "Sorghumhirsen"
@@ -103928,7 +104272,8 @@
    "name_ar": "حماض بستاني",
    "name_fr": "oseille",
    "synonyms": [
-    "common sorrel"
+    "common sorrel",
+    "rumex acetosa"
    ],
    "names_de": [
     "Sauerampfer"
@@ -103957,7 +104302,8 @@
     "Sauerkirschen",
     "sour cherries",
     "griottes",
-    "cerises griottes"
+    "cerises griottes",
+    "prunus cerasus"
    ],
    "names_de": [
     "Sauerkirsch",
@@ -104081,7 +104427,8 @@
     "Sauermilch",
     "cultured milk",
     "fermented milk",
-    "lait caillé"
+    "lait caillé",
+    "Oxygala"
    ],
    "names_de": [
     "Dickmilch",
@@ -104113,7 +104460,8 @@
    "name_fr": "merlu blanc du Cap",
    "synonyms": [
     "cape hake",
-    "Shallow-water Cape hake"
+    "Shallow-water Cape hake",
+    "Merluccius capensis"
    ],
    "names_de": [
     "Kap-Seehecht"
@@ -104132,7 +104480,10 @@
    "name_en": "South Pacific hake",
    "name_fr": "Merlu du Pacifique sud",
    "synonyms": [
-    "Merlu blanc du Chili"
+    "Merlu blanc du Chili",
+    "Merluccius gayi",
+    "Merluccius gayi gayi",
+    "Merlucius gayigay"
    ],
    "names_de": [
     "Südpazifischer Seehecht"
@@ -104469,7 +104820,8 @@
     "graine de soja",
     "graines de soja",
     "graines soja",
-    "grains de soja"
+    "grains de soja",
+    "glycine max"
    ],
    "names_de": [
     "Sojabohne",
@@ -104627,6 +104979,9 @@
    "name_tr": "spagetti",
    "name_ar": "سباغيتي",
    "name_fr": "spaghetti",
+   "synonyms": [
+    "pasta vermiculata"
+   ],
    "names_de": [
     "spaghetti"
    ],
@@ -104734,6 +105089,9 @@
    "name_en": "spearmint",
    "name_ar": "نعناع مدبب",
    "name_fr": "menthe verte",
+   "synonyms": [
+    "Mentha spicata"
+   ],
    "names_de": [
     "grüne Minze"
    ],
@@ -104799,6 +105157,10 @@
    "name_de": "Gefleckte Jakobsmuschel",
    "name_en": "speckled Scallop",
    "name_fr": "Pétoncle moucheté",
+   "synonyms": [
+    "Argopecten irradians concentricus",
+    "Argopecten circularis"
+   ],
    "names_de": [
     "Gefleckte Jakobsmuschel"
    ],
@@ -104865,6 +105227,10 @@
    "name_tr": "kavuzlu buğday",
    "name_ar": "حنطة",
    "name_fr": "épeautre",
+   "synonyms": [
+    "Triticum aestivum ssp. spelta",
+    "Triticum spelta"
+   ],
    "names_de": [
     "Dinkel",
     "Spelt"
@@ -105032,7 +105398,8 @@
    "name_fr": "épinard",
    "synonyms": [
     "Spinate",
-    "épinards"
+    "épinards",
+    "Spinacia oleracea"
    ],
    "names_de": [
     "Spinat",
@@ -105124,7 +105491,8 @@
    "synonyms": [
     "langustas",
     "langouste",
-    "rock lobsters"
+    "rock lobsters",
+    "Palinuridae"
    ],
    "names_de": [
     "Langusten"
@@ -105259,7 +105627,8 @@
    "name_fr": "spirulina",
    "synonyms": [
     "spiruline",
-    "spiruline crue"
+    "spiruline crue",
+    "Spirulina platensis"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -105337,7 +105706,8 @@
    "name_de": "spot",
    "name_en": "spot",
    "synonyms": [
-    "spot croaker"
+    "spot croaker",
+    "Leiostomus xanthurus"
    ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
@@ -105661,7 +106031,8 @@
     "encornets",
     "calmar",
     "calmars",
-    "سبيدج"
+    "سبيدج",
+    "loligo spp"
    ],
    "names_de": [
     "Tintenfisch",
@@ -105846,7 +106217,8 @@
     "badiane",
     "badiane chinoise",
     "Étoile de badiane",
-    "انيسون نجمي"
+    "انيسون نجمي",
+    "Illicium verum"
    ],
    "names_de": [
     "Sternanis"
@@ -105884,7 +106256,8 @@
     "food starch",
     "starches",
     "fécules",
-    "fécule"
+    "fécule",
+    "Amylum"
    ],
    "names_de": [
     "Stärke",
@@ -106055,7 +106428,11 @@
    "synonyms": [
     "Volvaire",
     "Volvaire cultivée",
-    "Volvaire asiatique"
+    "Volvaire asiatique",
+    "Volvariella Volvacea",
+    "Agaricus volvaceus",
+    "Volvaria volvacea",
+    "volvaria volvaria"
    ],
    "names_de": [
     "Dunkelstreifiger Scheidling"
@@ -106158,6 +106535,9 @@
    "id": "strawberry_guavas",
    "name_de": "strawberry guavas",
    "name_en": "strawberry guavas",
+   "synonyms": [
+    "Psidium cattleianum"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -106373,7 +106753,8 @@
    "name_ar": "سكروز",
    "name_fr": "Saccharose",
    "synonyms": [
-    "sacharose"
+    "sacharose",
+    "Saccharosum"
    ],
    "names_de": [
     "Saccharose"
@@ -106418,7 +106799,8 @@
    "name_fr": "sucre",
    "synonyms": [
     "verschiedene Zuckerarten",
-    "divers sucres"
+    "divers sucres",
+    "saccharum"
    ],
    "names_de": [
     "Zucker",
@@ -106583,7 +106965,8 @@
    "name_fr": "pois gourmand",
    "synonyms": [
     "pois croquant",
-    "pois sucré"
+    "pois sucré",
+    "Pisum sativum var. saccharatum"
    ],
    "names_de": [
     "Knackerbse"
@@ -106842,7 +107225,8 @@
    "name_fr": "Cèpe d'été",
    "synonyms": [
     "Boletus reticulatus",
-    "reticulatus"
+    "reticulatus",
+    "Boletus aestivalis"
    ],
    "names_de": [
     "Sommer-Steinpilz"
@@ -106878,7 +107262,10 @@
    "name_en": "summer truffle",
    "name_fr": "truffe d'été",
    "synonyms": [
-    "Truffe blanche d'été"
+    "Truffe blanche d'été",
+    "Tuber aestivum",
+    "tuber aestivum vitt",
+    "tuber aestivum vittad"
    ],
    "names_de": [
     "Sommer-trüffel"
@@ -106917,7 +107304,8 @@
    "name_ar": "دوار الشمس",
    "name_fr": "tournesol",
    "synonyms": [
-    "Sonnenblume"
+    "Sonnenblume",
+    "Helianthus"
    ],
    "names_de": [
     "Sonnenblumen",
@@ -107392,7 +107780,8 @@
    "name_fr": "bigarreaux",
    "synonyms": [
     "Vogelkirsche",
-    "merisier"
+    "merisier",
+    "Prunus avium"
    ],
    "names_de": [
     "Vogel-Kirsche",
@@ -107513,7 +107902,8 @@
    "synonyms": [
     "Süsskartoffeln",
     "Süßkartoffeln",
-    "patates douces"
+    "patates douces",
+    "Ipomoea batatas"
    ],
    "names_de": [
     "Süßkartoffel",
@@ -107594,6 +107984,9 @@
    "name_de": "Semmel-Stoppelpilz",
    "name_en": "sweet toothm wood hedgehog",
    "name_fr": "pied de mouton",
+   "synonyms": [
+    "hydnum repandum"
+   ],
    "names_de": [
     "Semmel-Stoppelpilz"
    ],
@@ -107678,7 +108071,9 @@
    "name_fr": "aspérule odorante",
    "synonyms": [
     "woodruff",
-    "gaillet odorant"
+    "gaillet odorant",
+    "galium odoratum",
+    "asperula odorata"
    ],
    "names_de": [
     "Waldmeister"
@@ -107886,7 +108281,8 @@
    "name_ar": "سمكة السيف",
    "name_fr": "espadon",
    "synonyms": [
-    "espadon pêché en océan Pacifique ou Indien"
+    "espadon pêché en océan Pacifique ou Indien",
+    "Xiphias gladius"
    ],
    "names_de": [
     "Schwertfisch"
@@ -107904,6 +108300,10 @@
    "name_de": "Kalmar (Uroteuthis edulis)",
    "name_en": "swordtip squid",
    "name_fr": "Calmar épée",
+   "synonyms": [
+    "Uroteuthis edulis",
+    "Loligo edulis"
+   ],
    "names_de": [
     "Kalmar (Uroteuthis edulis)"
    ],
@@ -107946,6 +108346,9 @@
    "name_tr": "Şurup",
    "name_ar": "شراب",
    "name_fr": "sirop",
+   "synonyms": [
+    "sirupus"
+   ],
    "names_de": [
     "Sirup"
    ],
@@ -108170,7 +108573,8 @@
    "name_ar": "تمر هندي",
    "name_fr": "tamarin",
    "synonyms": [
-    "tamarins"
+    "tamarins",
+    "tamarindus indica"
    ],
    "names_de": [
     "Tamarinde"
@@ -108406,6 +108810,9 @@
    "name_tr": "tarhun",
    "name_ar": "طرخون",
    "name_fr": "estragon",
+   "synonyms": [
+    "artemisia dracunculus"
+   ],
    "names_de": [
     "estragon"
    ],
@@ -108506,6 +108913,9 @@
    "name_tr": "çay",
    "name_ar": "شاي",
    "name_fr": "thé",
+   "synonyms": [
+    "thea"
+   ],
    "names_de": [
     "Tee"
    ],
@@ -108753,27 +109163,9 @@
     "Tequila"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -109075,7 +109467,9 @@
     "sea spaghetti",
     "Hymanthalia",
     "haricot de mer",
-    "haricots de mer"
+    "haricots de mer",
+    "Himanthalia elongata",
+    "Himanthalia elongato"
    ],
    "names_de": [
     "Riementang"
@@ -109127,6 +109521,9 @@
    "name_tr": "kekik",
    "name_ar": "الزعتر",
    "name_fr": "thym",
+   "synonyms": [
+    "thymus vulgaris"
+   ],
    "names_de": [
     "Thymian"
    ],
@@ -109622,7 +110019,8 @@
     "Zungenzunge",
     "tropical sole",
     "tongue sole",
-    "sole langue"
+    "sole langue",
+    "Cynoglossus spp"
    ],
    "names_de": [
     "tropische Seezunge",
@@ -109703,6 +110101,10 @@
    "name_de": "Torula-Hefe",
    "name_en": "torula yeast",
    "name_fr": "levure torula",
+   "synonyms": [
+    "Cyberlindnera jadinii",
+    "Candida utilis"
+   ],
    "names_de": [
     "Torula-Hefe"
    ],
@@ -109870,7 +110272,8 @@
    "name_ar": "أسماك التروتة",
    "name_fr": "truite",
    "synonyms": [
-    "Forelle"
+    "Forelle",
+    "Tructa"
    ],
    "names_de": [
     "Forellen",
@@ -109945,7 +110348,9 @@
     "Surmullet",
     "red mullet",
     "rouget barbet",
-    "Rouget-barbet de roche"
+    "Rouget-barbet de roche",
+    "Trigla lucerna",
+    "Chelidonichthys lucerna"
    ],
    "names_de": [
     "Roter Knurrhahn"
@@ -110164,7 +110569,8 @@
    "name_fr": "dinde",
    "synonyms": [
     "Truthühner",
-    "Pute"
+    "Pute",
+    "Meleagris"
    ],
    "names_de": [
     "Truthahn",
@@ -110433,7 +110839,8 @@
    "name_ar": "كركم",
    "name_fr": "curcuma",
    "synonyms": [
-    "curcuma rond"
+    "curcuma rond",
+    "curcuma longa"
    ],
    "names_de": [
     "Kurkuma",
@@ -110480,7 +110887,8 @@
     "Mairüben",
     "Speiserübe",
     "turnips",
-    "navets"
+    "navets",
+    "Brassica rapa subsp. rapa"
    ],
    "names_de": [
     "Rübe",
@@ -110512,7 +110920,8 @@
    "synonyms": [
     "Ölrübsen",
     "turnip-rape",
-    "field mustard"
+    "field mustard",
+    "Brassica rapa subsp. oleifera"
    ],
    "names_de": [
     "Rübsamen",
@@ -110653,7 +111062,8 @@
    "name_en": "undulate venus",
    "name_fr": "undulate venus",
    "synonyms": [
-    "Paratapes undulatus"
+    "Paratapes undulatus",
+    "Paphia undulata"
    ],
    "names_de": [
     "Undulate venus",
@@ -111236,6 +111646,9 @@
    "name_de": "västerbotten-käse",
    "name_en": "västerbotten cheese",
    "name_fr": "västerbottensost",
+   "synonyms": [
+    "caseus botniae occidentalis"
+   ],
    "names_de": [
     "västerbotten-käse"
    ],
@@ -111651,6 +112064,9 @@
    "id": "vegetable_oyster",
    "name_de": "vegetable oyster",
    "name_en": "vegetable oyster",
+   "synonyms": [
+    "Tragopogon porrifolius"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -111827,27 +112243,9 @@
     "Wermut"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -111920,7 +112318,8 @@
    "name_ar": "خل",
    "name_fr": "vinaigre",
    "synonyms": [
-    "vinaigres"
+    "vinaigres",
+    "acetum"
    ],
    "names_de": [
     "Essig"
@@ -112432,7 +112831,8 @@
    "synonyms": [
     "Vitaminmischung",
     "Vit.",
-    "mélange de vitamines"
+    "mélange de vitamines",
+    "vitaminum"
    ],
    "names_de": [
     "Vitamine",
@@ -112462,27 +112862,9 @@
     "Wodka"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -112603,6 +112985,9 @@
    "name_en": "wakame",
    "name_ar": "واكامي",
    "name_fr": "wakamé",
+   "synonyms": [
+    "undaria pinnatifida"
+   ],
    "names_de": [
     "wakame"
    ],
@@ -112697,7 +113082,9 @@
    "name_fr": "wasabi",
    "synonyms": [
     "wasabi root",
-    "raifort japonais"
+    "raifort japonais",
+    "Eutrema japonicum",
+    "Wasabia japonica"
    ],
    "names_de": [
     "Wasabi"
@@ -112723,7 +113110,8 @@
     "tap water",
     "eau potable",
     "eau du robinet",
-    "eau osmosée"
+    "eau osmosée",
+    "Aqua"
    ],
    "names_de": [
     "Wasser",
@@ -112744,7 +113132,8 @@
    "name_fr": "châtaigne d'eau",
    "synonyms": [
     "water chestnuts",
-    "châtaignes d'eau"
+    "châtaignes d'eau",
+    "Eleocharis dulcis"
    ],
    "names_de": [
     "Wasserkastanien"
@@ -112777,7 +113166,8 @@
    "synonyms": [
     "water convolvulus",
     "morning glory",
-    "kangkong"
+    "kangkong",
+    "Ipomoea aquatica"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -112791,6 +113181,9 @@
    "name_tr": "Su teresi",
    "name_ar": "جرجير الماء",
    "name_fr": "Cresson de fontaine",
+   "synonyms": [
+    "Nasturtium officinale"
+   ],
    "names_de": [
     "Brunnenkresse"
    ],
@@ -112806,6 +113199,9 @@
    "name_tr": "Karpuz",
    "name_ar": "بطيخ أحمر",
    "name_fr": "pastèque",
+   "synonyms": [
+    "Citrullus lanatus"
+   ],
    "names_de": [
     "Wassermelone"
    ],
@@ -112859,7 +113255,8 @@
    "name_fr": "courge cireuse",
    "synonyms": [
     "winter melon",
-    "waxmelon"
+    "waxmelon",
+    "Benincasa hispida"
    ],
    "names_de": [
     "Wachskürbis"
@@ -112923,6 +113320,9 @@
    "name_tr": "Trakonya",
    "name_ar": "الطرخين",
    "name_fr": "vive",
+   "synonyms": [
+    "Trachinidae"
+   ],
    "names_de": [
     "Petermännchen"
    ],
@@ -112952,7 +113352,8 @@
    "synonyms": [
     "bunching onion",
     "long green onion",
-    "Korean leek"
+    "Korean leek",
+    "Allium fistulosum"
    ],
    "names_de": [
     "Winterzwiebel"
@@ -114050,27 +114451,9 @@
     "whiskeys"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -114083,27 +114466,9 @@
     "scotch whiskey"
    ],
    "default_category": "HARAM",
-   "reason": "Intoxicant - prohibited as ingredient",
-   "reason_de": "Rauschmittel – als Zutat verboten",
+   "reason": "Alcoholic drink; intoxicating drinks are forbidden",
+   "reason_de": "Alkoholisches Getränk; berauschende Getränke sind verboten",
    "source": "quran_hadith",
-   "references": [
-    {
-     "url": "https://askimam.org/public/question_detail/43624",
-     "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
-     "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/6",
-     "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
-     "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
-    },
-    {
-     "url": "https://askimam.org/public/question_detail/18042",
-     "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
-     "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
-    }
-   ],
-   "inferred_from": "alcohol",
    "vegan": "maybe",
    "vegetarian": "yes"
   },
@@ -114561,7 +114926,8 @@
     "bottle gourd",
     "calabash gourd",
     "opo squash",
-    "long melon"
+    "long melon",
+    "Lagenaria siceraria"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -114666,7 +115032,8 @@
    "name_fr": "lupin blanc",
    "synonyms": [
     "white lupine",
-    "lupin blanc doux"
+    "lupin blanc doux",
+    "lupinus albus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -114869,6 +115236,10 @@
    "name_de": "Weiße Jakobsmuschel",
    "name_en": "white scallop",
    "name_fr": "Pétoncle blanc",
+   "synonyms": [
+    "Chlamys albida",
+    "Chlamys albidus"
+   ],
    "names_de": [
     "Weiße Jakobsmuschel"
    ],
@@ -115268,7 +115639,9 @@
    "name_en": "whiteleg shrimp",
    "name_fr": "Crevette à pattes blanches",
    "synonyms": [
-    "Litopenaeus vannamei"
+    "Litopenaeus vannamei",
+    "Penaeus vannamei",
+    "Litopenaus vanamei"
    ],
    "names_de": [
     "Weißbeingarnele",
@@ -115293,7 +115666,8 @@
    "name_tr": "Bakalyaro",
    "name_fr": "merlan",
    "synonyms": [
-    "merling"
+    "merling",
+    "Merlangius merlangus"
    ],
    "names_de": [
     "Wittling"
@@ -116809,6 +117183,9 @@
    "name_de": "Wildreis",
    "name_en": "wild rice",
    "name_fr": "riz sauvage",
+   "synonyms": [
+    "Zizania"
+   ],
    "names_de": [
     "Wildreis"
    ],
@@ -116821,6 +117198,9 @@
    "id": "wild_rocket",
    "name_de": "wild rocket",
    "name_en": "wild rocket",
+   "synonyms": [
+    "diplotaxis tenuifolia"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -116908,7 +117288,8 @@
     "Williams pear",
     "Bartlett pear",
     "bartlett pears",
-    "poires Williams des coteaux du Lyonnais"
+    "poires Williams des coteaux du Lyonnais",
+    "Pyrus communis 'Williams Bon Chrétien'"
    ],
    "names_de": [
     "Williamsbirnen",
@@ -116945,7 +117326,8 @@
    "name_fr": "vin",
    "synonyms": [
     "fruit wine",
-    "نبيذ"
+    "نبيذ",
+    "vinum"
    ],
    "names_de": [
     "Wein"
@@ -117005,6 +117387,9 @@
    "id": "winged_beans",
    "name_de": "winged beans",
    "name_en": "winged beans",
+   "synonyms": [
+    "Psophocarpus tetragonolobus"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -117050,7 +117435,8 @@
     "Auricularia auricula-judea",
     "Auricularia Auricula Judea",
     "Jew's ear",
-    "black fungus"
+    "black fungus",
+    "Auricularia auricula-judae"
    ],
    "names_de": [
     "Judasohrenpilze",
@@ -117475,6 +117861,9 @@
    "id": "yellow_foot",
    "name_de": "yellow foot",
    "name_en": "yellow foot",
+   "synonyms": [
+    "cantharellus lutescens"
+   ],
    "default_category": "HALAL",
    "source": "off_vegan",
    "vegan": "yes",
@@ -117510,7 +117899,8 @@
    "name_fr": "lupin jaune",
    "synonyms": [
     "yellow lupine",
-    "lupin jaune doux"
+    "lupin jaune doux",
+    "lupinus luteus"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",
@@ -117648,7 +118038,8 @@
    "name_ar": "تونة الزعنفة الصفراء",
    "name_fr": "thon albacore",
    "synonyms": [
-    "Thon jaune"
+    "Thon jaune",
+    "Thunnus albacares"
    ],
    "names_de": [
     "Gelbflossen-Thun"
@@ -117666,6 +118057,9 @@
    "name_de": "yellowstripe scad",
    "name_en": "yellowstripe scad",
    "name_fr": "selar à bande dorée",
+   "synonyms": [
+    "Selaroides leptolepis"
+   ],
    "default_category": "HALAL",
    "reason": "Fish is halal without slaughter requirement",
    "reason_de": "Fisch ist halal ohne Schlachtungsanforderung",
@@ -117915,6 +118309,9 @@
    "name_tr": "Çinko",
    "name_ar": "زنك",
    "name_fr": "Zinc",
+   "synonyms": [
+    "zincum"
+   ],
    "names_de": [
     "Zink"
    ],
@@ -118014,6 +118411,9 @@
    "name_en": "zinc oxide",
    "name_ar": "أكسيد الزنك",
    "name_fr": "oxyde de zinc",
+   "synonyms": [
+    "Oxidum zinci"
+   ],
    "names_de": [
     "Zinkoxid"
    ],
@@ -118062,7 +118462,8 @@
    "name_en": "ōhelo berry",
    "synonyms": [
     "ōheloberries",
-    "oheloberries"
+    "oheloberries",
+    "Vaccinium reticulatum"
    ],
    "default_category": "HALAL",
    "source": "off_vegan",

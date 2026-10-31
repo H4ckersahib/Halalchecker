@@ -14,6 +14,7 @@ import com.halalcheck.app.domain.model.PackageClaim
 import com.halalcheck.app.domain.model.Product
 import com.halalcheck.app.domain.model.Reason
 import com.halalcheck.app.domain.model.SourceIngredient
+import com.halalcheck.app.domain.model.withPhotoIngredients
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -30,7 +31,9 @@ class HalalEngineTest {
             ingredient("salt", "Salz", "Salt", HALAL),
             ingredient("milk", "Milch", "Milk", HALAL, vegan = DietFlag.NO, vegetarian = DietFlag.YES),
             ingredient("cocoa", "Kakao", "Cocoa", HALAL),
-            ingredient("almond", "Mandel", "Almond", HALAL, synonyms = listOf("Mandeln")),
+            ingredient("almond", "Mandel", "Almond", HALAL, synonyms = listOf("Mandeln", "Prunus dulcis")),
+            ingredient("pork_gelatin", "Schweinegelatine", "Pork gelatin", HARAM, eNumber = "e428"),
+            ingredient("fish_gelatine", "Fischgelatine", "Fish gelatine", HALAL, eNumber = "e428"),
             ingredient("berries", "Beeren", "Berries", HALAL),
             ingredient("orange_juice", "Orangensaft", "Orange juice", HALAL),
             ingredient("caffeine", "Koffein", "Caffeine", HALAL),
@@ -383,19 +386,91 @@ class HalalEngineTest {
         )
         val foreign = engine.analyzeProduct(product("fr"), index, Madhab.HANAFI)
         assertEquals(listOf("Wasser", "Zucker", "Salz", "Chlorx"), foreign.analyzedIngredients.map { it.name })
-        // Same language: the parse that recognizes more still wins
+        // Same language: the parse that recognizes more still wins, but the text's unknown entry stays
         val german = engine.analyzeProduct(product("de"), index, Madhab.HANAFI)
-        assertEquals(listOf("water", "sugar", "salt"), german.ids())
+        assertEquals(listOf("water", "sugar", "salt", null), german.ids())
+        assertEquals(UNKNOWN, german.halalStatus)
     }
 
     @Test
-    fun `long unrecognized label text is listed apart and does not count`() {
-        val result = analyze("Zucker, Salz, Bitte beachten Sie die Hinweise auf der Rückseite")
-        assertEquals(HALAL, result.halalStatus)
-        assertEquals(listOf("sugar", "salt"), result.ids())
-        assertEquals(listOf("Bitte beachten Sie die Hinweise auf der Rückseite"), result.ignoredText)
-        // Short unknown words stay unknown ingredients
+    fun `a long unknown phrase in the list stays unknown`() {
+        // Review F07: word count and function words are no proof of label text
+        val result = analyze("Zucker, Xyzyx mit Qweryx und Zxvbnm")
+        assertEquals(UNKNOWN, result.halalStatus)
+        assertTrue(result.ignoredText.isEmpty())
         assertEquals(UNKNOWN, analyze("Zucker, Purin").halalStatus)
+    }
+
+    @Test
+    fun `a pork gelatine of OFF's parse is not hidden by the text's fish gelatine`() {
+        // Review F01: same E428 family, contradicting source
+        val result = analyze("Gelatine (Fisch)", sourceIngredients = listOf(SourceIngredient("en:pork-gelatin", "Schweinegelatine")))
+        assertEquals(HARAM, result.halalStatus)
+        assertTrue(result.sourceConflict)
+        assertTrue("pork_gelatin" in result.ids() && "fish_gelatine" in result.ids())
+        // The family's generic member only repeats the question the specific one answers
+        val lecithin = analyze("Sojalecithin", sourceIngredients = listOf(SourceIngredient("en:e322", "Lecithin")))
+        assertEquals(HALAL, lecithin.halalStatus)
+        assertFalse(lecithin.sourceConflict)
+    }
+
+    @Test
+    fun `unknown entries and diet facts of the other source are kept`() {
+        // Review F05 A: OFF's parse recognizes more, but lacks an entry of the text
+        val unknown = analyze("Zucker, Xyzyx", sourceIngredients = listOf(SourceIngredient("en:sugar", "Zucker")))
+        assertEquals(UNKNOWN, unknown.halalStatus)
+        // Review F05 B: milk only in the text contradicts the vegan label, so E471 stays doubtful
+        val vegan = analyze(
+            "Milch, Xyzyx",
+            labels = listOf("en:vegan"),
+            sourceIngredients = listOf(SourceIngredient("en:sugar", "Zucker"), SourceIngredient("en:e471", "E471"))
+        )
+        assertEquals(listOf("Milch"), vegan.veganConflicts)
+        assertEquals(MASHBOOH, vegan.halalStatus)
+    }
+
+    @Test
+    fun `a photo that lacks a haram ingredient of OFF does not make the product halal`() {
+        // Review F06: cut-off photo
+        val off = Product(
+            barcode = "1", name = "Test", ingredientsText = "Zucker, Karmin", additivesTags = listOf("en:e120"),
+            source = DataSource.OPEN_FOOD_FACTS
+        )
+        val photo = engine.analyzeProduct(off.withPhotoIngredients("Zucker", savedAt = 1), index, Madhab.HANAFI)
+        assertEquals(HARAM, photo.halalStatus)
+        assertEquals(listOf("e120"), photo.photoMissing.map { it.ingredient?.id }.distinct())
+        // Confirmed as the whole, current list: only the photo counts
+        val confirmed = engine.analyzeProduct(
+            off.withPhotoIngredients("Zucker", savedAt = 1).copy(photoConfirmedComplete = true), index, Madhab.HANAFI
+        )
+        assertEquals(HALAL, confirmed.halalStatus)
+        assertTrue(confirmed.photoMissing.isEmpty())
+    }
+
+    @Test
+    fun `a known word does not cover an unknown coordinated part`() {
+        // Review F08
+        assertEquals(UNKNOWN, analyze("Zucker und Xyzyx").halalStatus)
+        assertEquals(HALAL, analyze("Zucker und Salz").halalStatus)
+        assertEquals(HALAL, analyze("Mono- und Diglyceride von Speisefettsäuren, Zucker", claims = setOf(PackageClaim.VEGAN)).halalStatus)
+    }
+
+    @Test
+    fun `a storage note does not take the ingredient before it`() {
+        // Review F02: OCR joined the last ingredient and the note
+        val result = analyze(OcrText.join(listOf(listOf("Zutaten: Zucker, Wein", "Kühl lagern."))))
+        assertEquals(HARAM, result.halalStatus)
+        assertEquals(listOf("sugar", "wine"), result.ids())
+        assertTrue(result.ignoredText.any { "lagern" in it })
+    }
+
+    @Test
+    fun `an E-number in parentheses does not replace a more specific name`() {
+        // Review F03
+        assertEquals(HARAM, analyze("Schweinegelatine (E428)").halalStatus)
+        assertEquals(HARAM, analyze("Schweinegelatine (E428)", claims = setOf(PackageClaim.HALAL)).halalStatus)
+        assertEquals(listOf("soya_lecithin"), analyze("Sojalecithin (E322)").ids())
+        assertEquals(listOf("e471"), analyze("Emulgator (E471)").ids())
     }
 
     @Test
@@ -450,14 +525,16 @@ class HalalEngineTest {
                 "&quot;auf pflanzlicher Basis. Nach dem Öffnen gekühlt aufbewahren. Bei max. 7 °C lagern"
         )
         assertEquals(listOf("sugar", "salt"), result.ids())
-        assertTrue(result.ignoredText.isEmpty())
+        assertTrue(result.ignoredText.any { "Rainforest" in it })
     }
 
     @Test
-    fun `an unrecognized single annotation like a Latin name is not listed`() {
-        val result = analyze("Mandeln (Prunus dulcis), Zucker")
-        assertEquals(listOf("almond", "sugar"), result.ids())
-        assertEquals(HALAL, result.halalStatus)
+    fun `an unknown single annotation stays unknown, a known Latin name does not`() {
+        // Review F04
+        assertEquals(UNKNOWN, analyze("Zucker (Xyzyx)").halalStatus)
+        val latin = analyze("Mandeln (Prunus dulcis), Zucker")
+        assertEquals(listOf("almond", "sugar"), latin.ids())
+        assertEquals(HALAL, latin.halalStatus)
     }
 
     @Test

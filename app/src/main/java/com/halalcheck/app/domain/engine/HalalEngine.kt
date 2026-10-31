@@ -34,10 +34,11 @@ class HalalEngine @Inject constructor() {
         val withoutDietLabel = analyzeAll(product, Analysis(index, madhab, dietLabel = false, halalLabel = halalConfirmed))
 
         // Each vegan/vegetarian claim is checked on its own; one the ingredients contradict is not used.
-        val ingredients = withoutDietLabel.ingredients
-        val veganConflicts = if (product.claimsVegan) conflictsWith(ingredients) { it.vegan == DietFlag.NO } else emptyList()
+        // Both sources count, also the one not shown ("Milch" only in the text while OFF's parse won).
+        val findings = withoutDietLabel.allFindings
+        val veganConflicts = if (product.claimsVegan) conflictsWith(findings) { it.vegan == DietFlag.NO } else emptyList()
         val vegetarianConflicts = if (product.claimsVegetarian) {
-            conflictsWith(ingredients) { it.vegetarian == DietFlag.NO }
+            conflictsWith(findings) { it.vegetarian == DietFlag.NO }
         } else {
             emptyList()
         }
@@ -49,7 +50,8 @@ class HalalEngine @Inject constructor() {
             withoutDietLabel
         }
 
-        val analyzed = result.ingredients
+        val photoMissing = photoGaps(product, result.ingredients, Analysis(index, madhab, dietLabelValid, halalConfirmed))
+        val analyzed = result.ingredients + photoMissing
         val hasHaram = analyzed.any { it.status == HalalStatus.HARAM }
         return product.copy(
             halalStatus = determineOverallStatus(analyzed),
@@ -65,8 +67,23 @@ class HalalEngine @Inject constructor() {
             vegetarianConflicts = vegetarianConflicts,
             sourceConflict = result.sourceConflict,
             nameMentions = if (hasHaram) emptyList() else nameMentions(product.name, analyzed, index, madhab),
-            ignoredText = result.ignoredText
+            ignoredText = result.ignoredText,
+            photoMissing = photoMissing
         )
+    }
+
+    /**
+     * With a photo of the list: doubtful or haram ingredients of the replaced Open Food Facts data that the
+     * photo lacks. A cut-off or misread photo must not turn a product halal; once the user confirms the photo
+     * is the whole, current list, Open Food Facts no longer counts.
+     */
+    private fun photoGaps(product: Product, photo: List<AnalyzedIngredient>, analysis: Analysis): List<AnalyzedIngredient> {
+        val off = product.offData ?: return emptyList()
+        if (product.ingredientsFromPhoto == null || product.photoConfirmedComplete) return emptyList()
+        val bySeverity = severityByFamily(photo)
+        return analyzeAll(off.copy(userClaims = product.userClaims), analysis).ingredients.filter {
+            (it.status == HalalStatus.HARAM || it.status == HalalStatus.MASHBOOH) && addsTo(bySeverity, it)
+        }
     }
 
     /**
@@ -90,12 +107,14 @@ class HalalEngine @Inject constructor() {
     private class AnalysisResult(
         val ingredients: List<AnalyzedIngredient>,
         val sourceConflict: Boolean,
-        val ignoredText: List<String>
+        val ignoredText: List<String>,
+        /** Everything both sources found, for checking diet claims; [ingredients] is what is shown. */
+        val allFindings: List<AnalyzedIngredient>
     )
 
     private fun analyzeAll(product: Product, analysis: Analysis): AnalysisResult {
-        val (fromText, textIgnored) = withoutLabelText(dedupe(analysis.analyzeText(product.ingredientsText)))
-        val (fromOff, offIgnored) = withoutLabelText(dedupe(analysis.analyzeNodes(product.sourceIngredients)))
+        val fromText = dedupe(analysis.analyzeText(product.ingredientsText))
+        val fromOff = dedupe(analysis.analyzeNodes(product.sourceIngredients))
         // OFF parses only the product's main language: with a German text and a French main language its
         // parse would list "Eau, protéines de soja". It then only adds what the text missed.
         val sameLanguage = product.sourceIngredientsLanguage == null || product.ingredientsLanguage == null ||
@@ -103,34 +122,47 @@ class HalalEngine @Inject constructor() {
         val offWins = fromOff.isNotEmpty() &&
             (fromText.isEmpty() || (sameLanguage && knownRatio(fromOff) > knownRatio(fromText)))
         val (chosen, other) = if (offWins) fromOff to fromText else fromText to fromOff
-        // Doubtful or haram findings of the other source must not disappear with it.
-        val chosenFamilies = chosen.mapNotNull { it.ingredient?.let(::family) }.toSet()
-        val missing = other.filter {
-            (it.status == HalalStatus.HARAM || it.status == HalalStatus.MASHBOOH) &&
-                it.ingredient?.let(::family) !in chosenFamilies
+        // The other source keeps what the chosen one doesn't cover: doubtful or haram findings, also a more
+        // severe, specific member of a family that is there ("Gelatine (Fisch)" in the text, pork gelatine in
+        // OFF's parse), and in the same language unrecognized entries ("Zucker, Xyzyx" while OFF's parse has
+        // only the sugar). A recognition share is no proof that a list is complete.
+        val bySeverity = severityByFamily(chosen)
+        val chosenNames = chosen.map { compactName(it.name) }.toSet()
+        val missing = other.filter { entry ->
+            when {
+                entry.ingredient == null -> sameLanguage && compactName(entry.name) !in chosenNames
+                entry.status == HalalStatus.HARAM || entry.status == HalalStatus.MASHBOOH -> addsTo(bySeverity, entry)
+                else -> false
+            }
         }
         val merged = chosen + missing
+        val additives = analysis.additivesNotListed(product.additivesTags, merged)
         return AnalysisResult(
-            merged + analysis.additivesNotListed(product.additivesTags, merged),
-            missing.isNotEmpty(),
-            if (offWins) offIgnored else textIgnored
+            ingredients = merged + additives,
+            sourceConflict = missing.isNotEmpty(),
+            ignoredText = analysis.notes.distinct(),
+            allFindings = chosen + other + additives
         )
     }
 
+    private fun severityByFamily(list: List<AnalyzedIngredient>): Map<String, Int> =
+        list.mapNotNull { entry -> entry.ingredient?.let { family(it) to severity(entry.status) } }
+            .groupBy({ it.first }, { it.second })
+            .mapValues { (_, severities) -> severities.max() }
+
     /**
-     * An unrecognized phrase of five or more words with a German or English function word is label text
-     * the parser's note rules missed ("Weitere Informationen unter ra.org"), not an ingredient. It is
-     * shown separately and does not make the product "not fully checked".
+     * [entry] adds information to a list with these family severities: its ingredient is missing there, or it
+     * is a more severe, specific member of a family that is there (pork gelatine next to fish gelatine). The
+     * family's generic member (plain E322 next to soy lecithin) only repeats the open question.
      */
-    private fun withoutLabelText(list: List<AnalyzedIngredient>): Pair<List<AnalyzedIngredient>, List<String>> {
-        val (text, ingredients) = list.partition { it.ingredient == null && isLabelText(it.name) }
-        return ingredients to text.map { it.name }
+    private fun addsTo(severityByFamily: Map<String, Int>, entry: AnalyzedIngredient): Boolean {
+        val ingredient = entry.ingredient ?: return false
+        val family = family(ingredient)
+        val existing = severityByFamily[family] ?: return true
+        return severity(entry.status) > existing && ingredient.id != family
     }
 
-    private fun isLabelText(phrase: String): Boolean {
-        val words = WORD.findAll(phrase.lowercase()).map { it.value }.toList()
-        return words.size >= LABEL_TEXT_WORDS && words.any { it in FUNCTION_WORDS }
-    }
+    private fun compactName(name: String): String = IngredientIndex.normalize(name).replace(" ", "")
 
     /** Names of recognized ingredients that contradict a diet claim. Compound guesses don't count. */
     private fun conflictsWith(ingredients: List<AnalyzedIngredient>, contradicts: (Ingredient) -> Boolean): List<String> =
@@ -196,13 +228,21 @@ class HalalEngine @Inject constructor() {
         private val parser = IngredientTextParser(
             isClassName = index::isClassName,
             isKnown = { index.exact(it) != null },
-            isAdditive = { text -> index.findAll(text).any { it.ingredient.eNumber != null } }
+            isAdditive = { text -> index.findAll(text).any { it.ingredient.eNumber != null } },
+            mentionsIngredient = { index.findAll(it).isNotEmpty() }
         )
 
-        fun analyzeText(text: String): List<AnalyzedIngredient> =
-            parser.parse(text).flatMap { analyzeParsed(it) }
+        /** Label text the parser dropped as no ingredient, from every text analyzed. */
+        val notes = mutableListOf<String>()
+
+        fun analyzeText(text: String): List<AnalyzedIngredient> {
+            val parsed = parser.parseWithNotes(text)
+            notes += parsed.notes
+            return parsed.items.flatMap { analyzeParsed(it) }
+        }
 
         private fun analyzeParsed(parsed: ParsedIngredient): List<AnalyzedIngredient> {
+            parsed.eNumber?.let { number -> return withENumber(parsed, number) }
             if (parsed.qualifiers.isNotEmpty()) {
                 // "Emulgator (Sojalecithin)": the recognized content is more precise than the class
                 if (parsed.isClass) {
@@ -218,13 +258,31 @@ class HalalEngine @Inject constructor() {
                 return if (head?.status == HalalStatus.HARAM) listOf(head) else emptyList()
             }
             if (parsed.children.isEmpty()) {
-                return listOf(analyzeName(parsed.text, parsed.name, emptyList()) ?: unknown(parsed.text))
+                val main = analyzeName(parsed.text, parsed.name, emptyList()) ?: return listOf(unknown(parsed.text))
+                // "Zucker und Xyzyx": the sugar does not cover the rest
+                return listOf(main) + index.unmatchedParts(parsed.name).map { unknown(it) }
             }
             // A composition: "Schokolade (Zucker, Kakaobutter)"
             val children = parsed.children.flatMap { analyzeParsed(it) }
             if (parsed.isClass) return children
             val parent = analyzeName(parsed.name, parsed.name, emptyList())
             return withParent(parent, parsed.children.size, children)
+        }
+
+        /**
+         * "Sojalecithin (E322)", "Schweinegelatine (E428)": the name is the more specific member of the
+         * number's family and counts alone. Name and number of different families ("Gelatine vom Schwein
+         * (E428)" yields pork) both count.
+         */
+        private fun withENumber(parsed: ParsedIngredient, number: String): List<AnalyzedIngredient> {
+            val named = analyzeName(parsed.text, parsed.name, emptyList())
+            val numbered = analyzeName(parsed.text, number, emptyList())
+            return when {
+                named == null -> listOf(numbered ?: unknown(parsed.text))
+                numbered == null -> listOf(named)
+                named.ingredient?.let { family(it) } == numbered.ingredient?.let { family(it) } -> listOf(named)
+                else -> listOf(named, numbered)
+            }
         }
 
         /** Same rule as the text parser: a bare class directly followed by an additive is a typo for a colon. */
@@ -249,14 +307,16 @@ class HalalEngine @Inject constructor() {
                 return withParent(parent, node.children.size, children)
             }
             if (ingredient != null) return listOf(evaluate(node.text, IngredientMatch(ingredient), emptyList()))
-            return analyzeText(node.text).ifEmpty { listOf(unknown(node.text)) }
+            // Nothing left: the parser dropped it as label text or a note, which OFF parses as ingredients too
+            return analyzeText(node.text)
         }
 
         /**
          * A recognized parent counts next to its composition if
          * - it is HARAM ("Speck (Schweinefleisch, Salz)"),
-         * - it has a single child, usually an annotation ("Süßmolkenpulver (aus Milch)"); a HALAL or
-         *   unrecognized annotation (a Latin name: "Chiasamen (Salvia hispanica)") adds nothing and is not listed,
+         * - it has a single child, usually an annotation ("Süßmolkenpulver (aus Milch)"); a HALAL annotation
+         *   adds nothing and is not listed (Latin names are synonyms: "Chiasamen (Salvia hispanica)"), an
+         *   unrecognized one stays unknown ("Zucker (Xyzyx)"),
          * - or it is doubtful in a way its composition can't answer ("Wurst (Salz, Gewürze)": the
          *   slaughter; "Aroma (Wasser, Zucker)": the flavouring itself).
          * Doubts that only ask what is inside are answered by the composition: OFF-derived "may contain
@@ -270,7 +330,7 @@ class HalalEngine @Inject constructor() {
         ): List<AnalyzedIngredient> = when {
             parent == null -> children
             parent.status == HalalStatus.HARAM -> listOf(parent) + children
-            childCount == 1 -> listOf(parent) + children.filter { it.status != HalalStatus.HALAL && it.ingredient != null }
+            childCount == 1 -> listOf(parent) + children.filter { it.status != HalalStatus.HALAL }
             parent.status == HalalStatus.MASHBOOH && compositionCannotAnswer(parent.ingredient) -> listOf(parent) + children
             else -> children
         }
@@ -348,13 +408,6 @@ class HalalEngine @Inject constructor() {
 
     private companion object {
         val E_BASE = Regex("^(e\\d{3,4})")
-        val WORD = Regex("\\p{L}{2,}")
-        const val LABEL_TEXT_WORDS = 5
-        val FUNCTION_WORDS = setOf(
-            "der", "die", "das", "den", "dem", "des", "und", "oder", "unter", "nach", "von", "vor", "mit", "bei",
-            "zu", "zum", "zur", "für", "ist", "sind", "wird", "werden", "kann", "sie", "eine", "einem", "einer",
-            "the", "and", "for", "with", "under", "after", "is", "are", "can", "more"
-        )
 
         /** Curated entries that are HARAM because pork is the default animal ("Speck", "Schinken"). */
         val PORK_BY_DEFAULT = setOf("pork", "pork_fat", "lard", "bacon", "ham")

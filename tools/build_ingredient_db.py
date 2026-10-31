@@ -257,7 +257,8 @@ def main():
             continue
         node = tax[node_id]
         names = node_names(node, additives.get(node_id))
-        synonyms = [s for lang in LANGS for s in (node.get("synonyms", {}).get(lang) or [])]
+        # Latin botanical names too: "Chiasamen (Salvia hispanica)" is then an annotation, not an unknown
+        synonyms = [s for lang in LANGS + ("la",) for s in (node.get("synonyms", {}).get(lang) or [])]
         synonyms += [n for n in names.values() if n]
         curated = rulings.get(node_id, {})
         for extra in [curated.get("names", {})] + curated.get("extra_names", []):

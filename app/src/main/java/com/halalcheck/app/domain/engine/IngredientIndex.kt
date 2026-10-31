@@ -123,6 +123,21 @@ class IngredientIndex(ingredients: List<Ingredient>) {
         return distinct.filterNot { it.ingredient.isClass }.ifEmpty { distinct }
     }
 
+    /**
+     * Parts of a coordination that match nothing: in "Zucker und Xyzyx" the sugar must not cover the
+     * unknown rest. Only coordinated parts count, so a descriptive word ("geröstete Mandeln") stays fine;
+     * "Mono-" in "Mono- und Diglyceride" is half of a word, not a part.
+     */
+    fun unmatchedParts(phrase: String): List<String> {
+        if (lookupNormalized(normalize(phrase)) != null) return emptyList()
+        val parts = COORDINATION.split(phrase).map { it.trim(' ', ',', ';', ':', '.') }
+        if (parts.size < 2) return emptyList()
+        return parts.filter { part ->
+            val words = normalize(part).split(' ').filter { it.length >= 3 && it !in STOPWORDS && it !in VAGUE_WORDS }
+            words.isNotEmpty() && !part.endsWith("-") && findAll(part).isEmpty()
+        }
+    }
+
     private fun wordMatches(words: List<String>): List<IngredientMatch> {
         val covered = BooleanArray(words.size)
         val matches = mutableListOf<IngredientMatch>()
@@ -246,6 +261,11 @@ class IngredientIndex(ingredients: List<Ingredient>) {
             "and", "or", "with", "from", "of", "the", "including",
             "de", "du", "la", "le", "les", "et", "a", "al", "ve", "ile"
         )
+
+        private val COORDINATION = Regex("\\s+(?:und|oder|sowie|mit|and|or|with)\\s+", RegexOption.IGNORE_CASE)
+
+        /** "Gewürze und andere": no ingredient of its own. */
+        private val VAGUE_WORDS = setOf("andere", "anderen", "anderer", "anderes", "weitere", "sonstige", "diverse", "verschiedene", "other", "others")
 
         fun normalize(text: String): String =
             text.lowercase(Locale.ROOT).replace(NON_ALPHANUMERIC, " ").trim()

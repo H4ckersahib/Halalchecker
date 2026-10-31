@@ -55,7 +55,9 @@ class ExportRepository @Inject constructor(
                 val cached = productRepository.cachedProduct(barcode)
                     ?: photo?.let { Product(barcode = barcode, name = scan?.productName.orEmpty(), source = DataSource.UNKNOWN) }
                 val product = cached?.let { base ->
-                    val withPhoto = photo?.let { base.withPhotoIngredients(it.text, it.savedAt) } ?: base
+                    val withPhoto = photo?.let {
+                        base.withPhotoIngredients(it.text, it.savedAt).copy(photoConfirmedComplete = preferences.isPhotoComplete(barcode))
+                    } ?: base
                     halalEngine.analyzeProduct(withPhoto.copy(userClaims = preferences.packageClaims(barcode)), index, madhab)
                 }
                 ExportBuilder.Entry(

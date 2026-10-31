@@ -209,6 +209,14 @@ class IngredientAssetTest {
     }
 
     @Test
+    fun `the word Alkohol is doubtful like ethanol, alcoholic drinks stay haram`() {
+        assertEquals(HalalStatus.MASHBOOH, analyze("Zucker, Alkohol").halalStatus)
+        listOf("Wodka", "Likör", "Eierlikör", "Gin", "Champagner", "Whisky", "Bier", "Rotwein").forEach { drink ->
+            assertEquals(drink, HalalStatus.HARAM, analyze("Zucker, $drink").halalStatus)
+        }
+    }
+
+    @Test
     fun `ethanol of unknown origin is doubtful, also with a vegan label`() {
         // askimam: forbidden from grapes or dates, permissible from other sources if not intoxicating
         val bread = "Weizenmehl, Wasser, Hefe, Speisesalz, Rapsöl, Ethanol"

@@ -43,6 +43,12 @@ data class Product(
     val ignoredText: List<String> = emptyList(),
     /** When the user saved a photo of the ingredient list that replaces Open Food Facts' data; null if none. */
     val ingredientsFromPhoto: Long? = null,
+    /** With a photo: the Open Food Facts data it replaced, checked for what the photo lacks. */
+    val offData: Product? = null,
+    /** The user confirmed the photo shows the whole, current list; Open Food Facts is not compared then. */
+    val photoConfirmedComplete: Boolean = false,
+    /** Doubtful or haram ingredients Open Food Facts lists that the photo lacks (cut off, misread or outdated). */
+    val photoMissing: List<AnalyzedIngredient> = emptyList(),
     /** Set when Open Food Facts could not be reached and a cached copy from this time is shown. */
     val offlineSince: Long? = null
 ) {
@@ -60,9 +66,11 @@ data class Product(
 
 /**
  * The user's photo of the ingredient list replaces what Open Food Facts has (or lacks): its text,
- * its own parse and its additive list. Labels stay, they are claims on the package.
+ * its own parse and its additive list. Labels stay, they are claims on the package. The replaced data
+ * stays in [Product.offData], so a cut-off photo can't silently drop a haram ingredient.
  */
 fun Product.withPhotoIngredients(text: String, savedAt: Long): Product = copy(
+    offData = takeIf { ingredientsText.isNotBlank() || sourceIngredients.isNotEmpty() || additivesTags.isNotEmpty() },
     ingredientsText = text,
     ingredientsLanguage = null,
     sourceIngredients = emptyList(),

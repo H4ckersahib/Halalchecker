@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import com.halalcheck.app.data.preferences.UserPreferencesRepository
 import com.halalcheck.app.data.repository.PhotoIngredientsRepository
 import com.halalcheck.app.domain.engine.OcrText
 import com.halalcheck.app.ui.navigation.Routes
@@ -42,7 +43,8 @@ data class PhotoUiState(
 @HiltViewModel
 class PhotoIngredientsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val repository: PhotoIngredientsRepository
+    private val repository: PhotoIngredientsRepository,
+    private val preferences: UserPreferencesRepository
 ) : ViewModel() {
 
     private val barcode: String = savedStateHandle.get<String>(Routes.ARG_BARCODE) ?: ""
@@ -94,6 +96,8 @@ class PhotoIngredientsViewModel @Inject constructor(
         val text = _uiState.value.text
         if (text.isBlank()) return
         viewModelScope.launch {
+            // A new text is compared with Open Food Facts again; reset first, saving triggers the re-analysis
+            preferences.setPhotoComplete(barcode, false)
             repository.save(barcode, text)
             _uiState.update { it.copy(saved = true) }
         }

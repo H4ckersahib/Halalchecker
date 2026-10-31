@@ -193,6 +193,8 @@
     <string name="photo_take_list">Zutatenliste fotografieren</string>
     <string name="photo_take_own">Zutatenliste stimmt nicht? Selbst fotografieren</string>
     <string name="photo_notice">Geprüft wurden die Zutaten aus deinem Foto vom %s, nicht die Daten von Open Food Facts.</string>
+    <string name="photo_missing">Open Food Facts nennt zusätzlich %s. Auf deinem Foto fehlt das, deshalb zählt es weiter mit. War die Liste abgeschnitten, fotografiere sie neu. Zeigt dein Foto die ganze, aktuelle Liste, bestätige es.</string>
+    <string name="photo_confirm_complete">Foto ist vollständig</string>
     <string name="photo_edit">Bearbeiten</string>
     <string name="photo_delete">Foto-Text löschen</string>
 </resources>

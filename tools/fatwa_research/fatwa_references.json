@@ -65,7 +65,7 @@
     {
       "ruling_id": "en:alcohol",
       "group": "alcohol_other",
-      "our_category": "HARAM",
+      "our_category": "MASHBOOH",
       "our_madhab_rulings": {
         "hanafi": null,
         "maliki": null,
@@ -1292,10 +1292,10 @@
       "group": "carmine",
       "our_category": "HARAM",
       "our_madhab_rulings": {
-        "hanafi": "HARAM",
-        "maliki": "MASHBOOH",
-        "shafi": "HARAM",
-        "hanbali": "HARAM"
+        "hanafi": null,
+        "maliki": null,
+        "shafi": null,
+        "hanbali": null
       },
       "status": "found",
       "references": [
@@ -1336,7 +1336,7 @@
     {
       "ruling_id": "en:e1510",
       "group": "alcohol_other",
-      "our_category": "HARAM",
+      "our_category": "MASHBOOH",
       "our_madhab_rulings": {
         "hanafi": null,
         "maliki": null,
@@ -1355,7 +1355,7 @@
           "fatwa_ruling": "conditional",
           "summary_en": "Alcohol from dates or grapes is forbidden whether it intoxicates or not. Alcohol from other sources is permissible if it does not intoxicate and is not used as a vice, e.g. traces in soft drinks.",
           "summary_de": "Alkohol aus Datteln oder Trauben ist verboten, auch ohne Rausch. Alkohol aus anderen Quellen ist erlaubt, wenn er nicht berauscht und nicht als Laster genutzt wird, z. B. Spuren in Softdrinks.",
-          "agrees_with_ours": "partly",
+          "agrees_with_ours": "yes",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/127600/are-methanol-and-ethanol-in-food-products-halaal/"
         },
@@ -1369,7 +1369,7 @@
           "fatwa_ruling": "conditional",
           "summary_en": "Alcohol from grapes or dates is not permissible. Alcohol from other sources such as molasses is permissible in food if it does not intoxicate.",
           "summary_de": "Alkohol aus Trauben oder Datteln ist nicht erlaubt. Alkohol aus anderen Quellen wie Melasse ist in Speisen erlaubt, wenn er nicht berauscht.",
-          "agrees_with_ours": "partly",
+          "agrees_with_ours": "yes",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/18934/alcohol-in-cosmetics-and-food/"
         },
@@ -1383,7 +1383,7 @@
           "fatwa_ruling": "doubtful",
           "summary_en": "Most E-numbers are halal, but E120, E441, E542 and E904 are always animal or insect derived and to avoid. A long list (E422, E470-E495, E570, E631, E635, E920, E1510 and more) is doubtful and must be checked individually (list from SANHA).",
           "summary_de": "Die meisten E-Nummern sind halal, aber E120, E441, E542 und E904 stammen stets von Tieren/Insekten und sind zu meiden. Eine lange Liste (E422, E470-E495, E570, E631, E635, E920, E1510 u. a.) ist zweifelhaft und einzeln zu prüfen (Liste der SANHA).",
-          "agrees_with_ours": "partly",
+          "agrees_with_ours": "yes",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/19202/i-got-a-list-of-ingredients-in-ready-food-saying-haraam-i-want-to-be-sure-are-they-really-haraam-or-not-is-there-any-more-ingredients-that-haraam-in-the-food-of-western-contries/"
         }
@@ -2047,12 +2047,12 @@
     {
       "ruling_id": "en:e904",
       "group": "shellac",
-      "our_category": "MASHBOOH",
+      "our_category": "HARAM",
       "our_madhab_rulings": {
-        "hanafi": "HALAL",
-        "maliki": "HALAL",
-        "shafi": "MASHBOOH",
-        "hanbali": "MASHBOOH"
+        "hanafi": null,
+        "maliki": null,
+        "shafi": null,
+        "hanbali": null
       },
       "status": "found",
       "references": [
@@ -2066,7 +2066,7 @@
           "fatwa_ruling": "haram",
           "summary_en": "The secretion itself is treated like honey, but if traces or particles of the insect end up in the sweet or chocolate glaze, eating it is not permissible.",
           "summary_de": "Das Sekret gilt wie Honig, aber wenn Spuren oder Teile des Insekts in Süßware oder Glasur gelangen, ist der Verzehr nicht erlaubt.",
-          "agrees_with_ours": "no",
+          "agrees_with_ours": "yes",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/4470/with-regards-to-the-use-of-shellac-insect-derivative-in-food-preparation-is-it-halaal-this-is-mostly-found-in-sweet-chocolate-production/"
         },
@@ -2080,7 +2080,7 @@
           "fatwa_ruling": "haram",
           "summary_en": "Insects may not be eaten; shellac as a glazing agent for edible items is impermissible, insect products are only for external use. The same answer confirms 0.1% synthetic alcohol in yoghurt is fine.",
           "summary_de": "Insekten dürfen nicht gegessen werden; Schellack als Glasur für Essbares ist unerlaubt, Insektenprodukte nur äußerlich. Dieselbe Antwort bestätigt, dass 0,1 % synthetischer Alkohol in Joghurt in Ordnung ist.",
-          "agrees_with_ours": "no",
+          "agrees_with_ours": "yes",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/126533/consuming-products-which-contain-0-1-alcohol-what-is-the-ruling-of-shellac-confectioners-glaze/"
         },
@@ -2094,7 +2094,7 @@
           "fatwa_ruling": "doubtful",
           "summary_en": "Most E-numbers are halal, but E120, E441, E542 and E904 are always animal or insect derived and to avoid. A long list (E422, E470-E495, E570, E631, E635, E920, E1510 and more) is doubtful and must be checked individually (list from SANHA).",
           "summary_de": "Die meisten E-Nummern sind halal, aber E120, E441, E542 und E904 stammen stets von Tieren/Insekten und sind zu meiden. Eine lange Liste (E422, E470-E495, E570, E631, E635, E920, E1510 u. a.) ist zweifelhaft und einzeln zu prüfen (Liste der SANHA).",
-          "agrees_with_ours": "no",
+          "agrees_with_ours": "partly",
           "verified": true,
           "mirror_url": "https://islamqa.org/hanafi/askimam/19202/i-got-a-list-of-ingredients-in-ready-food-saying-haraam-i-want-to-be-sure-are-they-really-haraam-or-not-is-there-any-more-ingredients-that-haraam-in-the-food-of-western-contries/"
         }
@@ -4301,5 +4301,11 @@
       "notes": "Pepsin is HARAM in our file; the fatwa says it is usually from pig but can be bovine/microbial, accepted from halal-slaughtered animals. Only non-askimam sources had been found; removed."
     }
   ],
-  "askimam_only": true
+  "askimam_only": true,
+  "decisions": [
+    "en:e904 shellac: HARAM in every school (owner, after askimam)",
+    "en:e120 carmine: HARAM in every school (owner)",
+    "en:e1510 ethanol: MASHBOOH, doubt alcohol (owner, after askimam: forbidden from grapes or dates, permissible from other sources if not intoxicating)",
+    "en:alcohol (the ingredient word Alkohol): MASHBOOH like ethanol (owner); every alcoholic drink has its own HARAM ruling"
+  ]
 }
