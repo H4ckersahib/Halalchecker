@@ -114,7 +114,24 @@
       "en": "Alcohol",
       "tr": "Alkol",
       "ar": "كحول"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:almond-milk",
@@ -137,7 +154,14 @@
     "reason": "Source animal and slaughter method unknown",
     "reason_de": "Herkunftstier und Schlachtmethode unbekannt",
     "source": "scholarly_opinion",
-    "doubt": "animal_source"
+    "doubt": "animal_source",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:animal-fat",
@@ -151,7 +175,14 @@
       "en": "Animal Fat",
       "tr": "Hayvansal Yağ",
       "ar": "دهن حيواني"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:aniseed-oil",
@@ -166,7 +197,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:antioxidant",
@@ -209,7 +247,19 @@
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "reason": "Jelly made from gelatine",
-    "reason_de": "Gelee aus Gelatine"
+    "reason_de": "Gelee aus Gelatine",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:bacon",
@@ -251,7 +301,14 @@
       "en": "Beef",
       "tr": "Sığır Eti",
       "ar": "لحم بقر"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:beef-fat",
@@ -265,7 +322,14 @@
       "en": "Beef Tallow",
       "tr": "Sığır İç Yağı",
       "ar": "شحم البقر"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:beef-gelatin",
@@ -279,7 +343,19 @@
       "en": "Beef Gelatin",
       "tr": "Sığır Jelatini",
       "ar": "جيلاتين البقر"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:beer",
@@ -379,7 +455,19 @@
       "en": "Brandy",
       "tr": "Brendi",
       "ar": "براندي"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      }
+    ]
   },
   {
     "id": "en:breast",
@@ -387,7 +475,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:bretzel",
@@ -440,6 +535,13 @@
     "extra_names": [
       {
         "de": "Bouillon"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -564,7 +666,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Natural casing from pig, sheep or cattle intestines, or collagen or cellulose",
-    "reason_de": "Naturdarm von Schwein, Schaf oder Rind, oder Kollagen bzw. Zellulose"
+    "reason_de": "Naturdarm von Schwein, Schaf oder Rind, oder Kollagen bzw. Zellulose",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:cereal-crispies",
@@ -595,14 +704,14 @@
     },
     "references": [
       {
-        "url": "https://islamqa.org/hanafi/seekersguidance-hanafi/32352/",
-        "title": "SeekersGuidance (Hanafi): rennet from any animal except pig is permissible",
-        "title_de": "SeekersGuidance (hanafitisch): Lab von jedem Tier außer Schwein ist erlaubt"
-      },
-      {
-        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "url": "https://askimam.org/public/question_detail/39624",
         "title": "Askimam (Hanafi): how rennet and whey powder are made today",
         "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/15573",
+        "title": "Askimam (Hanafi): rennet from lawful animals is pure even if not slaughtered; pig rennet is not",
+        "title_de": "Askimam (hanafitisch): Lab von erlaubten Tieren rein, auch ungeschächtet; Schweinelab nicht"
       }
     ],
     "composition_resolves": true
@@ -628,7 +737,14 @@
       "en": "Chicken",
       "tr": "Tavuk Eti",
       "ar": "لحم دجاج"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "default_category": "HARAM",
@@ -643,7 +759,14 @@
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "reason": "May be made from meat or vegetables",
-    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein"
+    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:chickend-fond",
@@ -658,6 +781,13 @@
       },
       {
         "de": "Hühnerbrühe"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -756,7 +886,19 @@
       "en": "Collagen",
       "tr": "Kolajen",
       "ar": "كولاجين"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:colour",
@@ -770,7 +912,14 @@
       "en": "Coloring",
       "tr": "Renklendirici",
       "ar": "ملون"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/39856",
+        "title": "Askimam (Hanafi): red colour E120 is impermissible because insects may not be eaten",
+        "title_de": "Askimam (hanafitisch): Rotfarbe E120 unerlaubt, da Insekten nicht gegessen werden dürfen"
+      }
+    ]
   },
   {
     "id": "en:cooked-sweet-potato",
@@ -789,6 +938,13 @@
     "extra_names": [
       {
         "de": "Gemüsebrühe oder Fleischbrühe"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -909,7 +1065,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:dehydrated-broth",
@@ -917,7 +1080,14 @@
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "reason": "May be made from meat or vegetables",
-    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein"
+    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:dehydrated-poultry-fond",
@@ -925,7 +1095,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:dextrose",
@@ -957,6 +1134,13 @@
     "extra_names": [
       {
         "de": "Entenfond"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -1010,10 +1194,6 @@
   {
     "id": "en:e120",
     "default_category": "HARAM",
-    "hanafi_ruling": "HARAM",
-    "maliki_ruling": "MASHBOOH",
-    "shafi_ruling": "HARAM",
-    "hanbali_ruling": "HARAM",
     "reason": "Red dye extracted from crushed cochineal insects",
     "reason_de": "Roter Farbstoff aus zerdrückten Cochenille-Läusen",
     "source": "majority_opinion",
@@ -1023,7 +1203,19 @@
       "en": "Carmine (Cochineal)",
       "tr": "Karmin (Koşenil)",
       "ar": "قرمزي (كوشينيل)"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/22225",
+        "title": "Askimam (Hanafi): cochineal/carmine is declared haram",
+        "title_de": "Askimam (hanafitisch): Koschenille/Karmin wird für haram erklärt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/39856",
+        "title": "Askimam (Hanafi): red colour E120 is impermissible because insects may not be eaten",
+        "title_de": "Askimam (hanafitisch): Rotfarbe E120 unerlaubt, da Insekten nicht gegessen werden dürfen"
+      }
+    ]
   },
   {
     "id": "en:e1206",
@@ -1154,16 +1346,34 @@
   },
   {
     "id": "en:e1510",
-    "default_category": "HARAM",
-    "reason": "Alcohol - prohibited as ingredient",
-    "reason_de": "Alkohol – als Zutat verboten",
-    "source": "quran_hadith",
+    "default_category": "MASHBOOH",
+    "reason": "Forbidden if made from grapes or dates; from other sources (grain, sugar cane, molasses) permissible in food if it does not intoxicate (askimam). The package does not say which.",
+    "reason_de": "Verboten, wenn aus Trauben oder Datteln; aus anderen Quellen (Getreide, Zuckerrohr, Melasse) in Lebensmitteln erlaubt, wenn nicht berauschend (askimam). Die Packung sagt nicht, woraus.",
+    "source": "scholarly_opinion",
     "names": {
       "de": "Ethanol",
       "en": "Ethanol",
       "tr": "Etanol",
       "ar": "إيثانول"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ],
+    "doubt": "alcohol"
   },
   {
     "id": "en:e160a",
@@ -1391,7 +1601,19 @@
       "en": "Lecithin",
       "tr": "Lesitin",
       "ar": "ليسيثين"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/27496",
+        "title": "Askimam (Hanafi): lecithin from soy or egg yolk is permissible, from animal parts it depends",
+        "title_de": "Askimam (hanafitisch): Lecithin aus Soja oder Eigelb erlaubt, aus tierischen Teilen kommt es darauf an"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18212",
+        "title": "Askimam (Hanafi): soy lecithin is permissible, animal lecithin is not",
+        "title_de": "Askimam (hanafitisch): Sojalecithin erlaubt, tierisches Lecithin nicht"
+      }
+    ]
   },
   {
     "id": "en:e330",
@@ -1630,7 +1852,19 @@
       "en": "Glycerol",
       "tr": "Gliserin",
       "ar": "جليسرين"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/40532",
+        "title": "Askimam (Hanafi): plant and synthetic glycerin halal, animal-fat glycerin haram",
+        "title_de": "Askimam (hanafitisch): pflanzliches/synthetisches Glycerin halal, aus tierischem Fett haram"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e428",
@@ -1653,7 +1887,19 @@
       "en": "Gelatin",
       "tr": "Jelatin",
       "ar": "جيلاتين"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:e440a",
@@ -1732,7 +1978,19 @@
       "en": "Sodium, Potassium and Calcium Salts of Fatty Acids",
       "tr": "Yağ Asidi Tuzları",
       "ar": "أملاح الأحماض الدهنية"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e471",
@@ -1747,7 +2005,19 @@
       "en": "Mono- and Diglycerides of Fatty Acids",
       "tr": "Yağ Asidi Mono ve Digliseritleri",
       "ar": "أحاديات وثنائيات الغليسيريد"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/281",
+        "title": "Askimam (Hanafi): E471 may be of plant or animal base, the label does not say",
+        "title_de": "Askimam (hanafitisch): E471 kann pflanzlich oder tierisch sein, das Etikett sagt es nicht"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      }
+    ]
   },
   {
     "id": "en:e472",
@@ -1761,7 +2031,19 @@
       "en": "Esters of Mono- and Diglycerides",
       "tr": "Mono ve Digliserit Esterleri",
       "ar": "إسترات أحاديات وثنائيات الغليسيريد"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/281",
+        "title": "Askimam (Hanafi): E471 may be of plant or animal base, the label does not say",
+        "title_de": "Askimam (hanafitisch): E471 kann pflanzlich oder tierisch sein, das Etikett sagt es nicht"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      }
+    ]
   },
   {
     "id": "en:e473",
@@ -1775,7 +2057,19 @@
       "en": "Sucrose Esters of Fatty Acids",
       "tr": "Yağ Asidi Sukroz Esterleri",
       "ar": "إسترات السكروز"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/281",
+        "title": "Askimam (Hanafi): E471 may be of plant or animal base, the label does not say",
+        "title_de": "Askimam (hanafitisch): E471 kann pflanzlich oder tierisch sein, das Etikett sagt es nicht"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      }
+    ]
   },
   {
     "id": "en:e475",
@@ -1789,7 +2083,19 @@
       "en": "Polyglycerol Esters of Fatty Acids",
       "tr": "Poligliserol Esterleri",
       "ar": "إسترات متعدد الغليسيرول"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/281",
+        "title": "Askimam (Hanafi): E471 may be of plant or animal base, the label does not say",
+        "title_de": "Askimam (hanafitisch): E471 kann pflanzlich oder tierisch sein, das Etikett sagt es nicht"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      }
+    ]
   },
   {
     "id": "en:e476",
@@ -1803,7 +2109,19 @@
       "en": "Polyglycerol Polyricinoleate (PGPR)",
       "tr": "PGPR",
       "ar": "بوليغليسرول بوليريسينوليت"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/281",
+        "title": "Askimam (Hanafi): E471 may be of plant or animal base, the label does not say",
+        "title_de": "Askimam (hanafitisch): E471 kann pflanzlich oder tierisch sein, das Etikett sagt es nicht"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      }
+    ]
   },
   {
     "id": "en:e481",
@@ -1817,7 +2135,19 @@
       "en": "Sodium Stearoyl Lactylate",
       "tr": "Sodyum Stearoil Laktilat",
       "ar": "ستيرويل لاكتيلات الصوديوم"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e490",
@@ -1844,7 +2174,19 @@
       "en": "Sorbitan Monostearate",
       "tr": "Sorbitan Monostearat",
       "ar": "سوربيتان أحادي الستيارات"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e500",
@@ -1915,7 +2257,14 @@
       "en": "Edible Bone Phosphate",
       "tr": "Kemik Fosfatı",
       "ar": "فوسفات العظام"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e551",
@@ -1940,7 +2289,14 @@
       "en": "Stearic Acid",
       "tr": "Stearik Asit",
       "ar": "حمض الستياريك"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e586",
@@ -1984,7 +2340,14 @@
     "names": {
       "de": "Dinatriuminosinat",
       "en": "Disodium Inosinate"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e635",
@@ -1996,7 +2359,14 @@
     "names": {
       "de": "Dinatrium-5'-ribonukleotid",
       "en": "Disodium 5'-Ribonucleotides"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e901",
@@ -2026,21 +2396,33 @@
   },
   {
     "id": "en:e904",
-    "default_category": "MASHBOOH",
-    "hanafi_ruling": "HALAL",
-    "maliki_ruling": "HALAL",
-    "shafi_ruling": "MASHBOOH",
-    "hanbali_ruling": "MASHBOOH",
-    "reason": "Secretion of lac insect. Majority of scholars consider it halal after purification.",
-    "reason_de": "Sekret der Lackschildlaus. Mehrheit der Gelehrten hält es nach Reinigung für halal.",
+    "default_category": "HARAM",
+    "reason": "Secretion of the lac insect; as a coating on food not permissible (askimam, Hanafi)",
+    "reason_de": "Sekret der Lackschildlaus; als Überzug auf Lebensmitteln nicht erlaubt (askimam, hanafitisch)",
     "source": "scholarly_opinion",
-    "doubt": "other",
     "names": {
       "de": "Schellack",
       "en": "Shellac",
       "tr": "Şellak",
       "ar": "شيلاك"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/18147",
+        "title": "Askimam (Hanafi): shellac secretion is like honey, but glazed sweets with insect traces are not allowed",
+        "title_de": "Askimam (hanafitisch): Schellack-Sekret wie Honig, aber Süßwaren mit Insektenspuren nicht erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/41066",
+        "title": "Askimam (Hanafi): shellac glaze on edible products is impermissible; fine for external use",
+        "title_de": "Askimam (hanafitisch): Schellack-Glasur auf Lebensmitteln unerlaubt; äußerlich in Ordnung"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e920",
@@ -2055,7 +2437,19 @@
       "en": "L-Cysteine",
       "tr": "L-Sistein",
       "ar": "إل-سيستين"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/21257",
+        "title": "Askimam (Hanafi): L-cysteine fine from animal feathers or synthetic, not from human hair or pig",
+        "title_de": "Askimam (hanafitisch): L-Cystein aus Federn oder synthetisch erlaubt, nicht aus Menschenhaar oder Schwein"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:e951",
@@ -2166,7 +2560,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:elk-meat",
@@ -2174,7 +2575,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:emulsifier",
@@ -2188,7 +2596,19 @@
       "en": "Emulsifier",
       "tr": "Emülgatör",
       "ar": "مستحلب"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:essential-oil",
@@ -2267,7 +2687,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:flavouring",
@@ -2281,7 +2708,14 @@
       "en": "Flavor",
       "tr": "Aroma",
       "ar": "نكهة"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/41175",
+        "title": "Askimam (Hanafi): tiny alcohol amounts in flavourings and food allowed if not from grapes or dates",
+        "title_de": "Askimam (hanafitisch): kleine Alkoholmengen in Aromen/Speisen erlaubt, wenn nicht aus Trauben/Datteln"
+      }
+    ]
   },
   {
     "id": "en:flax",
@@ -2300,6 +2734,13 @@
     "extra_names": [
       {
         "de": "Fond"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -2407,7 +2848,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:garlic",
@@ -2489,6 +2937,18 @@
       },
       {
         "de": "Monoglycerid"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/29081",
+        "title": "Askimam (Hanafi): some emulsifiers are animal based and haram, ask the producer",
+        "title_de": "Askimam (hanafitisch): manche Emulgatoren sind tierisch und haram, beim Hersteller nachfragen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
       }
     ]
   },
@@ -2724,7 +3184,14 @@
       "en": "Lamb",
       "tr": "Kuzu Eti",
       "ar": "لحم خروف"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:lard",
@@ -2856,6 +3323,18 @@
       {
         "de": "Marshmallows"
       }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
     ]
   },
   {
@@ -2865,7 +3344,19 @@
     "doubt": "animal_source",
     "composition_resolves": true,
     "reason": "Usually made with gelatine; a listed composition answers it",
-    "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es"
+    "reason_de": "Meist mit Gelatine hergestellt; die angegebene Zusammensetzung klärt es",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/36902",
+        "title": "Askimam (Hanafi): gelatine only halal from slaughtered permissible animals",
+        "title_de": "Askimam (hanafitisch): Gelatine nur von geschächteten erlaubten Tieren erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:marzipan",
@@ -2895,6 +3386,13 @@
       {
         "de": "Fleischwaren"
       }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
     ]
   },
   {
@@ -2903,7 +3401,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:menthol",
@@ -3018,7 +3523,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:moose-meat",
@@ -3026,7 +3538,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:mortierella-alpina-oil",
@@ -3076,6 +3595,13 @@
       {
         "de": "natürliche Farbstoffe"
       }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/39856",
+        "title": "Askimam (Hanafi): red colour E120 is impermissible because insects may not be eaten",
+        "title_de": "Askimam (hanafitisch): Rotfarbe E120 unerlaubt, da Insekten nicht gegessen werden dürfen"
+      }
     ]
   },
   {
@@ -3090,7 +3616,14 @@
       "en": "Natural Flavors",
       "tr": "Doğal Aromalar",
       "ar": "نكهات طبيعية"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/41175",
+        "title": "Askimam (Hanafi): tiny alcohol amounts in flavourings and food allowed if not from grapes or dates",
+        "title_de": "Askimam (hanafitisch): kleine Alkoholmengen in Aromen/Speisen erlaubt, wenn nicht aus Trauben/Datteln"
+      }
+    ]
   },
   {
     "id": "en:natural-sheep-casing",
@@ -3098,7 +3631,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:natural-vanilla",
@@ -3110,7 +3650,19 @@
     "names": {
       "de": "Natürliches Vanillearoma",
       "en": "Natural Vanilla Flavor"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/30686",
+        "title": "Askimam (Hanafi): pure vanilla extract is made with ethyl alcohol; check its source",
+        "title_de": "Askimam (hanafitisch): echter Vanilleextrakt enthält Ethylalkohol; Herkunft prüfen"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/29045",
+        "title": "Askimam (Hanafi): non-grape, non-date alcohol in medicine and vanilla is halal if not intoxicating",
+        "title_de": "Askimam (hanafitisch): Alkohol nicht aus Trauben/Datteln in Medizin und Vanille halal, wenn nicht berauschend"
+      }
+    ]
   },
   {
     "id": "en:neapolitan-wafer",
@@ -3291,7 +3843,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:patty",
@@ -3299,7 +3858,14 @@
     "source": "scholarly_opinion",
     "doubt": "animal_source",
     "reason": "May be made from meat or vegetables",
-    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein"
+    "reason_de": "Kann aus Fleisch oder aus Gemüse hergestellt sein",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:pencillium-roqueforti",
@@ -3429,7 +3995,14 @@
       "en": "Pork Gelatin",
       "tr": "Domuz Jelatini",
       "ar": "جيلاتين الخنزير"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/30931",
+        "title": "Askimam (Hanafi): gelatine halal from slaughtered, fish or bone; pig haram",
+        "title_de": "Askimam (hanafitisch): Gelatine halal aus Geschächtetem, Fisch oder Knochen; Schwein haram"
+      }
+    ]
   },
   {
     "id": "en:potato-starch",
@@ -3448,7 +4021,14 @@
     "reason": "Halal only if from halal-slaughtered animal",
     "reason_de": "Halal nur wenn halal-geschlachtet",
     "source": "scholarly_opinion",
-    "doubt": "other"
+    "doubt": "other",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:poultry-fond",
@@ -3460,6 +4040,13 @@
     "extra_names": [
       {
         "de": "Geflügelfond"
+      }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
       }
     ]
   },
@@ -3582,7 +4169,24 @@
     "reason": "Intoxicant - prohibited as ingredient",
     "reason_de": "Rauschmittel – als Zutat verboten",
     "source": "quran_hadith",
-    "id": "en:raspberry-liqueur"
+    "id": "en:raspberry-liqueur",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:raspberry-puree",
@@ -3604,7 +4208,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:raw-minced-beef-steak-with-15-fat",
@@ -3612,7 +4223,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:red-endive",
@@ -3636,7 +4254,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/23401",
+        "title": "Askimam (Hanafi): hunted deer is halal only if Bismillah, Allahu Akbar was said when shooting",
+        "title_de": "Askimam (hanafitisch): erlegtes Wild nur halal, wenn beim Schuss Bismillah, Allahu Akbar gesagt wurde"
+      }
+    ]
   },
   {
     "id": "en:rennet",
@@ -3658,14 +4283,14 @@
     },
     "references": [
       {
-        "url": "https://islamqa.org/hanafi/seekersguidance-hanafi/32352/",
-        "title": "SeekersGuidance (Hanafi): rennet from any animal except pig is permissible",
-        "title_de": "SeekersGuidance (hanafitisch): Lab von jedem Tier außer Schwein ist erlaubt"
-      },
-      {
-        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "url": "https://askimam.org/public/question_detail/39624",
         "title": "Askimam (Hanafi): how rennet and whey powder are made today",
         "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/15573",
+        "title": "Askimam (Hanafi): rennet from lawful animals is pure even if not slaughtered; pig rennet is not",
+        "title_de": "Askimam (hanafitisch): Lab von erlaubten Tieren rein, auch ungeschächtet; Schweinelab nicht"
       }
     ]
   },
@@ -3729,7 +4354,24 @@
       "en": "Rum",
       "tr": "Rom",
       "ar": "روم"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/18042",
+        "title": "Askimam (Hanafi): most E-numbers halal; E120, E441, E542, E904 haram, long list doubtful",
+        "title_de": "Askimam (hanafitisch): meiste E-Nummern halal; E120, E441, E542, E904 haram, lange Liste zweifelhaft"
+      }
+    ]
   },
   {
     "id": "en:sable",
@@ -3803,7 +4445,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:shellfish",
@@ -3862,7 +4511,14 @@
     "source": "scholarly_opinion",
     "doubt": "other",
     "reason": "Halal only if from a halal-slaughtered animal (zabiha)",
-    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)"
+    "reason_de": "Halal nur, wenn das Tier halal geschlachtet wurde (zabiha)",
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
+    ]
   },
   {
     "id": "en:soy-milk",
@@ -3915,7 +4571,14 @@
       "en": "Soy Sauce",
       "tr": "Soya Sosu",
       "ar": "صلصة الصويا"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/10687",
+        "title": "Askimam (Hanafi): soy sauce is permissible if its alcohol comes from wheat and soy",
+        "title_de": "Askimam (hanafitisch): Sojasoße erlaubt, wenn der Alkohol aus Weizen und Soja stammt"
+      }
+    ]
   },
   {
     "id": "en:soya-flour",
@@ -4217,6 +4880,13 @@
       {
         "de": "Putenfond"
       }
+    ],
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/19",
+        "title": "Askimam (Hanafi): ordinary Western market meat only permissible if the name of God is certain",
+        "title_de": "Askimam (hanafitisch): übliches Markt-Fleisch im Westen nur erlaubt, wenn Gottes Name sicher genannt wurde"
+      }
     ]
   },
   {
@@ -4247,12 +4917,12 @@
     },
     "references": [
       {
-        "url": "https://islamqa.org/hanafi/askimam/82998/what-is-the-ruling-on-vanilla-extract-and-vanillin/",
+        "url": "https://askimam.org/public/question_detail/30686",
         "title": "Askimam (Hanafi): vanilla extract is permissible if its alcohol is not made from grapes or dates",
         "title_de": "Askimam (hanafitisch): Vanilleextrakt erlaubt, wenn der Alkohol nicht aus Trauben oder Datteln stammt"
       },
       {
-        "url": "https://islamqa.org/hanafi/askimam/81206/",
+        "url": "https://askimam.org/public/question_detail/29045",
         "title": "Askimam (Hanafi): alcohol in medicines and vanilla extract",
         "title_de": "Askimam (hanafitisch): Alkohol in Medikamenten und Vanilleextrakt"
       }
@@ -4322,7 +4992,19 @@
       "en": "Vinegar",
       "tr": "Sirke",
       "ar": "خل"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/33124",
+        "title": "Askimam (Hanafi): vinegar made from wine is halal",
+        "title_de": "Askimam (hanafitisch): Essig aus Wein ist halal"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/43410",
+        "title": "Askimam (Hanafi): once wine has become vinegar it is pure and permissible",
+        "title_de": "Askimam (hanafitisch): Wein, der zu Essig geworden ist, ist rein und erlaubt"
+      }
+    ]
   },
   {
     "id": "en:vitamin-a",
@@ -4461,12 +5143,12 @@
     },
     "references": [
       {
-        "url": "https://islamqa.org/hanafi/askimam/85064/",
+        "url": "https://askimam.org/public/question_detail/32391",
         "title": "Askimam (Hanafi): whey powder and microbial rennet",
         "title_de": "Askimam (hanafitisch): Molkenpulver und mikrobielles Lab"
       },
       {
-        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "url": "https://askimam.org/public/question_detail/39624",
         "title": "Askimam (Hanafi): how rennet and whey powder are made today",
         "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
       }
@@ -4487,12 +5169,12 @@
     },
     "references": [
       {
-        "url": "https://islamqa.org/hanafi/askimam/85064/",
+        "url": "https://askimam.org/public/question_detail/32391",
         "title": "Askimam (Hanafi): whey powder and microbial rennet",
         "title_de": "Askimam (hanafitisch): Molkenpulver und mikrobielles Lab"
       },
       {
-        "url": "https://islamqa.org/hanafi/askimam/125800/",
+        "url": "https://askimam.org/public/question_detail/39624",
         "title": "Askimam (Hanafi): how rennet and whey powder are made today",
         "title_de": "Askimam (hanafitisch): heutige Herstellung von Lab und Molkenpulver"
       }
@@ -4541,7 +5223,19 @@
       "en": "Wine",
       "tr": "Şarap",
       "ar": "خمر"
-    }
+    },
+    "references": [
+      {
+        "url": "https://askimam.org/public/question_detail/6",
+        "title": "Askimam (Hanafi): alcohol from grapes or dates forbidden, other non-intoxicating alcohol in food allowed",
+        "title_de": "Askimam (hanafitisch): Alkohol aus Trauben/Datteln verboten, anderer nicht berauschender in Speisen erlaubt"
+      },
+      {
+        "url": "https://askimam.org/public/question_detail/43624",
+        "title": "Askimam (Hanafi): ethanol in food allowed unless from grapes/dates or intoxicating",
+        "title_de": "Askimam (hanafitisch): Ethanol in Lebensmitteln erlaubt, außer aus Trauben/Datteln oder berauschend"
+      }
+    ]
   },
   {
     "id": "en:xylose",

@@ -141,7 +141,7 @@
     <string name="result_refresh_failed">Neu laden fehlgeschlagen – angezeigt wird der bisherige Stand.</string>
     <string name="result_offline">Keine Verbindung zu Open Food Facts. Angezeigt wird der gespeicherte Stand vom %s.</string>
     <string name="result_source_conflict">Die Zutatenliste und die Daten von Open Food Facts weichen voneinander ab. Bedenkliche Zutaten aus beiden Quellen werden angezeigt.</string>
-    <string name="result_madhab_hint">Abweichende Bewertungen der Rechtsschulen sind nur für einzelne Zutaten hinterlegt (z. B. Meeresfrüchte, Essig, Schellack). Sonst gilt die allgemeine Bewertung.</string>
+    <string name="result_madhab_hint">Abweichende Bewertungen der Rechtsschulen sind nur für einzelne Zutaten hinterlegt (z. B. Meeresfrüchte, Essig, Lab). Sonst gilt die allgemeine Bewertung.</string>
     <string name="labels_title">Was steht auf der Verpackung?</string>
     <string name="labels_text">Open Food Facts fehlen solche Angaben oft. Tippe an, was auf der Packung steht: „vegan“ oder „vegetarisch“ klärt Zweifel über tierische Herkunft (z. B. E471, Aroma). Ein Halal-Siegel klärt alle zweifelhaften Zutaten, aber nie verbotene oder unbekannte.</string>
     <string name="labels_off">Laut Open Food Facts: %s</string>

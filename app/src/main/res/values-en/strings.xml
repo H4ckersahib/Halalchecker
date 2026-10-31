@@ -140,7 +140,7 @@
     <string name="result_refresh_failed">Reloading failed – showing the previous data.</string>
     <string name="result_offline">No connection to Open Food Facts. Showing the data saved on %s.</string>
     <string name="result_source_conflict">The ingredient list and the Open Food Facts data disagree. Doubtful ingredients from both sources are shown.</string>
-    <string name="result_madhab_hint">School-specific rulings are only recorded for some ingredients (e.g. seafood, vinegar, shellac). Otherwise the general ruling applies.</string>
+    <string name="result_madhab_hint">School-specific rulings are only recorded for some ingredients (e.g. seafood, vinegar, rennet). Otherwise the general ruling applies.</string>
     <string name="labels_title">What does the package say?</string>
     <string name="labels_text">Open Food Facts often lacks this. Tap what the package shows: “vegan” or “vegetarian” answers doubts about animal origin (e.g. E471, flavourings). A halal label resolves all doubtful ingredients, but never prohibited or unknown ones.</string>
     <string name="labels_off">According to Open Food Facts: %s</string>

@@ -203,9 +203,17 @@ class IngredientAssetTest {
 
     @Test
     fun `alcohol in a German compound is still found`() {
-        listOf("Rum-Rosinen", "Rumrosinen", "Himbeerlikör", "Ethanol").forEach { text ->
+        listOf("Rum-Rosinen", "Rumrosinen", "Himbeerlikör", "Weißwein").forEach { text ->
             assertEquals(text, HalalStatus.HARAM, analyze(text).halalStatus)
         }
+    }
+
+    @Test
+    fun `ethanol of unknown origin is doubtful, also with a vegan label`() {
+        // askimam: forbidden from grapes or dates, permissible from other sources if not intoxicating
+        val bread = "Weizenmehl, Wasser, Hefe, Speisesalz, Rapsöl, Ethanol"
+        assertEquals(HalalStatus.MASHBOOH, analyze(bread).halalStatus)
+        assertEquals(HalalStatus.MASHBOOH, analyze(bread, labels = listOf("en:vegan")).halalStatus)
     }
 
     @Test
